@@ -7,6 +7,8 @@ platform :ios, '8.0'
 link_with 'V2EX', 'V2EXTests'
 
 
+link_with 'V2EX', 'V2EXTests'
+
 pod 'hpple', '~> 0.2.0'
 pod 'MBProgressHUD', '~> 0.9'
 pod 'DTCoreText', '~> 1.6.14'

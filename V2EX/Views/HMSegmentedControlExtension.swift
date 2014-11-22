@@ -16,7 +16,7 @@ extension HMSegmentedControl {
     
     func setUp() {
         // Set up tabSegmentedControl
-        sectionTitles = ["全部", "最热", "R2", "问与答", "技术", "创意", "好玩", "Apple", "酷工作", "交易", "城市", "关注"]
+        sectionTitles = ["全部", "最热", "R2", "问与答", "技术", "创意", "好玩", "Apple", "酷工作", "交易", "城市"]
         selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe
         selectionIndicatorColor = UIColor(red: 0.91, green: 0.3, blue: 0.24, alpha: 1)
         selectionIndicatorHeight = 3.0
