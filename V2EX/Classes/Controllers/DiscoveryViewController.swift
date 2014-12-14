@@ -38,23 +38,26 @@ class DiscoveryViewController: UIViewController {
         
         paginatedView.didPageIndexChanged = { [unowned self] in self.didPageIndexChanged($0) }
         setUpListViewControllers()
+        
+        TopicSerivce.getList("all", response: nil)
     }
     
     func setUpListViewControllers() {
+        self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC")
         for slug in slugs {
             let vc = self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC") as TopicListViewController!
             topicListViewControllers[slug] = vc
             paginatedView.addPage(vc)
         }
         
-        println(topicListViewControllers)
+//        println(topicListViewControllers)
 //        for tab in tabs {
 //            let slug = tab["slug"]
 //        }
     }
     
     func didTabSegmentedControlIndexChanged(index: Int) {
-        println(index)
+//        println(index)
         paginatedView.jumpToPage(index)
     }
     

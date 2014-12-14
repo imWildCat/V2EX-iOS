@@ -9,6 +9,14 @@
 import Foundation
 
 struct Topic {
+    
+    var id: UInt
     var title: String
-//    var
+    var author: User?
+    
+    init(id: UInt, title: String) {
+        self.id = id
+        self.title = title
+    }
+    
 }
