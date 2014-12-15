@@ -26,7 +26,7 @@ class DiscoveryViewController: UIViewController {
 //        ["name": "城市",  "slug": "city"],
 //    ]
     
-    let slugs = ["all", "hot", "r2", "tech", "creative", "play", "apple", "jobs", "deals", "city"]
+    let slugs = ["all", "hot", "r2", "qna", "tech", "creative", "play", "apple", "jobs", "deals", "city"]
     
     var topicListViewControllers = Dictionary<String, TopicListViewController>()
 //    lazy var allTopicsListVC: TopicListViewController = self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC") as TopicListViewController
@@ -46,9 +46,11 @@ class DiscoveryViewController: UIViewController {
         self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC")
         for slug in slugs {
             let vc = self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC") as TopicListViewController!
+            vc.tabSlug = slug
             topicListViewControllers[slug] = vc
             paginatedView.addPage(vc)
         }
+        
         
 //        println(topicListViewControllers)
 //        for tab in tabs {

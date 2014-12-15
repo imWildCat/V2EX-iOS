@@ -21,26 +21,11 @@ import Foundation
 //}
 
 class TopicSerivce {
-    class func getList(nodeSlug: String, response: ((error: NSError?, topics: [Topic]?) -> Void)?) {
+    class func getList(tabSlug: String, response: ((error: NSError?, topics: [Topic]) -> Void)?) {
 
-        V2EXNetworking.get("", parameters: ["tab": nodeSlug]).response { (_, _, data, error) in
+        V2EXNetworking.get("", parameters: ["tab": tabSlug]).response { (_, _, data, error) in
             
-            var topics: [Topic]?
-            
-            if error == nil {
-                let doc = TFHpple(HTMLData: data as NSData)
-                
-                let elements = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@class='cell item']/table") as [TFHppleElement]
-                
-                for element in elements {
-                    let titleElement = element.searchFirst("//td[3]/span[@class='item_title']/a")
-                    let topicTitle = titleElement?.text() ?? ""
-                    
-                }
-                
-            } else {
-                println("EEROR")
-            }
+            let topics = Topic.listFromTab(data)
             
             response?(error: error, topics: topics)
         }

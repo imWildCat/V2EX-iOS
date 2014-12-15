@@ -12,6 +12,12 @@ extension TFHpple {
     convenience init(HTMLString: String) {
         self.init(HTMLData: HTMLString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true))
     }
+    
+    convenience init(HTMLObject: AnyObject?) {
+        self.init(HTMLData: HTMLObject as NSData?)
+    }
+    
+    
 }
 
 extension TFHppleElement {

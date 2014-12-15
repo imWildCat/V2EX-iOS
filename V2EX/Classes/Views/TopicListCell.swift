@@ -16,4 +16,23 @@ class TopicListCell: UITableViewCell {
     @IBOutlet weak var nodeNameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var replyCountLabel: UILabel!
+    
+    func render(viewModel: TopicListCellViewModel) {
+        
+        avatarImageView.setImageWithURL(NSURL(string: "https:" + viewModel.avatarURI), placeholderImage: UIImage(named: "node_icon"))
+        
+        titleLabel.text = viewModel.title
+        
+        authorLabel.text = viewModel.authorName
+        
+        if let nodeName = viewModel.nodeName {
+            nodeNameLabel.text = nodeName
+        } else {
+            nodeNameContainer.hidden = true
+        }
+        
+        timeLabel.text = viewModel.time
+        
+        replyCountLabel.text = viewModel.repliesCount
+    }
 }

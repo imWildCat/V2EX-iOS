@@ -10,26 +10,24 @@ import Foundation
 
 struct User {
     
-    var id: Int
     var username: String
-    var avatar: String?
+    var avatarURI: String
     var website: String?
     var twitter: String?
     var github: String?
-    var created_at: UInt?
+    var createdAt: Int?
     
-    init(id: Int, username: String, avatar: String?, website: String?, twitter: String?, github: String?, created_at: UInt?) {
-        self.id = id
-        self.username = username
-        self.avatar = avatar
+    init(username: String?, avatarURI: String? = nil, website: String? = nil, twitter: String? = nil, github: String? = nil, createdAt: Int? = nil) {
+        self.username = username ?? ""
+        self.avatarURI = avatarURI ?? ""
         self.website = website
         self.twitter = twitter
         self.github = github
-        self.created_at = created_at
+        self.createdAt = createdAt
     }
     
-    init(id: Int, username: String) {
-        self.init(id: id, username: username, avatar: nil, website: nil, twitter: nil, github: nil, created_at: nil)
-    }
+//    init(username: String) {
+//        self.init(username: username, avatar: nil, website: nil, twitter: nil, github: nil, created_at: nil)
+//    }
     
 }

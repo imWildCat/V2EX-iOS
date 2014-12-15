@@ -14,6 +14,7 @@ pod 'pop', '~> 1.0.7'
 pod 'RNFrostedSidebar', '~> 0.2'
 pod 'HMSegmentedControl', '~> 1.4'
 pod 'YTKKeyValueStore', '~> 0.1.2'
+pod 'AFNetworking', '~> 2.5'
 
 
 target :V2EXTests, :exclusive => true do

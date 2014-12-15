@@ -12,7 +12,7 @@ extension String {
     // Inspired by Ruby
     
     func scan(pattern: String, options: NSRegularExpressionOptions = nil, error: NSErrorPointer = nil) -> [String] {
-        let re = NSRegularExpression(pattern: "/t/(\\w{1,9})#", options: nil, error: nil)!
+        let re = NSRegularExpression(pattern: pattern, options: nil, error: nil)!
         let matches = re.matchesInString(self, options: nil, range: NSRange(location: 0, length: self.utf16Count)) as [NSTextCheckingResult]
         var strings = [String]()
         for m in matches {
@@ -24,8 +24,8 @@ extension String {
         return strings
     }
     
-    func match(pattern: String, options: NSRegularExpressionOptions = nil, error: NSErrorPointer = nil) -> [String] {
-        let re = NSRegularExpression(pattern: "/t/(\\w{1,9})#", options: nil, error: nil)!
+    func match(pattern: String, options: NSRegularExpressionOptions = nil, error: NSErrorPointer = nil) -> [String]? {
+        let re = NSRegularExpression(pattern: pattern, options: nil, error: nil)!
         let matches = re.matchesInString(self, options: nil, range: NSRange(location: 0, length: self.utf16Count)) as [NSTextCheckingResult]
         var firstMatchedResults = [String]()
         for m in matches {
@@ -36,6 +36,10 @@ extension String {
                 }
             }
         }
-        return firstMatchedResults
+        if matches.count == 0 {
+            return nil
+        } else {
+            return firstMatchedResults
+        }
     }
 }

@@ -15,7 +15,9 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
     var didPageIndexChanged: ((pageIndex: Int) -> ())?
     
     private lazy var controllers = [UIViewController]()
-    private lazy var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+    
+    // Disable tap:
+    // private lazy var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
     
     var jumping: Bool = false
     private var isJumping: Bool {
@@ -66,14 +68,14 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
         
         round(contentOffset.x / frame.size.width)
         
-        addGestureRecognizer(tapGestureRecognizer)
+//        addGestureRecognizer(tapGestureRecognizer)
         
         delegate = self
     }
     
-    func handleTap(recognizer: UITapGestureRecognizer) {
-        jumpToPage(nextPage, bounce: 0, completion: nil)
-    }
+//    func handleTap(recognizer: UITapGestureRecognizer) {
+//        jumpToPage(nextPage, bounce: 0, completion: nil)
+//    }
     
 
     func addPage(viewController: UIViewController) {
