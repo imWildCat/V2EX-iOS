@@ -15,7 +15,7 @@ struct TopicListCellViewModel {
     init(topic: Topic) {
         self.title = topic.title
         self.avatarURI = topic.author?.avatarURI ?? ""
-        self.authorName = topic.author?.username ?? ""
+        self.authorName = topic.author?.name ?? ""
         self.time = topic.createdAt
         self.repliesCount = String(topic.repliesCount)
         

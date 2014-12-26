@@ -17,6 +17,14 @@ extension TFHpple {
         self.init(HTMLData: HTMLObject as NSData?)
     }
     
+    func searchFirst(xPath: String) -> TFHppleElement? {
+        let ret = searchWithXPathQuery(xPath) as [TFHppleElement]
+        if ret.count > 0 {
+            return ret.first
+        }
+        return nil
+    }
+    
     
 }
 
@@ -27,5 +35,9 @@ extension TFHppleElement {
             return ret.first
         }
         return nil
+    }
+    
+    func attr(name: String) -> String? {
+        return self[name] as? String
     }
 }

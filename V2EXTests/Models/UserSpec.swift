@@ -7,11 +7,11 @@ class UserSpec: QuickSpec {
         
         describe("a user with convenience initializer") {
             beforeEach {
-                user = User(username: "Livid")
+                user = User(name: "Livid")
             }
             
             it ("should have correct propreties") {
-                expect(user.username).to(equal("Livid"))
+                expect(user.name).to(equal("Livid"))
                 expect(user.avatarURI).to(equal(""))
                 expect(user.website).to(beNil())
                 expect(user.twitter).to(beNil())
@@ -23,7 +23,7 @@ class UserSpec: QuickSpec {
         describe("a user with initializer") {
             beforeEach {
                 user = User(
-                    username: "Livid",
+                    name: "Livid",
                     avatarURI: "//cdn.v2ex.com/avatar/c4ca/4238/1_large.png?m=1401650222",
                     website: "http://livid.v2ex.com/",
                     twitter: "Livid",
@@ -33,7 +33,7 @@ class UserSpec: QuickSpec {
             }
             
             it ("should have correct propreties") {
-                expect(user.username).to(equal("Livid"))
+                expect(user.name).to(equal("Livid"))
                 expect(user.avatarURI).to(equal("//cdn.v2ex.com/avatar/c4ca/4238/1_large.png?m=1401650222"))
                 expect(user.website).to(equal("http://livid.v2ex.com/"))
                 expect(user.twitter).to(equal("Livid"))

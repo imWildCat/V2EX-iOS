@@ -1,6 +1,5 @@
 //
 //  CatPaginatedScrollView.swift
-//  CatPaginatedScrollViewExample
 //
 //  Created by WildCat on 04/10/2014.
 //  Copyright (c) 2014 WildCat. All rights reserved.
@@ -9,7 +8,6 @@
 import UIKit
 
 class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
-    var jumpDurationPerPage: NSTimeInterval = 0.1
     var previousPageCount = 0
     
     var didPageIndexChanged: ((pageIndex: Int) -> ())?
@@ -64,7 +62,6 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
         pagingEnabled = true
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
-        jumpDurationPerPage = 0.1
         
         round(contentOffset.x / frame.size.width)
         
@@ -120,7 +117,7 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
                 bounce = -bounce
             }
             
-            UIView.animateWithDuration(jumpDurationPerPage * NSTimeInterval(numberOfPages), animations: { [unowned self] () -> Void in
+            UIView.animateWithDuration(0.35, animations: { [unowned self] () -> Void in
                 self.contentOffset = CGPoint(x: self.frame.size.width * CGFloat(page) + bounce, y: self.contentOffset.y)
             }, completion: { [unowned self] (Bool finished) -> Void in
                 UIView.animateWithDuration(1, animations: { () -> Void in

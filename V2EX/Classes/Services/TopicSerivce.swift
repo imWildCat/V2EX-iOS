@@ -30,4 +30,16 @@ class TopicSerivce {
             response?(error: error, topics: topics)
         }
     }
+    
+    class func singleTopic(id: Int, response: ((error: NSError?, topic: Topic, replies: [Reply]) -> Void)?) {
+        
+        V2EXNetworking.get("t/" + String(id), parameters: nil).response {
+            (_, _, data, error) in
+            let topic = Topic.singleTopic(data)
+            let replies = Reply.listFromTopic(data)
+            
+            response?(error: error, topic: topic, replies: replies)
+        }
+        
+    }
 }

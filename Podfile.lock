@@ -39,6 +39,7 @@ PODS:
     - FMDB/common
   - HMSegmentedControl (1.4.0)
   - hpple (0.2.0)
+  - KVNProgress (2.1.3)
   - MBProgressHUD (0.9)
   - pop (1.0.7)
   - RNFrostedSidebar (0.2.0)
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - DTCoreText (~> 1.6.14)
   - HMSegmentedControl (~> 1.4)
   - hpple (from `https://github.com/topfunky/hpple.git`, commit `26554fa388`)
+  - KVNProgress (~> 2.1)
   - MBProgressHUD (~> 0.9)
   - pop (~> 1.0.7)
   - RNFrostedSidebar (~> 0.2)
@@ -74,6 +76,7 @@ SPEC CHECKSUMS:
   FMDB: 0b2fa25e5264ef177973c0cb8c02c711107979aa
   HMSegmentedControl: c0517a8d4b80c978b8386f863f1c44729cfd7d6f
   hpple: 92dab53f4b257c66aad65ff466a9ae5682be1fd9
+  KVNProgress: 0c0fcd44798c91d50abbad19b76d869b4f8f5cb1
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
   RNFrostedSidebar: f1d95d9b2627f13cc10e75d36e751a623eec079c

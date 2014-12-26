@@ -8,6 +8,8 @@
 
 import UIKit
 
+private var sharedDiscoveryViewController: DiscoveryViewController?
+
 class ContainerViewController: UINavigationController {
     
     var discoveryViewController: UIViewController!
@@ -19,7 +21,11 @@ class ContainerViewController: UINavigationController {
         super.viewDidLoad()
         
         discoveryViewController = viewControllers[0] as UIViewController
+        sharedDiscoveryViewController = discoveryViewController as? DiscoveryViewController
     }
 
+    class func sharedDiscoveryVC() -> DiscoveryViewController? {
+        return sharedDiscoveryViewController
+    }
     
 }

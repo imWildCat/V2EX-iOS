@@ -10,15 +10,15 @@ import Foundation
 
 struct User {
     
-    var username: String
+    var name: String
     var avatarURI: String
     var website: String?
     var twitter: String?
     var github: String?
     var createdAt: Int?
     
-    init(username: String?, avatarURI: String? = nil, website: String? = nil, twitter: String? = nil, github: String? = nil, createdAt: Int? = nil) {
-        self.username = username ?? ""
+    init(name: String?, avatarURI: String? = nil, website: String? = nil, twitter: String? = nil, github: String? = nil, createdAt: Int? = nil) {
+        self.name = name ?? ""
         self.avatarURI = avatarURI ?? ""
         self.website = website
         self.twitter = twitter

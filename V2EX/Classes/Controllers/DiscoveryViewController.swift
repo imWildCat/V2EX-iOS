@@ -38,8 +38,6 @@ class DiscoveryViewController: UIViewController {
         
         paginatedView.didPageIndexChanged = { [unowned self] in self.didPageIndexChanged($0) }
         setUpListViewControllers()
-        
-        TopicSerivce.getList("all", response: nil)
     }
     
     func setUpListViewControllers() {
@@ -51,11 +49,20 @@ class DiscoveryViewController: UIViewController {
             paginatedView.addPage(vc)
         }
         
-        
+
 //        println(topicListViewControllers)
 //        for tab in tabs {
 //            let slug = tab["slug"]
 //        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showTopicVC" {
+            let destinationViewController = segue.destinationViewController as TopicViewController
+            let topic = sender as Topic
+            destinationViewController.topicId = topic.id
+            println("topic")
+        }
     }
     
     func didTabSegmentedControlIndexChanged(index: Int) {

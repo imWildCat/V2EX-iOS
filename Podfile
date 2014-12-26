@@ -15,6 +15,7 @@ pod 'RNFrostedSidebar', '~> 0.2'
 pod 'HMSegmentedControl', '~> 1.4'
 pod 'YTKKeyValueStore', '~> 0.1.2'
 pod 'AFNetworking', '~> 2.5'
+pod 'KVNProgress', '~> 2.1'
 
 
 target :V2EXTests, :exclusive => true do

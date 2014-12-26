@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		1FAEAC12216AA6E66E8D3042 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B005FAB4D095232E092499DC /* libPods.a */; };
+		5E0367A81A46AC7C004CF2B2 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F685D1A43CB9700EEECBD /* Reply.swift */; };
+		5E0367B31A46B70A004CF2B2 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0367B21A46B70A004CF2B2 /* TopicViewController.swift */; };
+		5E0367B41A46B70A004CF2B2 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0367B21A46B70A004CF2B2 /* TopicViewController.swift */; };
 		5E14977A1A13A1890034F34F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E1497781A13A1890034F34F /* Main.storyboard */; };
 		5E14977C1A13A1890034F34F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E14977B1A13A1890034F34F /* Images.xcassets */; };
 		5E14977F1A13A1890034F34F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E14977D1A13A1890034F34F /* LaunchScreen.xib */; };
 		5E2208D91A3DC64200A88A51 /* TFHppleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */; };
 		5E2208E61A3DC67B00A88A51 /* TopicServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2208E51A3DC67B00A88A51 /* TopicServiceSpec.swift */; };
 		5E2208EB1A3DD52100A88A51 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2208EA1A3DD52100A88A51 /* StringExtension.swift */; };
+		5E2F685E1A43CB9700EEECBD /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F685D1A43CB9700EEECBD /* Reply.swift */; };
 		5E3759B91A3C7640003DB82A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3759B81A3C7640003DB82A /* AppDelegate.swift */; };
 		5E4AA85C1A3EFA6700AA2F3D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2208EA1A3DD52100A88A51 /* StringExtension.swift */; };
 		5E4AA8681A3F032900AA2F3D /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4AA8671A3F032900AA2F3D /* Node.swift */; };
@@ -160,6 +164,7 @@
 
 /* Begin PBXFileReference section */
 		35C98C0EB1FE7B2748B19B73 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5E0367B21A46B70A004CF2B2 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		5E14976F1A13A1890034F34F /* V2EX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2EX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E1497731A13A1890034F34F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E1497791A13A1890034F34F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -170,6 +175,7 @@
 		5E1C14721A392AA600696796 /* V2EXTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "V2EXTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E2208E51A3DC67B00A88A51 /* TopicServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicServiceSpec.swift; sourceTree = "<group>"; };
 		5E2208EA1A3DD52100A88A51 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		5E2F685D1A43CB9700EEECBD /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		5E3759B81A3C7640003DB82A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E4AA8671A3F032900AA2F3D /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		5E4AA86C1A3F0EA000AA2F3D /* TopicListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListCellViewModel.swift; sourceTree = "<group>"; };
@@ -348,6 +354,7 @@
 				5E5F23B71A395DBD00D20FE9 /* TopicListViewController.swift */,
 				5E5F23B81A395DBD00D20FE9 /* UIViewControllerExtension.swift */,
 				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
+				5E0367B21A46B70A004CF2B2 /* TopicViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -360,6 +367,7 @@
 				5E7A0ECE1A3D79F600C9251B /* StorableProtocol.swift */,
 				5E7A0ED01A3D7BCB00C9251B /* BaseModel.swift */,
 				5E4AA8671A3F032900AA2F3D /* Node.swift */,
+				5E2F685D1A43CB9700EEECBD /* Reply.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -745,6 +753,7 @@
 				5E5F23C81A395DBD00D20FE9 /* NodeListViewController.swift in Sources */,
 				5EC957C31A3DBFFF005E5428 /* V2EXNetworking.swift in Sources */,
 				5E4AA8681A3F032900AA2F3D /* Node.swift in Sources */,
+				5E2F685E1A43CB9700EEECBD /* Reply.swift in Sources */,
 				5E5F23D31A395DBD00D20FE9 /* HMSegmentedControlExtension.swift in Sources */,
 				5E5F23D41A395DBD00D20FE9 /* TopicListCell.swift in Sources */,
 				5E98290A1A3DC1DE001B1E25 /* TFHppleExtension.swift in Sources */,
@@ -753,6 +762,7 @@
 				5E7A0ED11A3D7BCB00C9251B /* BaseModel.swift in Sources */,
 				5E5F23D21A395DBD00D20FE9 /* CatPaginatedScrollView.swift in Sources */,
 				5E5F23CF1A395DBD00D20FE9 /* User.swift in Sources */,
+				5E0367B31A46B70A004CF2B2 /* TopicViewController.swift in Sources */,
 				5E5F23C91A395DBD00D20FE9 /* PreferenceViewController.swift in Sources */,
 				5E5F23D11A395DBD00D20FE9 /* Utils.swift in Sources */,
 				5EC957B71A3DBB56005E5428 /* TopicSerivce.swift in Sources */,
@@ -767,10 +777,12 @@
 			files = (
 				5E5F23D61A395DD600D20FE9 /* User.swift in Sources */,
 				5E2208D91A3DC64200A88A51 /* TFHppleExtension.swift in Sources */,
+				5E0367B41A46B70A004CF2B2 /* TopicViewController.swift in Sources */,
 				5E83B72C1A3D941C0079AB3E /* NetworkingSpec.swift in Sources */,
 				5E5F23AE1A3953CA00D20FE9 /* TopicSpec.swift in Sources */,
 				5E2208E61A3DC67B00A88A51 /* TopicServiceSpec.swift in Sources */,
 				5E83B72D1A3D945D0079AB3E /* Networking.swift in Sources */,
+				5E0367A81A46AC7C004CF2B2 /* Reply.swift in Sources */,
 				5E7A0ECD1A3D731F00C9251B /* YTKKeyValueStoreSpec.swift in Sources */,
 				5EC957C51A3DC003005E5428 /* TopicSerivce.swift in Sources */,
 				5EC957C41A3DBFFF005E5428 /* V2EXNetworking.swift in Sources */,

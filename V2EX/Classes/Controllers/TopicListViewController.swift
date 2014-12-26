@@ -13,28 +13,32 @@ class TopicListViewController: UITableViewController {
     var tabSlug: String?
     var topics = [Topic]()
     
-    override func viewDidAppear(animated: Bool) {
-        println("appear")
-        
-       
-    }
-    
-  
-    override func viewDidDisappear(animated: Bool) {
-        println("disappear")
-    }
-    
     override func viewDidLoad() {
-        println("load")
+        
+        loadData()
+    }
+    
+    @IBAction func refresh(sender: UIRefreshControl) {
+        loadData()
+    }
+    
+    func loadData() {
+        if refreshControl?.refreshing == false {
+            showProgressView()
+        }
+        
         
         TopicSerivce.getList(tabSlug!, response: { [unowned self] (error, topics) in
             if error == nil {
                 self.topics = topics
                 self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
             }
+            self.hideProgressView()
         })
-        
     }
+    
+    // MARK: UITableViewDataSource
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return topics.count
@@ -47,6 +51,14 @@ class TopicListViewController: UITableViewController {
         cell.render(cellViewModel)
         
         return cell
+    }
+
+    // MARK: UITableViewDelegate
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tabSlug != nil {
+            let parentVC = ContainerViewController.sharedDiscoveryVC()!
+            parentVC.performSegueWithIdentifier("showTopicVC", sender: topics[indexPath.row] as AnyObject)
+        }
     }
 
 }
