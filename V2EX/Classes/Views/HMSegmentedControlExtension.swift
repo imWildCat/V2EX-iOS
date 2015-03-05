@@ -10,9 +10,9 @@ import UIKit
 
 extension HMSegmentedControl {
 
-    public override func prepareForInterfaceBuilder() {
-        setUp()
-    }
+//    public override func prepareForInterfaceBuilder() {
+//        setUp()
+//    }
     
     func setUp() {
         // Set up tabSegmentedControl
@@ -25,6 +25,9 @@ extension HMSegmentedControl {
     }
 }
 
-@IBDesignable class IB_HMSegmentedControl: HMSegmentedControl {
+//
+
+//
+class IB_HMSegmentedControl: HMSegmentedControl {
     
 }

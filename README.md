@@ -14,7 +14,7 @@ Now I'm working on creating a new repo using the wonderful Swift!
 ## How to start?
 This project is using [CocoaPods](http://cocoapods.org).  
 You have to execute `pod install` and use `V2EX.xcworkspace`.  
-At present time, CocoaPods hasn't support Swift library yet. So we use *git submodule* to support Swift libraries such as [Alamofire](https://github.com/Alamofire/Alamofire), [Quick](https://github.com/Quick/Quick). You have to execute `git submodule update --recursive` to pull these libraries.  
+At present time, CocoaPods hasn't support Swift library yet. So we use *git submodule* to support Swift libraries such as [Alamofire](https://github.com/Alamofire/Alamofire), [Quick](https://github.com/Quick/Quick). You have to execute `git submodule update --init --recursive` to pull these libraries.  
 
 ## TODOs
 You could find all the TODOs right here: https://github.com/imWildCat/V2EX-iOS/issues?labels=enhancement&page=1&state=open (Issues labelled enhancement).

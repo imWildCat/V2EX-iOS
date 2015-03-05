@@ -15,7 +15,14 @@ class TopicListViewController: UITableViewController {
     
     override func viewDidLoad() {
         
-        loadData()
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if topics.count == 0 {
+            loadData()
+        }
+        println("appear")
     }
     
     @IBAction func refresh(sender: UIRefreshControl) {
