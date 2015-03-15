@@ -8,12 +8,20 @@
 
 import UIKit
 
+protocol TopicContentCellDelegate {
+    func topicContentCell(cell: TopicContentCell, shouldAssignHeight newHeight: CGFloat)
+}
+
 class TopicContentCell: UITableViewCell, DTAttributedTextContentViewDelegate {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var timeAgoLabel: UILabel!
-    @IBOutlet weak var attributedTextContentView: DTAttributedTextContentView!
-    var reloadCellBlock: (() -> ())?
+//    @IBOutlet weak var attributedTextContentView: DTAttributedTextContentView!
+    @IBOutlet weak var contentWebView: UIWebView!
+//    @IBOutlet weak var attributedTextView: DTAttributedTextContentView!
+//    @IBOutlet weak var attributedLabel: DTAttributedLabel!
+//    var reloadCellBlock: (() -> ())?
+//    @IBOutlet weak var attributedLabel: TTTAttributedLabel!
     
 
     override func awakeFromNib() {
@@ -25,58 +33,60 @@ class TopicContentCell: UITableViewCell, DTAttributedTextContentViewDelegate {
         avatarImageView.sd_setImageWithURL(NSURL(string: viewModel.avatarURL), placeholderImage: UIImage(named: "node_icon"))
         authorNameLabel.text = viewModel.authorName
         timeAgoLabel.text = viewModel.timeAgo
-        
+       
+
+//        attributedLabel.setText(TopicContentCell.HTML2AttrString(viewModel.contentHTML))
+//        attributedLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+//        attributedLabel.numberOfLines = 0
         // content
-        attributedTextContentView.delegate = self
-        attributedTextContentView.attributedString = TopicContentCell.HTML2AttrString(viewModel.contentHTML)
+//        attributedTextContentView.delegate = self
+//        attributedTextContentView.attributedString = TopicContentCell.HTML2AttrString(viewModel.contentHTML)
+//        attributedLabel.delegate = self
+   
+       
+//        attributedTextView.attributedString = TopicContentCell.HTML2AttrString(viewModel.contentHTML)
+//
+//        let size = attributedTextView.suggestedFrameSizeToFitEntireStringConstraintedToWidth(attributedTextView.frame.width)
+//        attributedTextView.contentMode = UIViewContentMode.Center
+//        println("size: " + size.height.description)
+//        attributedTextView.frame.size = size
+//        
+//        attributedTextView.relayoutText()
+      
         
-        setNeedsLayout()
+//        setNeedsLayout()
 //        setNeedsDisplay()
     }
     
-    class func HTML2AttrString(HTML: String) -> NSAttributedString {
-        if let data = HTML.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-            if let attrString = NSAttributedString(HTMLData: data, options: [
-                "DTDefaultFontSize": "14",
-                "DTDefaultLinkDecoration": false
-                ], documentAttributes: nil) {
-                return attrString
-            }
-        }
-        NSLog("Cannot init data from html, and then to NSAttributedString")
-        return NSAttributedString(string: HTML)
-    }
+//    class func HTML2AttrString(HTML: String) -> NSAttributedString {
+////        let html = "<div>" + HTML + "</div>"
+//        if let data = HTML.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+//            if let attrString = NSAttributedString(HTMLData: data, options: [
+//                "DTDefaultFontSize": "14",
+//                "DTDefaultLinkDecoration": false
+//                ], documentAttributes: nil) {
+//                return attrString
+//            }
+//        }
+//        NSLog("Cannot init data from html, and then to NSAttributedString")
+//        return NSAttributedString(string: HTML)
+//    }
     
     // MARK: overrides
 
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let neededContentHeight = attributedTextContentView.suggestedFrameSizeToFitEntireStringConstraintedToWidth(contentView.frame.size.width).height
-        let oldFrame = attributedTextContentView.frame
-        let textViewFrame = CGRect(x: oldFrame.origin.x, y: oldFrame.origin.y, width: oldFrame.size.width, height: neededContentHeight)
-        attributedTextContentView.frame = textViewFrame
+//        println("size: " + attributedTextContentView.frame.width.description);
+//        attributedTextContentView.layoutSubviewsInRect(attributedTextContentView.frame)
+//        let neededContentHeight = attributedTextContentView.suggestedFrameSizeToFitEntireStringConstraintedToWidth(contentView.frame.size.width).height
+//        let oldFrame = attributedTextContentView.frame
+//        let textViewFrame = CGRect(x: oldFrame.origin.x, y: oldFrame.origin.y, width: oldFrame.size.width, height: neededContentHeight)
+//        attributedTextContentView.frame = textViewFrame
     }
     
     
-    // MARK: content link / image pushed
-    func linkPushed(button: DTLinkButton) {
-        let URL = button.URL
-        
-        println("link pushed " + URL.URLString)
-    }
-    
-    func linkLongPressed(gesture: UILongPressGestureRecognizer) {
-        if gesture.state == UIGestureRecognizerState.Began {
-            if let button = gesture.view as DTLinkButton? {
-                button.highlighted = false
-                
-                // TODO: xxx
-                
-                println("link long pressed")
-            }
-        }
-    }
+
     
     // MARK: DTAttributedTextContentViewDelegate
     func attributedTextContentView(attributedTextContentView: DTAttributedTextContentView!, viewForAttributedString string: NSAttributedString!, frame: CGRect) -> UIView! {
@@ -118,19 +128,22 @@ class TopicContentCell: UITableViewCell, DTAttributedTextContentViewDelegate {
             
             // sets the image if there is one
             imageView.image = (attachment as DTImageTextAttachment).image
-            imageView.sd_setImageWithURL(attachment.contentURL, completed: { [unowned self] (image, error, cacheType, imageURL) -> Void in
-                let size = image.size
-                let maxWidth = attributedTextContentView.frame.size.width
-                if size.width > maxWidth {
-                    let scale = maxWidth / size.width
-                    let scaledSize = CGSize(width: size.width * scale, height: size.height * scale)
-                    attachment.displaySize = scaledSize
-//                    self._imageSizeCache.setObject(NSValue(CGSize: scaledSize), forKey: imageURL)
-                } else {
-//                    self._imageSizeCache.setObject(NSValue(CGSize: image.size), forKey: imageURL)
-                }
-                self.reloadCellBlock?();
-            })
+//            imageView.sd_setImageWithURL(attachment.contentURL, completed: { [unowned self] (image, error, cacheType, imageURL) -> Void in
+//                let size = image.size
+//                let maxWidth = attributedTextContentView.frame.size.width
+//                if size.width > maxWidth {
+//                    let scale = maxWidth / size.width
+//                    let scaledSize = CGSize(width: size.width * scale, height: size.height * scale)
+//                    attachment.displaySize = scaledSize
+////                    self._imageSizeCache.setObject(NSValue(CGSize: scaledSize), forKey: imageURL)
+//                } else {
+////                    self._imageSizeCache.setObject(NSValue(CGSize: image.size), forKey: imageURL)
+//                }
+//                if let reloadCellBlock = self.reloadCellBlock {
+//                   reloadCellBlock()
+//                }
+//                
+//            })
             
             //            imageView.setImageWithURLRequest(NSURLRequest(URL: attachment.contentURL), placeholderImage: UIImage(named: "time_icon"), success: { (request, response, image) -> Void in
             //
@@ -169,7 +182,7 @@ class TopicContentCell: UITableViewCell, DTAttributedTextContentViewDelegate {
                 
                 imageView.addSubview(button)
             }
-            
+//            self.reloadCellBlock?()
             return imageView
         } else if attachment is DTIframeTextAttachment {
             let videoView = DTWebVideoView(frame: frame)

@@ -9,7 +9,7 @@ link_with 'V2EX', 'V2EXTests'
 pod 'hpple', :git => 'https://github.com/topfunky/hpple.git', :commit => '26554fa388'
 pod 'MBProgressHUD', '~> 0.9'
 pod 'DTFoundation'
-pod 'DTCoreText', '~> 1.6.14'
+pod 'DTCoreText', '~> 1.6.15'
 pod 'Appirater', '~> 2.0.4'             # A utility that reminds your iPhone app's users to review the app.
 pod 'pop', '~> 1.0.7'
 pod 'RNFrostedSidebar', '~> 0.2'
@@ -18,7 +18,17 @@ pod 'YTKKeyValueStore', '~> 0.1.2'
 pod 'AFNetworking', '~> 2.5'
 pod 'KVNProgress', '~> 2.1'
 pod 'SDWebImage'
-
+pod 'TTTAttributedLabel'
 
 target :V2EXTests, :exclusive => true do
+end
+
+
+# build for all architectures
+post_install do |installer|
+    installer.project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+        end
+    end
 end

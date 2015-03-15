@@ -53,7 +53,6 @@
 		5E90F9441A60277600B6DA17 /* TopicTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E90F9431A60277600B6DA17 /* TopicTitleCell.swift */; };
 		5E90F9451A60277600B6DA17 /* TopicTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E90F9431A60277600B6DA17 /* TopicTitleCell.swift */; };
 		5E98290A1A3DC1DE001B1E25 /* TFHppleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */; };
-		5EB7B2811A617B18005DE41E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E1497781A13A1890034F34F /* Main.storyboard */; };
 		5EC81ED91A602C970022AACD /* TopicTitleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC81ED81A602C970022AACD /* TopicTitleCellViewModel.swift */; };
 		5EC81EDA1A6030F30022AACD /* TopicTitleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC81ED81A602C970022AACD /* TopicTitleCellViewModel.swift */; };
 		5EC957B71A3DBB56005E5428 /* TopicSerivce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC957B61A3DBB56005E5428 /* TopicSerivce.swift */; };
@@ -700,7 +699,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EB7B2811A617B18005DE41E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

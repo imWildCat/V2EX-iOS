@@ -18,5 +18,6 @@
 #import <UIImageView+AFNetworking.h>
 #import <KVNProgress.h>
 #import <UIImageView+WebCache.h>
+#import <TTTAttributedLabel.h>
 
 //#import <HMSegmentedControl.h>
