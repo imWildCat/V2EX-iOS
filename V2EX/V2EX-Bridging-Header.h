@@ -7,8 +7,6 @@
 //
 
 #import <Appirater/Appirater.h>
-#import <DTCoreText/DTCoreText.h>
-#import <DTFoundation/DTTiledLayerWithoutFade.h>
 #import <HMSegmentedControl/HMSegmentedControl.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <RNFrostedSidebar/RNFrostedSidebar.h>
@@ -19,5 +17,6 @@
 #import <KVNProgress.h>
 #import <UIImageView+WebCache.h>
 #import <TTTAttributedLabel.h>
+#import <GRMustache/GRMustache.h>
 
 //#import <HMSegmentedControl.h>

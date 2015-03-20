@@ -13,16 +13,19 @@ class Topic {
     var id: Int
     var title: String
     var repliesCount: Int
-    var createdAt: String
+    var createdAt: String // TODO: remove device included
     
     var node: Node?
     var author: User?
     
     var content: String
     
+    var appreciationCount: Int
+    var favoriteCount: Int
+    
     var favoriteLink: String
     
-    init(id: Int?, title: String?, node: Node?, author: User?, repliesCount: Int? = nil, createdAt: String? = nil, content: String? = nil, favoriteLink: String? = nil) {
+    init(id: Int?, title: String?, node: Node?, author: User?, repliesCount: Int? = nil, createdAt: String? = nil, content: String? = nil, appreciationCount: Int = 0, favoriteCount: Int = 0, favoriteLink: String? = nil) {
         self.id = id ?? 0
         self.title = title ?? "[未知标题]"
         self.repliesCount = repliesCount ?? 0
@@ -30,6 +33,8 @@ class Topic {
         self.createdAt = createdAt ?? ""
         self.node = node ?? nil
         self.content = content ?? ""
+        self.appreciationCount = appreciationCount
+        self.favoriteCount = favoriteCount
         self.favoriteLink = favoriteLink ?? ""
     }
     
@@ -110,9 +115,14 @@ class Topic {
         let authorName = topicMetaElement?.searchFirst("//small[@class='gray']/a")?.text()
         let authorAvatarURI = topicMetaElement?.searchFirst("//div[@class='fr']/a/img")?["src"] as String?
         
+        let topicButtonsElement = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']")
+        // TODO: implement it when implement login
+        let appreciationCount = topicButtonsElement?.searchFirst("//div[@class='gray']")?.text()
+        println(appreciationCount)
+        
         let favLink = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']/a[@class='tb']")?["href"] as String?
         
-        return Topic(id: topicId?.toInt(), title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), repliesCount: repliesCount?.toInt(), createdAt: topicCreatedAt, content: topicContent, favoriteLink: favLink)
+        return Topic(id: topicId?.toInt(), title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), repliesCount: repliesCount?.toInt(), createdAt: topicCreatedAt, content: topicContent, appreciationCount: 0, favoriteCount: 0, favoriteLink: favLink)
     }
     
 }

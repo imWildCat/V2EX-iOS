@@ -16,6 +16,7 @@ class Networking {
     class func initManager() -> Manager {
         let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         let cfg = NSURLSessionConfiguration.defaultSessionConfiguration()
+        
         cfg.HTTPCookieStorage = cookies
         
         return Alamofire.Manager(configuration: cfg)
@@ -25,17 +26,20 @@ class Networking {
         return sharedManagerInstance
     }
     
-    class func request(method: Alamofire.Method, URLString: URLStringConvertible, parameters: [String : AnyObject]? = nil, encoding: Alamofire.ParameterEncoding = .URL) -> Request {
+    class func request(method: Alamofire.Method, URLString: URLStringConvertible, parameters: [String : AnyObject]? = nil, encoding: Alamofire.ParameterEncoding = .URL, additionalHeaders: [String: String]? = nil) -> Request {
+        if let headers = additionalHeaders {
+            sharedManager().session.configuration.HTTPAdditionalHeaders = headers
+        }
         return sharedManager().request(method, URLString, parameters: parameters, encoding: encoding)
     }
     
-    class func get(URLString: URLStringConvertible, parameters: [String : AnyObject]? = nil, encoding: Alamofire.ParameterEncoding = .URL) -> Request {
-        return request(.GET, URLString: URLString, parameters: parameters, encoding: encoding)
+    class func get(URLString: URLStringConvertible, parameters: [String : AnyObject]? = nil, encoding: Alamofire.ParameterEncoding = .URL, additionalHeaders: [String: String]? = nil) -> Request {
+        return request(.GET, URLString: URLString, parameters: parameters, encoding: encoding, additionalHeaders: additionalHeaders)
     }
     
     
-    class func post(URLString: URLStringConvertible, parameters: [String : AnyObject]? = nil, encoding: Alamofire.ParameterEncoding = .URL) -> Request {
-        return request(.POST, URLString: URLString, parameters: parameters, encoding: encoding)
+    class func post(URLString: URLStringConvertible, parameters: [String : AnyObject]? = nil, encoding: Alamofire.ParameterEncoding = .URL, additionalHeaders: [String: String]? = nil) -> Request {
+        return request(.POST, URLString: URLString, parameters: parameters, encoding: encoding, additionalHeaders: additionalHeaders)
     }
     
   
