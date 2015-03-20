@@ -1,0 +1,62 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>
+        阅读话题
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="../../build/js/script.js" inline></script>
+    <link rel="stylesheet" href="../../build/css/style.css" inline>
+</head>
+
+
+<body>
+
+<div id="topic">
+    <div class="title">{{title}}</div>
+
+    <div class="entities">
+
+        {{#posts}}
+        <div class="post">
+            <div class="meta">
+                <div class="avatar">
+                    <img src="{{avatar_url}}"/>
+                </div>
+                <div class="info">
+                    <div class="row row-1">
+                        <span class="username">{{username}}</span>
+                    </div>
+                    <div class="row row-2">
+                        <div class="left">
+                            <span class="time">{{time}}</span>
+                            <span class="device">{{device}}</span>
+                        </div>
+                        <div class="counts float-right">
+                            <div class="count fav-count">
+                                <img class="icon" src="favorite_icon.png" />
+                                <span>{{favorite_count}}</span>
+                            </div>
+                            <div class="count appr-count">
+                                <img class="icon" src="appreciation_icon.png" />
+                                <span>{{appreciation_count}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                {{{content}}}
+            </div>
+        </div>
+        {{/posts}}
+
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

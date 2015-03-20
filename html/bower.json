@@ -1,0 +1,19 @@
+{
+  "name": "v2ex",
+  "version": "1.0.0",
+  "homepage": "https://github.com/imWildCat/V2EX-iOS",
+  "authors": [
+    "WildCat <wildcat.name@gmail.com>"
+  ],
+  "keywords": [
+    "v2ex"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

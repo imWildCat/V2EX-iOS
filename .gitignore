@@ -29,3 +29,9 @@ Pods/
 
 # Vendor
 Vendor/
+
+# HTML files
+html/.idea
+html/bower_components
+html/node_modules
+html/build
