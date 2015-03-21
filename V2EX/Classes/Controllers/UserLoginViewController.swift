@@ -13,7 +13,6 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    var dismissSelf: (() -> Void)?
     var onceCode: String = "" {
         didSet {
             lastOnceGot = NSDate.currentTimestamp()
@@ -35,23 +34,39 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: private methods
     private func loadOnceCode(completion: (() -> Void)? = nil) {
-        SessionService.newSessionForm { [weak self](error, onceCode)  in
+        SessionService.requestNewSessionFormOnceCode { [weak self](error, onceCode)  in
             self?.onceCode = onceCode
             completion?()
         }
+    }
+    
+    private func dismissSelf() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     // MARK: IBActions
     
     @IBAction func closeButtonDidClick(sender: UIButton) {
-        dismissSelf?()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismissSelf()
     }
     
     @IBAction func loginButtonDidClick(sender: UIButton) {
         
-        SessionService.performLogin(usernameTextField.text, password: passwordTextField.text) { (error, isLoggedIn) -> Void in
+        showProgressView()
+        
+        SessionService.performLogin(usernameTextField.text, password: passwordTextField.text) { [weak self](error, isLoggedIn) -> Void in
             
+            if isLoggedIn {
+                self?.showSuccess(status: "登录成功") {
+                    self?.dismissSelf()
+                    return
+                }
+                
+            } else if error != nil {
+                self?.showError(status: "登录失败，网络错误")
+            } else {
+                self?.showError(status: "登录失败，用户名或密码错误")
+            }
         }
         
     }

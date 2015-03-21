@@ -62,7 +62,6 @@ class DiscoveryViewController: UIViewController {
             let destinationViewController = segue.destinationViewController as TopicViewController
             let topic = sender as Topic
             destinationViewController.topicId = topic.id
-            println("topic")
         }
     }
     

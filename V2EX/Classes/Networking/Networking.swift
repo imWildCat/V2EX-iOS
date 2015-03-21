@@ -26,6 +26,17 @@ class Networking {
         return sharedManagerInstance
     }
     
+    class func clearCookies() {
+        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        let cookies = (storage.cookies as [NSHTTPCookie]?) ?? [NSHTTPCookie]()
+        
+        for (_, cookie) in enumerate(cookies)
+        {
+            storage.deleteCookie(cookie)
+        }
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
     class func request(method: Alamofire.Method, URLString: URLStringConvertible, parameters: [String : AnyObject]? = nil, encoding: Alamofire.ParameterEncoding = .URL, additionalHeaders: [String: String]? = nil) -> Request {
         if let headers = additionalHeaders {
             sharedManager().session.configuration.HTTPAdditionalHeaders = headers

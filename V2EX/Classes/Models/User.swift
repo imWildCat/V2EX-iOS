@@ -15,15 +15,26 @@ struct User {
     var website: String?
     var twitter: String?
     var github: String?
-    var createdAt: Int?
+    var createdAt: String?
     
-    init(name: String?, avatarURI: String? = nil, website: String? = nil, twitter: String? = nil, github: String? = nil, createdAt: Int? = nil) {
+    var liveness: Int?
+    var id: Int?
+    var company: String?
+    var introduction: String?
+    
+    
+    init(name: String?, avatarURI: String? = nil, website: String? = nil, twitter: String? = nil, github: String? = nil, createdAt: String? = nil, liveness: String? = nil, id: String? = nil, company: String? = nil, introduction: String? = nil) {
         self.name = name ?? ""
         self.avatarURI = avatarURI ?? ""
         self.website = website
         self.twitter = twitter
         self.github = github
         self.createdAt = createdAt
+        
+        self.liveness = liveness?.toInt()
+        self.id = id?.toInt()
+        self.company = company
+        self.introduction = introduction
     }
     
 //    init(username: String) {

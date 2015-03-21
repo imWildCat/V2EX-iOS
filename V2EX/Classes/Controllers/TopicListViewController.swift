@@ -34,7 +34,6 @@ class TopicListViewController: UITableViewController {
             showProgressView()
         }
         
-        
         TopicSerivce.getList(tabSlug!, response: { [unowned self] (error, topics) in
             if error == nil {
                 self.topics = topics

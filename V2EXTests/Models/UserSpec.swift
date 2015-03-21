@@ -28,7 +28,7 @@ class UserSpec: QuickSpec {
                     website: "http://livid.v2ex.com/",
                     twitter: "Livid",
                     github: "livid",
-                    createdAt: 1272203146
+                    createdAt: "2010-04-25"
                 )
             }
             
@@ -38,7 +38,7 @@ class UserSpec: QuickSpec {
                 expect(user.website).to(equal("http://livid.v2ex.com/"))
                 expect(user.twitter).to(equal("Livid"))
                 expect(user.github).to(equal("livid"))
-                expect(user.createdAt).to(equal(1272203146))
+                expect(user.createdAt).to(equal("2010-04-25"))
             }
         }
     }

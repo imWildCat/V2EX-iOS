@@ -55,11 +55,15 @@
 		5E83B72D1A3D945D0079AB3E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E83B7291A3D8FD60079AB3E /* Networking.swift */; };
 		5E83EAD81AB544B90008E877 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E83EAD71AB544B90008E877 /* TopicViewController.swift */; };
 		5E83EAD91AB544B90008E877 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E83EAD71AB544B90008E877 /* TopicViewController.swift */; };
+		5E8523D71ABD525200B7B8C4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523D61ABD525200B7B8C4 /* UserService.swift */; };
+		5E8523D81ABD525200B7B8C4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523D61ABD525200B7B8C4 /* UserService.swift */; };
+		5E8523E61ABD5C2000B7B8C4 /* DateOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523E51ABD5C2000B7B8C4 /* DateOperators.swift */; };
+		5E8523E71ABD5C2000B7B8C4 /* DateOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523E51ABD5C2000B7B8C4 /* DateOperators.swift */; };
+		5E8523E91ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523E81ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift */; };
+		5E8523EA1ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523E81ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift */; };
 		5E98290A1A3DC1DE001B1E25 /* TFHppleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */; };
 		5EC87D511ABC42E200AB071F /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */; };
 		5EC87D521ABC42E200AB071F /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */; };
-		5EC87D5D1ABC4B6800AB071F /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D5C1ABC4B6800AB071F /* ViewControllerExtension.swift */; };
-		5EC87D5E1ABC4B6800AB071F /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D5C1ABC4B6800AB071F /* ViewControllerExtension.swift */; };
 		5EC87D601ABC4DAD00AB071F /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */; };
 		5EC87D611ABC4DAD00AB071F /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */; };
 		5EC87D651ABC500100AB071F /* SessionServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D641ABC500100AB071F /* SessionServiceSpec.swift */; };
@@ -239,9 +243,11 @@
 		5E83B7291A3D8FD60079AB3E /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		5E83B72B1A3D941C0079AB3E /* NetworkingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingSpec.swift; sourceTree = "<group>"; };
 		5E83EAD71AB544B90008E877 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		5E8523D61ABD525200B7B8C4 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		5E8523E51ABD5C2000B7B8C4 /* DateOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateOperators.swift; sourceTree = "<group>"; };
+		5E8523E81ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateComponentsExtension.swift; sourceTree = "<group>"; };
 		5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFHppleExtension.swift; sourceTree = "<group>"; };
 		5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
-		5EC87D5C1ABC4B6800AB071F /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		5EC87D641ABC500100AB071F /* SessionServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionServiceSpec.swift; sourceTree = "<group>"; };
 		5EC87D661ABC545500AB071F /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
@@ -415,9 +421,8 @@
 				5E5F23B51A395DBD00D20FE9 /* PreferenceViewController.swift */,
 				5E5F23B61A395DBD00D20FE9 /* RootViewController.swift */,
 				5E5F23B71A395DBD00D20FE9 /* TopicListViewController.swift */,
-				5E5F23B81A395DBD00D20FE9 /* UIViewControllerExtension.swift */,
-				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
 				5E83EAD71AB544B90008E877 /* TopicViewController.swift */,
+				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
 				5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */,
 			);
 			path = Controllers;
@@ -446,12 +451,14 @@
 		5E5F23BF1A395DBD00D20FE9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5E5F23B81A395DBD00D20FE9 /* UIViewControllerExtension.swift */,
 				5E5F23C01A395DBD00D20FE9 /* Utils.swift */,
 				5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */,
 				5E2208EA1A3DD52100A88A51 /* StringExtension.swift */,
-				5EC87D5C1ABC4B6800AB071F /* ViewControllerExtension.swift */,
 				5EC87D661ABC545500AB071F /* NSDateExtension.swift */,
 				5EC87D691ABC579800AB071F /* SessionStorage.swift */,
+				5E8523E51ABD5C2000B7B8C4 /* DateOperators.swift */,
+				5E8523E81ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -488,6 +495,7 @@
 			children = (
 				5EC957B61A3DBB56005E5428 /* TopicSerivce.swift */,
 				5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */,
+				5E8523D61ABD525200B7B8C4 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -834,19 +842,21 @@
 				5E2F685E1A43CB9700EEECBD /* Reply.swift in Sources */,
 				5E5F23D31A395DBD00D20FE9 /* HMSegmentedControlExtension.swift in Sources */,
 				5EC87D511ABC42E200AB071F /* UserLoginViewController.swift in Sources */,
-				5EC87D5D1ABC4B6800AB071F /* ViewControllerExtension.swift in Sources */,
 				5E5F23D41A395DBD00D20FE9 /* TopicListCell.swift in Sources */,
 				5EC87D671ABC545500AB071F /* NSDateExtension.swift in Sources */,
 				5E98290A1A3DC1DE001B1E25 /* TFHppleExtension.swift in Sources */,
 				5E5F23C71A395DBD00D20FE9 /* DiscoveryViewController.swift in Sources */,
 				5E5F23CC1A395DBD00D20FE9 /* UIViewControllerExtension.swift in Sources */,
 				5E7A0ED11A3D7BCB00C9251B /* BaseModel.swift in Sources */,
+				5E8523E61ABD5C2000B7B8C4 /* DateOperators.swift in Sources */,
 				5E5F23D21A395DBD00D20FE9 /* CatPaginatedScrollView.swift in Sources */,
 				5E58D2DF1AB71913003058D6 /* TopicViewModel.swift in Sources */,
 				5E5F23CF1A395DBD00D20FE9 /* User.swift in Sources */,
 				5E83EAD81AB544B90008E877 /* TopicViewController.swift in Sources */,
 				5E5F23C91A395DBD00D20FE9 /* PreferenceViewController.swift in Sources */,
 				5E5F23D11A395DBD00D20FE9 /* Utils.swift in Sources */,
+				5E8523D71ABD525200B7B8C4 /* UserService.swift in Sources */,
+				5E8523E91ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift in Sources */,
 				5EC957B71A3DBB56005E5428 /* TopicSerivce.swift in Sources */,
 				5E2208EB1A3DD52100A88A51 /* StringExtension.swift in Sources */,
 				5E7A0ECF1A3D79F600C9251B /* StorableProtocol.swift in Sources */,
@@ -871,12 +881,14 @@
 				5EDEE7261A5ED9CD0001F656 /* DiscoveryViewController.swift in Sources */,
 				5EC87D651ABC500100AB071F /* SessionServiceSpec.swift in Sources */,
 				5E58D2E91AB7197B003058D6 /* TopicViewModel.swift in Sources */,
+				5E8523D81ABD525200B7B8C4 /* UserService.swift in Sources */,
 				5EC87D521ABC42E200AB071F /* UserLoginViewController.swift in Sources */,
 				5E2208E61A3DC67B00A88A51 /* TopicServiceSpec.swift in Sources */,
 				5EDEE7351A5ED9E50001F656 /* StorableProtocol.swift in Sources */,
 				5EDEE72A1A5ED9CD0001F656 /* TopicListViewController.swift in Sources */,
 				5E83B72D1A3D945D0079AB3E /* Networking.swift in Sources */,
 				5EDEE7291A5ED9CD0001F656 /* RootViewController.swift in Sources */,
+				5E8523EA1ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift in Sources */,
 				5EDEE7331A5ED9E50001F656 /* Topic.swift in Sources */,
 				5E7A0ECD1A3D731F00C9251B /* YTKKeyValueStoreSpec.swift in Sources */,
 				5EC957C51A3DC003005E5428 /* TopicSerivce.swift in Sources */,
@@ -890,10 +902,10 @@
 				5EC87D611ABC4DAD00AB071F /* SessionService.swift in Sources */,
 				5EDEE72C1A5ED9CD0001F656 /* UserViewController.swift in Sources */,
 				5EC87D6B1ABC579800AB071F /* SessionStorage.swift in Sources */,
-				5EC87D5E1ABC4B6800AB071F /* ViewControllerExtension.swift in Sources */,
 				5EDEE72F1A5ED9DA0001F656 /* HMSegmentedControlExtension.swift in Sources */,
 				5EDEE72B1A5ED9CD0001F656 /* UIViewControllerExtension.swift in Sources */,
 				5EDEE7371A5ED9E50001F656 /* Node.swift in Sources */,
+				5E8523E71ABD5C2000B7B8C4 /* DateOperators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

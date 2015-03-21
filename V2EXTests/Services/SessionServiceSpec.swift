@@ -6,7 +6,7 @@ class SessionServiceSpec: QuickSpec {
         describe("Session Serivce") {
             
             it("could get once code") {
-                SessionService.newSessionForm({ (error, onceCode) -> Void in
+                SessionService.requestNewSessionFormOnceCode({ (error, onceCode) -> Void in
                     println(onceCode)
                 })
             }

@@ -42,4 +42,12 @@ extension String {
             return firstMatchedResults
         }
     }
+    
+    func toURL() -> NSURL {
+        if let url = NSURL(string: self) {
+            return url
+        }
+        NSLog("Bad URL(in String Extension): " + self)
+        return NSURL()
+    }
 }

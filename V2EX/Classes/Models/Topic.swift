@@ -115,14 +115,17 @@ class Topic {
         let authorName = topicMetaElement?.searchFirst("//small[@class='gray']/a")?.text()
         let authorAvatarURI = topicMetaElement?.searchFirst("//div[@class='fr']/a/img")?["src"] as String?
         
-        let topicButtonsElement = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']")
+        let topicOtherInfo = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']/div")?.text()
         // TODO: implement it when implement login
-        let appreciationCount = topicButtonsElement?.searchFirst("//div[@class='gray']")?.text()
-        println(appreciationCount)
+        let appreciationCount = topicOtherInfo?.match("(\\d+) 人感谢")?[1].toInt() ?? 0
+        let favCount = topicOtherInfo?.match("(\\d+) 人收藏")?[1].toInt() ?? 0
+
+        println(topicOtherInfo)
+
         
         let favLink = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']/a[@class='tb']")?["href"] as String?
         
-        return Topic(id: topicId?.toInt(), title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), repliesCount: repliesCount?.toInt(), createdAt: topicCreatedAt, content: topicContent, appreciationCount: 0, favoriteCount: 0, favoriteLink: favLink)
+        return Topic(id: topicId?.toInt(), title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), repliesCount: repliesCount?.toInt(), createdAt: topicCreatedAt, content: topicContent, appreciationCount: appreciationCount, favoriteCount: favCount, favoriteLink: favLink)
     }
     
 }

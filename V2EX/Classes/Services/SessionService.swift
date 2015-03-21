@@ -10,7 +10,33 @@ import Foundation
 
 class SessionService {
     
-    class func newSessionForm(response: ((error: NSError?, onceCode: String) -> Void)?) {
+    class func checkLogin(response: ((error: NSError?, isLoggedIn: Bool) -> Void)?) {
+        
+        if SessionStorage.sharedStorage.currentUser == nil {
+            response?(error: nil, isLoggedIn: false)
+            return
+        }
+        
+        V2EXNetworking.get("").response { (_, _, data, error) in
+            let isLoggedIn = self.checkLoginFrom(htmldata: data)
+            response?(error: error, isLoggedIn: isLoggedIn)
+            if isLoggedIn {
+                self.setBasicUserDataFrom(htmlData: data)
+            }
+            return
+        }
+    }
+    
+    class func logout() {
+        Networking.clearCookies()
+        
+        let storage = SessionStorage.sharedStorage
+        storage.currentUser = nil
+        storage.onceCode = ""
+        storage.lastOnceGot = 0
+    }
+    
+    class func requestNewSessionFormOnceCode(response: ((error: NSError?, onceCode: String) -> Void)?) {
         V2EXNetworking.get("signin").response { (_, _, data, error) in
             
             let doc = TFHpple(HTMLObject: data)
@@ -25,13 +51,19 @@ class SessionService {
     
     class func performLogin(username: String, password: String, response: ((error: NSError?, isLoggedIn: Bool) -> Void)?) {
         
-        
-        if (NSDate.currentTimestamp() - SessionStorage.sharedStorage.lastOnceGot) > 300 {
-            SessionService.newSessionForm { (_, _) in
-                SessionService.postInfo(username, password: password, response: response)
+        if SessionStorage.sharedStorage.shouldRequestNewOnceCode() {
+            self.requestNewSessionFormOnceCode { (error, _) in
+                
+                if error != nil {
+                    response?(error: error, isLoggedIn: false)
+                    self.loginFailed()
+                    return
+                }
+                
+                self.postInfo(username, password: password, response: response)
             }
         } else {
-            SessionService.postInfo(username, password: password, response: response)
+            self.postInfo(username, password: password, response: response)
         }
     }
     
@@ -43,16 +75,48 @@ class SessionService {
             "p": password
             ], additionalHeaders: ["Referer": "http://www.v2ex.com/signin"]).response { (_, _, data, error) in
                 
-                let doc = TFHpple(HTMLObject: data)
-                let avatarElement = doc.searchFirst("//div[@id='Rightbar']//div[@class='box']//a[@href='/new']")
-                let html = doc.searchFirst("//body")?.text()
-                println(avatarElement)
+                let isLoggedIn = self.checkLoginFrom(htmldata: data)
                 
-                if (error != nil) || (avatarElement == nil) {
-                    response?(error: error, isLoggedIn: false)
+                if isLoggedIn {
+                    self.setBasicUserDataFrom(htmlData: data)
+                    response?(error: error, isLoggedIn: isLoggedIn)
                 } else {
-                    response?(error: error, isLoggedIn: true)
+                    self.loginFailed()
+                    response?(error: error, isLoggedIn: isLoggedIn)
                 }
         }
+    }
+    
+    /**
+    Check if login successful by find link of "创作新主题"
+    
+    :param: htmldata data from Alamofire
+    
+    :returns: Bool of result
+    */
+    private class func checkLoginFrom(#htmldata: AnyObject?) -> Bool {
+
+        let doc = TFHpple(HTMLObject: htmldata)
+        let newTopicElement = doc.searchFirst("//div[@id='Rightbar']//div[@class='box']//a[@href='/new']")
+        
+        if newTopicElement != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    private class func loginFailed() {
+        SessionStorage.sharedStorage.currentUser = nil
+    }
+    
+    private class func setBasicUserDataFrom(#htmlData: AnyObject?) {
+        let doc = TFHpple(HTMLObject: htmlData)
+        // Get info of current user
+        let infoElement = doc.searchFirst("//div[@id='Rightbar']//div[@class='box']//div[@class='cell']")
+        let username = infoElement?.searchFirst("//span[@class='bigger']/a")?.text()
+        let avatarURI = infoElement?.searchFirst("//img[@class='avatar']")?["src"] as NSString?
+        // Save info to SessionStorage
+        SessionStorage.sharedStorage.currentUser = User(name: username, avatarURI: avatarURI)
     }
 }

@@ -16,6 +16,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        func configureKVNProgress() {
+            let configuration = KVNProgressConfiguration()
+            
+//            configuration.statusColor = UIColor.darkGrayColor()
+//            configuration.statusFont = UIFont.systemFontOfSize(17.0)
+//            configuration.circleStrokeForegroundColor = UIColor.darkGrayColor()
+//            configuration.circleStrokeBackgroundColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.3)
+//            configuration.backgroundFillColor = UIColor(white: 0.9, alpha: 0.9)
+//            configuration.backgroundTintColor = UIColor.whiteColor()
+//            configuration.successColor = UIColor.darkGrayColor()
+//            configuration.errorColor = UIColor.darkGrayColor()
+//            configuration.circleSize = 75.0
+//            configuration.lineWidth = 2.0
+            configuration.fullScreen = false
+            configuration.minimumSuccessDisplayTime = 0.6
+            configuration.minimumErrorDisplayTime = 1.2
+//            configuration.allowUserInteraction = true
+            configuration.tapBlock = { (progressView) in
+                KVNProgress.dismiss()
+            }
+            
+            KVNProgress.setConfiguration(configuration)
+        }
+        
+        configureKVNProgress()
+        
         return true
     }
 
