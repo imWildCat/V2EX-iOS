@@ -27,7 +27,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
        
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         let storage = SessionStorage.sharedStorage
         
         if (NSDate.currentTimestamp() - storage.lastLogin) < 24.hours.toSeconds {

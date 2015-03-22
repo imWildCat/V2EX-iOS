@@ -16,13 +16,19 @@ struct Reply {
     var appreciationsCount: Int
     var floor: Int
     var content: String
+    var relatedTopic: Topic?
     
-    init(id: Int?, author: User, time: String?, appreciationsCount: Int?, floor: Int?, content: String?) {
+    init(id: Int?, author: User, time: String?, appreciationsCount: Int?, floor: Int?, content: String?, relatedTopic: Topic? = nil) {
         self.id = id ?? 0
         self.author = author
         self.time = time ?? ""
         self.appreciationsCount = appreciationsCount ?? 0
         self.floor = floor ?? 0
+        self.content = content ?? ""
+        self.relatedTopic = relatedTopic
+    }
+    
+    mutating func setContent(content: String?) {
         self.content = content ?? ""
     }
     

@@ -50,4 +50,22 @@ extension String {
         NSLog("Bad URL(in String Extension): " + self)
         return NSURL()
     }
+    
+    func strippingHTML() -> String? {
+        var scanner: NSScanner
+        var html: NSString = self
+        var text: NSString? = nil
+        scanner = NSScanner(string: html)
+        
+        while scanner.atEnd == false {
+            scanner.scanUpToString("<", intoString: nil)
+            
+            scanner.scanUpToString(">", intoString: &text)
+            
+            html = html.stringByReplacingOccurrencesOfString(NSString(format: "%@>", text!), withString: "")
+        }
+        
+        html = html.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        return html
+    }
 }

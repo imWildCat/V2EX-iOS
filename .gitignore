@@ -35,3 +35,6 @@ html/.idea
 html/bower_components
 html/node_modules
 html/build
+
+# idea
+.idea

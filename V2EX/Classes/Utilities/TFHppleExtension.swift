@@ -25,6 +25,9 @@ extension TFHpple {
         return nil
     }
     
+    func searchElements(xPath: String) -> [TFHppleElement] {
+         return searchWithXPathQuery(xPath) as [TFHppleElement]
+    }
     
 }
 

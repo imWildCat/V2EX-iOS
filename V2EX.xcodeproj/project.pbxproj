@@ -61,6 +61,16 @@
 		5E8523E71ABD5C2000B7B8C4 /* DateOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523E51ABD5C2000B7B8C4 /* DateOperators.swift */; };
 		5E8523E91ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523E81ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift */; };
 		5E8523EA1ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523E81ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift */; };
+		5E8523EC1ABD7B0200B7B8C4 /* UserTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523EB1ABD7B0200B7B8C4 /* UserTopicViewController.swift */; };
+		5E8523ED1ABD7B0200B7B8C4 /* UserTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523EB1ABD7B0200B7B8C4 /* UserTopicViewController.swift */; };
+		5E8523EF1ABD7B0F00B7B8C4 /* UserReplyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523EE1ABD7B0F00B7B8C4 /* UserReplyController.swift */; };
+		5E8523F01ABD7B0F00B7B8C4 /* UserReplyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523EE1ABD7B0F00B7B8C4 /* UserReplyController.swift */; };
+		5E8523F21ABD7B2000B7B8C4 /* UserNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523F11ABD7B2000B7B8C4 /* UserNotificationController.swift */; };
+		5E8523F31ABD7B2000B7B8C4 /* UserNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523F11ABD7B2000B7B8C4 /* UserNotificationController.swift */; };
+		5E8523F51ABD7B2D00B7B8C4 /* UserFavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523F41ABD7B2D00B7B8C4 /* UserFavoriteController.swift */; };
+		5E8523F61ABD7B2D00B7B8C4 /* UserFavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523F41ABD7B2D00B7B8C4 /* UserFavoriteController.swift */; };
+		5E8523F81ABD831F00B7B8C4 /* UserTopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523F71ABD831F00B7B8C4 /* UserTopicTableViewCell.swift */; };
+		5E8523F91ABD831F00B7B8C4 /* UserTopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8523F71ABD831F00B7B8C4 /* UserTopicTableViewCell.swift */; };
 		5E98290A1A3DC1DE001B1E25 /* TFHppleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */; };
 		5EC87D511ABC42E200AB071F /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */; };
 		5EC87D521ABC42E200AB071F /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */; };
@@ -75,6 +85,12 @@
 		5EC957C31A3DBFFF005E5428 /* V2EXNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC957C21A3DBFFF005E5428 /* V2EXNetworking.swift */; };
 		5EC957C41A3DBFFF005E5428 /* V2EXNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC957C21A3DBFFF005E5428 /* V2EXNetworking.swift */; };
 		5EC957C51A3DC003005E5428 /* TopicSerivce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC957B61A3DBB56005E5428 /* TopicSerivce.swift */; };
+		5ED345CD1ABE733300B5E286 /* UserTopicListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345CC1ABE733300B5E286 /* UserTopicListCellViewModel.swift */; };
+		5ED345CE1ABE733300B5E286 /* UserTopicListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345CC1ABE733300B5E286 /* UserTopicListCellViewModel.swift */; };
+		5ED345DD1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345DC1ABEB3C100B5E286 /* UserReplyTableViewCell.swift */; };
+		5ED345DE1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345DC1ABEB3C100B5E286 /* UserReplyTableViewCell.swift */; };
+		5ED345E01ABEB45A00B5E286 /* UserReplyListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345DF1ABEB45A00B5E286 /* UserReplyListCellViewModel.swift */; };
+		5ED345E11ABEB45A00B5E286 /* UserReplyListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345DF1ABEB45A00B5E286 /* UserReplyListCellViewModel.swift */; };
 		5EDEE7251A5ED9CD0001F656 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */; };
 		5EDEE7261A5ED9CD0001F656 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B31A395DBD00D20FE9 /* DiscoveryViewController.swift */; };
 		5EDEE7271A5ED9CD0001F656 /* NodeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B41A395DBD00D20FE9 /* NodeListViewController.swift */; };
@@ -246,6 +262,11 @@
 		5E8523D61ABD525200B7B8C4 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		5E8523E51ABD5C2000B7B8C4 /* DateOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateOperators.swift; sourceTree = "<group>"; };
 		5E8523E81ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateComponentsExtension.swift; sourceTree = "<group>"; };
+		5E8523EB1ABD7B0200B7B8C4 /* UserTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTopicViewController.swift; sourceTree = "<group>"; };
+		5E8523EE1ABD7B0F00B7B8C4 /* UserReplyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserReplyController.swift; sourceTree = "<group>"; };
+		5E8523F11ABD7B2000B7B8C4 /* UserNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationController.swift; sourceTree = "<group>"; };
+		5E8523F41ABD7B2D00B7B8C4 /* UserFavoriteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFavoriteController.swift; sourceTree = "<group>"; };
+		5E8523F71ABD831F00B7B8C4 /* UserTopicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTopicTableViewCell.swift; sourceTree = "<group>"; };
 		5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFHppleExtension.swift; sourceTree = "<group>"; };
 		5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
@@ -254,6 +275,9 @@
 		5EC87D691ABC579800AB071F /* SessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
 		5EC957B61A3DBB56005E5428 /* TopicSerivce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicSerivce.swift; sourceTree = "<group>"; };
 		5EC957C21A3DBFFF005E5428 /* V2EXNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V2EXNetworking.swift; sourceTree = "<group>"; };
+		5ED345CC1ABE733300B5E286 /* UserTopicListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTopicListCellViewModel.swift; sourceTree = "<group>"; };
+		5ED345DC1ABEB3C100B5E286 /* UserReplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserReplyTableViewCell.swift; sourceTree = "<group>"; };
+		5ED345DF1ABEB45A00B5E286 /* UserReplyListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserReplyListCellViewModel.swift; sourceTree = "<group>"; };
 		5EE8E51F1A389F68009C988C /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Vendor/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
 		5EE8E52F1A389FC4009C988C /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = Vendor/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
 		5EFF89451A13A26D0091C84B /* V2EX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "V2EX-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -422,8 +446,12 @@
 				5E5F23B61A395DBD00D20FE9 /* RootViewController.swift */,
 				5E5F23B71A395DBD00D20FE9 /* TopicListViewController.swift */,
 				5E83EAD71AB544B90008E877 /* TopicViewController.swift */,
-				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
+				5E8523F41ABD7B2D00B7B8C4 /* UserFavoriteController.swift */,
 				5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */,
+				5E8523F11ABD7B2000B7B8C4 /* UserNotificationController.swift */,
+				5E8523EE1ABD7B0F00B7B8C4 /* UserReplyController.swift */,
+				5E8523EB1ABD7B0200B7B8C4 /* UserTopicViewController.swift */,
+				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -468,6 +496,8 @@
 			children = (
 				5E4AA86C1A3F0EA000AA2F3D /* TopicListCellViewModel.swift */,
 				5E58D2DE1AB71913003058D6 /* TopicViewModel.swift */,
+				5ED345CC1ABE733300B5E286 /* UserTopicListCellViewModel.swift */,
+				5ED345DF1ABEB45A00B5E286 /* UserReplyListCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -478,6 +508,8 @@
 				5E5F23C31A395DBD00D20FE9 /* CatPaginatedScrollView.swift */,
 				5E5F23C41A395DBD00D20FE9 /* HMSegmentedControlExtension.swift */,
 				5E5F23C51A395DBD00D20FE9 /* TopicListCell.swift */,
+				5E8523F71ABD831F00B7B8C4 /* UserTopicTableViewCell.swift */,
+				5ED345DC1ABEB3C100B5E286 /* UserReplyTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -827,18 +859,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E5F23CA1A395DBD00D20FE9 /* RootViewController.swift in Sources */,
+				5E8523EC1ABD7B0200B7B8C4 /* UserTopicViewController.swift in Sources */,
+				5ED345DD1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */,
 				5E5F23CE1A395DBD00D20FE9 /* Topic.swift in Sources */,
 				5E5F23CD1A395DBD00D20FE9 /* UserViewController.swift in Sources */,
 				5E83B72A1A3D8FD60079AB3E /* Networking.swift in Sources */,
 				5E3759B91A3C7640003DB82A /* AppDelegate.swift in Sources */,
 				5E5F23C61A395DBD00D20FE9 /* ContainerViewController.swift in Sources */,
+				5E8523EF1ABD7B0F00B7B8C4 /* UserReplyController.swift in Sources */,
 				5EC87D601ABC4DAD00AB071F /* SessionService.swift in Sources */,
 				5E4AA86D1A3F0EA000AA2F3D /* TopicListCellViewModel.swift in Sources */,
+				5E8523F51ABD7B2D00B7B8C4 /* UserFavoriteController.swift in Sources */,
+				5E8523F21ABD7B2000B7B8C4 /* UserNotificationController.swift in Sources */,
+				5ED345E01ABEB45A00B5E286 /* UserReplyListCellViewModel.swift in Sources */,
 				5EC87D6A1ABC579800AB071F /* SessionStorage.swift in Sources */,
 				5E5F23CB1A395DBD00D20FE9 /* TopicListViewController.swift in Sources */,
 				5E5F23C81A395DBD00D20FE9 /* NodeListViewController.swift in Sources */,
 				5EC957C31A3DBFFF005E5428 /* V2EXNetworking.swift in Sources */,
 				5E4AA8681A3F032900AA2F3D /* Node.swift in Sources */,
+				5E8523F81ABD831F00B7B8C4 /* UserTopicTableViewCell.swift in Sources */,
 				5E2F685E1A43CB9700EEECBD /* Reply.swift in Sources */,
 				5E5F23D31A395DBD00D20FE9 /* HMSegmentedControlExtension.swift in Sources */,
 				5EC87D511ABC42E200AB071F /* UserLoginViewController.swift in Sources */,
@@ -846,6 +885,7 @@
 				5EC87D671ABC545500AB071F /* NSDateExtension.swift in Sources */,
 				5E98290A1A3DC1DE001B1E25 /* TFHppleExtension.swift in Sources */,
 				5E5F23C71A395DBD00D20FE9 /* DiscoveryViewController.swift in Sources */,
+				5ED345CD1ABE733300B5E286 /* UserTopicListCellViewModel.swift in Sources */,
 				5E5F23CC1A395DBD00D20FE9 /* UIViewControllerExtension.swift in Sources */,
 				5E7A0ED11A3D7BCB00C9251B /* BaseModel.swift in Sources */,
 				5E8523E61ABD5C2000B7B8C4 /* DateOperators.swift in Sources */,
@@ -873,11 +913,14 @@
 				5EDEE7341A5ED9E50001F656 /* User.swift in Sources */,
 				5EDEE7381A5ED9E50001F656 /* Reply.swift in Sources */,
 				5E83B72C1A3D941C0079AB3E /* NetworkingSpec.swift in Sources */,
+				5E8523F01ABD7B0F00B7B8C4 /* UserReplyController.swift in Sources */,
 				5EDEE7301A5ED9DA0001F656 /* TopicListCell.swift in Sources */,
 				5E5F23AE1A3953CA00D20FE9 /* TopicSpec.swift in Sources */,
 				5E83EAD91AB544B90008E877 /* TopicViewController.swift in Sources */,
 				5EDEE72E1A5ED9DA0001F656 /* CatPaginatedScrollView.swift in Sources */,
 				5EDEE7271A5ED9CD0001F656 /* NodeListViewController.swift in Sources */,
+				5E8523F91ABD831F00B7B8C4 /* UserTopicTableViewCell.swift in Sources */,
+				5ED345DE1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */,
 				5EDEE7261A5ED9CD0001F656 /* DiscoveryViewController.swift in Sources */,
 				5EC87D651ABC500100AB071F /* SessionServiceSpec.swift in Sources */,
 				5E58D2E91AB7197B003058D6 /* TopicViewModel.swift in Sources */,
@@ -885,9 +928,11 @@
 				5EC87D521ABC42E200AB071F /* UserLoginViewController.swift in Sources */,
 				5E2208E61A3DC67B00A88A51 /* TopicServiceSpec.swift in Sources */,
 				5EDEE7351A5ED9E50001F656 /* StorableProtocol.swift in Sources */,
+				5ED345E11ABEB45A00B5E286 /* UserReplyListCellViewModel.swift in Sources */,
 				5EDEE72A1A5ED9CD0001F656 /* TopicListViewController.swift in Sources */,
 				5E83B72D1A3D945D0079AB3E /* Networking.swift in Sources */,
 				5EDEE7291A5ED9CD0001F656 /* RootViewController.swift in Sources */,
+				5E8523ED1ABD7B0200B7B8C4 /* UserTopicViewController.swift in Sources */,
 				5E8523EA1ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift in Sources */,
 				5EDEE7331A5ED9E50001F656 /* Topic.swift in Sources */,
 				5E7A0ECD1A3D731F00C9251B /* YTKKeyValueStoreSpec.swift in Sources */,
@@ -895,6 +940,7 @@
 				5EDEE7361A5ED9E50001F656 /* BaseModel.swift in Sources */,
 				5EC87D681ABC545500AB071F /* NSDateExtension.swift in Sources */,
 				5EC957C41A3DBFFF005E5428 /* V2EXNetworking.swift in Sources */,
+				5E8523F61ABD7B2D00B7B8C4 /* UserFavoriteController.swift in Sources */,
 				5EDEE7251A5ED9CD0001F656 /* ContainerViewController.swift in Sources */,
 				5E83B7241A3D87D20079AB3E /* AlamofireSpec.swift in Sources */,
 				5E4AA85C1A3EFA6700AA2F3D /* StringExtension.swift in Sources */,
@@ -903,6 +949,8 @@
 				5EDEE72C1A5ED9CD0001F656 /* UserViewController.swift in Sources */,
 				5EC87D6B1ABC579800AB071F /* SessionStorage.swift in Sources */,
 				5EDEE72F1A5ED9DA0001F656 /* HMSegmentedControlExtension.swift in Sources */,
+				5ED345CE1ABE733300B5E286 /* UserTopicListCellViewModel.swift in Sources */,
+				5E8523F31ABD7B2000B7B8C4 /* UserNotificationController.swift in Sources */,
 				5EDEE72B1A5ED9CD0001F656 /* UIViewControllerExtension.swift in Sources */,
 				5EDEE7371A5ED9E50001F656 /* Node.swift in Sources */,
 				5E8523E71ABD5C2000B7B8C4 /* DateOperators.swift in Sources */,

@@ -12,7 +12,7 @@ class Topic {
     
     var id: Int
     var title: String
-    var repliesCount: Int
+    var replyCount: Int
     var createdAt: String // TODO: remove device included
     
     var node: Node?
@@ -25,10 +25,10 @@ class Topic {
     
     var favoriteLink: String
     
-    init(id: Int?, title: String?, node: Node?, author: User?, repliesCount: Int? = nil, createdAt: String? = nil, content: String? = nil, appreciationCount: Int = 0, favoriteCount: Int = 0, favoriteLink: String? = nil) {
-        self.id = id ?? 0
+    init(id: String?, title: String?, node: Node?, author: User?, replyCount: String? = nil, createdAt: String? = nil, content: String? = nil, appreciationCount: Int = 0, favoriteCount: Int = 0, favoriteLink: String? = nil) {
+        self.id = id?.toInt() ?? 0
         self.title = title ?? "[未知标题]"
-        self.repliesCount = repliesCount ?? 0
+        self.replyCount = replyCount?.toInt() ?? 0
         self.author = author ?? nil
         self.createdAt = createdAt ?? ""
         self.node = node ?? nil
@@ -56,10 +56,10 @@ class Topic {
             
             let titleElement = element.searchFirst("//td[3]/span[@class='item_title']/a")
             let topicTitle = titleElement?.text()
-            let topicId = ((titleElement?["href"] as String?)?.match("/t/(\\d{1,9})#")?[1])?.toInt()
+            let topicId = ((titleElement?["href"] as String?)?.match("/t/(\\d{1,9})#")?[1])
             
             let repliesCountElement = element.searchFirst("//td[4]/a")
-            let repliesCount = repliesCountElement?.text().toInt()
+            let repliesCount = repliesCountElement?.text()
             
             let topicMetaElement = element.searchFirst("//td[3]/span[@class='small fade']")
             // the space of the following regx is not regular
@@ -88,7 +88,7 @@ class Topic {
                     name: authorName,
                     avatarURI: avatarURI
                 ),
-                repliesCount: repliesCount,
+                replyCount: repliesCount,
                 createdAt: topicCreatedAt
             )
             
@@ -104,7 +104,7 @@ class Topic {
         let topicMetaElement = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@class='header']").first as TFHppleElement?
         let topicTitle = topicMetaElement?.searchFirst("//h1")?.text()
         let topicId = (topicMetaElement?.searchFirst("//div[@class='votes']")?["id"] as String?)?.match("topic_(\\d+)_votes")?[1]
-        let repliesCount = doc.searchFirst("//div[@id='Main']//div[@class='box']/div[@class='cell']/span[@class='gray']")?.raw.match("(\\d+) 回复")?[1]
+        let replyCount = doc.searchFirst("//div[@id='Main']//div[@class='box']/div[@class='cell']/span[@class='gray']")?.raw.match("(\\d+) 回复")?[1]
         let topicContent = doc.searchFirst("//div[@id='Main']//div[@class='box']//div[@class='topic_content']")?.raw
         let topicCreatedAt = topicMetaElement?.searchFirst("//small[@class='gray']")?.text().match(" · ([a-zA-Z0-9 \\u4e00-\\u9fa5]+) ·")?[1]
         
@@ -119,13 +119,10 @@ class Topic {
         // TODO: implement it when implement login
         let appreciationCount = topicOtherInfo?.match("(\\d+) 人感谢")?[1].toInt() ?? 0
         let favCount = topicOtherInfo?.match("(\\d+) 人收藏")?[1].toInt() ?? 0
-
-        println(topicOtherInfo)
-
         
         let favLink = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']/a[@class='tb']")?["href"] as String?
         
-        return Topic(id: topicId?.toInt(), title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), repliesCount: repliesCount?.toInt(), createdAt: topicCreatedAt, content: topicContent, appreciationCount: appreciationCount, favoriteCount: favCount, favoriteLink: favLink)
+        return Topic(id: topicId, title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), replyCount: replyCount, createdAt: topicCreatedAt, content: topicContent, appreciationCount: appreciationCount, favoriteCount: favCount, favoriteLink: favLink)
     }
     
 }

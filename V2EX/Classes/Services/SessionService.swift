@@ -79,9 +79,17 @@ class SessionService {
                 
                 if isLoggedIn {
                     self.setBasicUserDataFrom(htmlData: data)
+                    
+                    // save
+                    self.save(username: username, password: password)
+                    
                     response?(error: error, isLoggedIn: isLoggedIn)
                 } else {
                     self.loginFailed()
+                    
+                    // delete username and password saved
+                    self.clearUsernameAndPassword()
+                    
                     response?(error: error, isLoggedIn: isLoggedIn)
                 }
         }
@@ -118,5 +126,22 @@ class SessionService {
         let avatarURI = infoElement?.searchFirst("//img[@class='avatar']")?["src"] as NSString?
         // Save info to SessionStorage
         SessionStorage.sharedStorage.currentUser = User(name: username, avatarURI: avatarURI)
+    }
+    
+    private class func save(#username: String, password: String) {
+        let keychain = A0SimpleKeychain()
+        keychain.setString(username, forKey:"v2ex-username")
+        keychain.setString(password, forKey: "v2ex-password")
+    }
+    
+    private class func clearUsernameAndPassword() {
+        let keychain = A0SimpleKeychain()
+        keychain.deleteEntryForKey("v2ex-username")
+        keychain.deleteEntryForKey("v2ex-password")
+    }
+    
+    class func getUsernameAndPassword() -> (String?, String?) {
+        let keychain = A0SimpleKeychain()
+        return (keychain.stringForKey("v2ex-username"), keychain.stringForKey("v2ex-password"))
     }
 }

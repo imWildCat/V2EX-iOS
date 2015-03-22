@@ -18,5 +18,6 @@
 #import <UIImageView+WebCache.h>
 #import <TTTAttributedLabel.h>
 #import <GRMustache/GRMustache.h>
+#import <SimpleKeychain/A0SimpleKeychain.h>
 
 //#import <HMSegmentedControl.h>

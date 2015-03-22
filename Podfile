@@ -21,6 +21,7 @@ pod 'SDWebImage'
 pod 'TTTAttributedLabel'
 pod 'GRMustache', '~> 7.3.1' # template engine
 pod 'IQKeyboardManager', '~> 3.2.1'
+pod 'SimpleKeychain'
 
 target :V2EXTests, :exclusive => true do
 end

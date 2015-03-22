@@ -22,7 +22,6 @@ class TopicListViewController: UITableViewController {
         if topics.count == 0 {
             loadData()
         }
-        println("appear")
     }
     
     @IBAction func refresh(sender: UIRefreshControl) {

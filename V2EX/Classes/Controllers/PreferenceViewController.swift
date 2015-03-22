@@ -10,4 +10,10 @@ import UIKit
 
 class PreferenceViewController: UIViewController {
 
+    @IBOutlet weak var lbl: UILabel!
+    override func viewDidLoad() {
+        
+        lbl.text = "sdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sadsdaasadsa sdaas hsaasdsa sad"
+    }
 }
+ 

@@ -46,4 +46,14 @@ extension UIViewController {
         }
     }
     
+    enum ErrorType {
+        case NetWorking
+    }
+    
+    func showError(type: ErrorType) {
+        if type == ErrorType.NetWorking {
+            showError(status: "网络错误，加载失败")
+        }
+    }
+    
 }

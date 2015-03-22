@@ -24,7 +24,9 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     // image author: Jonathan Bean
     
     override func viewDidLoad() {
-        
+        let (username, password) = SessionService.getUsernameAndPassword()
+        usernameTextField.text = username
+        passwordTextField.text = password
         
     }
     

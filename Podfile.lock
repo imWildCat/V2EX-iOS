@@ -39,6 +39,7 @@ PODS:
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
+  - SimpleKeychain (0.3.0)
   - TTTAttributedLabel (1.13.2)
   - YTKKeyValueStore (0.1.2):
     - FMDB (~> 2.0)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - pop (~> 1.0.7)
   - RNFrostedSidebar (~> 0.2)
   - SDWebImage
+  - SimpleKeychain
   - TTTAttributedLabel
   - YTKKeyValueStore (~> 0.1.2)
 
@@ -82,6 +84,7 @@ SPEC CHECKSUMS:
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
   RNFrostedSidebar: f1d95d9b2627f13cc10e75d36e751a623eec079c
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SimpleKeychain: 4758625a53ca89cfae98b4aca8c550d1193292f8
   TTTAttributedLabel: 7c4592f9a806badb8b48dc634cb9800447c51594
   YTKKeyValueStore: a37a3ee636c1e064b7e2a2bcd016d016966f35ce
 
