@@ -49,7 +49,7 @@ class DiscoveryViewController: UIViewController {
             paginatedView.addPage(vc)
         }
         
-        callViewDidApprear(0)
+        callViewWillAppear(0)
 
 //        println(topicListViewControllers)
 //        for tab in tabs {
@@ -68,17 +68,17 @@ class DiscoveryViewController: UIViewController {
     func didTabSegmentedControlIndexChanged(index: Int) {
 //        println(index)
         paginatedView.jumpToPage(index)
-        callViewDidApprear(index)
+        callViewWillAppear(index)
     }
     
     func didPageIndexChanged(index: Int) {
         self.tabSegmentedControl.setSelectedSegmentIndex(UInt(index), animated: true)
-        callViewDidApprear(index)
+        callViewWillAppear(index)
     }
     
-    func callViewDidApprear(index: Int) {
+    func callViewWillAppear(index: Int) {
         let currentSlug = slugs[index]
-        topicListViewControllers[currentSlug]?.viewDidAppear(false)
+        topicListViewControllers[currentSlug]?.viewWillAppear(false)
     }
     
 }

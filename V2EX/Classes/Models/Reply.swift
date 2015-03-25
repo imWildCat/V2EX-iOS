@@ -37,7 +37,7 @@ struct Reply {
         
         let doc = TFHpple(HTMLObject: HTMLData)
         
-        let elements = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@id and @class='cell']") as [TFHppleElement]
+        let elements = doc.searchWithXPathQuery("//div[@id='Main']/div[4]/div[@id and @class='cell' or @class='inner']") as [TFHppleElement]
         
         for element in elements {
             let replyId = (element["id"] as String?)?.match("r_(\\d{1,10})")?[1]

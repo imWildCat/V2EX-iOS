@@ -25,10 +25,10 @@ class TopicListCell: UITableViewCell {
         
         authorLabel.text = viewModel.authorName
         
-        if let nodeName = viewModel.nodeName {
-            nodeNameLabel.text = nodeName
-        } else {
+        if viewModel.nodeName.isEmpty {
             nodeNameContainer.hidden = true
+        } else {
+            nodeNameLabel.text = viewModel.nodeName
         }
         
         timeLabel.text = viewModel.time

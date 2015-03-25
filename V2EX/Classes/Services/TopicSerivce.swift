@@ -21,13 +21,26 @@ import Foundation
 //}
 
 class TopicSerivce {
-    class func getList(tabSlug: String, response: ((error: NSError?, topics: [Topic]) -> Void)?) {
+    class func getList(#tabSlug: String, response: ((error: NSError?, topics: [Topic]) -> Void)?) {
 
         V2EXNetworking.get("", parameters: ["tab": tabSlug]).response { (_, _, data, error) in
             
             let topics = Topic.listFromTab(data)
             
             response?(error: error, topics: topics)
+        }
+    }
+    
+    class func getList(#nodeSlug: String, response: ((error: NSError?, topics: [Topic], nodeName: String?) -> Void)?) {
+        
+        V2EXNetworking.get("go/" + nodeSlug).response { (_, _, data, error) in
+            
+            let topics = Topic.listFromNode(data)
+            
+            let titleHTML = TFHpple(HTMLObject: data).searchFirst("//title")?.raw
+            let nodeName = titleHTML?.match("› ([a-zA-Z0-9 \\u4e00-\\u9fa5]+)</title>")?[1]
+            
+            response?(error: error, topics: topics, nodeName: nodeName)
         }
     }
     

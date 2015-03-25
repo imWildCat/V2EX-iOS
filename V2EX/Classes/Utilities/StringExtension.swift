@@ -68,4 +68,41 @@ extension String {
         html = html.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         return html
     }
+    
+    
+    /**
+    Parse URL request string from WebView(must start with "webview://")
+    eg. webview://open_node?slug=v2ex
+    
+    :returns: (action: WebViewAction, params: [String: String])
+    */
+    func parseWebViewAction() -> (WebViewAction, [String: String?]) {
+        var params = [String: String?]()
+        
+        let parts = self.componentsSeparatedByString("?")
+        if let queryString = parts.last {
+            let queryElements = queryString.componentsSeparatedByString("&")
+            for element in queryElements {
+                let keyAndValue = element.componentsSeparatedByString("=")
+                if keyAndValue.count > 0 {
+                    if let key = keyAndValue.first {
+                        let value = keyAndValue.last
+                        params[key] = value
+                    }
+                }
+            }
+        }
+        
+        let actionString = self.match("webview://(\\w+)\\?")?[1] ?? ""
+        
+        var action: WebViewAction = .None
+        switch actionString {
+        case "open_node":
+            action = .OpenNode
+        default:
+            action = .None
+        }
+        
+        return (action, params)
+    }
 }

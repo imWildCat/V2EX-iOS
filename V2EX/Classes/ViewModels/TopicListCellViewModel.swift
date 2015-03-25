@@ -9,8 +9,7 @@
 import Foundation
 
 struct TopicListCellViewModel {
-    var title, avatarURI, authorName, time, repliesCount: String
-    var nodeName: String?
+    var title, avatarURI, authorName, nodeName, time, repliesCount: String
     
     init(topic: Topic) {
         self.title = topic.title
@@ -19,6 +18,6 @@ struct TopicListCellViewModel {
         self.time = topic.createdAt
         self.repliesCount = String(topic.replyCount)
         
-        self.nodeName = topic.node?.name
+        self.nodeName = topic.node?.name ?? ""
     }
 }

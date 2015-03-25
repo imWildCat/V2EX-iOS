@@ -6,7 +6,7 @@ class TopicServiceSpec: QuickSpec {
         describe("Topic Serivce") {
             
             it("could load from tabs") {
-                TopicSerivce.getList("all", response: nil)
+                TopicSerivce.getList(tabSlug: "all", response: nil)
             }
             
         }

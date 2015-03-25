@@ -38,7 +38,6 @@ class TopicViewController: UIViewController {
         showProgressView()
         TopicSerivce.singleTopic(topicId, response: { [unowned self] (error, topic, replies)  in
             let path = NSBundle.mainBundle().bundlePath
-            println(path )
             let baseURL = NSURL.fileURLWithPath(path)
             self.webView.loadHTMLString(TopicViewModel.renderHTML(topic, replies: replies), baseURL: baseURL)
             self.hideProgressView()
