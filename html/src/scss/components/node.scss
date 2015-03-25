@@ -1,0 +1,36 @@
+.node-list {
+  .node-category {
+    .category-name {
+      clear: both;
+      background: #EDF3F5;
+      font-size: 15px;
+      padding: 10px 15px 10px 15px;
+      margin-bottom: 5px;
+    }
+
+    .list {
+      margin: 0 10px 0 10px;
+      .node {
+        float: left;
+        margin-bottom: 5px;
+        margin-right: 10px;
+        padding: 5px 5px 5px 5px;
+        /* BG: */
+        background: #FFFFFF;
+        border: 1px solid #CDCAC7;
+        border-radius: 100px;
+        /* 10:20:10:20: */
+        font-size: 14px;
+        color: #333333;
+        line-height: 14px;
+
+        a {
+          text-decoration: none;
+          color: #000000;
+          margin: 0 5px 0 5px;
+        }
+      }
+    }
+
+  }
+}
