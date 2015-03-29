@@ -483,6 +483,9 @@
                                                 <constraint firstAttribute="centerY" secondItem="QK1-Ra-HJw" secondAttribute="centerY" id="aYq-tm-ahM"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Tg4-Nx-L7f" kind="show" identifier="showTopicListVC" id="z6U-4M-dN1"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="topicCell" id="jDH-eE-Sby">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1111,12 +1114,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4so-kT-T7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1956" y="2555"/>
+            <point key="canvasLocation" x="1932" y="2555"/>
         </scene>
         <!--节点导航-->
         <scene sceneID="VGT-dL-26M">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cTy-B5-cSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="nodeListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cG7-Kf-Jkh" customClass="NodeListViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ex8-D5-oJF"/>
@@ -1154,6 +1156,7 @@
                         <segue destination="Tg4-Nx-L7f" kind="show" identifier="showTopicListVC" id="qg5-kb-Csa"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cTy-B5-cSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1956" y="1147"/>
         </scene>
@@ -1197,6 +1200,7 @@
         <image name="topic_icon" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="z6U-4M-dN1"/>
         <segue reference="aV0-nR-xvq"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

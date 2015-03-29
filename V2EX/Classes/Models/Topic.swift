@@ -50,7 +50,7 @@ class Topic {
         
         let doc = TFHpple(HTMLObject: HTMLData)
         
-        let elements = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@class='cell item']/table") as [TFHppleElement]
+        let elements = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@class='cell item']//table") as [TFHppleElement]
         
         for element in elements {
             

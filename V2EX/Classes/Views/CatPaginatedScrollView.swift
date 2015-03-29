@@ -63,7 +63,7 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
         
-        round(contentOffset.x / frame.size.width)
+        round(contentOffset.x / (frame.size.width / 2))
         
 //        addGestureRecognizer(tapGestureRecognizer)
         
@@ -142,6 +142,8 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         didPageIndexChanged?(pageIndex: currentPage)
     }
+    
+  
     
     
 }

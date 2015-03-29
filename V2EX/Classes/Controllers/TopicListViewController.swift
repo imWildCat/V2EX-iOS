@@ -58,7 +58,16 @@ class TopicListViewController: UITableViewController {
                 self.hideProgressView()
             })
         } else {
-            fatalError("tabSlug is nil.")
+            // fav topic mode
+            navigationItem.title = "我的收藏"
+            TopicSerivce.favoriteTopics(page: 1, response: { [unowned self](error, topics, totalCount) in
+                if error == nil {
+                    self.topics = topics
+                    self.tableView.reloadData()
+                    self.refreshControl?.endRefreshing()
+                }
+                self.hideProgressView()
+            })
         }
     }
     
@@ -82,7 +91,7 @@ class TopicListViewController: UITableViewController {
         if tabSlug != nil {
             let parentVC = ContainerViewController.sharedDiscoveryVC()!
             parentVC.performSegueWithIdentifier("showTopicVC", sender: topics[indexPath.row])
-        } else if nodeSlug != nil {
+        } else /* if nodeSlug != nil */ {
             performSegueWithIdentifier("showTopicVC", sender: topics[indexPath.row])
         }
     }

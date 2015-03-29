@@ -129,4 +129,23 @@ class TopicSerivce {
             response?(error: error, replies: replies)
         }
     }
+    
+    class func favoriteTopics(page: Int = 1, response: ((error: NSError?, topics: [Topic], totalCount: Int) -> Void)?) {
+        V2EXNetworking.get("my/topics").response { (_, _, data, error) in
+            
+            var topics = [Topic]()
+            var favCount = 0
+            
+            if error == nil {
+                let doc = TFHpple(HTMLObject: data)
+                
+                favCount = doc.searchFirst("//div[@id='Rightbar']//table[2]//span[@class='bigger'][2]")?.text().toInt() ?? 0
+                
+                topics = Topic.listFromTab(data)
+            }
+            
+            response?(error: error, topics: topics, totalCount: favCount)
+            
+        }
+    }
 }
