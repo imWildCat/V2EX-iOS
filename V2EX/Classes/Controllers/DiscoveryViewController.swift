@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HMSegmentedControl
 
 class DiscoveryViewController: UIViewController {
 
@@ -43,7 +44,7 @@ class DiscoveryViewController: UIViewController {
     func setUpListViewControllers() {
         self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC")
         for slug in slugs {
-            let vc = self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC") as TopicListViewController!
+            let vc = self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC") as! TopicListViewController
             vc.tabSlug = slug
             topicListViewControllers[slug] = vc
             paginatedView.addPage(vc)
@@ -59,8 +60,8 @@ class DiscoveryViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showTopicVC" {
-            let destinationViewController = segue.destinationViewController as TopicViewController
-            let topic = sender as Topic
+            let destinationViewController = segue.destinationViewController as! TopicViewController
+            let topic = sender as! Topic
             destinationViewController.topicId = topic.id
         }
     }

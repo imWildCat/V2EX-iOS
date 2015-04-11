@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HMSegmentedControl
 
 extension HMSegmentedControl {
 
@@ -15,6 +16,8 @@ extension HMSegmentedControl {
 //    }
     
     func setUp() {
+
+        
         // Set up tabSegmentedControl
         sectionTitles = ["全部", "最热", "R2", "问与答", "技术", "创意", "好玩", "Apple", "酷工作", "交易", "城市"]
         selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe

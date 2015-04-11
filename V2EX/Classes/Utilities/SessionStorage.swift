@@ -33,7 +33,7 @@ class SessionStorage {
     }
     
     func shouldRequestNewOnceCode() -> Bool {
-        return (NSDate.currentTimestamp() - lastOnceGot) > 500
+        return (NSDate.currentTimestamp() - lastOnceGot) > UInt(500)
     }
     
 }

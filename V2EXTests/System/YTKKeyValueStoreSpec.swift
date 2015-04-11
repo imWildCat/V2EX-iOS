@@ -1,5 +1,7 @@
 import Quick
 import Nimble
+import YTKKeyValueStore
+
 
 class YTKKeyValueStoreSpec: QuickSpec {
     
@@ -31,7 +33,7 @@ class YTKKeyValueStoreSpec: QuickSpec {
             
             it("could get a json") {
                 let json = ["this is a key": "this is a value", "this is the next key": "this is the next value"]
-                let jsonGot = store.getObjectById("json_key", fromTable: self.tableName) as [String : String]
+                let jsonGot = store.getObjectById("json_key", fromTable: self.tableName) as! [String : String]
                 expect(jsonGot).to(equal(json))
             }
             

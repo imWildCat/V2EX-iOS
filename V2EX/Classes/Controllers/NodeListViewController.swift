@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mustache
 
 class NodeListViewController: UIViewController, UIWebViewDelegate {
 
@@ -17,14 +18,18 @@ class NodeListViewController: UIViewController, UIWebViewDelegate {
         
         let cats = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("default_nodes", ofType: "plist") ?? "") ?? NSArray()
         
-        var data =  NSDictionary(object: cats, forKey: "cats")
-
+//        var data =  NSDictionary(object: cats, forKey: "cats")
+        var data = ["cats" : cats]
         
         let bundle = NSBundle.mainBundle()
         let templatePath = bundle.pathForResource("node_list", ofType: "html")
-        let template =  String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding, error: nil) ?? ""
+        let templateHTML =  String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding, error: nil) ?? ""
         
-        let rendering = GRMustacheTemplate.renderObject(data, fromString: template, error: nil)
+        let template = Template(string: templateHTML, error: nil)
+        
+//        let rendering = GRMustacheTemplate.renderObject(data, fromString: template, error: nil)
+        
+        let rendering = template?.render(Box(data)) ?? "页面渲染失败。"
         
         
         let path = NSBundle.mainBundle().bundlePath
@@ -33,16 +38,18 @@ class NodeListViewController: UIViewController, UIWebViewDelegate {
         
     }
     
+
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
+        // TODO: use if let
         let url = request.URL
 
-        if url.scheme? == "webview" {
-            let (action, params) = url.URLString.parseWebViewAction()
-            
-            if action == .OpenNode {
-                if let slug = params["slug"] {
-                    presentTopicListViewController(slug)
+        if url?.scheme == "webview" {
+            if let (action, params) = url?.URLString.parseWebViewAction() {
+                if action == .OpenNode {
+                    if let slug = params["slug"] {
+                        presentTopicListViewController(slug)
+                    }
                 }
             }
             
@@ -61,7 +68,7 @@ class NodeListViewController: UIViewController, UIWebViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showTopicListVC" {
-            let destinationViewController = segue.destinationViewController as TopicListViewController
+            let destinationViewController = segue.destinationViewController as! TopicListViewController
             destinationViewController.nodeSlug = sender as? String
         }
     }

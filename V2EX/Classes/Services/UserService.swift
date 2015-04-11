@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import hpple
 
 class UserService {
     
@@ -22,7 +23,7 @@ class UserService {
             let id = idAndCreatedAt?.match("V2EX 第 (\\d+) 号会员")?[1]
             let createdAt = idAndCreatedAt?.match("加入于 ((\\d{4})-(\\d{2})-(\\d{2})) ")?[1]
             
-            let avatarURI = info?.searchFirst("//img[@class='avatar']")?["src"] as String?
+            let avatarURI = info?.searchFirst("//img[@class='avatar']")?["src"] as? String
             
             let companyRaw = info?.searchFirst("//span[2]")?.raw
             let companyName = companyRaw?.match("<strong>(.+)</strong>")?[1] ?? ""

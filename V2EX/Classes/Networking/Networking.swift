@@ -28,7 +28,7 @@ class Networking {
     
     class func clearCookies() {
         let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        let cookies = (storage.cookies as [NSHTTPCookie]?) ?? [NSHTTPCookie]()
+        let cookies = (storage.cookies as! [NSHTTPCookie]?) ?? [NSHTTPCookie]()
         
         for (_, cookie) in enumerate(cookies)
         {

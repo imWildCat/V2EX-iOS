@@ -1,53 +1,51 @@
 PODS:
-  - AFNetworking (2.5.1):
-    - AFNetworking/NSURLConnection (= 2.5.1)
-    - AFNetworking/NSURLSession (= 2.5.1)
-    - AFNetworking/Reachability (= 2.5.1)
-    - AFNetworking/Security (= 2.5.1)
-    - AFNetworking/Serialization (= 2.5.1)
-    - AFNetworking/UIKit (= 2.5.1)
-  - AFNetworking/NSURLConnection (2.5.1):
+  - AFNetworking (2.5.2):
+    - AFNetworking/NSURLConnection (= 2.5.2)
+    - AFNetworking/NSURLSession (= 2.5.2)
+    - AFNetworking/Reachability (= 2.5.2)
+    - AFNetworking/Security (= 2.5.2)
+    - AFNetworking/Serialization (= 2.5.2)
+    - AFNetworking/UIKit (= 2.5.2)
+  - AFNetworking/NSURLConnection (2.5.2):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.1):
+  - AFNetworking/NSURLSession (2.5.2):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.1)
-  - AFNetworking/Security (2.5.1)
-  - AFNetworking/Serialization (2.5.1)
-  - AFNetworking/UIKit (2.5.1):
+  - AFNetworking/Reachability (2.5.2)
+  - AFNetworking/Security (2.5.2)
+  - AFNetworking/Serialization (2.5.2)
+  - AFNetworking/UIKit (2.5.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Alamofire (1.1.4)
   - Appirater (2.0.4)
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
-  - GRMustache (7.3.1):
-    - JRSwizzle (~> 1.0)
-  - HMSegmentedControl (1.5)
+  - HMSegmentedControl (1.5.1)
   - hpple (0.2.0)
-  - IQKeyboardManager (3.2.1.1)
-  - JRSwizzle (1.0)
-  - KVNProgress (2.1.9)
-  - MBProgressHUD (0.9)
+  - IQKeyboardManager (3.2.2)
+  - KVNProgress (2.2.1)
+  - MBProgressHUD (0.9.1)
   - pop (1.0.7)
   - RNFrostedSidebar (0.2.0)
-  - SDWebImage (3.7.1):
-    - SDWebImage/Core (= 3.7.1)
-  - SDWebImage/Core (3.7.1)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
   - SimpleKeychain (0.3.0)
-  - TTTAttributedLabel (1.13.2)
+  - TTTAttributedLabel (1.13.3)
   - YTKKeyValueStore (0.1.2):
     - FMDB (~> 2.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `xcode-6.3`)
   - Appirater (~> 2.0.4)
-  - GRMustache (~> 7.3.1)
   - HMSegmentedControl (~> 1.4)
   - hpple (from `https://github.com/topfunky/hpple.git`, commit `26554fa388`)
   - IQKeyboardManager (~> 3.2.1)
@@ -61,31 +59,36 @@ DEPENDENCIES:
   - YTKKeyValueStore (~> 0.1.2)
 
 EXTERNAL SOURCES:
+  Alamofire:
+    :branch: xcode-6.3
+    :git: https://github.com/Alamofire/Alamofire.git
   hpple:
     :commit: 26554fa388
     :git: https://github.com/topfunky/hpple.git
 
 CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 2ff5749ffc0425f05a1411b5b6fd2c25241b5b14
+    :git: https://github.com/Alamofire/Alamofire.git
   hpple:
     :commit: 26554fa388
     :git: https://github.com/topfunky/hpple.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  Appirater: cbdb7f305562cfde585300bfff86da01ae559deb
-  FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
-  GRMustache: 407e2f2da1e4b44225fcecd9a7c1b93632dba780
-  HMSegmentedControl: 5bb76002ce529ad83855a06cbdb5c6e48732141b
+  AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
+  Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
+  Appirater: 8783318c36414e8de3ea023443028df94c1b784b
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  HMSegmentedControl: 35460abdd15c3087368db2d3d956717f088b34d1
   hpple: abe31b2c56e8cc2f9a7af0eaa7f1bc08a275fcfe
-  IQKeyboardManager: 4e83eef847c6f5edbd670284e50c7e3d643ebdb5
-  JRSwizzle: 30da7a2c539a4ebf954b16d15f6dd8221c9f6fa5
-  KVNProgress: 9c9a3686a3eac347dc88753eed44bae5ebee1b83
-  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  pop: 2f14a1ea61339767af9e66741b418c831b3844df
-  RNFrostedSidebar: f1d95d9b2627f13cc10e75d36e751a623eec079c
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  SimpleKeychain: 4758625a53ca89cfae98b4aca8c550d1193292f8
-  TTTAttributedLabel: 7c4592f9a806badb8b48dc634cb9800447c51594
-  YTKKeyValueStore: a37a3ee636c1e064b7e2a2bcd016d016966f35ce
+  IQKeyboardManager: 99df8006864663a4126a77b9a2f7ea70077eff31
+  KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  RNFrostedSidebar: 9491d8627e5e99b92334d36def432c0faf7ebae4
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  SimpleKeychain: 8de48eb1de10c6403911a6be52e127e5b5d31404
+  TTTAttributedLabel: 6f3174aef8e738f44dff97c2eb7d8184f6ab6277
+  YTKKeyValueStore: 4d002941540dd5108fa23009b71e0f2f937f7a0f
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.36.3

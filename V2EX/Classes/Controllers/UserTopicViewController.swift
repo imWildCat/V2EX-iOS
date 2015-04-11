@@ -48,7 +48,7 @@ class UserTopicListViewController: UITableViewController {
 
     // MARK: UITableViewDataSorce
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UserTopicTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UserTopicTableViewCell
         
         cell.render(UserTopicListCellViewModel(topic: topics[indexPath.row]))
         
@@ -68,7 +68,7 @@ class UserTopicListViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "showTopicVC" {
-                let destinationViewController = segue.destinationViewController as TopicViewController
+                let destinationViewController = segue.destinationViewController as! TopicViewController
                 
                 if let index = tableView.indexPathForSelectedRow()?.row {
                     let topic = topics[index]

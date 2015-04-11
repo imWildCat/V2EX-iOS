@@ -14,11 +14,11 @@ class AlamofireSpec: QuickSpec {
             it("could get html form v2ex") {
                 
                 waitUntil(timeout: 30) { done in
-                    let request = Alamofire.request(.GET, "https://v2ex.com")
-                        .responseString { (_, _, string, _) in
-                            expect(string).to(contain("<title>V2EX</title>"))
-                            done()
-                    }
+//                    let request = Alamofire.request(.GET, "https://v2ex.com")
+//                        .responseString { (_, _, string, _) in
+//                            expect(string).to(contain("<title>V2EX</title>"))
+//                            done()
+//                    }
                 }
     
             }

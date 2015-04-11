@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import hpple
+import SimpleKeychain
 
 class SessionService {
     
@@ -41,7 +43,7 @@ class SessionService {
             
             let doc = TFHpple(HTMLObject: data)
             let onceElement = doc.searchFirst("//div[@id='Main']//div[@class='box']//form//input[@name='once']")
-            let code = (onceElement?["value"] as String?) ?? ""
+            let code = (onceElement?["value"] as? String) ?? ""
             
             SessionStorage.sharedStorage.onceCode = code
             
@@ -123,7 +125,7 @@ class SessionService {
         // Get info of current user
         let infoElement = doc.searchFirst("//div[@id='Rightbar']//div[@class='box']//div[@class='cell']")
         let username = infoElement?.searchFirst("//span[@class='bigger']/a")?.text()
-        let avatarURI = infoElement?.searchFirst("//img[@class='avatar']")?["src"] as NSString?
+        let avatarURI = infoElement?.searchFirst("//img[@class='avatar']")?["src"] as? String
         // Save info to SessionStorage
         SessionStorage.sharedStorage.currentUser = User(name: username, avatarURI: avatarURI)
     }

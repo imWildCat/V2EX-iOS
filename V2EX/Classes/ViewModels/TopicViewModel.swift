@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Mustache
 
 struct TopicViewModel {
     static func renderHTML(topic: Topic, replies: [Reply]) -> String {
@@ -42,9 +43,10 @@ struct TopicViewModel {
         
         let bundle = NSBundle.mainBundle()
         let templatePath = bundle.pathForResource("topic_tpl", ofType: "html")
-        let template =  String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding, error: nil) ?? ""
+        let templateHTML =  String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding, error: nil) ?? ""
+        let template = Template(string: templateHTML, error: nil)
         
-        let rendering = GRMustacheTemplate.renderObject(data, fromString: template, error: nil)
+        let rendering = template?.render(Box(data), error: nil) ?? "渲染失败。"
 //        println(rendering)
         return rendering
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RNFrostedSidebar
 
 class RootViewController: UIViewController, RNFrostedSidebarDelegate {
     
@@ -19,7 +20,7 @@ class RootViewController: UIViewController, RNFrostedSidebarDelegate {
     }
     
     class func displaySideMenu(animated: Bool = true) {
-        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as RootViewController
+        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! RootViewController
         rootViewController.showSideMenu(animated: true)
     }
     
@@ -44,13 +45,14 @@ class RootViewController: UIViewController, RNFrostedSidebarDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "embedContainer" {
-            containerViewController = segue.destinationViewController as ContainerViewController
+            containerViewController = segue.destinationViewController as! ContainerViewController
         }
     }
     
     // MARK: RNFrostedSidebarDelegate
     
     func sidebar(sidebar: RNFrostedSidebar!, didTapItemAtIndex index: UInt) {
+        
         var toViewController: UIViewController!
         switch index {
         case 0:

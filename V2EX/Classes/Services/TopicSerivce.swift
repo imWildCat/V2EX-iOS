@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import hpple
 
 //enum TabSlug: String {
 //    case ALL = "all"
@@ -75,7 +76,7 @@ class TopicSerivce {
                 
                 let nodeElement = element.searchFirst("//a[@class='node']")
                 let nodeName = nodeElement?.text()
-                let nodeSlug = (nodeElement?["href"] as String?)?.match("/go/(\\w{1,31})")?[1]
+                let nodeSlug = (nodeElement?["href"] as? String)?.match("/go/(\\w{1,31})")?[1]
                 topics.append(Topic(id: id, title: title, node: Node(name: nodeName, slug: nodeSlug), author: nil, replyCount: replyCount, createdAt: createdAt, content: nil))
             }
             

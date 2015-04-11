@@ -78,7 +78,7 @@ class TopicListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("topicListCell", forIndexPath: indexPath) as TopicListCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("topicListCell", forIndexPath: indexPath) as! TopicListCell
         let cellViewModel = TopicListCellViewModel(topic: topics[indexPath.row])
         
         cell.render(cellViewModel)
@@ -98,9 +98,11 @@ class TopicListViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showTopicVC" {
-            let topic = sender as Topic
-            let destinationViewController = segue.destinationViewController as TopicViewController
-            destinationViewController.topicId = topic.id
+            let topic = sender as? Topic
+            let destinationViewController = segue.destinationViewController as! TopicViewController
+            if let topic = sender as? Topic {
+                destinationViewController.topicId = topic.id
+            }
         }
     }
 

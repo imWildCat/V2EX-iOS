@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import hpple
 
 extension TFHpple {
     convenience init(HTMLString: String) {
@@ -14,11 +15,11 @@ extension TFHpple {
     }
     
     convenience init(HTMLObject: AnyObject?) {
-        self.init(HTMLData: HTMLObject as NSData?)
+        self.init(HTMLData: HTMLObject as? NSData)
     }
     
     func searchFirst(xPath: String) -> TFHppleElement? {
-        let ret = searchWithXPathQuery(xPath) as [TFHppleElement]
+        let ret = searchWithXPathQuery(xPath) as! [TFHppleElement]
         if ret.count > 0 {
             return ret.first
         }
@@ -26,14 +27,14 @@ extension TFHpple {
     }
     
     func searchElements(xPath: String) -> [TFHppleElement] {
-         return searchWithXPathQuery(xPath) as [TFHppleElement]
+         return searchWithXPathQuery(xPath) as! [TFHppleElement]
     }
     
 }
 
 extension TFHppleElement {
     func searchFirst(xPath: String) -> TFHppleElement? {
-        let ret = searchWithXPathQuery(xPath) as [TFHppleElement]
+        let ret = searchWithXPathQuery(xPath) as! [TFHppleElement]
         if ret.count > 0 {
             return ret.first
         }

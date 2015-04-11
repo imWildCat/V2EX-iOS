@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 
 class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -30,7 +31,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(animated: Bool) {
         let storage = SessionStorage.sharedStorage
         
-        if (NSDate.currentTimestamp() - storage.lastLogin) < 24.hours.toSeconds {
+        if (NSDate.currentTimestamp() - storage.lastLogin) < UInt(24.hours.toSeconds) {
            switchToLoginState()
         } else {
             SessionService.checkLogin { [weak self] (error, isLoggedIn) in
@@ -100,13 +101,13 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         let index = indexPath.row
         switch index {
         case 0:
-            return tableView.dequeueReusableCellWithIdentifier("notificationCell", forIndexPath: indexPath) as UITableViewCell
+            return tableView.dequeueReusableCellWithIdentifier("notificationCell", forIndexPath: indexPath) as! UITableViewCell
         case 1:
-            return tableView.dequeueReusableCellWithIdentifier("favoriteCell", forIndexPath: indexPath) as UITableViewCell
+            return tableView.dequeueReusableCellWithIdentifier("favoriteCell", forIndexPath: indexPath) as! UITableViewCell
         case 2:
-            return tableView.dequeueReusableCellWithIdentifier("topicCell", forIndexPath: indexPath) as UITableViewCell
+            return tableView.dequeueReusableCellWithIdentifier("topicCell", forIndexPath: indexPath) as! UITableViewCell
         default:
-            return tableView.dequeueReusableCellWithIdentifier("replyCell", forIndexPath: indexPath) as UITableViewCell
+            return tableView.dequeueReusableCellWithIdentifier("replyCell", forIndexPath: indexPath) as! UITableViewCell
         }
     }
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import hpple
 
 struct Reply {
     
@@ -37,10 +38,10 @@ struct Reply {
         
         let doc = TFHpple(HTMLObject: HTMLData)
         
-        let elements = doc.searchWithXPathQuery("//div[@id='Main']/div[4]/div[@id and @class='cell' or @class='inner']") as [TFHppleElement]
+        let elements = doc.searchWithXPathQuery("//div[@id='Main']/div[4]/div[@id and @class='cell' or @class='inner']") as! [TFHppleElement]
         
         for element in elements {
-            let replyId = (element["id"] as String?)?.match("r_(\\d{1,10})")?[1]
+            let replyId = (element["id"] as! String?)?.match("r_(\\d{1,10})")?[1]
             let content = element.searchFirst("//div[@class='reply_content']")?.raw
             
             let authorAvatarURI = element.searchFirst("//td[1]/img")?.attr("src")

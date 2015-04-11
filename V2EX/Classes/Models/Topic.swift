@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import hpple
 
 class Topic {
     
@@ -50,13 +51,13 @@ class Topic {
         
         let doc = TFHpple(HTMLObject: HTMLData)
         
-        let elements = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@class='cell item']//table") as [TFHppleElement]
+        let elements = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@class='cell item']//table") as! [TFHppleElement]
         
         for element in elements {
             
             let titleElement = element.searchFirst("//td[3]/span[@class='item_title']/a")
             let topicTitle = titleElement?.text()
-            let topicId = ((titleElement?["href"] as String?)?.match("/t/(\\d{1,9})#")?[1])
+            let topicId = ((titleElement?["href"] as? String)?.match("/t/(\\d{1,9})#")?[1])
             
             let repliesCountElement = element.searchFirst("//td[4]/a")
             let repliesCount = repliesCountElement?.text()
@@ -72,13 +73,13 @@ class Topic {
             
             let nodeElement = element.searchFirst("//td[3]/span[@class='small fade']/a[@class='node']")
             let nodeName = nodeElement?.text()
-            let nodeSlug = (nodeElement?["href"] as String?)?.match("/go/(\\w{1,31})")?[1]
+            let nodeSlug = (nodeElement?["href"] as? String)?.match("/go/(\\w{1,31})")?[1]
             
             let authorElement = element.searchFirst("//td[3]/span[@class='small fade']/strong/a")
             let authorName = authorElement?.text()
             
             let avatarElement = element.searchFirst("//td[1]/a/img[@class='avatar']")
-            let avatarURI = avatarElement?["src"] as String?
+            let avatarURI = avatarElement?["src"] as? String
             
             let topic = Topic(
                 id: topicId,
@@ -103,13 +104,13 @@ class Topic {
         
         let doc = TFHpple(HTMLObject: HTMLData)
         
-        let elements = doc.searchWithXPathQuery("//div[@id='TopicsNode']//table") as [TFHppleElement]
+        let elements = doc.searchWithXPathQuery("//div[@id='TopicsNode']//table") as! [TFHppleElement]
         
         for element in elements {
             
             let titleElement = element.searchFirst("//td[3]/span[@class='item_title']/a")
             let topicTitle = titleElement?.text()
-            let topicId = ((titleElement?["href"] as String?)?.match("/t/(\\d{1,9})#")?[1])
+            let topicId = ((titleElement?["href"] as? String)?.match("/t/(\\d{1,9})#")?[1])
             
             let repliesCountElement = element.searchFirst("//td[4]/a")
             let repliesCount = repliesCountElement?.text()
@@ -125,13 +126,13 @@ class Topic {
             
             let nodeElement = element.searchFirst("//td[3]/span[@class='small fade']/a[@class='node']")
             let nodeName = nodeElement?.text()
-            let nodeSlug = (nodeElement?["href"] as String?)?.match("/go/(\\w{1,31})")?[1]
+            let nodeSlug = (nodeElement?["href"] as? String)?.match("/go/(\\w{1,31})")?[1]
             
             let authorElement = element.searchFirst("//td[3]/span[@class='small fade']/strong/a")
             let authorName = authorElement?.text()
             
             let avatarElement = element.searchFirst("//td[1]/a/img[@class='avatar']")
-            let avatarURI = avatarElement?["src"] as String?
+            let avatarURI = avatarElement?["src"] as? String
             
             let topic = Topic(
                 id: topicId,
@@ -154,26 +155,26 @@ class Topic {
     class func singleTopic(HTMLData: AnyObject?) -> Topic {
         let doc = TFHpple(HTMLObject: HTMLData)
         
-        let topicMetaElement = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@class='header']").first as TFHppleElement?
+        let topicMetaElement = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@class='header']").first as? TFHppleElement
         let topicTitle = topicMetaElement?.searchFirst("//h1")?.text()
-        let topicId = (topicMetaElement?.searchFirst("//div[@class='votes']")?["id"] as String?)?.match("topic_(\\d+)_votes")?[1]
+        let topicId = (topicMetaElement?.searchFirst("//div[@class='votes']")?["id"] as? String)?.match("topic_(\\d+)_votes")?[1]
         let replyCount = doc.searchFirst("//div[@id='Main']//div[@class='box']/div[@class='cell']/span[@class='gray']")?.raw.match("(\\d+) 回复")?[1]
         let topicContent = doc.searchFirst("//div[@id='Main']//div[@class='box']//div[@class='topic_content']")?.raw
         let topicCreatedAt = topicMetaElement?.searchFirst("//small[@class='gray']")?.text().match(" · ([a-zA-Z0-9 \\u4e00-\\u9fa5]+) ·")?[1]
         
         let nodeElement = topicMetaElement?.searchFirst("//a[3]")
         let nodeName = nodeElement?.text()
-        let nodeSlug = (nodeElement?["href"] as String?)?.match("/go/(\\w{1,31})")?[1]
+        let nodeSlug = (nodeElement?["href"] as? String)?.match("/go/(\\w{1,31})")?[1]
        
         let authorName = topicMetaElement?.searchFirst("//small[@class='gray']/a")?.text()
-        let authorAvatarURI = topicMetaElement?.searchFirst("//div[@class='fr']/a/img")?["src"] as String?
+        let authorAvatarURI = topicMetaElement?.searchFirst("//div[@class='fr']/a/img")?["src"] as? String
         
         let topicOtherInfo = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']/div")?.text()
         // TODO: implement it when implement login
         let appreciationCount = topicOtherInfo?.match("(\\d+) 人感谢")?[1].toInt() ?? 0
         let favCount = topicOtherInfo?.match("(\\d+) 人收藏")?[1].toInt() ?? 0
         
-        let favLink = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']/a[@class='tb']")?["href"] as String?
+        let favLink = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']/a[@class='tb']")?["href"] as? String
         
         return Topic(id: topicId, title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), replyCount: replyCount, createdAt: topicCreatedAt, content: topicContent, appreciationCount: appreciationCount, favoriteCount: favCount, favoriteLink: favLink)
     }

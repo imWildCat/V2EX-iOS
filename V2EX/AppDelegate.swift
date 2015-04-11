@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KVNProgress
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         configureKVNProgress()
+        NotificationService.get()
         
         return true
     }

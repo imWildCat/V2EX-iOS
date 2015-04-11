@@ -49,7 +49,7 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
     }
     
     override init(frame: CGRect) {
-        super.init()
+        super.init(frame: frame)
         setUp()
     }
     

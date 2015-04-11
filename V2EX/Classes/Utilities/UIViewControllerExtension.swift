@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KVNProgress
 
 extension UIViewController {
     
@@ -41,7 +42,7 @@ extension UIViewController {
     }
     
     func showUserLoginVC() {
-        if let userLoginVC = storyboard?.instantiateViewControllerWithIdentifier("userLoginVC") as UserLoginViewController? {
+        if let userLoginVC = storyboard?.instantiateViewControllerWithIdentifier("userLoginVC") as? UserLoginViewController {
             presentViewController(userLoginVC, animated: true, completion: nil)
         }
     }

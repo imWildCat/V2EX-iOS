@@ -326,8 +326,8 @@ class DateDelta : NSDateComponents {
     }
     
     required init(coder aDecoder: NSCoder) {
-        fromDate = aDecoder.decodeObjectForKey("fromDate") as NSDate
-        toDate = aDecoder.decodeObjectForKey("toDate") as NSDate
+        fromDate = aDecoder.decodeObjectForKey("fromDate") as! NSDate
+        toDate = aDecoder.decodeObjectForKey("toDate") as! NSDate
         
         super.init(coder: aDecoder)
     }

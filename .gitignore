@@ -28,7 +28,7 @@ DerivedData
 Pods/
 
 # Vendor
-Vendor/
+# Vendor/
 
 # HTML files
 html/.idea
