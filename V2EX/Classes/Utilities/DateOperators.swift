@@ -15,7 +15,7 @@ import Foundation
 // MARK: constants
 
 // to avoid a type issue in Swift with NSUndefinedDateComponent being Uint
-let InvalidDateComponentInt = Int(NSUndefinedDateComponent)
+let InvalidDateComponentInt = Int(NSDateComponentUndefined)
 let SummableCalendarUnits = [ NSCalendarUnit.CalendarUnitYear
     , NSCalendarUnit.CalendarUnitMonth
     , NSCalendarUnit.CalendarUnitDay

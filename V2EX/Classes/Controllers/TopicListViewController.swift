@@ -15,7 +15,23 @@ class TopicListViewController: UITableViewController {
     var topics = [Topic]()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
+        // set up right bar buttom
+        if nodeSlug != nil {
+            let image = UIImage(named: "write_topic_icon")
+            let button = UIBarButtonItem(image: image, style: .Plain, target: self, action: Selector("showCreateTopicVC"))
+            self.navigationItem.rightBarButtonItem = button
+        }
+    }
+    
+    func showCreateTopicVC() {
+        if let slug = nodeSlug, createTopicVC = storyboard?.instantiateViewControllerWithIdentifier("createTopicVC") as? CreateTopicViewController {
+            createTopicVC.nodeSlug = slug
+            presentViewController(createTopicVC, animated: true, completion: nil)
+        } else {
+            showError(status: "节点未定义，无法创建话题")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

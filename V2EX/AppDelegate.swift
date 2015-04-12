@@ -43,7 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         configureKVNProgress()
-        NotificationService.get()
+        
+        NodeService.getAll()
         
         return true
     }

@@ -39,7 +39,7 @@ class UserTopicListViewController: UITableViewController {
                 self?.topics = topics
                 self?.tableView.reloadData()
             } else {
-                self?.showError(.NetWorking)
+                self?.showError(.Networking)
             }
             
             return

@@ -24,5 +24,32 @@ class UserNotificationListCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func render(viewModel: UserNotificationListCellViewModel) {
+        avatarImageView.sd_setImageWithURL(("https:" + viewModel.avatarURI).toURL(), placeholderImage: UIImage(named: "node_icon"))
+        
+//        titleLabel.attributedText = viewModel.title
+        titleLabel.text = viewModel.title
+        
+        timeLabel.text = viewModel.time
+        
+        contentLabel.text = viewModel.relatedContent ?? " "
+//        if let content = viewModel.relatedContent {
+//            contentLabel.text = content
+//            contentLabel.hidden = false
+//        } else {
+//            contentLabel.hidden = true
+//        }
+
+        self.sizeToFit()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    override func setNeedsDisplay() {
+        super.setNeedsDisplay()
+    }
 
 }

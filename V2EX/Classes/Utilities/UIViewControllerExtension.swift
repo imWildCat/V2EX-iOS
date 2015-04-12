@@ -10,7 +10,7 @@ import UIKit
 import KVNProgress
 
 extension UIViewController {
-    
+        
     @IBAction func sideMenuButtonTouched(sender: UIBarButtonItem) {
         RootViewController.displaySideMenu()
     }
@@ -48,11 +48,11 @@ extension UIViewController {
     }
     
     enum ErrorType {
-        case NetWorking
+        case Networking
     }
     
     func showError(type: ErrorType) {
-        if type == ErrorType.NetWorking {
+        if type == ErrorType.Networking {
             showError(status: "网络错误，加载失败")
         }
     }

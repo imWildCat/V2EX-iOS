@@ -28,7 +28,7 @@ class UserReplyListController: UITableViewController {
                 self?.replies = replies
                 self?.tableView.reloadData()
             } else {
-                self?.showError(.NetWorking)
+                self?.showError(.Networking)
             }
         }
     }
