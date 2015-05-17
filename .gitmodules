@@ -6,4 +6,4 @@
 	url = https://github.com/Quick/Quick.git
 [submodule "Vendor/GRMustache.swift"]
 	path = Vendor/GRMustache.swift
-	url = https://github.com/groue/GRMustache.swift.git
+	url = git@github.com:groue/GRMustache.swift

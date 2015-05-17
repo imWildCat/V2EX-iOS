@@ -1,9 +1,81 @@
+body {
+  background-color: #FDF8EA;
+  margin: 0;
+  font-size: 14px;
+  font-family: 'STHeitiSC-Light'; }
+
+.topic .title {
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px; }
+
+.topic .post .meta {
+  background-color: #EDF3F5;
+  height: 40px; }
+  .topic .post .meta .avatar {
+    margin: 5px 10px 5px 10px;
+    width: 30px;
+    float: left; }
+    .topic .post .meta .avatar img {
+      border-radius: 4px;
+      width: 30px;
+      height: 30px; }
+  .topic .post .meta .info {
+    margin-left: 50px;
+    width: auto; }
+    .topic .post .meta .info .row-1 {
+      padding-top: 5px; }
+    .topic .post .meta .info .row-2 {
+      margin-top: 5px; }
+      .topic .post .meta .info .row-2 .left {
+        float: left;
+        width: auto;
+        margin-right: 60px; }
+        .topic .post .meta .info .row-2 .left .time, .topic .post .meta .info .row-2 .left .device {
+          font-size: 11px;
+          color: #9B9B9B; }
+      .topic .post .meta .info .row-2 .counts {
+        float: right;
+        padding-right: 10px;
+        display: inline; }
+        .topic .post .meta .info .row-2 .counts .float-right {
+          float: right; }
+        .topic .post .meta .info .row-2 .counts .count {
+          display: inline-block; }
+          .topic .post .meta .info .row-2 .counts .count .icon {
+            width: 12px;
+            height: 12px;
+            float: left; }
+          .topic .post .meta .info .row-2 .counts .count span {
+            display: block;
+            margin-left: 8px;
+            font-size: 10px;
+            padding-top: 1px;
+            float: left;
+            color: #9B9B9B; }
+          .topic .post .meta .info .row-2 .counts .count.fav-count .icon {
+            width: 13px;
+            height: 13px; }
+          .topic .post .meta .info .row-2 .counts .count.fav-count span {
+            padding-top: 2px; }
+          .topic .post .meta .info .row-2 .counts .count.appr-count {
+            margin-left: 10px; }
+
+.topic .post .content {
+  padding: 10px;
+  word-wrap: break-word; }
+  .topic .post .content, .topic .post .content div {
+    font-size: 14px; }
+  .topic .post .content img {
+    max-width: 100%; }
+
 .node-list .node-category .category-name {
   clear: both;
   background: #EDF3F5;
   font-size: 15px;
   padding: 10px 15px 10px 15px;
   margin-bottom: 5px; }
+
 .node-list .node-category .list {
   margin: 0 10px 0 10px; }
   .node-list .node-category .list .node {
@@ -23,68 +95,3 @@
       text-decoration: none;
       color: #000000;
       margin: 0 5px 0 5px; }
-
-body {
-  background-color: #FDF8EA;
-  margin: 0;
-  font-size: 14px;
-  font-family: 'STHeitiSC-Light'; }
-
-.title {
-  font-size: 15px;
-  font-weight: bold;
-  padding: 10px; }
-
-.post .meta {
-  background-color: #EDF3F5;
-  height: 40px; }
-  .post .meta .avatar {
-    margin: 5px 10px 5px 10px;
-    width: 30px;
-    float: left; }
-    .post .meta .avatar img {
-      border-radius: 4px;
-      width: 30px;
-      height: 30px; }
-  .post .meta .info {
-    margin-left: 50px;
-    width: auto; }
-    .post .meta .info .row-1 {
-      padding-top: 5px; }
-    .post .meta .info .row-2 .left {
-      float: left;
-      width: auto;
-      margin-right: 60px; }
-      .post .meta .info .row-2 .left .time, .post .meta .info .row-2 .left .device {
-        font-size: 11px;
-        color: #9B9B9B; }
-    .post .meta .info .row-2 .counts {
-      float: right;
-      padding-right: 10px;
-      display: inline; }
-      .post .meta .info .row-2 .counts .float-right {
-        float: right; }
-      .post .meta .info .row-2 .counts .count {
-        display: inline-block; }
-        .post .meta .info .row-2 .counts .count .icon {
-          width: 12px;
-          height: 12px;
-          float: left; }
-        .post .meta .info .row-2 .counts .count span {
-          display: block;
-          margin-left: 8px;
-          font-size: 10px;
-          padding-top: 1px;
-          float: left; }
-        .post .meta .info .row-2 .counts .count.fav-count .icon {
-          width: 13px;
-          height: 13px; }
-        .post .meta .info .row-2 .counts .count.appr-count {
-          margin-left: 10px; }
-.post .content {
-  padding: 10px;
-  word-wrap: break-word; }
-  .post .content, .post .content div {
-    font-size: 14px; }
-  .post .content img {
-    max-width: 100%; }

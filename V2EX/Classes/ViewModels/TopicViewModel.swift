@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Mustache
+import SwiftyJSON
 
 struct TopicViewModel {
     static func renderHTML(topic: Topic, replies: [Reply]) -> String {
@@ -41,12 +41,13 @@ struct TopicViewModel {
             "posts": posts
         ]
         
+        var jsonObj = JSON(data)
+        println(jsonObj.description)
         let bundle = NSBundle.mainBundle()
-        let templatePath = bundle.pathForResource("topic_tpl", ofType: "html")
+        let templatePath = bundle.pathForResource("topic", ofType: "html")
         let templateHTML =  String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding, error: nil) ?? ""
-        let template = Template(string: templateHTML, error: nil)
         
-        let rendering = template?.render(Box(data), error: nil) ?? "渲染失败。"
+        let rendering = templateHTML.replace("{{data}}", withString: jsonObj.description)
 //        println(rendering)
         return rendering
     }
