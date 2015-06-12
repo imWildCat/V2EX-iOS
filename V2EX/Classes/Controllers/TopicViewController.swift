@@ -23,6 +23,9 @@ class TopicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        webView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
+        webView.opaque = false
+        
 //        view.addSubview(webView)
 //        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
 //        let widthConstraint = NSLayoutConstraint(item: webView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: 0)

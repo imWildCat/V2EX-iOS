@@ -32,9 +32,9 @@ class TopicSerivce {
         }
     }
     
-    class func getList(#nodeSlug: String, response: ((error: NSError?, topics: [Topic], nodeName: String?) -> Void)?) {
+    class func getList(#nodeSlug: String, page: Int = 1, response: ((error: NSError?, topics: [Topic], nodeName: String?) -> Void)?) {
         
-        V2EXNetworking.get("go/" + nodeSlug).response { (_, _, data, error) in
+        V2EXNetworking.get("go/\(nodeSlug)?p=\(page)").response { (_, _, data, error) in
             
             let topics = Topic.listFromNode(data)
             

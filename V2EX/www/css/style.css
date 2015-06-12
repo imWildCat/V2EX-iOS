@@ -67,7 +67,7 @@ body {
   .topic .post .content, .topic .post .content div {
     font-size: 14px; }
   .topic .post .content img {
-    max-width: 100%; }
+    max-width: 100% !important; }
 
 .node-list .node-category .category-name {
   clear: both;

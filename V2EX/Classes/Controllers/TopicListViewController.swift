@@ -13,15 +13,28 @@ class TopicListViewController: UITableViewController {
     var tabSlug: String?
     var nodeSlug: String?
     var topics = [Topic]()
+    var prevousPage = 1
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set bg color
+        tableView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
         
         // set up right bar buttom
         if nodeSlug != nil {
             let image = UIImage(named: "write_topic_icon")
             let button = UIBarButtonItem(image: image, style: .Plain, target: self, action: Selector("showCreateTopicVC"))
             self.navigationItem.rightBarButtonItem = button
+        }
+    }
+    
+    func addLoadMoreDataFooter() {
+        if nodeSlug != nil {
+            tableView.addLegendFooterWithRefreshingBlock { [weak self] () -> Void in
+                self?.loadMoreData()
+            }
         }
     }
     
@@ -46,43 +59,79 @@ class TopicListViewController: UITableViewController {
     }
     
     func loadData() {
+        page = 1
+        
         if refreshControl?.refreshing == false {
             showProgressView()
         }
     
         
         if let slug = tabSlug {
-            TopicSerivce.getList(tabSlug: slug, response: { [unowned self] (error, topics) in
+            TopicSerivce.getList(tabSlug: slug, response: { [weak self] (error, topics) in
                 if error == nil {
-                    self.topics = topics
-                    self.tableView.reloadData()
-                    self.refreshControl?.endRefreshing()
+                    self?.topics = topics
+                    self?.tableView.reloadData()
+                    self?.refreshControl?.endRefreshing()
                 }
-                self.hideProgressView()
+                self?.hideProgressView()
             })
         } else if let slug = nodeSlug {
             navigationItem.title = "话题列表"
-            TopicSerivce.getList(nodeSlug: slug, response: { [unowned self] (error, topics, nodeName) in
+            TopicSerivce.getList(nodeSlug: slug, response: { [weak self] (error, topics, nodeName) in
                 if error == nil {
                     if let name = nodeName {
-                        self.navigationItem.title = name
+                        self?.navigationItem.title = name
                     }
-                    self.topics = topics
-                    self.tableView.reloadData()
-                    self.refreshControl?.endRefreshing()
+                    self?.topics = topics
+                    self?.tableView.reloadData()
+                    self?.refreshControl?.endRefreshing()
+                    self?.addLoadMoreDataFooter()
                 }
-                self.hideProgressView()
+                self?.hideProgressView()
             })
         } else {
             // fav topic mode
             navigationItem.title = "我的收藏"
-            TopicSerivce.favoriteTopics(page: 1, response: { [unowned self](error, topics, totalCount) in
+            TopicSerivce.favoriteTopics(page: 1, response: { [weak self](error, topics, totalCount) in
                 if error == nil {
-                    self.topics = topics
-                    self.tableView.reloadData()
-                    self.refreshControl?.endRefreshing()
+                    self?.topics = topics
+                    self?.tableView.reloadData()
+                    self?.refreshControl?.endRefreshing()
                 }
-                self.hideProgressView()
+                self?.hideProgressView()
+            })
+        }
+    }
+    
+    func loadMoreData() {
+        page++
+        if let slug = nodeSlug {
+            TopicSerivce.getList(nodeSlug: slug, page: page, response: { [weak self] (error, topics, nodeName) in
+                if error == nil {
+                    if let name = nodeName {
+                        self?.navigationItem.title = name
+                    }
+                    self?.topics = topics
+                    self?.tableView.reloadData()
+                    self?.tableView.footer.stateHidden = true
+                    if topics.count < 20 {
+                        self?.tableView.footer.noticeNoMoreData()
+                    }
+                }
+                self?.hideProgressView()
+                })
+        } else if tabSlug == nil {
+            // my favorites
+            TopicSerivce.favoriteTopics(page: page, response: { [weak self](error, topics, totalCount) in
+                if error == nil {
+                    self?.topics += topics
+                    self?.tableView.reloadData()
+                    self?.tableView.footer.stateHidden = true
+                    if topics.count < 20 {
+                        self?.tableView.footer.noticeNoMoreData()
+                    }
+                }
+                self?.hideProgressView()
             })
         }
     }
