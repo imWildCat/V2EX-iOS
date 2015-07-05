@@ -74,8 +74,7 @@ class UserNotificationViewController: V2EXTableViewController {
                 self?.notifications += notifications
                 self?.generateCellViewModels()
                 self?.tableView.reloadData()
-                self?.tableView.footer.stateHidden = true
-                
+                self?.addLoadMoreDataFooter()
                 if notifications.count < 10 {
                     self?.tableView.footer.noticeNoMoreData()
                 }

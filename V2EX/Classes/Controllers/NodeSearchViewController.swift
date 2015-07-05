@@ -20,7 +20,7 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println(tableView)
+        tableView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
         
         loadData()
     }
@@ -39,10 +39,11 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
             }
         }
         
-        self.resultSearchController = ({
+        resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
+            controller.hidesNavigationBarDuringPresentation = false
             controller.searchBar.sizeToFit()
             
             self.tableView.tableHeaderView = controller.searchBar
@@ -104,6 +105,8 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
             let destinationViewController = segue.destinationViewController as! TopicListViewController
             
             if let index = tableView.indexPathForSelectedRow()?.row {
+                
+                resultSearchController.active = false
                 
                 var node: Node
                 if resultSearchController.active {

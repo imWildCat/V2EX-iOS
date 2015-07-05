@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import WebKit
+//import WebKit
 
-class TopicViewController: UIViewController {
+class TopicViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
 //    var webView: WKWebView
@@ -25,6 +25,7 @@ class TopicViewController: UIViewController {
         
 //        webView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
         webView.opaque = false
+        webView.delegate = self
         
 //        view.addSubview(webView)
 //        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -45,4 +46,33 @@ class TopicViewController: UIViewController {
             self.hideProgressView()
         })
     }
+    
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
+        if let scheme = request.URL?.scheme {
+            if scheme == "file" {
+                println(request.URLString)
+                return true
+            }
+            
+            if scheme == "webview" {
+                println(request.URLString)
+                return false
+            }
+        }
+        
+        
+//        if let urlString = request.URL?.URLString {
+//            if urlString.rangeOfString("https://cdn.v2ex.co") != nil || urlString.rangeOfString("http://cdn.v2ex.co") != nil {
+//                return true
+//            }
+//        }
+        
+        return false
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        webView.stringByEvaluatingJavaScriptFromString("document.body.style.webkitTouchCallout='none'; document.body.style.KhtmlUserSelect='none'");
+    }
+    
 }

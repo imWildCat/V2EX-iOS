@@ -64,7 +64,6 @@ class TopicListViewController: UITableViewController {
         if refreshControl?.refreshing == false {
             showProgressView()
         }
-    
         
         if let slug = tabSlug {
             TopicSerivce.getList(tabSlug: slug, response: { [weak self] (error, topics) in
@@ -111,27 +110,25 @@ class TopicListViewController: UITableViewController {
                     if let name = nodeName {
                         self?.navigationItem.title = name
                     }
-                    self?.topics = topics
+                    self?.topics += topics
                     self?.tableView.reloadData()
-                    self?.tableView.footer.stateHidden = true
+                    self?.addLoadMoreDataFooter()
                     if topics.count < 20 {
                         self?.tableView.footer.noticeNoMoreData()
                     }
                 }
-                self?.hideProgressView()
-                })
+            })
         } else if tabSlug == nil {
             // my favorites
-            TopicSerivce.favoriteTopics(page: page, response: { [weak self](error, topics, totalCount) in
+            TopicSerivce.favoriteTopics(page: page, response: { [weak self] (error, topics, totalCount) in
                 if error == nil {
                     self?.topics += topics
                     self?.tableView.reloadData()
-                    self?.tableView.footer.stateHidden = true
+                    self?.addLoadMoreDataFooter()
                     if topics.count < 20 {
                         self?.tableView.footer.noticeNoMoreData()
                     }
                 }
-                self?.hideProgressView()
             })
         }
     }

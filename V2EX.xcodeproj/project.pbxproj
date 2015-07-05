@@ -63,6 +63,7 @@
 		5EA63C681B08700A00431C96 /* node_list_bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C661B08700A00431C96 /* node_list_bundle.js */; };
 		5EA63C691B08700A00431C96 /* topic_bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C671B08700A00431C96 /* topic_bundle.js */; };
 		5EA63C6B1B08701500431C96 /* topic.html in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C6A1B08701500431C96 /* topic.html */; };
+		5EC734361B2BE1EE0082D920 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */; };
 		5EC87D511ABC42E200AB071F /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */; };
 		5EC87D601ABC4DAD00AB071F /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */; };
 		5EC87D671ABC545500AB071F /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D661ABC545500AB071F /* NSDateExtension.swift */; };
@@ -147,6 +148,7 @@
 		5EA63C661B08700A00431C96 /* node_list_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node_list_bundle.js; sourceTree = "<group>"; };
 		5EA63C671B08700A00431C96 /* topic_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = topic_bundle.js; sourceTree = "<group>"; };
 		5EA63C6A1B08701500431C96 /* topic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic.html; sourceTree = "<group>"; };
+		5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 		5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		5EC87D661ABC545500AB071F /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				5E8523EE1ABD7B0F00B7B8C4 /* UserReplyController.swift */,
 				5E8523EB1ABD7B0200B7B8C4 /* UserTopicViewController.swift */,
 				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
+				5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				5E8523EC1ABD7B0200B7B8C4 /* UserTopicViewController.swift in Sources */,
 				5ED345DD1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */,
 				5E5F23CE1A395DBD00D20FE9 /* Topic.swift in Sources */,
+				5EC734361B2BE1EE0082D920 /* BrowserViewController.swift in Sources */,
 				5E5F23CD1A395DBD00D20FE9 /* UserViewController.swift in Sources */,
 				5E83B72A1A3D8FD60079AB3E /* Networking.swift in Sources */,
 				5E3759B91A3C7640003DB82A /* AppDelegate.swift in Sources */,
@@ -717,6 +721,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "V2EX/V2EX-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -810,6 +815,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "V2EX/V2EX-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

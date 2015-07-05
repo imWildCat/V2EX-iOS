@@ -24,7 +24,6 @@ struct TopicViewModel {
         
         for (_, reply) in enumerate(replies)
         {
-            println("https:" + reply.author.avatarURI)
             posts.append([
                 "avatar_url": "https:" + reply.author.avatarURI,
                 "username": reply.author.name,
@@ -42,7 +41,7 @@ struct TopicViewModel {
         ]
         
         var jsonObj = JSON(data)
-        println(jsonObj.description)
+//        println(jsonObj.description)
         let bundle = NSBundle.mainBundle()
         let templatePath = bundle.pathForResource("topic", ofType: "html")
         let templateHTML =  String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding, error: nil) ?? ""

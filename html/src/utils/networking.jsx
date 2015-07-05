@@ -1,4 +1,4 @@
-class Networkig {
+class Networking {
     static loadURL(url) {
         var iFrame;
         iFrame = document.createElement('iFrame');
@@ -10,9 +10,8 @@ class Networkig {
         document.body.appendChild(iFrame);
         iFrame.parentNode.removeChild(iFrame);
         iFrame = null;
-        console.log(url);
-
+        console.log("Networking.loadURL(\"" + url + "\")");
     }
 }
 
-export default Networkig;
+export default Networking;

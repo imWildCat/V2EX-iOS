@@ -27,10 +27,14 @@
 
         .row-1 {
           padding-top: 5px;
+          a {
+            color: #000000;
+            text-decoration: none;
+          }
         }
 
         .row-2 {
-          margin-top: 5px;
+          margin-top: 3px;
           .left {
             float: left;
             width: auto;
@@ -90,6 +94,10 @@
       word-wrap: break-word;
       &, div {
         font-size: 14px;
+      }
+
+      a {
+        color: #778087;
       }
 
       img {
