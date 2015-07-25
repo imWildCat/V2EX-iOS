@@ -41,6 +41,7 @@ class TopicListViewController: UITableViewController {
     func showCreateTopicVC() {
         if let slug = nodeSlug, createTopicVC = storyboard?.instantiateViewControllerWithIdentifier("createTopicVC") as? CreateTopicViewController {
             createTopicVC.nodeSlug = slug
+            createTopicVC.topicListVC = self
             presentViewController(createTopicVC, animated: true, completion: nil)
         } else {
             showError(status: "节点未定义，无法创建话题")
@@ -154,8 +155,13 @@ class TopicListViewController: UITableViewController {
             let parentVC = ContainerViewController.sharedDiscoveryVC()!
             parentVC.performSegueWithIdentifier("showTopicVC", sender: topics[indexPath.row])
         } else /* if nodeSlug != nil */ {
-            performSegueWithIdentifier("showTopicVC", sender: topics[indexPath.row])
+//            performSegueWithIdentifier("showTopicVC", sender: topics[indexPath.row])
+            showTopic(topics[indexPath.row])
         }
+    }
+    
+    func showTopic(topic: Topic) {
+        performSegueWithIdentifier("showTopicVC", sender: topic)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -163,7 +169,11 @@ class TopicListViewController: UITableViewController {
             let topic = sender as? Topic
             let destinationViewController = segue.destinationViewController as! TopicViewController
             if let topic = sender as? Topic {
-                destinationViewController.topicId = topic.id
+                if topic.isNew == false {
+                    destinationViewController.topicId = topic.id
+                } else {
+                    destinationViewController.topic = topic
+                }
             }
         }
     }

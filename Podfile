@@ -29,6 +29,7 @@ inhibit_all_warnings!
     # pod 'SVPullToRefresh', :git => 'https://github.com/samvermette/SVPullToRefresh.git'
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode6.3'
     pod 'MJRefresh'
+    pod 'TUSafariActivity', '~> 1.0'
 # end
 
 #target 'V2EXTests', :exclusive => true do

@@ -11,5 +11,6 @@ import Foundation
 enum WebViewAction {
     case None
     case OpenNode
-    
+    case OpenBrowser
+    case User
 }

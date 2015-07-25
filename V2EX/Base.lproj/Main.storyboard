@@ -87,10 +87,10 @@
             </objects>
             <point key="canvasLocation" x="1956" y="468"/>
         </scene>
-        <!--Create Topic View Controller-->
+        <!--新话题-->
         <scene sceneID="XZF-8c-Rww">
             <objects>
-                <viewController storyboardIdentifier="createTopicVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pOe-6h-ykI" customClass="CreateTopicViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createTopicVC" title="新话题" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pOe-6h-ykI" customClass="CreateTopicViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fgu-gK-cxG"/>
                         <viewControllerLayoutGuide type="bottom" id="V16-gC-Ni3"/>
@@ -109,16 +109,43 @@
                                     <navigationItem title="创建话题" id="1d6-cr-nUh"/>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="标题" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1gl-kD-Ehn">
+                                <rect key="frame" x="10" y="54" width="580" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pOe-6h-ykI" id="Tu6-88-rdg"/>
+                                </connections>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdL-UK-k7m">
+                                <rect key="frame" x="10" y="94" width="580" height="496"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pOe-6h-ykI" id="q8J-t5-la3"/>
+                                </connections>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.96470588445663452" blue="0.89803922176361084" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="AYL-El-1i8" secondAttribute="trailing" id="9Y0-jm-BmK"/>
                             <constraint firstItem="AYL-El-1i8" firstAttribute="top" secondItem="31F-nW-6Ci" secondAttribute="top" id="BkC-Zc-Sgo"/>
+                            <constraint firstAttribute="trailing" secondItem="EdL-UK-k7m" secondAttribute="trailing" constant="10" id="JV7-i4-A4z"/>
+                            <constraint firstItem="1gl-kD-Ehn" firstAttribute="leading" secondItem="31F-nW-6Ci" secondAttribute="leading" constant="10" id="Nx5-pJ-mqi"/>
+                            <constraint firstItem="EdL-UK-k7m" firstAttribute="leading" secondItem="31F-nW-6Ci" secondAttribute="leading" constant="10" id="Utv-v3-aJu"/>
+                            <constraint firstItem="EdL-UK-k7m" firstAttribute="top" secondItem="1gl-kD-Ehn" secondAttribute="bottom" constant="10" id="Z4r-pL-qcP"/>
+                            <constraint firstItem="1gl-kD-Ehn" firstAttribute="top" secondItem="AYL-El-1i8" secondAttribute="bottom" constant="10" id="eCE-Su-Qma"/>
                             <constraint firstItem="AYL-El-1i8" firstAttribute="leading" secondItem="31F-nW-6Ci" secondAttribute="leading" id="hNN-L4-2FQ"/>
+                            <constraint firstItem="V16-gC-Ni3" firstAttribute="top" secondItem="EdL-UK-k7m" secondAttribute="bottom" constant="10" id="ibS-B2-kd3"/>
+                            <constraint firstAttribute="trailing" secondItem="1gl-kD-Ehn" secondAttribute="trailing" constant="10" id="vQW-Gj-ptd"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentText" destination="EdL-UK-k7m" id="Yb7-0h-rfv"/>
+                        <outlet property="contentTextBottomConstraint" destination="ibS-B2-kd3" id="5Ao-Vs-SaC"/>
                         <outlet property="navItem" destination="1d6-cr-nUh" id="bzs-ee-3td"/>
+                        <outlet property="titleText" destination="1gl-kD-Ehn" id="65o-ZO-Hh7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cOg-Lx-SpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -306,7 +333,6 @@
                     </refreshControl>
                     <connections>
                         <segue destination="id9-zn-iOs" kind="show" identifier="showTopicVC" id="aV0-nR-xvq"/>
-                        <segue destination="pOe-6h-ykI" kind="show" identifier="showCreateTopicVC" id="p6U-oo-6BN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kaa-dE-mJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -360,6 +386,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Yct-uY-fnv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="UHH-UB-WYD">
+                            <connections>
+                                <action selector="actionButtonDidTouch:" destination="cYg-du-oa3" id="IkL-IM-g5R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXO-TM-8vQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1427,7 +1460,7 @@
         <image name="topic_icon" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LHz-ne-sN5"/>
+        <segue reference="z6U-4M-dN1"/>
         <segue reference="aV0-nR-xvq"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

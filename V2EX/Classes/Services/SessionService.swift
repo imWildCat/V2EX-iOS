@@ -146,4 +146,18 @@ class SessionService {
         let keychain = A0SimpleKeychain()
         return (keychain.stringForKey("v2ex-username"), keychain.stringForKey("v2ex-password"))
     }
+    
+    class func getOnceCode(response: ((error: NSError?, code: String) -> Void)) {
+        V2EXNetworking.get("new").response { (_, _, data, error) in
+            
+            let doc = TFHpple(HTMLObject: data)
+            let onceElement = doc.searchFirst("//div[@id='Main']//div[@class='box']//form//input[@name='once']")
+            let code = (onceElement?["value"] as? String) ?? ""
+            
+            SessionStorage.sharedStorage.onceCode = code
+            
+            response(error: error, code: code)
+        }
+    }
+    
 }

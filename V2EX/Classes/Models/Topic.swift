@@ -26,6 +26,8 @@ class Topic {
     
     var favoriteLink: String
     
+    var isNew: Bool = false
+    
     init(id: String?, title: String?, node: Node?, author: User?, replyCount: String? = nil, createdAt: String? = nil, content: String? = nil, appreciationCount: Int = 0, favoriteCount: Int = 0, favoriteLink: String? = nil) {
         self.id = id?.toInt() ?? 0
         self.title = title ?? "[未知标题]"
@@ -43,9 +45,6 @@ class Topic {
 //        self.init(id: id, title: title, repliesCount: repliesCount, author: author, createdAt: createdAt, node: node)
 //    }
 
-    
-    
-    
     class func listFromTab(HTMLData: AnyObject?) -> [Topic] {
         var topics = [Topic]()
         

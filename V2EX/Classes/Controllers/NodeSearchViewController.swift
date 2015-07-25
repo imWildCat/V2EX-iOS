@@ -105,9 +105,7 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
             let destinationViewController = segue.destinationViewController as! TopicListViewController
             
             if let index = tableView.indexPathForSelectedRow()?.row {
-                
-                resultSearchController.active = false
-                
+            
                 var node: Node
                 if resultSearchController.active {
                     node = filteredNodes[index]
@@ -115,7 +113,11 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
                     node = nodes[index]
                 }
                 destinationViewController.nodeSlug = node.slug
-
+                
+//                resultSearchController.active = false
+                Utils.delay(0.2) { [weak self] in
+                    self?.resultSearchController.active = false
+                }
             }
         }
     }

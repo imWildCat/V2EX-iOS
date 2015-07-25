@@ -8,6 +8,7 @@
 
 import UIKit
 import KVNProgress
+import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,8 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             KVNProgress.setConfiguration(configuration)
         }
         
-        configureKVNProgress()
+        func configureIQKeyboardManager() {
+            IQKeyboardManager.sharedManager().disableInViewControllerClass(CreateTopicViewController)
+        }
         
+        configureKVNProgress()
+        configureIQKeyboardManager()
         NodeService.getAll()
         
         return true

@@ -81,8 +81,8 @@ extension String {
     
     :returns: (action: WebViewAction, params: [String: String])
     */
-    func parseWebViewAction() -> (WebViewAction, [String: String?]) {
-        var params = [String: String?]()
+    func parseWebViewAction() -> (WebViewAction, [String: String]) {
+        var params = [String: String]()
         
         let parts = self.componentsSeparatedByString("?")
         if let queryString = parts.last {
@@ -104,6 +104,10 @@ extension String {
         switch actionString {
         case "open_node":
             action = .OpenNode
+        case "open_browser":
+            action = .OpenBrowser
+        case "username":
+            action = .User
         default:
             action = .None
         }

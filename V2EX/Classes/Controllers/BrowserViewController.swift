@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import TUSafariActivity
 
 class BrowserViewController: UIViewController, WKNavigationDelegate {
     
@@ -19,9 +20,10 @@ class BrowserViewController: UIViewController, WKNavigationDelegate {
         super.init(coder: aDecoder)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         view.addSubview(webView)
         webView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -32,8 +34,36 @@ class BrowserViewController: UIViewController, WKNavigationDelegate {
         
         webView.loadRequest(NSURLRequest(URL: NSURL(string: URL)!))
     }
-
-//    webView
+    
+    
+    @IBAction func actionButtonDidTouch(sender: UIBarButtonItem) {
+        
+        var sharingItems = [AnyObject]()
+        
+        if let url = webView.URL {
+            sharingItems.append(url)
+        }
+        
+        let safariActivity = TUSafariActivity()
+        
+        let activityVC = UIActivityViewController(activityItems: sharingItems, applicationActivities: [safariActivity])
+        presentViewController(activityVC, animated: true, completion: nil)
+        
+//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+//        
+//        let okAction = UIAlertAction(title: "在 Safari 中打开", style: .Default) { [unowned self] action in
+//            return
+//        }
+//        let okAction = UIAlertAction(title: "复制链接", style: .Default) { [unowned self] action in
+//            return
+//        }
+//        let cancelAction = UIAlertAction(title: "取消", style: .Cancel) { [unowned alert] action in
+//            alert.dismissViewControllerAnimated(true, completion: nil)
+//        }
+//        alert.addAction(okAction)
+//        alert.addAction(cancelAction)
+//        presentViewController(alert, animated: true, completion: nil)
+    }
     
 
     /*

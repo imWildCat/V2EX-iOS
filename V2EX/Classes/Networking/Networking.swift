@@ -18,6 +18,9 @@ class Networking {
         let cfg = NSURLSessionConfiguration.defaultSessionConfiguration()
         
         cfg.HTTPCookieStorage = cookies
+        cfg.HTTPAdditionalHeaders = [
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12"
+        ]
         
         return Alamofire.Manager(configuration: cfg)
     }

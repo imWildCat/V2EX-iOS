@@ -249,10 +249,10 @@
 		5E5F23B01A395CD200D20FE9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5E7A0ED21A3D81D900C9251B /* Services */,
-				5EF1E7FD1A3D6FEA00D61475 /* Networking */,
 				5E5F23B11A395DBD00D20FE9 /* Controllers */,
 				5E5F23BA1A395DBD00D20FE9 /* Models */,
+				5EF1E7FD1A3D6FEA00D61475 /* Networking */,
+				5E7A0ED21A3D81D900C9251B /* Services */,
 				5E5F23BD1A395DBD00D20FE9 /* System */,
 				5E5F23BF1A395DBD00D20FE9 /* Utilities */,
 				5E5F23C11A395DBD00D20FE9 /* ViewModels */,
@@ -446,6 +446,7 @@
 		5E1497671A13A1890034F34F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = WildCat;
 				TargetAttributes = {

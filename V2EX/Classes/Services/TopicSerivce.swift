@@ -133,7 +133,6 @@ class TopicSerivce {
     
     class func favoriteTopics(page: Int = 1, response: ((error: NSError?, topics: [Topic], totalCount: Int) -> Void)?) {
         V2EXNetworking.get("my/topics").response { (_, _, data, error) in
-            
             var topics = [Topic]()
             var favCount = 0
             
@@ -146,7 +145,52 @@ class TopicSerivce {
             }
             
             response?(error: error, topics: topics, totalCount: favCount)
+        }
+    }
+    
+    class func createTopic(#onceCode: String, nodeSlug: String, title: String, content: String, response: ((error: NSError?, topic: Topic?, problemMessage: String?) -> Void)?) {
+        V2EXNetworking.post("new/\(nodeSlug)", parameters: ["once" : onceCode, "title": title, "content": content]).response { (_, httpResponse, data, error) in
             
+            var topic: Topic?
+            var problemMessage: String?
+            if (error == nil) {
+                
+//                let res = httpResponse!
+//                let header = res.allHeaderFields
+//                let loca = header["Location"] as? String
+//                let contentType = res.allHeaderFields["Content-Type"] as? String
+//                let date = res.allHeaderFields["Date"] as? String
+//                println(header)
+//                println(date ?? "nil")
+//                println(contentType ?? "nil")
+//                println(loca ?? "nil")
+//                println(1)
+//                let s = NSString(data: data as! NSData, encoding: NSUTF8StringEncoding)
+//                println(s ?? "content is nil")
+//                println(http)
+//                if let locationString = httpResponse?.allHeaderFields["Location"] as? String {
+//                    let topicID = locationString.match("/t/(\\d{1,9})#")?[1].toInt()
+//                }
+                
+//                    let e = doc.searchFirst("//link[@rel='canonical']")
+//                    let href = doc.searchFirst("//link[@rel='canonical']")?.attr("href")
+//                    topicID = doc.searchFirst("//link[@rel='canonical']")?.attr("href")?.match("/t/(\\d{1,9})")?[1].toInt()
+                
+                topic = Topic.singleTopic(data)
+                topic?.isNew = true
+                
+                if topic?.id == 0 {
+                    topic = nil
+                }
+                
+                if topic == nil {
+                    let doc = TFHpple(HTMLObject: data)
+
+                    problemMessage = doc.searchFirst("//div[@class='problem']/ul/li")?.text()
+                }
+            }
+            
+            response?(error: error, topic: topic, problemMessage: problemMessage)
         }
     }
 }
