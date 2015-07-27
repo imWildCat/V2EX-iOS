@@ -9,7 +9,7 @@
 import Foundation
 import hpple
 
-class Topic {
+class Topic: Printable {
     
     var id: Int
     var title: String
@@ -176,6 +176,10 @@ class Topic {
         let favLink = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']/a[@class='tb']")?["href"] as? String
         
         return Topic(id: topicId, title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), replyCount: replyCount, createdAt: topicCreatedAt, content: topicContent, appreciationCount: appreciationCount, favoriteCount: favCount, favoriteLink: favLink)
+    }
+    
+    var description: String {
+        return "[Topic] ID: \(id), Title: \(title), Content: \(content)"
     }
     
 }

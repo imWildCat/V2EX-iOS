@@ -40,7 +40,7 @@ class UserReplyListController: UITableViewController {
                 
                 if let index = tableView.indexPathForSelectedRow()?.row {
                     let reply = replies[index]
-                    destinationViewController.topicId = reply.relatedTopic?.id ?? 0
+                    destinationViewController.topicID = reply.relatedTopic?.id ?? 0
                 }
             }
         }

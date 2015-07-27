@@ -20,6 +20,7 @@
 		5E38F3DF1AD90D5A00186E18 /* V2EXTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38F3DE1AD90D5A00186E18 /* V2EXTableViewController.swift */; };
 		5E4AA8681A3F032900AA2F3D /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4AA8671A3F032900AA2F3D /* Node.swift */; };
 		5E4AA86D1A3F0EA000AA2F3D /* TopicListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4AA86C1A3F0EA000AA2F3D /* TopicListCellViewModel.swift */; };
+		5E4D5D0E1B6633FF002A05EE /* ReplyTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */; };
 		5E5216631AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */; };
 		5E58D2DF1AB71913003058D6 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58D2DE1AB71913003058D6 /* TopicViewModel.swift */; };
 		5E5F23C61A395DBD00D20FE9 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */; };
@@ -105,6 +106,7 @@
 		5E38F3DE1AD90D5A00186E18 /* V2EXTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V2EXTableViewController.swift; sourceTree = "<group>"; };
 		5E4AA8671A3F032900AA2F3D /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		5E4AA86C1A3F0EA000AA2F3D /* TopicListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListCellViewModel.swift; sourceTree = "<group>"; };
+		5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyTopicViewController.swift; sourceTree = "<group>"; };
 		5E5216611AD932760017187C /* UITableView+UITableView_CustomMJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+UITableView_CustomMJRefresh.h"; sourceTree = "<group>"; };
 		5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+UITableView_CustomMJRefresh.m"; sourceTree = "<group>"; };
 		5E58D2DE1AB71913003058D6 /* TopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				5E8523EB1ABD7B0200B7B8C4 /* UserTopicViewController.swift */,
 				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
 				5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */,
+				5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				5E5216631AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m in Sources */,
 				5E4AA86D1A3F0EA000AA2F3D /* TopicListCellViewModel.swift in Sources */,
 				5E8523F51ABD7B2D00B7B8C4 /* UserFavoriteController.swift in Sources */,
+				5E4D5D0E1B6633FF002A05EE /* ReplyTopicViewController.swift in Sources */,
 				5E8523F21ABD7B2000B7B8C4 /* UserNotificationViewController.swift in Sources */,
 				5E6F316E1ADA068A00C477A5 /* NodeService.swift in Sources */,
 				5E1C98251ACFFFC300E89A1A /* NotificationService.swift in Sources */,

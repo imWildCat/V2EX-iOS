@@ -9,11 +9,11 @@
 import UIKit
 //import WebKit
 
-class TopicViewController: UIViewController, UIWebViewDelegate {
+class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewControllerDelegate {
     
     @IBOutlet weak var webView: UIWebView!
 //    var webView: WKWebView
-    var topicId = 0
+    var topicID = 0
     var topic: Topic? // If topic is not nil, do not start a request to load topic
 
     required init(coder aDecoder: NSCoder) {
@@ -44,14 +44,16 @@ class TopicViewController: UIViewController, UIWebViewDelegate {
         
         if let newTopic = topic {
             webView.loadHTMLString(TopicViewModel.renderHTML(newTopic, replies: []), baseURL: baseURL)
-            hideProgressView()
+            topicID = newTopic.id
+            topic = nil
             return
         }
         
         showProgressView()
-        TopicSerivce.singleTopic(topicId, response: { [unowned self] (error, fetchedTopic, replies)  in
-            self.webView.loadHTMLString(TopicViewModel.renderHTML(fetchedTopic, replies: replies), baseURL: baseURL)
-            self.hideProgressView()
+        TopicSerivce.singleTopic(topicID, response: { [weak self] (error, fetchedTopic, replies)  in
+            self?.webView.loadHTMLString(TopicViewModel.renderHTML(fetchedTopic, replies: replies), baseURL: baseURL)
+            self?.hideProgressView()
+            self?.topicID = fetchedTopic.id
         })
     }
     
@@ -78,6 +80,19 @@ class TopicViewController: UIViewController, UIWebViewDelegate {
 //        }
         
         return false
+    }
+    
+    func showReplyTopicVC() {
+        if let replyTopicVC = storyboard?.instantiateViewControllerWithIdentifier("replyTopicVC") as? ReplyTopicViewController {
+            replyTopicVC.parentVC = self
+            presentViewController(replyTopicVC, animated: true, completion: nil)
+        } else {
+            showError(status: "节点未定义，无法创建话题")
+        }
+    }
+    
+    @IBAction func didReplyButtonTouch(sender: UIBarButtonItem) {
+        showReplyTopicVC()
     }
     
     func actionHanlder(URL: String) {
@@ -130,4 +145,17 @@ class TopicViewController: UIViewController, UIWebViewDelegate {
         webView.stringByEvaluatingJavaScriptFromString("document.body.style.webkitTouchCallout='none'; document.body.style.KhtmlUserSelect='none'");
     }
     
+    // MARK: ReplyTopicViewControllerDelegate
+    
+    func getTopicID() -> Int {
+        return topicID
+    }
+    
+    func didReplySucceed() {
+        requestTopic()
+    }
+    
+    func didReplyCancelWithDraft() {
+        
+    }
 }

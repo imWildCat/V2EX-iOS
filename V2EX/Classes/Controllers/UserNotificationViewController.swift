@@ -121,7 +121,7 @@ class UserNotificationViewController: V2EXTableViewController {
             if let index = tableView.indexPathForSelectedRow()?.row {
                 println(index)
                 let notification = notifications[index]
-                destinationViewController.topicId = notification.relatedTopic.id
+                destinationViewController.topicID = notification.relatedTopic.id
             }
         }
     }

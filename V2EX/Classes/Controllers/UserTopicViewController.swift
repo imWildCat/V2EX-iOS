@@ -72,7 +72,7 @@ class UserTopicListViewController: UITableViewController {
                 
                 if let index = tableView.indexPathForSelectedRow()?.row {
                     let topic = topics[index]
-                    destinationViewController.topicId = topic.id
+                    destinationViewController.topicID = topic.id
                 }
             }
         }

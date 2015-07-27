@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         func configureIQKeyboardManager() {
             IQKeyboardManager.sharedManager().disableInViewControllerClass(CreateTopicViewController)
+            IQKeyboardManager.sharedManager().disableInViewControllerClass(ReplyTopicViewController)
         }
         
         configureKVNProgress()

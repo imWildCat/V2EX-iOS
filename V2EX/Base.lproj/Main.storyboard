@@ -352,16 +352,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UgI-1h-3mV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.99215686274509807" green="0.96862745098039216" blue="0.89411764705882357" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdX-5V-atH">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem image="appreciation_button" id="mcw-eB-Ygd"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3Jn-Fw-xAW"/>
+                                    <barButtonItem image="favorite_button" id="Fdb-wK-ddi"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="EfT-v2-zIP"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hO3-gu-mG8"/>
+                                    <barButtonItem image="previous_page_button" id="AWE-pY-aAE"/>
+                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="WGk-mn-eQh"/>
+                                    <barButtonItem title="1" id="kjk-te-slR"/>
+                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="sCl-0O-Ljm"/>
+                                    <barButtonItem image="next_page_button" id="ZQm-OP-VeV"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0lp-I3-T6A"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TQu-Nt-7Mv"/>
+                                    <barButtonItem image="refresh_button" id="xhv-an-k1E"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="wqJ-kf-KGW"/>
+                                    <barButtonItem image="reply_button" id="aTo-nQ-ZgR">
+                                        <connections>
+                                            <action selector="didReplyButtonTouch:" destination="id9-zn-iOs" id="tmg-9X-AXg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.21176470589999999" green="0.3803921569" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686274509807" green="0.96862745098039216" blue="0.89411764705882357" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="KfU-Ge-Gg5" firstAttribute="top" secondItem="UgI-1h-3mV" secondAttribute="bottom" id="6Hd-x1-uYg"/>
                             <constraint firstItem="UgI-1h-3mV" firstAttribute="top" secondItem="RaV-CU-btJ" secondAttribute="top" id="JPu-tU-C5V"/>
+                            <constraint firstAttribute="trailing" secondItem="qdX-5V-atH" secondAttribute="trailing" id="MTL-jG-hNI"/>
+                            <constraint firstItem="KfU-Ge-Gg5" firstAttribute="top" secondItem="qdX-5V-atH" secondAttribute="bottom" id="b9I-QC-CxZ"/>
                             <constraint firstItem="UgI-1h-3mV" firstAttribute="leading" secondItem="RaV-CU-btJ" secondAttribute="leading" id="eaV-GA-X38"/>
+                            <constraint firstItem="qdX-5V-atH" firstAttribute="top" secondItem="UgI-1h-3mV" secondAttribute="bottom" id="kRJ-DM-xlb"/>
                             <constraint firstAttribute="trailing" secondItem="UgI-1h-3mV" secondAttribute="trailing" id="mO4-5T-tDX"/>
+                            <constraint firstItem="qdX-5V-atH" firstAttribute="leading" secondItem="RaV-CU-btJ" secondAttribute="leading" id="oYo-5c-R1O"/>
                         </constraints>
                     </view>
                     <connections>
@@ -397,6 +425,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXO-TM-8vQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4115" y="468"/>
+        </scene>
+        <!--回复话题-->
+        <scene sceneID="TXV-2x-OEE">
+            <objects>
+                <viewController storyboardIdentifier="replyTopicVC" title="回复话题" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ULp-9C-106" customClass="ReplyTopicViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wXU-Lb-4kc"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vvk-A9-T1t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lxt-Ob-WTU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6c-Ly-OwX">
+                                <rect key="frame" x="10" y="54" width="580" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p68-Dv-18N">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <color key="barTintColor" red="0.21176470589999999" green="0.3803921569" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="回复" id="H9y-Qr-7uY">
+                                        <barButtonItem key="leftBarButtonItem" image="close_icon" id="uOX-Gt-NfM">
+                                            <connections>
+                                                <action selector="didCloseButtonTouch:" destination="ULp-9C-106" id="foz-8k-IuP"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="reply_button" id="0Cz-gJ-wte">
+                                            <connections>
+                                                <action selector="didReplyButtonTouch:" destination="ULp-9C-106" id="uX7-SP-9Z7"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.96470588235294119" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="p68-Dv-18N" secondAttribute="trailing" id="OMZ-d1-nMT"/>
+                            <constraint firstItem="p68-Dv-18N" firstAttribute="top" secondItem="lxt-Ob-WTU" secondAttribute="top" id="SQQ-GD-Zsd"/>
+                            <constraint firstItem="I6c-Ly-OwX" firstAttribute="leading" secondItem="lxt-Ob-WTU" secondAttribute="leading" constant="10" id="cDb-Y2-AKK"/>
+                            <constraint firstItem="Vvk-A9-T1t" firstAttribute="top" secondItem="I6c-Ly-OwX" secondAttribute="bottom" constant="10" id="dPq-58-jg1"/>
+                            <constraint firstAttribute="trailing" secondItem="I6c-Ly-OwX" secondAttribute="trailing" constant="10" id="t5F-7C-CbI"/>
+                            <constraint firstItem="p68-Dv-18N" firstAttribute="leading" secondItem="lxt-Ob-WTU" secondAttribute="leading" id="uPd-oM-Yik"/>
+                            <constraint firstItem="I6c-Ly-OwX" firstAttribute="top" secondItem="p68-Dv-18N" secondAttribute="bottom" constant="10" id="wZX-QQ-Y7z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentTextView" destination="I6c-Ly-OwX" id="TPx-QL-zNY"/>
+                        <outlet property="contentTextViewBottomConstraint" destination="dPq-58-jg1" id="fzz-QQ-at1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ghH-QK-T1G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4115" y="1147"/>
         </scene>
         <!--个人中心-->
         <scene sceneID="OeF-gg-Xna">
@@ -1445,15 +1533,21 @@
         </scene>
     </scenes>
     <resources>
+        <image name="appreciation_button" width="20" height="19"/>
         <image name="author_icon" width="18" height="25"/>
         <image name="avatar_placeholder" width="73" height="73"/>
         <image name="chevron_icon" width="16" height="25"/>
         <image name="close_icon" width="20" height="20"/>
         <image name="comment_icon" width="25" height="25"/>
+        <image name="favorite_button" width="20" height="20"/>
         <image name="favorite_icon" width="61" height="61"/>
         <image name="login_bg" width="2048" height="1535"/>
+        <image name="next_page_button" width="12" height="20"/>
         <image name="node_icon" width="25" height="25"/>
         <image name="notification_icon" width="60" height="60"/>
+        <image name="previous_page_button" width="12" height="20"/>
+        <image name="refresh_button" width="20" height="20"/>
+        <image name="reply_button" width="20" height="20"/>
         <image name="reply_icon" width="60" height="60"/>
         <image name="side_menu_icon" width="20" height="15"/>
         <image name="time_icon" width="25" height="25"/>

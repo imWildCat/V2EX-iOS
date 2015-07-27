@@ -17,6 +17,9 @@ class NodeListViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        webView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
+        webView.opaque = false
+        
         let cats = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("default_nodes", ofType: "plist") ?? "") ?? NSArray()
         
 //        var data =  NSDictionary(object: cats, forKey: "cats")

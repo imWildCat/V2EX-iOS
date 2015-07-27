@@ -193,4 +193,29 @@ class TopicSerivce {
             response?(error: error, topic: topic, problemMessage: problemMessage)
         }
     }
+    
+    class func replyTopic(#onceCode: String, topicID: Int, content: String, response: ((error: NSError?, problemMessage: String?) -> Void)?) {
+        V2EXNetworking.post("t/\(topicID)", parameters: [
+                "content": content,
+                "once": onceCode
+            ]).response { (_, httpResponse, data, error) in
+                
+                let doc = TFHpple(HTMLObject: data)
+                
+                var problemMessage = doc.searchFirst("//div[@class='problem']/ul/li")?.text()
+                
+                if httpResponse?.statusCode == 403 {
+                    problemMessage = "请登录"
+                }
+                
+                if error != nil {
+                    response?(error: error, problemMessage: nil)
+                } else if let pMessage = problemMessage {
+                    response?(error: nil, problemMessage: pMessage)
+                } else {
+                    response?(error: nil, problemMessage: nil)
+                }
+        }
+    }
+    
 }

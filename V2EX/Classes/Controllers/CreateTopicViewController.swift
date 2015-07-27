@@ -81,7 +81,7 @@ class CreateTopicViewController: UIViewController {
     
     func post() {
         if onceCode == "" {
-            showError(status: "暂时无法发布，请稍候。")
+            showError(status: "暂时无法发布，请稍候")
             loadOnceCode()
             return
         }

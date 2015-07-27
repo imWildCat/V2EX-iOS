@@ -170,7 +170,7 @@ class TopicListViewController: UITableViewController {
             let destinationViewController = segue.destinationViewController as! TopicViewController
             if let topic = sender as? Topic {
                 if topic.isNew == false {
-                    destinationViewController.topicId = topic.id
+                    destinationViewController.topicID = topic.id
                 } else {
                     destinationViewController.topic = topic
                 }
