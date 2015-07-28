@@ -54,9 +54,11 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
     
     func filterContentForSearchText(searchText: String) {
         filteredNodes = nodes.filter({ (node: Node) -> Bool in
-            let stringMatch = node.name.lowercaseString.rangeOfString(searchText.lowercaseString)
+            let nameMatch = node.name.lowercaseString.rangeOfString(searchText.lowercaseString)
             
-            return stringMatch != nil
+            let slugMatch = node.slug.lowercaseString.rangeOfString(searchText.lowercaseString)
+            
+            return nameMatch != nil || slugMatch != nil
         })
     }
     

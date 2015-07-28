@@ -21,6 +21,7 @@
 		5E4AA8681A3F032900AA2F3D /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4AA8671A3F032900AA2F3D /* Node.swift */; };
 		5E4AA86D1A3F0EA000AA2F3D /* TopicListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4AA86C1A3F0EA000AA2F3D /* TopicListCellViewModel.swift */; };
 		5E4D5D0E1B6633FF002A05EE /* ReplyTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */; };
+		5E4D5D101B66743B002A05EE /* ThirdPartyNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D5D0F1B66743B002A05EE /* ThirdPartyNetworking.swift */; };
 		5E5216631AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */; };
 		5E58D2DF1AB71913003058D6 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58D2DE1AB71913003058D6 /* TopicViewModel.swift */; };
 		5E5F23C61A395DBD00D20FE9 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */; };
@@ -107,6 +108,7 @@
 		5E4AA8671A3F032900AA2F3D /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		5E4AA86C1A3F0EA000AA2F3D /* TopicListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListCellViewModel.swift; sourceTree = "<group>"; };
 		5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyTopicViewController.swift; sourceTree = "<group>"; };
+		5E4D5D0F1B66743B002A05EE /* ThirdPartyNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartyNetworking.swift; sourceTree = "<group>"; };
 		5E5216611AD932760017187C /* UITableView+UITableView_CustomMJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+UITableView_CustomMJRefresh.h"; sourceTree = "<group>"; };
 		5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+UITableView_CustomMJRefresh.m"; sourceTree = "<group>"; };
 		5E58D2DE1AB71913003058D6 /* TopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			children = (
 				5E83B7291A3D8FD60079AB3E /* Networking.swift */,
 				5EC957C21A3DBFFF005E5428 /* V2EXNetworking.swift */,
+				5E4D5D0F1B66743B002A05EE /* ThirdPartyNetworking.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				5E8523E91ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift in Sources */,
 				5EC957B71A3DBB56005E5428 /* TopicSerivce.swift in Sources */,
 				5E2208EB1A3DD52100A88A51 /* StringExtension.swift in Sources */,
+				5E4D5D101B66743B002A05EE /* ThirdPartyNetworking.swift in Sources */,
 				5E7A0ECF1A3D79F600C9251B /* StorableProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

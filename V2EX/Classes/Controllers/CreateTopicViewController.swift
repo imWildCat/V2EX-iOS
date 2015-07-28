@@ -8,29 +8,30 @@
 
 import UIKit
 
-class CreateTopicViewController: UIViewController {
+class CreateTopicViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var nodeSlug: String!
     var onceCode: String = ""
     
     weak var topicListVC: TopicListViewController?
 
+    @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var titleText: UITextField!
     @IBOutlet weak var contentText: UITextView!
     @IBOutlet weak var contentTextBottomConstraint: NSLayoutConstraint!
     
-    lazy var cancelButton: UIBarButtonItem = { [unowned self] in
-        let canceButtonlImage = UIImage(named: "close_icon")
-        let cancelButton = UIBarButtonItem(image: canceButtonlImage, style: .Plain, target: self, action: Selector("close"))
-        return cancelButton
-    }()
-    
-    lazy var postButton: UIBarButtonItem = { [unowned self] in
-        let postButtonImage = UIImage(named: "post_button")
-        let postButton = UIBarButtonItem(image: postButtonImage, style: .Plain, target: self, action: Selector("post"))
-        return postButton
-    }()
+//    lazy var cancelButton: UIBarButtonItem = { [unowned self] in
+//        let canceButtonlImage = UIImage(named: "close_icon")
+//        let cancelButton = UIBarButtonItem(image: canceButtonlImage, style: .Plain, target: self, action: Selector("close"))
+//        return cancelButton
+//    }()
+//    
+//    lazy var postButton: UIBarButtonItem = { [unowned self] in
+//        let postButtonImage = UIImage(named: "post_button")
+//        let postButton = UIBarButtonItem(image: postButtonImage, style: .Plain, target: self, action: Selector("post"))
+//        return postButton
+//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,9 +54,6 @@ class CreateTopicViewController: UIViewController {
     }
     
     func setUpViews() {
-        navItem.leftBarButtonItem = cancelButton
-        navItem.rightBarButtonItem = postButton
-        
         // contentText
         contentText.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
         contentText.layer.borderWidth = 0.5
@@ -75,11 +73,12 @@ class CreateTopicViewController: UIViewController {
         return true
     }
     
-    func close() {
+    @IBAction func didCancelButtonTouch(sender: UIBarButtonItem) {
         dismissSelf()
     }
+
     
-    func post() {
+    @IBAction func ddidPostButtonTouch(sender: UIButton) {
         if onceCode == "" {
             showError(status: "暂时无法发布，请稍候")
             loadOnceCode()
@@ -87,7 +86,7 @@ class CreateTopicViewController: UIViewController {
         }
         
         showProgressView()
-        TopicSerivce.createTopic(onceCode: onceCode, nodeSlug: nodeSlug, title: titleText.text, content: contentText.text) { [weak self](error, topic, problemMessage) -> Void in
+        TopicSerivce.createTopic(onceCode: onceCode, nodeSlug: nodeSlug, title: titleText.text, content: contentText.text) { [weak self] (error, topic, problemMessage) -> Void in
             self?.hideProgressView()
             println(topic?.id ?? 0)
             println(problemMessage ?? "")
@@ -145,4 +144,70 @@ class CreateTopicViewController: UIViewController {
     func dismissSelf() {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
+    // MARK: Image picker
+    @IBAction func didImageButtonTouch(sender: UIButton) {
+        let actionSheet = UIAlertController(title: "上传图片", message: nil, preferredStyle: .ActionSheet)
+        
+        let takingPhotoAction = UIAlertAction(title: "拍照", style: .Default) { [unowned self](action) in
+            self.showImagePicker(true)
+        }
+        
+        let choosingPhotoAction = UIAlertAction(title: "从相册中选择", style: .Default) { [unowned self] (action) in
+            self.showImagePicker(false)
+        }
+        
+        let cancelButton = UIAlertAction(title: "取消", style: .Cancel) { (action) -> Void in
+            //
+        }
+        
+        actionSheet.addAction(takingPhotoAction)
+        actionSheet.addAction(choosingPhotoAction)
+        actionSheet.addAction(cancelButton)
+        
+        presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func showImagePicker(isTakingPhoto: Bool) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        if isTakingPhoto {
+            picker.sourceType = .Camera
+        } else {
+            picker.sourceType = .PhotoLibrary
+        }
+        
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            showProgress(0.0, status: "图片上传中")
+            
+            ThirdPartyNetworking.uploadImage2SinaCustomService(image: pickedImage, progressClosure: { [weak self] (progress) in
+                self?.updateProgress(progress)
+                }, responseClosure: { [weak self] (error, problemMessage, imageURL) in
+                    if error != nil {
+                        self?.showError(.Networking)
+                    } else if let pMessage = problemMessage {
+                        self?.showError(status: pMessage)
+                    } else if let imageLink = imageURL {
+                        self?.showSuccess(status: "图片上传成功")
+                        println("imageLink: \(imageLink)")
+                        let orginalText = self?.contentText.text ?? ""
+                        let newContent = orginalText + "\n\(imageLink)"
+                        self?.contentText.text = newContent
+                    }
+                })
+        }
+    }
+
 }

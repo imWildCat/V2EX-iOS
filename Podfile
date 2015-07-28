@@ -30,6 +30,7 @@ inhibit_all_warnings!
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode6.3'
     pod 'MJRefresh'
     pod 'TUSafariActivity', '~> 1.0'
+    pod 'FXForms'
 # end
 
 #target 'V2EXTests', :exclusive => true do

@@ -57,4 +57,12 @@ extension UIViewController {
         }
     }
     
+    func showProgress(progress: Float, status: String) {
+        KVNProgress.showProgress(CGFloat(progress), status: status)
+    }
+    
+    func updateProgress(progress: Float) {
+        KVNProgress.updateProgress(CGFloat(progress), animated: true)
+    }
+    
 }

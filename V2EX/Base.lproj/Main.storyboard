@@ -106,7 +106,46 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="创建话题" id="1d6-cr-nUh"/>
+                                    <navigationItem title="创建话题" id="1d6-cr-nUh">
+                                        <barButtonItem key="leftBarButtonItem" image="close_icon" id="T2V-nt-QN8">
+                                            <connections>
+                                                <action selector="didCancelButtonTouch:" destination="pOe-6h-ykI" id="oTM-cb-iAE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="done" id="TPz-gV-ii1">
+                                            <view key="customView" contentMode="scaleToFill" id="se0-Ty-uRZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9j-ny-BmY">
+                                                        <rect key="frame" x="73" y="5" width="20" height="22"/>
+                                                        <state key="normal" image="upload_image_button">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="didImageButtonTouch:" destination="pOe-6h-ykI" eventType="touchUpInside" id="meP-h2-xtB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfG-xL-Ngw">
+                                                        <rect key="frame" x="113" y="5" width="20" height="22"/>
+                                                        <state key="normal" image="post_button">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="ddidPostButtonTouch:" destination="pOe-6h-ykI" eventType="touchUpInside" id="ZnD-x4-6TU"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="GfG-xL-Ngw" firstAttribute="leading" secondItem="p9j-ny-BmY" secondAttribute="trailing" constant="20" id="23X-89-Igg"/>
+                                                    <constraint firstItem="GfG-xL-Ngw" firstAttribute="top" secondItem="se0-Ty-uRZ" secondAttribute="top" constant="5" id="7cf-CZ-rZe"/>
+                                                    <constraint firstItem="p9j-ny-BmY" firstAttribute="top" secondItem="se0-Ty-uRZ" secondAttribute="top" constant="5" id="9zh-js-BUh"/>
+                                                    <constraint firstAttribute="trailing" secondItem="GfG-xL-Ngw" secondAttribute="trailing" id="V3f-Un-yLj"/>
+                                                </constraints>
+                                            </view>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="标题" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1gl-kD-Ehn">
@@ -145,6 +184,7 @@
                         <outlet property="contentText" destination="EdL-UK-k7m" id="Yb7-0h-rfv"/>
                         <outlet property="contentTextBottomConstraint" destination="ibS-B2-kd3" id="5Ao-Vs-SaC"/>
                         <outlet property="navItem" destination="1d6-cr-nUh" id="bzs-ee-3td"/>
+                        <outlet property="postButton" destination="GfG-xL-Ngw" id="aql-RN-bn1"/>
                         <outlet property="titleText" destination="1gl-kD-Ehn" id="65o-ZO-Hh7"/>
                     </connections>
                 </viewController>
@@ -457,10 +497,37 @@
                                                 <action selector="didCloseButtonTouch:" destination="ULp-9C-106" id="foz-8k-IuP"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="reply_button" id="0Cz-gJ-wte">
-                                            <connections>
-                                                <action selector="didReplyButtonTouch:" destination="ULp-9C-106" id="uX7-SP-9Z7"/>
-                                            </connections>
+                                        <barButtonItem key="rightBarButtonItem" style="done" id="xC5-pt-JFH">
+                                            <view key="customView" contentMode="scaleToFill" id="GGP-aF-3e3">
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsC-Ok-RCp">
+                                                        <rect key="frame" x="113" y="5" width="20" height="21"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                        <state key="normal" image="reply_button"/>
+                                                        <connections>
+                                                            <action selector="didReplyButtonTouch:" destination="ULp-9C-106" eventType="touchUpInside" id="YEA-dw-QsV"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgP-Wn-91P">
+                                                        <rect key="frame" x="73" y="5" width="20" height="22"/>
+                                                        <state key="normal" image="upload_image_button">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="didImageButtonTouch:" destination="ULp-9C-106" eventType="touchUpInside" id="eca-Y3-RAI"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="OsC-Ok-RCp" firstAttribute="top" secondItem="GGP-aF-3e3" secondAttribute="top" constant="5" id="9mp-4C-D60"/>
+                                                    <constraint firstItem="OsC-Ok-RCp" firstAttribute="leading" secondItem="WgP-Wn-91P" secondAttribute="trailing" constant="20" id="Aqe-QA-J2M"/>
+                                                    <constraint firstAttribute="trailing" secondItem="OsC-Ok-RCp" secondAttribute="trailing" id="Zvb-o6-eTc"/>
+                                                    <constraint firstItem="WgP-Wn-91P" firstAttribute="top" secondItem="GGP-aF-3e3" secondAttribute="top" constant="5" id="a08-4g-qfj"/>
+                                                </constraints>
+                                            </view>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -1545,6 +1612,7 @@
         <image name="next_page_button" width="12" height="20"/>
         <image name="node_icon" width="25" height="25"/>
         <image name="notification_icon" width="60" height="60"/>
+        <image name="post_button" width="20" height="20"/>
         <image name="previous_page_button" width="12" height="20"/>
         <image name="refresh_button" width="20" height="20"/>
         <image name="reply_button" width="20" height="20"/>
@@ -1552,6 +1620,7 @@
         <image name="side_menu_icon" width="20" height="15"/>
         <image name="time_icon" width="25" height="25"/>
         <image name="topic_icon" width="60" height="60"/>
+        <image name="upload_image_button" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="z6U-4M-dN1"/>

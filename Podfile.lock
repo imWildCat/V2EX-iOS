@@ -27,6 +27,7 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
+  - FXForms (1.2.13)
   - HMSegmentedControl (1.5.1)
   - hpple (0.2.0)
   - IQKeyboardManager (3.2.2)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `xcode-6.3`)
   - Appirater (~> 2.0.4)
+  - FXForms
   - HMSegmentedControl (~> 1.4)
   - hpple (from `https://github.com/topfunky/hpple.git`, commit `26554fa388`)
   - IQKeyboardManager (~> 3.2.1)
@@ -91,6 +93,7 @@ SPEC CHECKSUMS:
   Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
   Appirater: 8783318c36414e8de3ea023443028df94c1b784b
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  FXForms: 22d5ceafd8ca44d2f2be4827afcf00aaf80184a5
   HMSegmentedControl: 35460abdd15c3087368db2d3d956717f088b34d1
   hpple: abe31b2c56e8cc2f9a7af0eaa7f1bc08a275fcfe
   IQKeyboardManager: 99df8006864663a4126a77b9a2f7ea70077eff31

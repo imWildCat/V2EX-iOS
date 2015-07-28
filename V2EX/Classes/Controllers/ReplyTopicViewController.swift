@@ -14,7 +14,7 @@ protocol ReplyTopicViewControllerDelegate: class {
     func didReplyCancelWithDraft()
 }
 
-class ReplyTopicViewController: UIViewController {
+class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     weak var parentVC: ReplyTopicViewControllerDelegate?
     var topicID: Int!
@@ -44,6 +44,11 @@ class ReplyTopicViewController: UIViewController {
         // keyboard notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil);
+        
+        // Upload image button
+        let canceButtonlImage = UIImage(named: "close_icon")
+        let cancelButton = UIBarButtonItem(image: canceButtonlImage, style: .Plain, target: self, action: Selector("close"))
+//        navigationItem.addRi
         
         loadOnceCode()
     }
@@ -79,13 +84,81 @@ class ReplyTopicViewController: UIViewController {
         dismissSelf()
     }
     
-    @IBAction func didReplyButtonTouch(sender: UIBarButtonItem) {
+    @IBAction func didImageButtonTouch(sender: UIButton) {
+        let actionSheet = UIAlertController(title: "上传图片", message: nil, preferredStyle: .ActionSheet)
+        
+        let takingPhotoAction = UIAlertAction(title: "拍照", style: .Default) { [unowned self](action) in
+            self.showImagePicker(true)
+        }
+        
+        let choosingPhotoAction = UIAlertAction(title: "从相册中选择", style: .Default) { [unowned self] (action) in
+            self.showImagePicker(false)
+        }
+        
+        let cancelButton = UIAlertAction(title: "取消", style: .Cancel) { (action) -> Void in
+            //
+        }
+        
+        actionSheet.addAction(takingPhotoAction)
+        actionSheet.addAction(choosingPhotoAction)
+        actionSheet.addAction(cancelButton)
+        
+        presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func showImagePicker(isTakingPhoto: Bool) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        if isTakingPhoto {
+            picker.sourceType = .Camera
+        } else {
+            picker.sourceType = .PhotoLibrary
+        }
+        
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            showProgress(0.0, status: "图片上传中")
+            
+            ThirdPartyNetworking.uploadImage2SinaCustomService(image: pickedImage, progressClosure: { [weak self] (progress) in
+                    self?.updateProgress(progress)
+                }, responseClosure: { [weak self] (error, problemMessage, imageURL) in
+                    if error != nil {
+                        self?.showError(.Networking)
+                    } else if let pMessage = problemMessage {
+                        self?.showError(status: pMessage)
+                    } else if let imageLink = imageURL {
+                        self?.showSuccess(status: "图片上传成功")
+                        println("imageLink: \(imageLink)")
+                        let orginalText = self?.contentTextView.text ?? ""
+                        let newContent = orginalText + "\n\(imageLink)"
+                        self?.contentTextView.text = newContent
+                    }
+            })
+        }
+    }
+    
+    @IBAction func didReplyButtonTouch(sender: UIButton) {
         
         contentTextView.resignFirstResponder()
         
         if onceCode.isEmpty {
             showError(status: "暂时无法发布，请稍候")
             loadOnceCode()
+            return
+        }
+        
+        if contentTextView.text.isEmpty {
+            showError(status: "回复内容不能为空")
             return
         }
         
