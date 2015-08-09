@@ -14,6 +14,13 @@ extension String {
         return self.stringByReplacingOccurrencesOfString(target, withString: withString, options: NSStringCompareOptions.LiteralSearch, range: nil)
     }
     
+    func replace(#pattern: String, withString: String) -> String {
+        var stringlength = count(self)
+        var error: NSError?
+        var regex:NSRegularExpression = NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive, error: &error)!
+        return regex.stringByReplacingMatchesInString(self, options: nil, range: NSMakeRange(0, stringlength), withTemplate: withString)
+    }
+    
     // Inspired by Ruby
     
     func scan(pattern: String, options: NSRegularExpressionOptions = nil, error: NSErrorPointer = nil) -> [String] {
@@ -106,7 +113,7 @@ extension String {
             action = .OpenNode
         case "open_browser":
             action = .OpenBrowser
-        case "username":
+        case "show_member":
             action = .User
         default:
             action = .None

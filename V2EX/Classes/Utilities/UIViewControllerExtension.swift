@@ -12,7 +12,20 @@ import KVNProgress
 extension UIViewController {
         
     @IBAction func sideMenuButtonTouched(sender: UIBarButtonItem) {
+        showSideMenu()
+    }
+    
+    func showSideMenu() {
         RootViewController.displaySideMenu()
+    }
+    
+    // MARK: V2EX
+    func showUserVC(username: String) {
+        if let userVC = storyboard?.instantiateViewControllerWithIdentifier("userVC") as? UserViewController {
+            userVC.mode = .OtherUser
+            userVC.username = username
+            self.navigationController?.pushViewController(userVC, animated: true)
+        }
     }
 
     // MARK: KVNProgressUI

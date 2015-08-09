@@ -1,5 +1,5 @@
 //
-//  UserTopicListViewController.swift
+//  UserTopicListViewController
 //  V2EX
 //
 //  Created by WildCat on 21/03/2015.
@@ -10,6 +10,7 @@ import UIKit
 
 class UserTopicListViewController: UITableViewController {
     
+    var username: String!
     var topics = [Topic]()
     var page: UInt = 1
     
@@ -30,7 +31,7 @@ class UserTopicListViewController: UITableViewController {
             showProgressView()
         }
         
-        TopicSerivce.topicListOf(user: "wildcat", page: page) { [weak self](error, topics) in
+        TopicSerivce.topicListOf(user: username, page: page) { [weak self](error, topics) in
             
             self?.hideProgressView()
             self?.refreshControl?.endRefreshing()
@@ -57,6 +58,10 @@ class UserTopicListViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return topics.count
+    }
+    
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     // MARK: UITableViewDelegate

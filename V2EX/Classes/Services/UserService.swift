@@ -31,8 +31,10 @@ class UserService {
             let company = companyName + " " + companyPosition
             
             let liveness = info?.searchFirst("//span[@class='gray']/a[@href='/top/dau']")?.text()
-            
-            let user = User(name: name, avatarURI: avatarURI, website: nil, twitter: nil, github: nil, createdAt: createdAt, liveness: liveness, id: id, company: company, introduction: nil)
+            let introduction = (doc.searchFirst("//div[@id='Main']//div[@class='box'][1]/div[@class='cell'][2]")?.content ?? "").replace("        ", withString: "")
+
+
+            let user = User(name: name, avatarURI: avatarURI, website: nil, twitter: nil, github: nil, createdAt: createdAt, liveness: liveness, id: id, company: company, introduction: introduction)
             
             if user.name == SessionStorage.sharedStorage.currentUser?.name {
                SessionStorage.sharedStorage.currentUser = user

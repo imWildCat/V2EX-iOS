@@ -10,6 +10,7 @@ import UIKit
 
 class UserReplyListController: UITableViewController {
     
+    var username: String!
     var replies = [Reply]()
     
     override func viewDidLoad() {
@@ -22,7 +23,7 @@ class UserReplyListController: UITableViewController {
     
     func loadData() {
         showProgressView()
-        TopicSerivce.replyListOf(user: "wildcat", page: 1) { [weak self](error, replies) -> Void in
+        TopicSerivce.replyListOf(user: username, page: 1) { [weak self](error, replies) -> Void in
             self?.hideProgressView()
             if error == nil {
                 self?.replies = replies
