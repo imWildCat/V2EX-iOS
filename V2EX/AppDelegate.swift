@@ -10,6 +10,9 @@ import UIKit
 import KVNProgress
 import IQKeyboardManager
 
+// Launch Image: http://tmblr.co/Zof4En1pJwO-D
+// From: http://fancycrave.com/post/123814383565/download-by-patrick-fore#notes , July 11, 2015
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

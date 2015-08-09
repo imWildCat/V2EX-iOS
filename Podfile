@@ -18,7 +18,7 @@ inhibit_all_warnings!
 	pod 'RNFrostedSidebar', '~> 0.2'
 	pod 'HMSegmentedControl', '~> 1.4'
 	pod 'YTKKeyValueStore', '~> 0.1.2'
-	pod 'AFNetworking', '~> 2.5'
+#	pod 'AFNetworking', '~> 2.5'
 	pod 'KVNProgress', '~> 2.1'
 	pod 'SDWebImage'
 	pod 'TTTAttributedLabel'
@@ -30,7 +30,7 @@ inhibit_all_warnings!
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode6.3'
     pod 'MJRefresh'
     pod 'TUSafariActivity', '~> 1.0'
-    pod 'FXForms'
+    pod 'RETableViewManager'
 # end
 
 #target 'V2EXTests', :exclusive => true do

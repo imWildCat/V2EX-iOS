@@ -838,6 +838,40 @@
             </objects>
             <point key="canvasLocation" x="1932" y="1863"/>
         </scene>
+        <!--用户设置-->
+        <scene sceneID="Ekx-RY-GDh">
+            <objects>
+                <tableViewController storyboardIdentifier="preferenceVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CAI-5s-kBw" customClass="PreferenceViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="zqi-CH-Xcb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="tintColor" red="0.21176470589999999" green="0.3803921569" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="null" id="grd-KT-Lpd">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="grd-KT-Lpd" id="CrD-h9-QBw">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CAI-5s-kBw" id="ojg-gX-c6J"/>
+                            <outlet property="delegate" destination="CAI-5s-kBw" id="L8P-ej-mye"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="用户设置" id="DyJ-TO-6Hw">
+                        <barButtonItem key="leftBarButtonItem" image="side_menu_icon" id="MV3-DS-U1V">
+                            <connections>
+                                <action selector="sideMenuButtonTouched:" destination="CAI-5s-kBw" id="KzH-Vp-Eec"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RbP-Pf-ml2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1932" y="2555"/>
+        </scene>
         <!--用户话题-->
         <scene sceneID="76O-Ie-MNx">
             <objects>
@@ -1265,10 +1299,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="aO3-fm-2Vw">
-                                <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyR-mk-pZo">
-                                <rect key="frame" x="20" y="20" width="25" height="25"/>
+                                <rect key="frame" x="20" y="40" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="FKJ-tK-6KP"/>
                                     <constraint firstAttribute="width" constant="25" id="O8C-Ez-goz"/>
@@ -1281,13 +1315,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V2EX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2I-nQ-HEj">
-                                <rect key="frame" x="268" y="50" width="65" height="29"/>
+                                <rect key="frame" x="268" y="70" width="65" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="创意工作者的社区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNP-FQ-Vr0">
-                                <rect key="frame" x="240" y="94" width="120" height="18"/>
+                                <rect key="frame" x="240" y="114" width="120" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1381,61 +1415,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ai-oP-8H6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1225" y="2555"/>
-        </scene>
-        <!--用户设置-->
-        <scene sceneID="tuw-WR-Pgu">
-            <objects>
-                <viewController storyboardIdentifier="preferenceVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dWw-OK-WLR" customClass="PreferenceViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Bwb-Hx-QQK"/>
-                        <viewControllerLayoutGuide type="bottom" id="hkn-6o-3fQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4yw-yC-pUq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kG7-XO-hFX">
-                                <rect key="frame" x="80" y="115" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="9hT-fX-0gk" kind="showDetail" id="ZP6-nh-KMe"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWX-tT-hWU">
-                                <rect key="frame" x="15" y="59" width="140" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="SzN-rE-tbg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.97647058823529409" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="xWX-tT-hWU" firstAttribute="leading" secondItem="4yw-yC-pUq" secondAttribute="leading" constant="15" id="Ae9-8T-Kfu"/>
-                            <constraint firstItem="xWX-tT-hWU" firstAttribute="top" secondItem="Bwb-Hx-QQK" secondAttribute="bottom" constant="15" id="PZs-q3-alE"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="用户设置" id="miv-Xs-xir">
-                        <barButtonItem key="leftBarButtonItem" image="side_menu_icon" id="XCI-ed-FQa">
-                            <connections>
-                                <action selector="sideMenuButtonTouched:" destination="dWw-OK-WLR" id="fmR-zx-1Rr"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="lbl" destination="xWX-tT-hWU" id="k38-8V-9iM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4so-kT-T7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1932" y="2555"/>
         </scene>
         <!--节点导航-->
         <scene sceneID="VGT-dL-26M">
@@ -1542,8 +1521,8 @@
                     <connections>
                         <segue destination="8Bk-J4-X5m" kind="relationship" relationship="rootViewController" id="3nK-cJ-IN0"/>
                         <segue destination="iEs-mN-lI8" kind="show" identifier="showUserVC" id="2u5-2C-plN"/>
-                        <segue destination="dWw-OK-WLR" kind="show" identifier="showPreferenceVC" id="b4x-n8-aM6"/>
                         <segue destination="cG7-Kf-Jkh" kind="show" identifier="showNodeListVC" id="g31-4T-De7"/>
+                        <segue destination="CAI-5s-kBw" kind="show" identifier="showPreferenceVC" id="hLg-vO-RJ4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lIm-Fo-P6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1574,7 +1553,7 @@
         <image name="upload_image_button" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4Be-5f-hSX"/>
+        <segue reference="K36-ed-S7h"/>
         <segue reference="z6U-4M-dN1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

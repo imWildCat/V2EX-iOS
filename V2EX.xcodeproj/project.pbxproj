@@ -22,6 +22,7 @@
 		5E4AA86D1A3F0EA000AA2F3D /* TopicListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4AA86C1A3F0EA000AA2F3D /* TopicListCellViewModel.swift */; };
 		5E4C0CBF1B76F9C500306C16 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C0CBE1B76F9C500306C16 /* UserInfoTableViewCell.swift */; };
 		5E4C0CC11B77047D00306C16 /* UserIntroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C0CC01B77047D00306C16 /* UserIntroTableViewCell.swift */; };
+		5E4C0CC31B77381400306C16 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C0CC21B77381400306C16 /* PreferenceViewController.swift */; };
 		5E4D5D0E1B6633FF002A05EE /* ReplyTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */; };
 		5E4D5D101B66743B002A05EE /* ThirdPartyNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D5D0F1B66743B002A05EE /* ThirdPartyNetworking.swift */; };
 		5E5216631AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */; };
@@ -29,7 +30,6 @@
 		5E5F23C61A395DBD00D20FE9 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */; };
 		5E5F23C71A395DBD00D20FE9 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B31A395DBD00D20FE9 /* DiscoveryViewController.swift */; };
 		5E5F23C81A395DBD00D20FE9 /* NodeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B41A395DBD00D20FE9 /* NodeListViewController.swift */; };
-		5E5F23C91A395DBD00D20FE9 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B51A395DBD00D20FE9 /* PreferenceViewController.swift */; };
 		5E5F23CA1A395DBD00D20FE9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B61A395DBD00D20FE9 /* RootViewController.swift */; };
 		5E5F23CB1A395DBD00D20FE9 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B71A395DBD00D20FE9 /* TopicListViewController.swift */; };
 		5E5F23CC1A395DBD00D20FE9 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B81A395DBD00D20FE9 /* UIViewControllerExtension.swift */; };
@@ -113,6 +113,7 @@
 		5E4AA86C1A3F0EA000AA2F3D /* TopicListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListCellViewModel.swift; sourceTree = "<group>"; };
 		5E4C0CBE1B76F9C500306C16 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		5E4C0CC01B77047D00306C16 /* UserIntroTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIntroTableViewCell.swift; sourceTree = "<group>"; };
+		5E4C0CC21B77381400306C16 /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyTopicViewController.swift; sourceTree = "<group>"; };
 		5E4D5D0F1B66743B002A05EE /* ThirdPartyNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartyNetworking.swift; sourceTree = "<group>"; };
 		5E5216611AD932760017187C /* UITableView+UITableView_CustomMJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+UITableView_CustomMJRefresh.h"; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		5E5F23B31A395DBD00D20FE9 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		5E5F23B41A395DBD00D20FE9 /* NodeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeListViewController.swift; sourceTree = "<group>"; };
-		5E5F23B51A395DBD00D20FE9 /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		5E5F23B61A395DBD00D20FE9 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5E5F23B71A395DBD00D20FE9 /* TopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		5E5F23B81A395DBD00D20FE9 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -282,7 +282,6 @@
 				5E5F23B31A395DBD00D20FE9 /* DiscoveryViewController.swift */,
 				5E5F23B41A395DBD00D20FE9 /* NodeListViewController.swift */,
 				5E9AD4291ADA027100F40CA4 /* NodeSearchViewController.swift */,
-				5E5F23B51A395DBD00D20FE9 /* PreferenceViewController.swift */,
 				5E5F23B61A395DBD00D20FE9 /* RootViewController.swift */,
 				5E5F23B71A395DBD00D20FE9 /* TopicListViewController.swift */,
 				5E83EAD71AB544B90008E877 /* TopicViewController.swift */,
@@ -294,6 +293,7 @@
 				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
 				5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */,
 				5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */,
+				5E4C0CC21B77381400306C16 /* PreferenceViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -575,6 +575,7 @@
 				5E5F23CA1A395DBD00D20FE9 /* RootViewController.swift in Sources */,
 				5E8523EC1ABD7B0200B7B8C4 /* UserTopicListViewController.swift in Sources */,
 				5ED345DD1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */,
+				5E4C0CC31B77381400306C16 /* PreferenceViewController.swift in Sources */,
 				5E5F23CE1A395DBD00D20FE9 /* Topic.swift in Sources */,
 				5EC734361B2BE1EE0082D920 /* BrowserViewController.swift in Sources */,
 				5E5F23CD1A395DBD00D20FE9 /* UserViewController.swift in Sources */,
@@ -620,7 +621,6 @@
 				5E924B701B6BC25D00182F3F /* UserInfoView.swift in Sources */,
 				5E5F23CF1A395DBD00D20FE9 /* User.swift in Sources */,
 				5E83EAD81AB544B90008E877 /* TopicViewController.swift in Sources */,
-				5E5F23C91A395DBD00D20FE9 /* PreferenceViewController.swift in Sources */,
 				5E5F23D11A395DBD00D20FE9 /* Utils.swift in Sources */,
 				5E8523D71ABD525200B7B8C4 /* UserService.swift in Sources */,
 				5E84FDBD1AC857DF00F55D15 /* UserNotificationListCell.swift in Sources */,

@@ -136,7 +136,7 @@ class SessionService {
         keychain.setString(password, forKey: "v2ex-password")
     }
     
-    private class func clearUsernameAndPassword() {
+    class func clearUsernameAndPassword() {
         let keychain = A0SimpleKeychain()
         keychain.deleteEntryForKey("v2ex-username")
         keychain.deleteEntryForKey("v2ex-password")

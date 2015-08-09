@@ -1,25 +1,4 @@
 PODS:
-  - AFNetworking (2.5.2):
-    - AFNetworking/NSURLConnection (= 2.5.2)
-    - AFNetworking/NSURLSession (= 2.5.2)
-    - AFNetworking/Reachability (= 2.5.2)
-    - AFNetworking/Security (= 2.5.2)
-    - AFNetworking/Serialization (= 2.5.2)
-    - AFNetworking/UIKit (= 2.5.2)
-  - AFNetworking/NSURLConnection (2.5.2):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.2):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.2)
-  - AFNetworking/Security (2.5.2)
-  - AFNetworking/Serialization (2.5.2)
-  - AFNetworking/UIKit (2.5.2):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
   - Alamofire (1.1.4)
   - Appirater (2.0.4)
   - FMDB (2.5):
@@ -27,7 +6,6 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
-  - FXForms (1.2.13)
   - HMSegmentedControl (1.5.1)
   - hpple (0.2.0)
   - IQKeyboardManager (3.2.2)
@@ -35,6 +13,11 @@ PODS:
   - MBProgressHUD (0.9.1)
   - MJRefresh (1.4.7)
   - pop (1.0.7)
+  - REFormattedNumberField (1.1.5)
+  - RETableViewManager (1.6):
+    - REFormattedNumberField (~> 1.1.5)
+    - REValidation (~> 0.1.4)
+  - REValidation (0.1.4)
   - RNFrostedSidebar (0.2.0)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
@@ -47,10 +30,8 @@ PODS:
     - FMDB (~> 2.0)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.5)
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `xcode-6.3`)
   - Appirater (~> 2.0.4)
-  - FXForms
   - HMSegmentedControl (~> 1.4)
   - hpple (from `https://github.com/topfunky/hpple.git`, commit `26554fa388`)
   - IQKeyboardManager (~> 3.2.1)
@@ -58,6 +39,7 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9)
   - MJRefresh
   - pop (~> 1.0.7)
+  - RETableViewManager
   - RNFrostedSidebar (~> 0.2)
   - SDWebImage
   - SimpleKeychain
@@ -89,11 +71,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
   Appirater: 8783318c36414e8de3ea023443028df94c1b784b
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
-  FXForms: 22d5ceafd8ca44d2f2be4827afcf00aaf80184a5
   HMSegmentedControl: 35460abdd15c3087368db2d3d956717f088b34d1
   hpple: abe31b2c56e8cc2f9a7af0eaa7f1bc08a275fcfe
   IQKeyboardManager: 99df8006864663a4126a77b9a2f7ea70077eff31
@@ -101,6 +81,9 @@ SPEC CHECKSUMS:
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJRefresh: 6b140993028fa30f1fcb88e82925a7c7911415cf
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  REFormattedNumberField: be3d55dd709f65541fb26b7e1709da07903147f8
+  RETableViewManager: 9667ecb29c005c32df40a1dd1828224840a351a2
+  REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
   RNFrostedSidebar: 9491d8627e5e99b92334d36def432c0faf7ebae4
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SimpleKeychain: 8de48eb1de10c6403911a6be52e127e5b5d31404
@@ -109,4 +92,4 @@ SPEC CHECKSUMS:
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   YTKKeyValueStore: 4d002941540dd5108fa23009b71e0f2f937f7a0f
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2
