@@ -66,7 +66,12 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
             
         }
         
-        section1.addItemsFromArray([imageItem, clearCacheItem, backgroundNotificationItem])
+        let purchaseItem = RETableViewItem(title: "购买完整版", accessoryType: .DisclosureIndicator) { [unowned self] (selectedItem) -> Void in
+            selectedItem.reloadRowWithAnimation(UITableViewRowAnimation.None)
+            self.showPurchaseVC()
+        }
+        
+        section1.addItemsFromArray([imageItem, clearCacheItem, backgroundNotificationItem, purchaseItem])
         
         section2 = RETableViewSection()
         let logOutItem = RETableViewItem(title: "注销登录", accessoryType: .None) { [unowned self] (selectedItem) -> Void in
@@ -109,7 +114,7 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
             return
         }
         
-        SessionStorage.sharedStorage.logOut() // TODO: move it to SessionService
+        SessionService.logout() // TODO: move it to SessionService
         configureRETableViewManager()
         showSuccess(status: "已注销")
     }

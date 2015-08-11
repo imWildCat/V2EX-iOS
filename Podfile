@@ -9,11 +9,13 @@ inhibit_all_warnings!
 # link_with 'V2EX', 'V2EXTests'
 
 #target 'V2EX', :exclusive => true do
+    pod 'AFNetworking'
+    pod 'Appirater'
 	pod 'hpple', :git => 'https://github.com/topfunky/hpple.git', :commit => '26554fa388'
 	pod 'MBProgressHUD', '~> 0.9'
 	#pod 'DTFoundation'
 	#pod 'DTCoreText', '~> 1.6.15'
-	pod 'Appirater', '~> 2.0.4'             # A utility that reminds your iPhone app's users to review the app.
+#	pod 'Appirater', '~> 2.0.4'             # A utility that reminds your iPhone app's users to review the app.
 	pod 'pop', '~> 1.0.7'
 	pod 'RNFrostedSidebar', '~> 0.2'
 	pod 'HMSegmentedControl', '~> 1.4'
@@ -25,10 +27,10 @@ inhibit_all_warnings!
 	# pod 'GRMustache', '~> 7.3.1' # template engine
 	pod 'IQKeyboardManager', '~> 3.2.1'
 	pod 'SimpleKeychain'
-	pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'xcode-6.3'
+	pod 'Alamofire', '~> 1.3'
     # pod 'SVPullToRefresh', :git => 'https://github.com/samvermette/SVPullToRefresh.git'
-    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode6.3'
-    pod 'MJRefresh'
+    pod 'SwiftyJSON'
+    pod 'MJRefresh', '~> 2.4.3'
     pod 'TUSafariActivity', '~> 1.0'
     pod 'RETableViewManager'
 # end

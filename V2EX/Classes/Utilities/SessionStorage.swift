@@ -47,15 +47,5 @@ class SessionStorage {
         return (NSDate.currentTimestamp() - lastOnceGot) > UInt(500)
     }
     
-    func logOut() {
-        currentUser = nil
-        let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        for cookie in cookieStorage.cookies as! [NSHTTPCookie] {
-            cookieStorage.deleteCookie(cookie)
-        }
-        NSUserDefaults.standardUserDefaults().synchronize()
-        SessionService.clearUsernameAndPassword()
-    }
-    
 }
 

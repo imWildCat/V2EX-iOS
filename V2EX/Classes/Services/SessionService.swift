@@ -35,7 +35,13 @@ class SessionService {
         let storage = SessionStorage.sharedStorage
         storage.currentUser = nil
         storage.onceCode = ""
-        storage.lastOnceGot = 0
+
+//        let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+//        for cookie in cookieStorage.cookies as! [NSHTTPCookie] {
+//            cookieStorage.deleteCookie(cookie)
+//        }
+        SessionService.clearUsernameAndPassword()
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     class func requestNewSessionFormOnceCode(response: ((error: NSError?, onceCode: String) -> Void)?) {

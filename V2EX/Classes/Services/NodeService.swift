@@ -16,7 +16,7 @@ class NodeService {
             
             var nodes = [Node]()
             
-            if let jsonData = data as? NSData {
+            if let jsonData = data {
                 let json = JSON(data: jsonData)
                 
                 for (_, nodeJSON) in json {

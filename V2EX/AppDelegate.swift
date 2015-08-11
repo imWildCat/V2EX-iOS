@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 import KVNProgress
 import IQKeyboardManager
 
@@ -21,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if SKPaymentQueue.canMakePayments() {
+            
+        }
         
         func configureKVNProgress() {
             let configuration = KVNProgressConfiguration()
@@ -49,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         func configureIQKeyboardManager() {
             IQKeyboardManager.sharedManager().disableInViewControllerClass(CreateTopicViewController)
             IQKeyboardManager.sharedManager().disableInViewControllerClass(ReplyTopicViewController)
+            IQKeyboardManager.sharedManager().keyboardDistanceFromTextField = 200.0
+            // TODO: Distance only configure for LoginVC
         }
         
         configureKVNProgress()

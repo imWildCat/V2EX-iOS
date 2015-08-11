@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MJRefresh
 
 class TopicListViewController: UITableViewController {
     
@@ -32,9 +33,10 @@ class TopicListViewController: UITableViewController {
     
     func addLoadMoreDataFooter() {
         if nodeSlug != nil {
-            tableView.addLegendFooterWithRefreshingBlock { [weak self] () -> Void in
-                self?.loadMoreData()
-            }
+//            tableView.addLegendFooterWithRefreshingBlock { [weak self] () -> Void in
+//                self?.loadMoreData()
+//            }
+            tableView.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
         }
     }
     
@@ -78,6 +80,8 @@ class TopicListViewController: UITableViewController {
         } else if let slug = nodeSlug {
             navigationItem.title = "话题列表"
             TopicSerivce.getList(nodeSlug: slug, response: { [weak self] (error, topics, nodeName) in
+                self?.hideProgressView()
+                
                 if error == nil {
                     if let name = nodeName {
                         self?.navigationItem.title = name
@@ -86,8 +90,10 @@ class TopicListViewController: UITableViewController {
                     self?.tableView.reloadData()
                     self?.refreshControl?.endRefreshing()
                     self?.addLoadMoreDataFooter()
+                } else {
+                    self?.navigationItem.title = "请登录"
+                    self?.showError(error)
                 }
-                self?.hideProgressView()
             })
         } else {
             // fav topic mode

@@ -14,6 +14,8 @@
 		5E1C98251ACFFFC300E89A1A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1C98241ACFFFC300E89A1A /* NotificationService.swift */; };
 		5E1C98311AD0004600E89A1A /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1C98301AD0004600E89A1A /* Notification.swift */; };
 		5E2208EB1A3DD52100A88A51 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2208EA1A3DD52100A88A51 /* StringExtension.swift */; };
+		5E29CF471B7838BB0071B54D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E29CF461B7838BB0071B54D /* StoreKit.framework */; };
+		5E29CF491B783AAE0071B54D /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E29CF481B783AAE0071B54D /* PurchaseViewController.swift */; };
 		5E2F685E1A43CB9700EEECBD /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F685D1A43CB9700EEECBD /* Reply.swift */; };
 		5E3759B91A3C7640003DB82A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3759B81A3C7640003DB82A /* AppDelegate.swift */; };
 		5E38F3D61AD8D37500186E18 /* UserNotificationListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38F3D51AD8D37500186E18 /* UserNotificationListCellViewModel.swift */; };
@@ -79,6 +81,7 @@
 		5ED345CD1ABE733300B5E286 /* UserTopicListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345CC1ABE733300B5E286 /* UserTopicListCellViewModel.swift */; };
 		5ED345DD1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345DC1ABEB3C100B5E286 /* UserReplyTableViewCell.swift */; };
 		5ED345E01ABEB45A00B5E286 /* UserReplyListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345DF1ABEB45A00B5E286 /* UserReplyListCellViewModel.swift */; };
+		5EF398A51B7A31C20005D60B /* V2EXError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF398A41B7A31C20005D60B /* V2EXError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -105,6 +108,8 @@
 		5E1C98241ACFFFC300E89A1A /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		5E1C98301AD0004600E89A1A /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		5E2208EA1A3DD52100A88A51 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		5E29CF461B7838BB0071B54D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5E29CF481B783AAE0071B54D /* PurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		5E2F685D1A43CB9700EEECBD /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		5E3759B81A3C7640003DB82A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E38F3D51AD8D37500186E18 /* UserNotificationListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationListCellViewModel.swift; sourceTree = "<group>"; };
@@ -170,6 +175,7 @@
 		5ED345CC1ABE733300B5E286 /* UserTopicListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTopicListCellViewModel.swift; sourceTree = "<group>"; };
 		5ED345DC1ABEB3C100B5E286 /* UserReplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserReplyTableViewCell.swift; sourceTree = "<group>"; };
 		5ED345DF1ABEB45A00B5E286 /* UserReplyListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserReplyListCellViewModel.swift; sourceTree = "<group>"; };
+		5EF398A41B7A31C20005D60B /* V2EXError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V2EXError.swift; sourceTree = "<group>"; };
 		5EFF89451A13A26D0091C84B /* V2EX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "V2EX-Bridging-Header.h"; sourceTree = "<group>"; };
 		793C13B9F465CBC4090C2780 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B13FFA5AACFE1A505B3DE75 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				131CF9BDD68D1C13B2CEFE63 /* Pods.framework in Frameworks */,
+				5E29CF471B7838BB0071B54D /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +210,7 @@
 		1C91D810930C4680B49001A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E29CF461B7838BB0071B54D /* StoreKit.framework */,
 				793C13B9F465CBC4090C2780 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -294,6 +302,7 @@
 				5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */,
 				5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */,
 				5E4C0CC21B77381400306C16 /* PreferenceViewController.swift */,
+				5E29CF481B783AAE0071B54D /* PurchaseViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -333,6 +342,7 @@
 				5E8DEFBC1AC29BF20036D852 /* WebViewAction.swift */,
 				5E5216611AD932760017187C /* UITableView+UITableView_CustomMJRefresh.h */,
 				5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */,
+				5EF398A41B7A31C20005D60B /* V2EXError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -472,6 +482,9 @@
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 6XENCH3F68;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.VPNLite = {
 								enabled = 0;
 							};
@@ -582,6 +595,7 @@
 				5E4C0CBF1B76F9C500306C16 /* UserInfoTableViewCell.swift in Sources */,
 				5E83B72A1A3D8FD60079AB3E /* Networking.swift in Sources */,
 				5E3759B91A3C7640003DB82A /* AppDelegate.swift in Sources */,
+				5E29CF491B783AAE0071B54D /* PurchaseViewController.swift in Sources */,
 				5E5F23C61A395DBD00D20FE9 /* ContainerViewController.swift in Sources */,
 				5E9AD42A1ADA027100F40CA4 /* NodeSearchViewController.swift in Sources */,
 				5E8523EF1ABD7B0F00B7B8C4 /* UserReplyListController.swift in Sources */,
@@ -592,6 +606,7 @@
 				5E4D5D0E1B6633FF002A05EE /* ReplyTopicViewController.swift in Sources */,
 				5E8523F21ABD7B2000B7B8C4 /* UserNotificationViewController.swift in Sources */,
 				5E6F316E1ADA068A00C477A5 /* NodeService.swift in Sources */,
+				5EF398A51B7A31C20005D60B /* V2EXError.swift in Sources */,
 				5E1C98251ACFFFC300E89A1A /* NotificationService.swift in Sources */,
 				5ED345E01ABEB45A00B5E286 /* UserReplyListCellViewModel.swift in Sources */,
 				5EC87D6A1ABC579800AB071F /* SessionStorage.swift in Sources */,

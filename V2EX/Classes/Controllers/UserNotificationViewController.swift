@@ -29,9 +29,10 @@ class UserNotificationViewController: V2EXTableViewController {
     }
     
     func addLoadMoreDataFooter() {
-        tableView.addLegendFooterWithRefreshingBlock { [weak self] () -> Void in
-            self?.loadMoreData()
-        }
+//        tableView.addLegendFooterWithRefreshingBlock { [weak self] () -> Void in
+//            self?.loadMoreData()
+//        }
+        tableView.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
 //        if notifications.count < 10 {
 //            tableView.footer.noticeNoMoreData()
 //        }
@@ -58,7 +59,7 @@ class UserNotificationViewController: V2EXTableViewController {
                 self?.tableView.reloadData()
                 self?.refreshControl?.endRefreshing()
                 self?.hideProgressView()
-                self?.tableView.footer.stateHidden = true
+                self?.tableView.footer.hidden = true
                 self?.addLoadMoreDataFooter()
             }
         }

@@ -27,7 +27,6 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         let (username, password) = SessionService.getUsernameAndPassword()
         usernameTextField.text = username
         passwordTextField.text = password
-        
     }
     
     override func viewDidAppear(animated: Bool) {

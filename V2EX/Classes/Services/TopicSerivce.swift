@@ -34,12 +34,18 @@ class TopicSerivce {
     
     class func getList(#nodeSlug: String, page: Int = 1, response: ((error: NSError?, topics: [Topic], nodeName: String?) -> Void)?) {
         
-        V2EXNetworking.get("go/\(nodeSlug)?p=\(page)").response { (_, _, data, error) in
+        V2EXNetworking.get("go/\(nodeSlug)?p=\(page)").response { (httpRequest, httpResponse, data, error) in
             
             let topics = Topic.listFromNode(data)
             
             let titleHTML = TFHpple(HTMLObject: data).searchFirst("//title")?.raw
             let nodeName = titleHTML?.match("› ([a-zA-Z0-9 \\u4e00-\\u9fa5]+)</title>")?[1]
+            
+            if nodeName == "登录" {
+                let authRequiredError = V2EXError.AuthRequired.foundationError
+                response?(error: authRequiredError, topics: topics, nodeName: nodeName)
+                return
+            }
             
             response?(error: error, topics: topics, nodeName: nodeName)
         }
