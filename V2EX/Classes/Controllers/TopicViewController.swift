@@ -120,20 +120,17 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             
             let atUserButton = UIAlertAction(title: "@\(name)", style: .Default) {
                 [unowned self, unowned alert] action in
-                print("OK Pressed")
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
             
             let viewUserButton = UIAlertAction(title: "查看资料", style: .Default) {
                 [unowned self, unowned alert] action in
-                print("OK Pressed")
                 self.showUserVC(name)
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
         
             let cancelAction = UIAlertAction(title: "取消", style: .Cancel) {
                 [unowned self, unowned alert] action in
-                print("OK Pressed")
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
             

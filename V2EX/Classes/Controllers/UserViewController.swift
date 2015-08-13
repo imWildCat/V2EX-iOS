@@ -18,6 +18,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     enum UserTableViewRowType {
+        case DailyRedeem
         case Info
         case Notification
         case Favorite
@@ -33,11 +34,15 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var typeOfRows = [UserTableViewRowType]()
     
+    var shouldDisplayDailyRedeem = false
+    
     var username: String?
-    var currentUser: User? {
+    var user: User? {
         didSet {
-            setUpRowTypes(currentUser)
-            tableView.reloadData()
+            setUpRowTypes(user)
+            if mode == .CurrentUser {
+                checkDailyTask()
+            }
         }
     }
     
@@ -73,9 +78,11 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         } else {
+            navigationItem.title = "用户信息"
+            
             if let name = username {
                 UserService.getUserInfo(name) { [weak self] (error, user, topicsRelated, repliesRelated) in
-                    self?.currentUser = user
+                    self?.user = user
                 }
             } else {
                 showError(status: "用户未定义，无法加载信息。")
@@ -90,7 +97,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         if storage.currentUser?.id == nil && storage.currentUser?.name != nil {
             let name = storage.currentUser?.name ?? "..."
             UserService.getUserInfo(name) { [weak self] (error, user, topicsRelated, repliesRelated) in
-                self?.currentUser = user
+                self?.user = user
             }
         }
     }
@@ -103,7 +110,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         unloginMaskButton.hidden = false
         // clear views
-        currentUser = nil
+        user = nil
     }
     
     private func switchToLoginState() {
@@ -113,7 +120,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         unloginMaskButton.hidden = true
-        currentUser = SessionStorage.sharedStorage.currentUser
+        user = SessionStorage.sharedStorage.currentUser
         fetchCurrentUserDetailInfo()
     }
     
@@ -149,8 +156,14 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         let index = indexPath.row
         let type = typeOfRows[index]
         switch type {
+        case .DailyRedeem:
+            let dailyRedeemCell = tableView.dequeueReusableCellWithIdentifier("dailyRedeemCell", forIndexPath: indexPath) as! UITableViewCell
+            return dailyRedeemCell
         case .Info:
             let infoCell = tableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as! UserInfoTableViewCell
+            if mode == .OtherUser {
+                infoCell.infoView.mode = .OtherUser
+            }
             setUpInfoView(infoCell.infoView)
             removeCellSeparatorAndSelectionStyle(infoCell)
             return infoCell
@@ -168,8 +181,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             return cell
         case .Introduction:
             let introCell = tableView.dequeueReusableCellWithIdentifier("introCell", forIndexPath: indexPath) as! UserIntroTableViewCell
-            let user = currentUser ?? User(name: "")
-            introCell.introLabel.text = user.introduction ?? ""
+            let aUser = user ?? User(name: "")
+            introCell.introLabel.text = aUser.introduction ?? ""
             removeCellSeparatorAndSelectionStyle(introCell)
             return introCell
         default:
@@ -185,22 +198,35 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         return UIView()
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if typeOfRows[indexPath.row] == .DailyRedeem {
+            SessionService.getDailyRedeem({ [weak self] (error) -> Void in
+                if error == nil {
+                    self?.showSuccess(status: "已领取今日登陆奖励")
+                    self?.setUpRowTypes(self?.user, shouldDisplayDailyRedeem: false)
+                } else {
+                    self?.showError(error)
+                }
+            })
+        }
+    }
+    
     private func setUpInfoView(infoView: UserInfoView) {
-        let user = currentUser ?? User(name: "未知用户")
+        let aUser = user ?? User(name: "未知用户")
         
-                infoView.usernameLabel.text = user.name
+                infoView.usernameLabel.text = aUser.name
                 infoView.avatarImageView.layer.cornerRadius = 25.0
-                infoView.avatarImageView.sd_setImageWithURL(("https:" + user.avatarURI).toURL(), placeholderImage: UIImage(named: "avatar_placeholder"))
+                infoView.avatarImageView.sd_setImageWithURL(("https:" + aUser.avatarURI).toURL(), placeholderImage: UIImage(named: "avatar_placeholder"))
                     { [weak infoView] (image, error, _, _)  in
                     infoView?.avatarImageView.layer.cornerRadius = 5.0
                 }
         
 //                avatarImageView.sd_setImageWithURL(<#url: NSURL!#>, placeholderImage: <#UIImage!#>, completed: <#SDWebImageCompletionBlock!##(UIImage!, NSError!, SDImageCacheType, NSURL!) -> Void#>)
         
-                infoView.companyLabel.text = user.company
-                infoView.numberLabel.text = "No. " + (user.id?.description ?? "")
-                infoView.regDateLabel.text = user.createdAt ?? ""
-                infoView.livenessLabel.text = user.liveness?.description ?? ""
+                infoView.companyLabel.text = aUser.company
+                infoView.numberLabel.text = "No. " + (aUser.id?.description ?? "")
+                infoView.regDateLabel.text = aUser.createdAt ?? ""
+                infoView.livenessLabel.text = aUser.liveness?.description ?? ""
     }
     
     private func removeCellSeparatorAndSelectionStyle(cell: UITableViewCell) {
@@ -208,7 +234,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.selectionStyle = .None
     }
     
-    private func setUpRowTypes(user: User?) {
+    private func setUpRowTypes(user: User?, shouldDisplayDailyRedeem: Bool = false) {
         func setUpExtraInfo(user: User) {
             typeOfRows.append(.Introduction)
             // TODO: Implement for website, GitHub, Twitter
@@ -217,8 +243,11 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         typeOfRows = [UserTableViewRowType]()
         typeOfRows.append(.Info)
         
-        let user = currentUser ?? User(name: "未知用户")
+        let user = user ?? User(name: "未知用户")
         if mode == .CurrentUser {
+            if shouldDisplayDailyRedeem {
+                typeOfRows.append(.DailyRedeem)
+            }
             typeOfRows.append(.Notification)
             typeOfRows.append(.Favorite)
             typeOfRows.append(.Topic)
@@ -228,11 +257,20 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             typeOfRows.append(.Reply)
         }
         setUpExtraInfo(user)
+        tableView.reloadData()
     }
     
     private func setUpNavButtons() {
         if mode == .CurrentUser {
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "side_menu_icon"), style: .Plain , target: self, action: "showSideMenu")
+        }
+    }
+    
+    private func checkDailyTask() {
+        SessionService.checkDailyRedeem { [weak self] (error, onceCode) -> Void in
+            if let _ = onceCode {
+               self?.setUpRowTypes(self?.user, shouldDisplayDailyRedeem: true)
+            }
         }
     }
     

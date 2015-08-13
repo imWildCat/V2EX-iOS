@@ -10,23 +10,36 @@ import UIKit
 
 @IBDesignable class UserInfoView: UIView {
     
+    enum Mode {
+        case CurrentUser
+        case OtherUser
+    }
+    
+    var mode = Mode.CurrentUser
+    
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var regDateLabel: UILabel!
     @IBOutlet weak var livenessLabel: UILabel!
+    @IBOutlet weak var dailyRedeemButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()
+        commonInit()
     }
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetup()
+        commonInit()
     }
     
+    func commonInit() {
+//        hideDailyRedeemButton()
+    }
     
     // Ref: http://iphonedev.tv/blog/2014/12/15/create-an-ibdesignable-uiview-subclass-with-code-from-an-xib-file-in-xcode-6
     private func xibSetup() {

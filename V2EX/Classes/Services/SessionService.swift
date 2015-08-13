@@ -166,4 +166,30 @@ class SessionService {
         }
     }
     
+    class func checkDailyRedeem(response: ((error: NSError?, onceCode: String?) -> Void)?) {
+        V2EXNetworking.get("mission/daily").response { (_, _, data, error) in
+            
+            var onceCode: String?
+            let doc = TFHpple(HTMLObject: data)
+            if let buttonElement = doc.searchFirst("//input[@class='super normal button']"),
+                once = buttonElement.attr("onclick")?.match("once=(\\d+)")?[1] {
+                onceCode = once
+                    
+                SessionStorage.sharedStorage.onceCode = once
+            }
+            // TODO: Cache daily login for one day(do not send second request for signed task)
+            response?(error: error, onceCode: onceCode)
+        }
+    }
+    
+    class func getDailyRedeem(response: (error: NSError?) -> Void) {
+        
+        let onceCode = SessionStorage.sharedStorage.onceCode
+        
+        V2EXNetworking.get("mission/daily/redeem?once=\(onceCode)").response { (_, _, data, error) in
+            
+           response(error: error)
+        }
+    }
+    
 }

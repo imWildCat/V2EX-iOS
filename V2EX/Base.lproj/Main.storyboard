@@ -576,6 +576,71 @@
                                 <color key="sectionIndexBackgroundColor" red="0.99215686270000003" green="0.96862745100000003" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="infoCell" rowHeight="100" id="hG9-LA-BDc" customClass="UserInfoTableViewCell" customModule="V2EX" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hG9-LA-BDc" id="QjS-ZQ-3WT">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9F-gI-SMd" customClass="UserInfoView" customModule="V2EX" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="244-Xl-gAU"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="z9F-gI-SMd" firstAttribute="leading" secondItem="QjS-ZQ-3WT" secondAttribute="leading" id="7GU-hR-bSQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="z9F-gI-SMd" secondAttribute="bottom" priority="750" id="QlP-ws-ujN"/>
+                                                <constraint firstItem="z9F-gI-SMd" firstAttribute="top" secondItem="QjS-ZQ-3WT" secondAttribute="top" id="WVM-vh-sZB"/>
+                                                <constraint firstAttribute="trailing" secondItem="z9F-gI-SMd" secondAttribute="trailing" id="oQW-6y-8uh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="infoView" destination="z9F-gI-SMd" id="dB0-DR-Kly"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dailyRedeemCell" id="B49-Vy-grQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B49-Vy-grQ" id="oxT-eF-RgY">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="daily_redeem_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Vjb-uD-po1">
+                                                    <rect key="frame" x="15" y="7" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="7cQ-63-znb"/>
+                                                        <constraint firstAttribute="width" constant="30" id="rMv-0R-ch7"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="领取今日登录奖励" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBC-xk-6YK">
+                                                    <rect key="frame" x="60" y="13" width="112" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron_icon" translatesAutoresizingMaskIntoConstraints="NO" id="hc0-X3-kNn">
+                                                    <rect key="frame" x="577" y="15" width="8" height="13"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="13" id="TkY-xk-qPg"/>
+                                                        <constraint firstAttribute="width" constant="8" id="WYD-AW-C3B"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="kBC-xk-6YK" secondAttribute="centerY" id="1P5-IP-Iqd"/>
+                                                <constraint firstItem="Vjb-uD-po1" firstAttribute="leading" secondItem="oxT-eF-RgY" secondAttribute="leading" constant="15" id="5wp-rS-cyS"/>
+                                                <constraint firstAttribute="centerY" secondItem="Vjb-uD-po1" secondAttribute="centerY" id="Kgx-Xp-0TH"/>
+                                                <constraint firstAttribute="trailing" secondItem="hc0-X3-kNn" secondAttribute="trailing" constant="15" id="TAG-5z-ZMI"/>
+                                                <constraint firstAttribute="centerY" secondItem="hc0-X3-kNn" secondAttribute="centerY" id="aZo-mP-1RQ"/>
+                                                <constraint firstItem="kBC-xk-6YK" firstAttribute="leading" secondItem="Vjb-uD-po1" secondAttribute="trailing" constant="15" id="mYk-cC-pMV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.99607843139999996" green="0.97647058819999999" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="notificationCell" id="XNJ-JL-Zme">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XNJ-JL-Zme" id="KEZ-jE-MTA">
@@ -740,31 +805,6 @@
                                         <color key="backgroundColor" red="0.99607843139999996" green="0.97647058819999999" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="GGH-lc-jhu" kind="show" identifier="showUserReplyVC" id="PLi-yD-MZh"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="infoCell" rowHeight="100" id="hG9-LA-BDc" customClass="UserInfoTableViewCell" customModule="V2EX" customModuleProvider="target">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hG9-LA-BDc" id="QjS-ZQ-3WT">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9F-gI-SMd" customClass="UserInfoView" customModule="V2EX" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="244-Xl-gAU"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="z9F-gI-SMd" firstAttribute="leading" secondItem="QjS-ZQ-3WT" secondAttribute="leading" id="7GU-hR-bSQ"/>
-                                                <constraint firstAttribute="bottom" secondItem="z9F-gI-SMd" secondAttribute="bottom" priority="750" id="QlP-ws-ujN"/>
-                                                <constraint firstItem="z9F-gI-SMd" firstAttribute="top" secondItem="QjS-ZQ-3WT" secondAttribute="top" id="WVM-vh-sZB"/>
-                                                <constraint firstAttribute="trailing" secondItem="z9F-gI-SMd" secondAttribute="trailing" id="oQW-6y-8uh"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="infoView" destination="z9F-gI-SMd" id="dB0-DR-Kly"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="introCell" id="nCb-X7-Cum" customClass="UserIntroTableViewCell" customModule="V2EX" customModuleProvider="target">
@@ -1571,6 +1611,7 @@
         <image name="chevron_icon" width="16" height="25"/>
         <image name="close_icon" width="20" height="20"/>
         <image name="comment_icon" width="25" height="25"/>
+        <image name="daily_redeem_icon" width="60" height="60"/>
         <image name="favorite_button" width="20" height="20"/>
         <image name="favorite_icon" width="61" height="61"/>
         <image name="login_bg" width="2048" height="1535"/>
