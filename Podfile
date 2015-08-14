@@ -30,7 +30,7 @@ inhibit_all_warnings!
 	pod 'Alamofire', '~> 1.3'
     # pod 'SVPullToRefresh', :git => 'https://github.com/samvermette/SVPullToRefresh.git'
     pod 'SwiftyJSON'
-    pod 'MJRefresh', '~> 2.4.4'
+    pod 'MJRefresh', '~> 2.4.5'
     pod 'TUSafariActivity', '~> 1.0'
     pod 'RETableViewManager'
 # end

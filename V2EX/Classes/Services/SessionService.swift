@@ -219,6 +219,30 @@ class SessionService {
         }
     }
     
+    class func toggleFollowUser(id: Int, token: String, isFollowed: Bool, response:(error: NSError?) -> Void) {
+        let url: String = {
+            if isFollowed {
+                return "unfollow/\(id)?t=\(token)"
+            } else {
+                return "follow/\(id)?t=\(token)"
+            }
+        }()
+        V2EXNetworking.get(url).response { (_, _, data, error) in
+            response(error: error)
+        }
+    }
     
+    class func toggleBlockUser(id: Int, token: String, isBlocked: Bool, response:(error: NSError?) -> Void) {
+        let url: String = {
+            if isBlocked {
+                return "unblock/\(id)?t=\(token)"
+            } else {
+                return "block/\(id)?t=\(token)"
+            }
+            }()
+        V2EXNetworking.get(url).response { (_, _, data, error) in
+            response(error: error)
+        }
+    }
     
 }

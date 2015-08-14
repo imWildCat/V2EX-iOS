@@ -32,7 +32,7 @@ PODS:
   - IQKeyboardManager (3.2.4)
   - KVNProgress (2.2.1)
   - MBProgressHUD (0.9.1)
-  - MJRefresh (2.4.4)
+  - MJRefresh (2.4.5)
   - pop (1.0.7)
   - REFormattedNumberField (1.1.5)
   - RETableViewManager (1.6):
@@ -59,7 +59,7 @@ DEPENDENCIES:
   - IQKeyboardManager (~> 3.2.1)
   - KVNProgress (~> 2.1)
   - MBProgressHUD (~> 0.9)
-  - MJRefresh (~> 2.4.4)
+  - MJRefresh (~> 2.4.5)
   - pop (~> 1.0.7)
   - RETableViewManager
   - RNFrostedSidebar (~> 0.2)
@@ -90,7 +90,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
   KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJRefresh: cacdfe7844f1368c2e7f168e1cd345efd279fc24
+  MJRefresh: 8f022877bfcb4132ce260422eee6835dce896edb
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   REFormattedNumberField: be3d55dd709f65541fb26b7e1709da07903147f8
   RETableViewManager: 9667ecb29c005c32df40a1dd1828224840a351a2

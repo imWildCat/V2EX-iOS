@@ -22,6 +22,10 @@ struct User {
     var company: String?
     var introduction: String?
     
+    // Action token to support 
+    var actionToken: String?
+    var isBlocked: Bool = false
+    var isFollowed: Bool = false
     
     init(name: String?, avatarURI: String? = nil, website: String? = nil, twitter: String? = nil, github: String? = nil, createdAt: String? = nil, liveness: String? = nil, id: String? = nil, company: String? = nil, introduction: String? = nil) {
         self.name = name ?? ""

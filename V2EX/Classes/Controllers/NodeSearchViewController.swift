@@ -25,6 +25,15 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
         loadData()
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        
+        // FIXME: hide search bar when this VC disappeared
+        // Not working:
+//        Utils.delay(0.2) { [weak self] in
+//            self?.resultSearchController.active = false
+//        }
+    }
+    
     func loadData() {
         showProgressView()
         

@@ -67,8 +67,8 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         
         let scale = CGAffineTransformMakeScale(0.3, 0.3)
         let translate = CGAffineTransformMakeTranslation(50, -50)
-        self.popoverMenu.transform = CGAffineTransformConcat(scale, translate)
-        self.popoverMenu.alpha = 0
+        popoverMenu.transform = CGAffineTransformConcat(scale, translate)
+        popoverMenu.alpha = 0
         
         AnimationHelper.spring(0.5) {
             let scale = CGAffineTransformMakeScale(1, 1)

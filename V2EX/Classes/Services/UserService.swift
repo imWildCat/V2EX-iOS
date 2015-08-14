@@ -33,8 +33,25 @@ class UserService {
             let liveness = info?.searchFirst("//span[@class='gray']/a[@href='/top/dau']")?.text()
             let introduction = (doc.searchFirst("//div[@id='Main']//div[@class='box'][1]/div[@class='cell'][2]")?.content ?? "").replace("        ", withString: "")
 
-
-            let user = User(name: name, avatarURI: avatarURI, website: nil, twitter: nil, github: nil, createdAt: createdAt, liveness: liveness, id: id, company: company, introduction: introduction)
+            var user = User(name: name, avatarURI: avatarURI, website: nil, twitter: nil, github: nil, createdAt: createdAt, liveness: liveness, id: id, company: company, introduction: introduction)
+            
+            func parseActionToken(from: String?) -> String? {
+                return from?.match("/\\d+\\?t=(\\d+)")?[1]
+            }
+            
+            if let followElement = doc.searchFirst("//input[@value='加入特别关注']") {
+                user.actionToken = parseActionToken(followElement.attr("onclick"))
+            } else if let unFollowElement = doc.searchFirst("//input[@value='取消特别关注']") {
+                user.actionToken = parseActionToken(unFollowElement.attr("onclick"))
+                user.isFollowed = true
+            }
+            
+//            if let blockElement = doc.searchFirst("//input[@value='Block']") {
+//                
+//            } else
+            if let unblockElement = doc.searchFirst("//input[@value='Unblock']") {
+                user.isBlocked = true
+            }
             
             if user.name == SessionStorage.sharedStorage.currentUser?.name {
                SessionStorage.sharedStorage.currentUser = user

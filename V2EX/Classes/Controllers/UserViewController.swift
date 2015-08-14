@@ -48,7 +48,12 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var unloginMaskButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var leftBarButton: UIBarButtonItem!
+//    @IBOutlet weak var leftBarButton: UIBarButtonItem!
+    
+    @IBOutlet weak var maskButton: UIButton!
+    @IBOutlet weak var popoverMenu: UIView!
+    @IBOutlet weak var followingButton: UIButton!
+    @IBOutlet weak var blockButton: UIButton!
     
     override func viewDidLoad() {
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -87,6 +92,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if error == nil {
                         self?.user = user
                         self?.hideProgressView()
+                        self?.configureUserActions()
                     } else {
                         self?.showError(error)
                     }
@@ -270,6 +276,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func setUpNavButtons() {
         if mode == .CurrentUser {
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "side_menu_icon"), style: .Plain , target: self, action: "showSideMenu")
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "action_button"), style: .Plain, target: self, action: "actionNavButtonDidTouch")
         }
     }
     
@@ -285,5 +293,104 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        return 44.0
 //    }
     
+    // MARK: Popover menu
+    private func showPopoverMenu() {
+        
+        // Mask
+        maskButton.hidden = false
+        self.maskButton.alpha = 0
+        AnimationHelper.spring(0.5, animations: {
+            self.maskButton.alpha = 1
+        })
+        
+        // Menu
+        popoverMenu.hidden = false
+        let scale = CGAffineTransformMakeScale(0.3, 0.3)
+        let translate = CGAffineTransformMakeTranslation(50, -50)
+        popoverMenu.transform = CGAffineTransformConcat(scale, translate)
+        popoverMenu.alpha = 0
+        
+        AnimationHelper.spring(0.5) {
+            let scale = CGAffineTransformMakeScale(1, 1)
+            let translate = CGAffineTransformMakeTranslation(0, 0)
+            self.popoverMenu.transform = CGAffineTransformConcat(scale, translate)
+            self.popoverMenu.alpha = 1
+        }
+    }
     
+    private func hidePopoverMenu() {
+        AnimationHelper.spring(0.5, animations: {
+            self.popoverMenu.alpha = 0
+            self.maskButton.alpha = 0
+            self.popoverMenu.hidden = true
+            self.maskButton.hidden = true
+        })
+    }
+    
+    private func configureUserActions() {
+        if user?.isBlocked == true {
+            blockButton.setTitle("Unblock", forState: .Normal)
+        } else {
+            blockButton.setTitle("Block", forState: .Normal)
+        }
+        
+        if user?.isFollowed == true {
+            followingButton.setTitle("取消特别关注", forState: .Normal)
+        } else {
+            followingButton.setTitle("特别关注", forState: .Normal)
+        }
+    }
+    
+    @IBAction func maskButtonDidTouch(sender: UIButton) {
+        hidePopoverMenu()
+    }
+    
+    func actionNavButtonDidTouch() {
+        if popoverMenu.hidden == false {
+            return
+        }
+        showPopoverMenu()
+    }
+    
+    @IBAction func followingButtonDidTouch(sender: UIButton) {
+        hidePopoverMenu()
+        
+        if let userID = user?.id, token = user?.actionToken, status = user?.isFollowed {
+            showProgressView()
+            SessionService.toggleFollowUser(userID, token: token, isFollowed: status) { [weak self] (error) in
+                if error != nil {
+                    self?.showError(error)
+                } else {
+                    self?.user?.isFollowed = !(self?.user?.isFollowed)!
+                    if self?.user?.isFollowed == true {
+                        self?.showSuccess(status: "已关注")
+                    } else {
+                        self?.showSuccess(status: "已取消关注")
+                    }
+                    self?.configureUserActions()
+                }
+            }
+        }
+    }
+    
+    @IBAction func blockButtonDidTouch(sender: UIButton) {
+        hidePopoverMenu()
+        
+        if let userID = user?.id, token = user?.actionToken, status = user?.isBlocked {
+            showProgressView()
+            SessionService.toggleBlockUser(userID, token: token, isBlocked: status) { [weak self] (error) in
+                if error != nil {
+                    self?.showError(error)
+                } else {
+                    self?.user?.isBlocked = !(self?.user?.isBlocked)!
+                    if self?.user?.isBlocked == true {
+                        self?.showSuccess(status: "已 Block")
+                    } else {
+                        self?.showSuccess(status: "已取消 Block")
+                    }
+                    self?.configureUserActions()
+                }
+            }
+        }
+    }
 }
