@@ -46,6 +46,7 @@
 		5E6F31751ADA238400C477A5 /* CreateTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6F31741ADA238400C477A5 /* CreateTopicViewController.swift */; };
 		5E7A0ECF1A3D79F600C9251B /* StorableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A0ECE1A3D79F600C9251B /* StorableProtocol.swift */; };
 		5E7A0ED11A3D7BCB00C9251B /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A0ED01A3D7BCB00C9251B /* BaseModel.swift */; };
+		5E7AB0D01B7C5D1A0008B7AA /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7AB0CF1B7C5D1A0008B7AA /* AnimationHelper.swift */; };
 		5E83B72A1A3D8FD60079AB3E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E83B7291A3D8FD60079AB3E /* Networking.swift */; };
 		5E83EAD81AB544B90008E877 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E83EAD71AB544B90008E877 /* TopicViewController.swift */; };
 		5E84FDBD1AC857DF00F55D15 /* UserNotificationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E84FDBC1AC857DF00F55D15 /* UserNotificationListCell.swift */; };
@@ -141,6 +142,7 @@
 		5E6F31741ADA238400C477A5 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewController.swift; sourceTree = "<group>"; };
 		5E7A0ECE1A3D79F600C9251B /* StorableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorableProtocol.swift; sourceTree = "<group>"; };
 		5E7A0ED01A3D7BCB00C9251B /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		5E7AB0CF1B7C5D1A0008B7AA /* AnimationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		5E83B7291A3D8FD60079AB3E /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		5E83EAD71AB544B90008E877 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		5E84FDBC1AC857DF00F55D15 /* UserNotificationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationListCell.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				5E5216611AD932760017187C /* UITableView+UITableView_CustomMJRefresh.h */,
 				5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */,
 				5EF398A41B7A31C20005D60B /* V2EXError.swift */,
+				5E7AB0CF1B7C5D1A0008B7AA /* AnimationHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				5EC734361B2BE1EE0082D920 /* BrowserViewController.swift in Sources */,
 				5E5F23CD1A395DBD00D20FE9 /* UserViewController.swift in Sources */,
 				5E4C0CBF1B76F9C500306C16 /* UserInfoTableViewCell.swift in Sources */,
+				5E7AB0D01B7C5D1A0008B7AA /* AnimationHelper.swift in Sources */,
 				5E83B72A1A3D8FD60079AB3E /* Networking.swift in Sources */,
 				5E3759B91A3C7640003DB82A /* AppDelegate.swift in Sources */,
 				5E29CF491B783AAE0071B54D /* PurchaseViewController.swift in Sources */,

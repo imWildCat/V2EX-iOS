@@ -58,6 +58,24 @@ extension UIViewController {
         
         presentViewController(alert, animated: true, completion: nil)
     }
+    
+    // Mark: Session
+    
+    var isLoggedIn: Bool {
+        get {
+            return checkLogin()
+        }
+    }
+    
+    private func checkLogin() -> Bool {
+        println( SessionStorage.sharedStorage.isLoggedIn)
+        if SessionStorage.sharedStorage.isLoggedIn == true {
+            return true
+        } else {
+            showLoginAlert()
+            return false
+        }
+    }
 
     // MARK: KVNProgressUI
     

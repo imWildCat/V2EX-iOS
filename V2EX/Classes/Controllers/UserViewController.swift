@@ -54,6 +54,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
 //        tableView.separatorStyle = .None
+        modalPresentationStyle = .Popover
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -81,8 +82,14 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             navigationItem.title = "用户信息"
             
             if let name = username {
+                showProgressView()
                 UserService.getUserInfo(name) { [weak self] (error, user, topicsRelated, repliesRelated) in
-                    self?.user = user
+                    if error == nil {
+                        self?.user = user
+                        self?.hideProgressView()
+                    } else {
+                        self?.showError(error)
+                    }
                 }
             } else {
                 showError(status: "用户未定义，无法加载信息。")

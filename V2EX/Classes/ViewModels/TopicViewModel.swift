@@ -41,13 +41,11 @@ struct TopicViewModel {
         ]
         
         var jsonObj = JSON(data)
-//        println(jsonObj.description)
         let bundle = NSBundle.mainBundle()
         let templatePath = bundle.pathForResource("topic", ofType: "html")
         let templateHTML =  String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding, error: nil) ?? ""
         
         let rendering = templateHTML.replace("{{data}}", withString: jsonObj.description)
-//        println(rendering)
         return rendering
     }
 }

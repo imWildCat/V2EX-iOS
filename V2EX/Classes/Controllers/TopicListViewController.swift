@@ -178,6 +178,7 @@ class TopicListViewController: UITableViewController {
                 if topic.isNew == false {
                     destinationViewController.topicID = topic.id
                 } else {
+                    destinationViewController.mode = .NewTopic
                     destinationViewController.topic = topic
                 }
             }

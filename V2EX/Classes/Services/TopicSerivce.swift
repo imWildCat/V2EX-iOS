@@ -58,6 +58,34 @@ class TopicSerivce {
             let topic = Topic.singleTopic(data)
             let replies = Reply.listFromTopic(data)
             
+            let doc = TFHpple(HTMLObject: data)
+            if let onceCodeString = doc.searchFirst("//input[@name='once']")?.attr("value") {
+                SessionStorage.sharedStorage.onceCode = onceCodeString
+            }
+            
+            if let reportJS = doc.searchFirst("//a[text()='报告这个主题']")?.attr("onclick") {
+                let reportLink = reportJS.match("(report/topic/\\d+\\?t=\\d+)")?[1]
+                topic.reportLink = reportLink
+            } else if let hasBeenReported = doc.searchFirst("//span[text()='你已对本主题进行了报告']") {
+                topic.isReported = true
+            }
+            
+            if let favRawLink = doc.searchFirst("//a[text()='加入收藏']")?.attr("href") {
+                let favLink = favRawLink.match("(favorite/topic/\\d+\\?t=\\w+)")?[1]
+                topic.favoriteLink = favLink
+            } else if let unFavRawLink = doc.searchFirst("//a[text()='取消收藏']")?.attr("href") {
+                let favLink = unFavRawLink.match("(unfavorite/topic/\\d+\\?t=\\w+)")?[1]
+                topic.favoriteLink = favLink
+                topic.isFavorited = true
+            }
+            
+            if let appreciationString = doc.searchFirst("//div[@class='topic_buttons']//a[text()='感谢']")?.attr("onclick") {
+                let token = appreciationString.match("thankTopic\\(\\d+, '(\\w+)'\\)")?[1]
+                topic.appreciateToken = token
+            } else if let hasBeenAppreciated = doc.searchFirst("//div[@class='topic_buttons']//span[text()='感谢已发送']") {
+                topic.isAppreciated = true
+            }
+            
             response?(error: error, topic: topic, replies: replies)
         }
         

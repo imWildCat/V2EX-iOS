@@ -192,4 +192,33 @@ class SessionService {
         }
     }
     
+    class func ignoreTopic(id: Int, response:(error: NSError?) -> Void) {
+        
+        let onceCode = SessionStorage.sharedStorage.onceCode
+        
+        V2EXNetworking.get("ignore/topic/\(id)?once=\(onceCode)").response { (_, _, data, error) in
+            response(error: error)
+        }
+    }
+    
+    class func reportTopic(reportLink: String, response:(error: NSError?) -> Void) {
+        V2EXNetworking.get(reportLink).response { (_, _, data, error) in
+            response(error: error)
+        }
+    }
+    
+    class func favoriteTopic(favLink: String, response:(error: NSError?) -> Void) {
+        V2EXNetworking.get(favLink).response { (_, _, data, error) in
+            response(error: error)
+        }
+    }
+    
+    class func appreciateTopic(id: Int, token: String, response:(error: NSError?) -> Void) {
+        V2EXNetworking.post("thank/topic/\(id)?t=\(token)").response { (_, _, data, error) in
+            response(error: error)
+        }
+    }
+    
+    
+    
 }

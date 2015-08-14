@@ -24,11 +24,15 @@ class Topic: Printable {
     var appreciationCount: Int
     var favoriteCount: Int
     
-    var favoriteLink: String
+    var favoriteLink: String?
+    var appreciateToken: String?
+    var reportLink: String?
+    
+    var isFavorited: Bool = false, isAppreciated: Bool = false, isReported: Bool = false
     
     var isNew: Bool = false
     
-    init(id: String?, title: String?, node: Node?, author: User?, replyCount: String? = nil, createdAt: String? = nil, content: String? = nil, appreciationCount: Int = 0, favoriteCount: Int = 0, favoriteLink: String? = nil) {
+    init(id: String?, title: String?, node: Node?, author: User?, replyCount: String? = nil, createdAt: String? = nil, content: String? = nil, appreciationCount: Int = 0, favoriteCount: Int = 0) {
         self.id = id?.toInt() ?? 0
         self.title = title ?? "[未知标题]"
         self.replyCount = replyCount?.toInt() ?? 0
@@ -38,7 +42,6 @@ class Topic: Printable {
         self.content = content ?? ""
         self.appreciationCount = appreciationCount
         self.favoriteCount = favoriteCount
-        self.favoriteLink = favoriteLink ?? ""
     }
     
 //    init(id: Int?, title: String?, repliesCount: Int? = nil, author: User? = nil, createdAt: String? = nil, node: Node? = nil, favoriteLink: String? = nil) {
@@ -173,13 +176,11 @@ class Topic: Printable {
         let appreciationCount = topicOtherInfo?.match("(\\d+) 人感谢")?[1].toInt() ?? 0
         let favCount = topicOtherInfo?.match("(\\d+) 人收藏")?[1].toInt() ?? 0
         
-        let favLink = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']/a[@class='tb']")?["href"] as? String
-        
-        return Topic(id: topicId, title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), replyCount: replyCount, createdAt: topicCreatedAt, content: topicContent, appreciationCount: appreciationCount, favoriteCount: favCount, favoriteLink: favLink)
+        return Topic(id: topicId, title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), replyCount: replyCount, createdAt: topicCreatedAt, content: topicContent, appreciationCount: appreciationCount, favoriteCount: favCount)
     }
     
     var description: String {
-        return "[Topic] ID: \(id), Title: \(title), Content: \(content)"
+        return "[Topic] ID: \(id), Title: \(title), isReported: \(isReported)"
     }
     
 }
