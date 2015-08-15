@@ -216,9 +216,14 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         return false
     }
     
-    func showReplyTopicVC() {
+    func showReplyTopicVC(initialContent: String? = nil) {
         if let replyTopicVC = storyboard?.instantiateViewControllerWithIdentifier("replyTopicVC") as? ReplyTopicViewController {
             replyTopicVC.parentVC = self
+            
+            if let c = initialContent {
+                replyTopicVC.initialContent = c
+            }
+            
             presentViewController(replyTopicVC, animated: true, completion: nil)
         } else {
             showError(status: "节点未定义，无法创建话题")
@@ -254,6 +259,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             
             let atUserButton = UIAlertAction(title: "@\(name)", style: .Default) {
                 [unowned self, unowned alert] action in
+                self.showReplyTopicVC(initialContent: "@\(name)")
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
             

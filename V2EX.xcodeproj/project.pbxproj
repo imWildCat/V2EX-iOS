@@ -68,6 +68,7 @@
 		5E924B741B6BC38600182F3F /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E924B731B6BC38600182F3F /* UserInfoView.xib */; };
 		5E98290A1A3DC1DE001B1E25 /* TFHppleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */; };
 		5E9AD42A1ADA027100F40CA4 /* NodeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9AD4291ADA027100F40CA4 /* NodeSearchViewController.swift */; };
+		5EA316911B7ED15500E57843 /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA316901B7ED15500E57843 /* MemoryCache.swift */; };
 		5EA63C651B08559000431C96 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 793C13B9F465CBC4090C2780 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EA63C681B08700A00431C96 /* node_list_bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C661B08700A00431C96 /* node_list_bundle.js */; };
 		5EA63C691B08700A00431C96 /* topic_bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C671B08700A00431C96 /* topic_bundle.js */; };
@@ -164,6 +165,7 @@
 		5E924B731B6BC38600182F3F /* UserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
 		5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFHppleExtension.swift; sourceTree = "<group>"; };
 		5E9AD4291ADA027100F40CA4 /* NodeSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeSearchViewController.swift; sourceTree = "<group>"; };
+		5EA316901B7ED15500E57843 /* MemoryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
 		5EA63C661B08700A00431C96 /* node_list_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node_list_bundle.js; sourceTree = "<group>"; };
 		5EA63C671B08700A00431C96 /* topic_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = topic_bundle.js; sourceTree = "<group>"; };
 		5EA63C6A1B08701500431C96 /* topic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic.html; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */,
 				5EF398A41B7A31C20005D60B /* V2EXError.swift */,
 				5E7AB0CF1B7C5D1A0008B7AA /* AnimationHelper.swift */,
+				5EA316901B7ED15500E57843 /* MemoryCache.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				5E5F23D11A395DBD00D20FE9 /* Utils.swift in Sources */,
 				5E8523D71ABD525200B7B8C4 /* UserService.swift in Sources */,
 				5E84FDBD1AC857DF00F55D15 /* UserNotificationListCell.swift in Sources */,
+				5EA316911B7ED15500E57843 /* MemoryCache.swift in Sources */,
 				5E38F3D61AD8D37500186E18 /* UserNotificationListCellViewModel.swift in Sources */,
 				5E8523E91ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift in Sources */,
 				5EC957B71A3DBB56005E5428 /* TopicSerivce.swift in Sources */,

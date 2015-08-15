@@ -19,6 +19,7 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
     weak var parentVC: ReplyTopicViewControllerDelegate?
     var topicID: Int!
     var onceCode = ""
+    var initialContent: String?
 
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var contentTextViewBottomConstraint: NSLayoutConstraint!
@@ -49,6 +50,21 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
         let canceButtonlImage = UIImage(named: "close_icon")
         let cancelButton = UIBarButtonItem(image: canceButtonlImage, style: .Plain, target: self, action: Selector("close"))
 //        navigationItem.addRi
+        
+        // Load cached reply
+        if let cachedReply = MemoryCache.getReply(topicID: topicID) {
+            contentTextView.text = cachedReply
+        }
+        
+        // Inital content, such as @user
+        if let c = initialContent {
+            let originalContent = contentTextView.text
+            if originalContent.isEmpty {
+                contentTextView.text = c
+            } else {
+                contentTextView.text = originalContent + "\n" + c
+            }
+        }
         
         loadOnceCode()
     }
@@ -81,7 +97,20 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func didCloseButtonTouch(sender: UIBarButtonItem) {
-        dismissSelf()
+        if !contentTextView.text.isEmpty {
+            let alert = UIAlertController(title: "您有尚未发布的回复", message: "是否需要保存？", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: { [unowned self] (action) -> Void in
+                    self.dismissSelf()
+                    MemoryCache.removeReply(topicID: self.topicID)
+                }))
+            alert.addAction(UIAlertAction(title: "保存", style: .Default, handler: { [unowned self] (action) -> Void in
+                    MemoryCache.setReply(topicID: self.topicID, content: self.contentTextView.text)
+                    self.dismissSelf()
+                }))
+            presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+         dismissSelf()
     }
     
     @IBAction func didImageButtonTouch(sender: UIButton) {
