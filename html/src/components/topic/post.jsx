@@ -92,6 +92,18 @@ class Post extends React.Component {
       }
 
     });
+
+    // Handle images
+    contentJQ.find('img').each(function() {
+      var imageURL = $(this).attr('src');
+      $(this).click(function() {
+        NetWorking.loadURL('webview://show_image?url=' + imageURL);
+      });
+    });
+
+    contentJQ.find('a > img').each(function() {
+      $(this).parent().removeAttr("href");
+    });
    
   }
 }

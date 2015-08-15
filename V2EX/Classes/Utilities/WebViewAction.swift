@@ -13,4 +13,5 @@ enum WebViewAction {
     case OpenNode
     case OpenBrowser
     case User
+    case ShowImage
 }

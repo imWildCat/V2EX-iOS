@@ -115,6 +115,8 @@ extension String {
             action = .OpenBrowser
         case "show_member":
             action = .User
+        case "show_image":
+            action = .ShowImage
         default:
             action = .None
         }

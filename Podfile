@@ -33,6 +33,7 @@ inhibit_all_warnings!
     pod 'MJRefresh', '~> 2.4.7'
     pod 'TUSafariActivity', '~> 1.0'
     pod 'RETableViewManager'
+    pod 'JTSImageViewController'
 # end
 
 #target 'V2EXTests', :exclusive => true do

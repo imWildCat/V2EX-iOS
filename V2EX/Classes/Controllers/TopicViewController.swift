@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import WebKit
+import JTSImageViewController
 
 class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewControllerDelegate {
     
@@ -201,13 +201,13 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         if let scheme = request.URL?.scheme {
-//            println(request.URLString)
 
             if scheme == "file" {
                 return true
             }
             
             if scheme == "webview" {
+                println(request.URLString)
                 actionHanlder(request.URLString)
                 return false
             }
@@ -241,6 +241,8 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             openWebBrowser(params["url"])
         case .User:
             userDidClick(params["username"])
+        case .ShowImage:
+            showImage(params["url"])
         default:
             break
         }
@@ -278,6 +280,15 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             alert.addAction(viewUserButton)
             alert.addAction(cancelAction)
             presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func showImage(urlString: String?) {
+        if let urlS = urlString, url = NSURL(string: urlS) {
+            let imageInfo = JTSImageInfo()
+            imageInfo.imageURL = url
+            let imageVC = JTSImageViewController(imageInfo: imageInfo, mode: JTSImageViewControllerMode.Image, backgroundStyle: JTSImageViewControllerBackgroundOptions.Blurred)
+            imageVC.showFromViewController(self, transition: JTSImageViewControllerTransition._FromOffscreen)
         }
     }
     
