@@ -46,6 +46,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    
     @IBOutlet weak var unloginMaskButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
 //    @IBOutlet weak var leftBarButton: UIBarButtonItem!

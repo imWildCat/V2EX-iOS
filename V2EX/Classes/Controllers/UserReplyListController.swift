@@ -7,31 +7,76 @@
 //
 
 import UIKit
+import MJRefresh
 
 class UserReplyListController: UITableViewController {
     
     var username: String!
     var replies = [Reply]()
+    var page = 1
     
     override func viewDidLoad() {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.separatorStyle = .None
         
-        loadData()
+        tableView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
+        
+        loadData(shouldShowProgressView: true)
     }
     
-    func loadData() {
-        showProgressView()
-        TopicSerivce.replyListOf(user: username, page: 1) { [weak self](error, replies) -> Void in
+    func loadData(shouldShowProgressView: Bool = false) {
+        if shouldShowProgressView {
+            showProgressView()
+        }
+        
+        TopicSerivce.replyListOf(user: username, page: page) { [weak self] (error, replies, hasMorePage) in
             self?.hideProgressView()
             if error == nil {
                 self?.replies = replies
                 self?.tableView.reloadData()
+                
+                if hasMorePage {
+                     self?.addLoadMoreDataFooter()
+                }
+                
             } else {
                 self?.showError(.Networking)
             }
         }
+    }
+    
+    // MARK: Load more data
+    
+    func addLoadMoreDataFooter() {
+        tableView.footer = MJRefreshAutoNormalFooter(refreshingBlock: { [unowned self] in
+            self.loadMoreData()
+        })
+    }
+    
+    func loadMoreData() {
+        page++
+        
+        TopicSerivce.replyListOf(user: username, page: page) { [weak self] (error, replies, hasNextPage) in
+            self?.hideProgressView()
+            if error == nil {
+                self?.replies += replies
+                self?.tableView.reloadData()
+                
+                self?.addLoadMoreDataFooter()
+                
+                if !hasNextPage {
+                    self?.tableView.footer.noticeNoMoreData()
+                }
+                
+            } else {
+                self?.showError(.Networking)
+            }
+        }
+    }
+    
+    @IBAction func refreshControlValueDidChange(sender: UIRefreshControl) {
+        loadData()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

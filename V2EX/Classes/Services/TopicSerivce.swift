@@ -138,7 +138,7 @@ class TopicSerivce {
         }
     }
     
-    class func replyListOf(#user: String, page: Int = 1, response: ((error: NSError?, replies: [Reply]) -> Void)?) {
+    class func replyListOf(#user: String, page: Int = 1, response: ((error: NSError?, replies: [Reply], hasNextPage: Bool) -> Void)?) {
         
         V2EXNetworking.get("member/" + user + "/replies", parameters: ["p": page]).response { (_, _, data, error) in
             let doc = TFHpple(HTMLObject: data)
@@ -181,7 +181,12 @@ class TopicSerivce {
                 }
             }
             
-            response?(error: error, replies: replies)
+            var hasNextPage = false
+            if let nextPageButton = doc.searchFirst("//input[@value='下一页 ›']") {
+                hasNextPage = true
+            }
+            
+            response?(error: error, replies: replies, hasNextPage: hasNextPage)
         }
     }
     

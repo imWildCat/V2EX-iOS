@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MJRefresh
 
 class UserTopicListViewController: UITableViewController {
     
@@ -18,20 +19,21 @@ class UserTopicListViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 103
         
-        loadData()
+        tableView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
+        
+        loadData(shouldShowProgressView: true)
     }
     
     @IBAction func refreshControlValueDidChange(sender: UIRefreshControl) {
-        
         loadData()
     }
 
-    func loadData() {
-        if refreshControl?.refreshing == false {
+    func loadData(shouldShowProgressView: Bool = false) {
+        if shouldShowProgressView {
             showProgressView()
         }
         
-        TopicSerivce.topicListOf(user: username, page: page) { [weak self](error, topics) in
+        TopicSerivce.topicListOf(user: username, page: page) { [weak self] (error, topics) in
             
             self?.hideProgressView()
             self?.refreshControl?.endRefreshing()
@@ -39,11 +41,38 @@ class UserTopicListViewController: UITableViewController {
             if error == nil {
                 self?.topics = topics
                 self?.tableView.reloadData()
+                
+                if topics.count == 20 {
+                    self?.addLoadMoreDataFooter()
+                }
             } else {
                 self?.showError(.Networking)
             }
-            
-            return
+        }
+    }
+    
+    // MARK: Load more data
+    
+    func addLoadMoreDataFooter() {
+        tableView.footer = MJRefreshAutoNormalFooter(refreshingBlock: { [unowned self] in
+            self.loadMoreData()
+        })
+    }
+    
+    func loadMoreData() {
+        page++
+        TopicSerivce.topicListOf(user: username, page: page) { [weak self] (error, topics) in
+            if error == nil {
+                self?.topics += topics
+                self?.tableView.reloadData()
+                
+                self?.addLoadMoreDataFooter()
+                if topics.count < 20 {
+                    self?.tableView.footer.noticeNoMoreData()
+                }
+            } else {
+                self?.showError(.Networking)
+            }
         }
     }
 

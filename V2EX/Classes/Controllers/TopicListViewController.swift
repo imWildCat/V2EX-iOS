@@ -11,8 +11,24 @@ import MJRefresh
 
 class TopicListViewController: UITableViewController {
     
-    var tabSlug: String?
-    var nodeSlug: String?
+    enum Mode {
+        case Tab
+        case Node
+        case Favorite
+    }
+    
+    var mode: Mode = .Favorite
+    
+    var tabSlug: String? {
+        didSet {
+            mode = .Tab
+        }
+    }
+    var nodeSlug: String? {
+        didSet {
+            mode = .Node
+        }
+    }
     var topics = [Topic]()
     var prevousPage = 1
     var page = 1
@@ -22,9 +38,9 @@ class TopicListViewController: UITableViewController {
         
         // set bg color
         tableView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
-        
+        println(mode.hashValue)
         // set up right bar buttom
-        if nodeSlug != nil {
+        if mode == .Node {
             let image = UIImage(named: "write_topic_icon")
             let button = UIBarButtonItem(image: image, style: .Plain, target: self, action: Selector("showCreateTopicVC"))
             self.navigationItem.rightBarButtonItem = button
@@ -32,11 +48,10 @@ class TopicListViewController: UITableViewController {
     }
     
     func addLoadMoreDataFooter() {
-        if nodeSlug != nil {
-//            tableView.addLegendFooterWithRefreshingBlock { [weak self] () -> Void in
-//                self?.loadMoreData()
-//            }
-            tableView.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
+        if mode != .Tab {
+            tableView.footer = MJRefreshAutoNormalFooter(refreshingBlock: { [unowned self] in
+                self.loadMoreData()
+            })
         }
     }
     
@@ -98,11 +113,16 @@ class TopicListViewController: UITableViewController {
         } else {
             // fav topic mode
             navigationItem.title = "我的收藏"
-            TopicSerivce.favoriteTopics(page: 1, response: { [weak self](error, topics, totalCount) in
+            TopicSerivce.favoriteTopics(page: 1, response: { [weak self] (error, topics, totalCount) in
                 if error == nil {
                     self?.topics = topics
                     self?.tableView.reloadData()
                     self?.refreshControl?.endRefreshing()
+                    
+                    self?.addLoadMoreDataFooter()
+                    if totalCount <= 20 {
+                        self?.tableView.footer.noticeNoMoreData()
+                    }
                 }
                 self?.hideProgressView()
             })
@@ -111,7 +131,7 @@ class TopicListViewController: UITableViewController {
     
     func loadMoreData() {
         page++
-        if let slug = nodeSlug {
+        if let slug = nodeSlug where mode == .Node {
             TopicSerivce.getList(nodeSlug: slug, page: page, response: { [weak self] (error, topics, nodeName) in
                 if error == nil {
                     if let name = nodeName {
@@ -125,7 +145,7 @@ class TopicListViewController: UITableViewController {
                     }
                 }
             })
-        } else if tabSlug == nil {
+        } else if mode == .Favorite {
             // my favorites
             TopicSerivce.favoriteTopics(page: page, response: { [weak self] (error, topics, totalCount) in
                 if error == nil {

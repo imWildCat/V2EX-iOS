@@ -33,7 +33,9 @@ class ThirdPartyNetworking {
     class func uploadImage2SinaCustomService(#image: UIImage, progressClosure: ((percentage: Float) -> Void)?, responseClosure: ((error: NSError?, problemMessage: String?, imageURL: String?) -> Void)?) {
         let imageData = UIImageJPEGRepresentation(image, 1.0)
         
-        let urlRequest = urlRequestWithComponents("http://pic.xiaojianjian.net/webtools/picbed/upload.htm", parameters: ["accessKey": "29c971c7-b833-4150-b93d-1605a238983b"], imageData: imageData)
+        // parameters: ["accessKey": "29c971c7-b833-4150-b93d-1605a238983b"]
+        
+        let urlRequest = urlRequestWithComponents("http://pic.xiaojianjian.net/webtools/picbed/upload.htm", parameters: Dictionary(), imageData: imageData)
         
         Alamofire.upload(urlRequest.0, data: urlRequest.1)
             .progress { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) in
