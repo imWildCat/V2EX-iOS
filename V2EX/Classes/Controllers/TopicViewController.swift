@@ -30,6 +30,8 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     var mode = Mode.ReadTopic
     var topicID = 0
     var topic: Topic?
+    var currentPage = 1
+    var totalPage = 1
 
     required init(coder aDecoder: NSCoder) {
 //        self.webView = WKWebView(frame: CGRectZero)
@@ -160,7 +162,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     }
     
     
-    func requestTopic(finished: (() -> Void)? = nil) {
+    func requestTopic(page: Int? = nil, finished: (() -> Void)? = nil) {
         let path = NSBundle.mainBundle().bundlePath
         let baseURL = NSURL.fileURLWithPath(path)
         
@@ -172,15 +174,27 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         }
         
         showProgressView()
-        TopicSerivce.singleTopic(topicID, response: { [weak self, finished] (error, fetchedTopic, replies)  in
+        TopicSerivce.singleTopic(topicID, page: page, response: { [weak self, finished] (error, fetchedTopic, replies, currentPage, totalPage)  in
+            
+            if error != nil {
+                self?.showError(error)
+            }
+            
             self?.webView.loadHTMLString(TopicViewModel.renderHTML(fetchedTopic, replies: replies), baseURL: baseURL)
             self?.hideProgressView()
             self?.topicID = fetchedTopic.id
             self?.topic = fetchedTopic
-            finished?()
             
-            self?.configureFavButton()
-            self?.configureAppreciationButton()
+            self?.currentPage = currentPage
+            if let tp = totalPage {
+                self?.totalPage = tp
+            }
+            
+            self?.configureBottomToolbar()
+            
+            println("Current page: \(self?.currentPage) , total page: \(self?.totalPage)")
+            
+            finished?()
         })
     }
     
@@ -281,6 +295,12 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     
     // MARK: Bottom toolbar actions
     
+    private func configureBottomToolbar() {
+        configureFavButton()
+        configureAppreciationButton()
+        configurePageButtons()
+    }
+    
     private func configureFavButton() {
         if topic?.isFavorited == true {
             favoriteButton.image = UIImage(named: "been_favorite_button")
@@ -293,6 +313,25 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         if topic?.isAppreciated == true {
             appreciationButton.enabled = false
             appreciationButton.image = UIImage(named: "been_appreciation_button")
+        }
+    }
+    
+    private func configurePageButtons() {
+        pageNumberButton.title = currentPage.description
+        if totalPage == 1 {
+            nextPageButton.enabled = false
+            previousPageButton.enabled = false
+        } else if totalPage > 1 {
+            if currentPage == totalPage {
+                previousPageButton.enabled = true
+                nextPageButton.enabled = false
+            } else if currentPage == 1 {
+                previousPageButton.enabled = false
+                nextPageButton.enabled = true
+            } else {
+                previousPageButton.enabled = true
+                nextPageButton.enabled = true
+            }
         }
     }
     
@@ -340,10 +379,12 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     }
 
     @IBAction func previousPageButtonDidTouch(sender: UIBarButtonItem) {
+        requestTopic(page: --currentPage)
     }
     
     
     @IBAction func nextPageButtonDidTouch(sender: UIBarButtonItem) {
+        requestTopic(page: ++currentPage)
     }
     
     @IBAction func refreshButtonDidTouch(sender: AnyObject) {

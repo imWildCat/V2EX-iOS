@@ -51,9 +51,17 @@ class TopicSerivce {
         }
     }
     
-    class func singleTopic(id: Int, response: ((error: NSError?, topic: Topic, replies: [Reply]) -> Void)?) {
+    class func singleTopic(id: Int, page: Int? = nil, response: ((error: NSError?, topic: Topic, replies: [Reply], currentPage: Int, totalPage: Int?) -> Void)?) {
         
-        V2EXNetworking.get("t/" + String(id), parameters: nil).response {
+        let url: String = {
+            if let p = page {
+                return "t/" + String(id) + "?p=\(p)"
+            } else {
+                return "t/" + String(id)
+            }
+        }()
+        
+        V2EXNetworking.get(url, parameters: nil).response {
             (_, _, data, error) in
             let topic = Topic.singleTopic(data)
             let replies = Reply.listFromTopic(data)
@@ -86,7 +94,19 @@ class TopicSerivce {
                 topic.isAppreciated = true
             }
             
-            response?(error: error, topic: topic, replies: replies)
+            var currentPage = 1
+            var totalPage: Int?
+            if let currentPageElement = doc.searchFirst("//span[@class='page_current']") {
+                if page == nil {
+                    totalPage = currentPageElement.text().toInt()
+                    currentPage = totalPage ?? 1
+                } else {
+                    currentPage = currentPageElement.text().toInt() ?? 1
+                }
+                
+            }
+            
+            response?(error: error, topic: topic, replies: replies, currentPage: currentPage, totalPage: totalPage)
         }
         
     }
