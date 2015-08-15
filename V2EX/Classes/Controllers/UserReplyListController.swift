@@ -40,6 +40,8 @@ class UserReplyListController: UITableViewController {
                      self?.addLoadMoreDataFooter()
                 }
                 
+                self?.refreshControl?.endRefreshing()
+                
             } else {
                 self?.showError(.Networking)
             }

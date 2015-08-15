@@ -38,7 +38,6 @@ class TopicListViewController: UITableViewController {
         
         // set bg color
         tableView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
-        println(mode.hashValue)
         // set up right bar buttom
         if mode == .Node {
             let image = UIImage(named: "write_topic_icon")

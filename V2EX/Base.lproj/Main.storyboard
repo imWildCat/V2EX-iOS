@@ -39,6 +39,14 @@
             </objects>
             <point key="canvasLocation" x="529" y="468"/>
         </scene>
+        <!--Page View Controller-->
+        <scene sceneID="171-ZB-OaA">
+            <objects>
+                <pageViewController storyboardIdentifier="pageVC" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hhK-nI-uZL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PGr-MA-5gT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1956" y="-193"/>
+        </scene>
         <!--V2EX-->
         <scene sceneID="gXL-NM-bW9">
             <objects>
@@ -58,21 +66,24 @@
                                     <constraint firstAttribute="height" constant="40" id="OIQ-8f-OYp"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3x-i4-QrJ" customClass="CatPaginatedScrollView" customModule="V2EX" customModuleProvider="target">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IL0-IB-1YW">
                                 <rect key="frame" x="0.0" y="84" width="600" height="516"/>
                                 <animations/>
-                            </view>
+                                <connections>
+                                    <segue destination="hhK-nI-uZL" kind="embed" identifier="loadPageVC" id="fwi-LV-4Kd"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.97647058823529409" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="d3x-i4-QrJ" firstAttribute="top" secondItem="OML-pe-KJ2" secondAttribute="bottom" id="MRc-lk-vyB"/>
-                            <constraint firstAttribute="trailing" secondItem="d3x-i4-QrJ" secondAttribute="trailing" id="W54-kf-rCQ"/>
+                            <constraint firstItem="IL0-IB-1YW" firstAttribute="top" secondItem="OML-pe-KJ2" secondAttribute="bottom" id="EnT-cV-Pba"/>
                             <constraint firstAttribute="trailing" secondItem="OML-pe-KJ2" secondAttribute="trailing" id="XcW-hz-ytS"/>
+                            <constraint firstItem="VPe-7Q-ICT" firstAttribute="top" secondItem="IL0-IB-1YW" secondAttribute="bottom" id="cpH-b3-Rql"/>
                             <constraint firstItem="OML-pe-KJ2" firstAttribute="leading" secondItem="jl8-n7-baZ" secondAttribute="leading" id="h2d-ge-Ihe"/>
-                            <constraint firstItem="d3x-i4-QrJ" firstAttribute="leading" secondItem="jl8-n7-baZ" secondAttribute="leading" id="tjV-0Q-ab0"/>
+                            <constraint firstItem="IL0-IB-1YW" firstAttribute="leading" secondItem="jl8-n7-baZ" secondAttribute="leading" id="hbU-yd-87h"/>
+                            <constraint firstAttribute="trailing" secondItem="IL0-IB-1YW" secondAttribute="trailing" id="vOS-AN-mRb"/>
                             <constraint firstItem="OML-pe-KJ2" firstAttribute="top" secondItem="9XO-fl-VcD" secondAttribute="bottom" id="vca-oy-Cvc"/>
-                            <constraint firstItem="VPe-7Q-ICT" firstAttribute="top" secondItem="d3x-i4-QrJ" secondAttribute="bottom" id="vjh-Hh-5FX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="V2EX" id="G7e-oJ-qbD">
@@ -83,7 +94,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="paginatedView" destination="d3x-i4-QrJ" id="dDK-wK-Mc9"/>
                         <outlet property="tabSegmentedControl" destination="OML-pe-KJ2" id="Txj-3G-xqx"/>
                         <segue destination="id9-zn-iOs" kind="show" identifier="showTopicVC" id="K36-ed-S7h"/>
                     </connections>
@@ -2027,8 +2037,8 @@
         <image name="user_popover_bg" width="150" height="79"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="K36-ed-S7h"/>
         <segue reference="z6U-4M-dN1"/>
-        <segue reference="A8g-nS-PBa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

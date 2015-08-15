@@ -39,15 +39,15 @@ class ThirdPartyNetworking {
         
         Alamofire.upload(urlRequest.0, data: urlRequest.1)
             .progress { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) in
-                println("\(totalBytesWritten) / \(totalBytesExpectedToWrite)")
+//                println("\(totalBytesWritten) / \(totalBytesExpectedToWrite)")
                 let percentage = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
                 progressClosure?(percentage: percentage)
             }
             .responseJSON { (request, response, JSON, error) in
-                println("REQUEST \(request)")
-                println("RESPONSE \(response)")
-                println("JSON \(JSON)")
-                println("ERROR \(error)")
+//                println("REQUEST \(request)")
+//                println("RESPONSE \(response)")
+//                println("JSON \(JSON)")
+//                println("ERROR \(error)")
 
                 if let responseJSON = JSON as? [String: String] {
                     

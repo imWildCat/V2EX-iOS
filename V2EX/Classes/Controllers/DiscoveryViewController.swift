@@ -9,36 +9,32 @@
 import UIKit
 import HMSegmentedControl
 
-class DiscoveryViewController: UIViewController {
+class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
     @IBOutlet weak var tabSegmentedControl: HMSegmentedControl!
-    @IBOutlet weak var paginatedView: CatPaginatedScrollView!
-    
-//    let tabs = [
-//        ["name": "全部",  "slug": "all"],
-//        ["name": "最热",  "slug": "hot"],
-//        ["name": "R2" ,  "slug": "r2"],
-//        ["name": "技术",  "slug": "tech"],
-//        ["name": "创意",  "slug": "creative"],
-//        ["name": "好玩",  "slug": "play"],
-//        ["name": "Apple","slug": "apple"],
-//        ["name": "酷工作","slug": "jobs"],
-//        ["name": "交易",  "slug": "deals"],
-//        ["name": "城市",  "slug": "city"],
-//    ]
     
     let slugs = ["all", "hot", "r2", "qna", "tech", "creative", "play", "apple", "jobs", "deals", "city"]
     
-    var topicListViewControllers = Dictionary<String, TopicListViewController>()
+    var pageViewController: UIPageViewController!
+    
+    var topicListViewControllers = [UIViewController]()
+    
+    var currentPage = 0
+    
 //    lazy var allTopicsListVC: TopicListViewController = self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC") as TopicListViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tabSegmentedControl.setUp()
-        tabSegmentedControl.indexChangeBlock = { [unowned self] in self.didTabSegmentedControlIndexChanged($0) }
-        
-        paginatedView.didPageIndexChanged = { [unowned self] in self.didPageIndexChanged($0) }
+        tabSegmentedControl.indexChangeBlock = { [unowned self] (index) in
+            self.setPage(index)
+        }
         setUpListViewControllers()
+        
+        // Set up pageViewController
+        pageViewController.delegate = self
+        pageViewController.dataSource = self
+        pageViewController.setViewControllers([topicListViewControllers.first!], direction: .Forward, animated: true, completion: nil)
     }
     
     func setUpListViewControllers() {
@@ -46,11 +42,10 @@ class DiscoveryViewController: UIViewController {
         for slug in slugs {
             let vc = self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC") as! TopicListViewController
             vc.tabSlug = slug
-            topicListViewControllers[slug] = vc
-            paginatedView.addPage(vc)
+            topicListViewControllers.append(vc)
+//            paginatedView.addPage(vc)
         }
         
-        callViewWillAppear(0)
 
 //        println(topicListViewControllers)
 //        for tab in tabs {
@@ -63,23 +58,59 @@ class DiscoveryViewController: UIViewController {
             let destinationViewController = segue.destinationViewController as! TopicViewController
             let topic = sender as! Topic
             destinationViewController.topicID = topic.id
+        } else if segue.identifier == "loadPageVC" {
+            pageViewController = segue.destinationViewController as! UIPageViewController
+            
         }
-    }
-    
-    func didTabSegmentedControlIndexChanged(index: Int) {
-//        println(index)
-        paginatedView.jumpToPage(index)
-        callViewWillAppear(index)
     }
     
     func didPageIndexChanged(index: Int) {
         self.tabSegmentedControl.setSelectedSegmentIndex(UInt(index), animated: true)
-        callViewWillAppear(index)
     }
     
-    func callViewWillAppear(index: Int) {
-        let currentSlug = slugs[index]
-        topicListViewControllers[currentSlug]?.viewWillAppear(false)
+    // MARK: Custom pageVC method
+    func setPage(index: Int) {
+        if index > currentPage {
+            pageViewController.setViewControllers([topicListViewControllers[index]], direction: .Forward, animated: true, completion: nil)
+        } else if index < currentPage {
+            pageViewController.setViewControllers([topicListViewControllers[index]], direction: .Reverse, animated: true, completion: nil)
+        }
+        currentPage = index
+    }
+    
+    // MARK: UIPageViewControllerDelegate
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
+        if !completed {
+            return
+        }
+        
+        let vc = pageViewController.viewControllers[0] as! TopicListViewController
+        let index = find(topicListViewControllers, vc)!
+        
+        currentPage = index
+        
+        tabSegmentedControl.setSelectedSegmentIndex(UInt(index), animated: true)
+    }
+    
+    
+    // MARK: UIPageViewControllerDataSource
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        let index = find(topicListViewControllers, viewController)!
+        if index == 0 {
+            return nil
+        } else {
+            return topicListViewControllers[index - 1]
+        }
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        let index = find(topicListViewControllers, viewController)!
+        if index == topicListViewControllers.count - 1 {
+            return nil
+        } else {
+            return topicListViewControllers[index + 1]
+        }
     }
     
 }
