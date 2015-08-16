@@ -19,6 +19,10 @@ struct Reply {
     var content: String
     var relatedTopic: Topic?
     
+    var isAppreciated: Bool = false
+    
+    var appreciatingReplyToken: String?
+    
     init(id: Int?, author: User, time: String?, appreciationsCount: Int?, floor: Int?, content: String?, relatedTopic: Topic? = nil) {
         self.id = id ?? 0
         self.author = author
@@ -54,7 +58,14 @@ struct Reply {
             
             let appreciationsCount = element.searchFirst("//td[@width='auto']/span[@class='small fade']")?.text()?.stringByReplacingOccurrencesOfString("♥ ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil).toInt()
             
-            let reply = Reply(id: replyId?.toInt(), author: author, time: time, appreciationsCount: appreciationsCount, floor: floor, content: content)
+            var reply = Reply(id: replyId?.toInt(), author: author, time: time, appreciationsCount: appreciationsCount, floor: floor, content: content)
+            
+            if let thankElement = element.searchFirst("//div[@class='thank_area']//a[text()='感谢回复者']") {
+                let token = thankElement.attr("onclick")?.match("thankReply\\(\\d+, '(\\w+)'\\)")?[1]
+                reply.appreciatingReplyToken = token
+            } else if let alreadyThankElement = element.searchFirst("//div[@class='thank_area thanked']") {
+                reply.isAppreciated = true
+            }
             
             replies.append(reply)
         }

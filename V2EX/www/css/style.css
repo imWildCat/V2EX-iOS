@@ -11,7 +11,9 @@ body {
 
 .topic .post .meta {
   background-color: #EDF3F5;
-  height: 40px; }
+  height: 40px;
+  display: flex;
+  -webkit-flex-direction: row; }
   .topic .post .meta .avatar {
     margin: 5px 10px 5px 10px;
     width: 30px;
@@ -21,8 +23,9 @@ body {
       width: 30px;
       height: 30px; }
   .topic .post .meta .info {
-    margin-left: 50px;
-    width: auto; }
+    width: auto;
+    float: left;
+    -webkit-flex: auto; }
     .topic .post .meta .info .row-1 {
       padding-top: 5px; }
       .topic .post .meta .info .row-1 a {

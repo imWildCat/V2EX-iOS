@@ -9,6 +9,8 @@
     .meta {
       background-color: #EDF3F5;
       height: 40px;
+      display: flex;
+      -webkit-flex-direction: row;
 
       .avatar {
         margin: 5px 10px 5px 10px;
@@ -22,8 +24,11 @@
         }
       }
       .info {
-        margin-left: 50px;
+        //margin-left: 50px;
         width: auto;
+        float: left;
+        //margin-right: 50px;
+        -webkit-flex: auto;
 
         .row-1 {
           padding-top: 5px;
@@ -86,6 +91,10 @@
             }
           }
         }
+      }
+
+      .actions {
+
       }
     }
 
