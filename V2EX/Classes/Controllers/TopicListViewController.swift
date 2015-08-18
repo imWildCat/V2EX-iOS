@@ -55,6 +55,10 @@ class TopicListViewController: UITableViewController {
     }
     
     func showCreateTopicVC() {
+        if !isLoggedIn {
+            return
+        }
+        
         if let slug = nodeSlug, createTopicVC = storyboard?.instantiateViewControllerWithIdentifier("createTopicVC") as? CreateTopicViewController {
             createTopicVC.nodeSlug = slug
             createTopicVC.topicListVC = self

@@ -9,12 +9,6 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>沙盒</string>
-				<key>slug</key>
-				<string>sandbox</string>
-			</dict>
-			<dict>
-				<key>name</key>
 				<string>问与答</string>
 				<key>slug</key>
 				<string>qna</string>

@@ -219,6 +219,12 @@ class SessionService {
         }
     }
     
+    class func appreciateReply(id: Int, token: String, response:(error: NSError?) -> Void) {
+        V2EXNetworking.post("thank/reply/\(id)?t=\(token)").response { (_, _, data, error) in
+            response(error: error)
+        }
+    }
+    
     class func toggleFollowUser(id: Int, token: String, isFollowed: Bool, response:(error: NSError?) -> Void) {
         let url: String = {
             if isFollowed {
@@ -243,6 +249,21 @@ class SessionService {
         V2EXNetworking.get(url).response { (_, _, data, error) in
             response(error: error)
         }
+    }
+    
+    class func getNotificationCount(response: (error: NSError?, count: Int) -> Void) {
+        V2EXNetworking.get("").response { (_, _, data, error) in
+            response(error: error, count: self.handleNotificationCount(data))
+        }
+    }
+    
+    class func handleNotificationCount(data: AnyObject?) -> Int {
+        let doc = TFHpple(HTMLObject: data)
+        var count = 0
+        if let notificationLink = doc.searchFirst("//div[@id='Rightbar']//a[@href='/notifications']"), text = notificationLink.text(), countText = text.match("(\\d+) 条未读提醒")?[1], c = countText.toInt() {
+            count = c
+        }
+        return count
     }
     
 }

@@ -28,6 +28,10 @@ class UserNotificationViewController: V2EXTableViewController {
         loadData()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+    }
+    
     func addLoadMoreDataFooter() {
 //        tableView.addLegendFooterWithRefreshingBlock { [weak self] () -> Void in
 //            self?.loadMoreData()

@@ -20,6 +20,13 @@ extension UIViewController {
     }
     
     // MARK: V2EX
+    func showTopicVC(topicID: Int) {
+        if let topicVC = storyboard?.instantiateViewControllerWithIdentifier("topicVC") as? TopicViewController {
+            topicVC.topicID = topicID
+            navigationController?.pushViewController(topicVC, animated: true)
+        }
+    }
+    
     func showUserVC(username: String) {
         if let userVC = storyboard?.instantiateViewControllerWithIdentifier("userVC") as? UserViewController {
             userVC.mode = .OtherUser
@@ -37,6 +44,12 @@ extension UIViewController {
     func showLoginVC() {
         if let loginVC = storyboard?.instantiateViewControllerWithIdentifier("userLoginVC") as? UserLoginViewController {
             presentViewController(loginVC, animated: true, completion: nil)
+        }
+    }
+    
+    func showNotificationVC() {
+        if let userNotificationVC = storyboard?.instantiateViewControllerWithIdentifier("userNotificationVC") as? UserNotificationViewController {
+            navigationController?.pushViewController(userNotificationVC, animated: true)
         }
     }
     

@@ -113,10 +113,14 @@ extension String {
             action = .OpenNode
         case "open_browser":
             action = .OpenBrowser
+        case "show_topic":
+            action = .ShowTopic
         case "show_member":
             action = .User
         case "show_image":
             action = .ShowImage
+        case "show_post_actions":
+            action = .ShowPostActions
         default:
             action = .None
         }

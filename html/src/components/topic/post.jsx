@@ -28,8 +28,9 @@ var Post = React.createClass({
         var id = this.props.data.id;
         var ia = false;
         for (var i = 0; i < postIDList.length; i++) {
-            if (postIDList[i] == id) {
+            if (parseInt(postIDList[i]) == id) {
                 ia = true;
+                this.props.data.appreciation_count++;
                 break;
             }
         }

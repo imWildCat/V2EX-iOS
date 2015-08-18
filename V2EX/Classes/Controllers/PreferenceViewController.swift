@@ -8,6 +8,7 @@
 
 import UIKit
 import RETableViewManager
+import SDWebImage
 
 class PreferenceViewController: UITableViewController, RETableViewManagerDelegate {
     
@@ -57,13 +58,19 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
             self.navigationController?.pushViewController(optionsController, animated: true)
         }
         
-        let clearCacheItem = RETableViewItem(title: "清除缓存", accessoryType: .None) { (selectedItem) -> Void in
+        let clearCacheItem = RETableViewItem(title: "清除缓存", accessoryType: .None) { [unowned self] (selectedItem) -> Void in
             selectedItem.reloadRowWithAnimation(UITableViewRowAnimation.None)
+            let imageCahce = SDImageCache.sharedImageCache()
+            imageCahce.clearMemory()
+            imageCahce.clearDisk()
+            self.showSuccess(status: "已清除")
         }
         
         
         let backgroundNotificationItem = REBoolItem(title: "后台提醒", value: false) { (item) -> Void in
-            
+            let sholdFetch = item.value
+            NSUserDefaults.standardUserDefaults().setBool(sholdFetch, forKey: "should_do_background_fetch")
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
         
         let purchaseItem = RETableViewItem(title: "购买完整版", accessoryType: .DisclosureIndicator) { [unowned self] (selectedItem) -> Void in
@@ -71,7 +78,7 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
             self.showPurchaseVC()
         }
         
-        section1.addItemsFromArray([imageItem, clearCacheItem, backgroundNotificationItem, purchaseItem])
+        section1.addItemsFromArray([clearCacheItem, backgroundNotificationItem])
         
         section2 = RETableViewSection()
         let logOutItem = RETableViewItem(title: "注销登录", accessoryType: .None) { [unowned self] (selectedItem) -> Void in
@@ -83,6 +90,7 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
         section3 = RETableViewSection()
         
         let aboutItem = RETableViewItem(title: "关于", accessoryType: .DisclosureIndicator) { [unowned self] (selectedItem) -> Void in
+            self.performSegueWithIdentifier("showAboutVC", sender: self)
             selectedItem.reloadRowWithAnimation(UITableViewRowAnimation.None)
         }
         

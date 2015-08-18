@@ -62,7 +62,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureIQKeyboardManager()
         NodeService.getAll()
         
+        // Background fetch
+        let shouldFetch = NSUserDefaults.standardUserDefaults().boolForKey("should_do_background_fetch")
+        if shouldFetch {
+            application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        } else {
+            application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalNever)
+        }
+        
+        // Notification
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert |
+            UIUserNotificationType.Badge |
+            UIUserNotificationType.Sound, categories: nil))
+        
         return true
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+//        println("Received location notification: ", notification)
+        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! RootViewController
+        if let topVC = rootViewController.containerViewController.viewControllers[0] as? UIViewController {
+            topVC.showNotificationVC()
+        }
+    }
+    
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        SessionService.getNotificationCount { (error, count) -> Void in
+            if count > 0 {
+                let notification = UILocalNotification()
+                let currentTime = NSDate(timeIntervalSinceNow: 2.0)
+                notification.fireDate = currentTime
+                notification.alertBody = "您有 \(count) 条未读提醒"
+                notification.alertAction = "阅读"
+                notification.soundName = UILocalNotificationDefaultSoundName
+                notification.timeZone = NSTimeZone.defaultTimeZone()
+                notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + count
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            }
+            
+            let r = UIBackgroundFetchResult.NewData
+            completionHandler(r)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

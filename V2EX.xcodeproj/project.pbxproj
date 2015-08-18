@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		131CF9BDD68D1C13B2CEFE63 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 793C13B9F465CBC4090C2780 /* Pods.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		5E062AC21B81D269002B6DF8 /* has_been_appreciated_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E062AC11B81D269002B6DF8 /* has_been_appreciated_icon.png */; };
 		5E14977A1A13A1890034F34F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E1497781A13A1890034F34F /* Main.storyboard */; };
 		5E14977C1A13A1890034F34F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E14977B1A13A1890034F34F /* Images.xcassets */; };
 		5E14977F1A13A1890034F34F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E14977D1A13A1890034F34F /* LaunchScreen.xib */; };
@@ -27,7 +28,7 @@
 		5E4C0CC31B77381400306C16 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C0CC21B77381400306C16 /* PreferenceViewController.swift */; };
 		5E4D5D0E1B6633FF002A05EE /* ReplyTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */; };
 		5E4D5D101B66743B002A05EE /* ThirdPartyNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D5D0F1B66743B002A05EE /* ThirdPartyNetworking.swift */; };
-		5E5216631AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */; };
+		5E4E68961B81DE3A00A178C4 /* CustomActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E68951B81DE3A00A178C4 /* CustomActivity.swift */; };
 		5E546A451B801EBC00DD2059 /* avatar_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E546A441B801EBC00DD2059 /* avatar_placeholder.png */; };
 		5E58D2DF1AB71913003058D6 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58D2DE1AB71913003058D6 /* TopicViewModel.swift */; };
 		5E5F23C61A395DBD00D20FE9 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */; };
@@ -103,6 +104,7 @@
 
 /* Begin PBXFileReference section */
 		35C98C0EB1FE7B2748B19B73 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5E062AC11B81D269002B6DF8 /* has_been_appreciated_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = has_been_appreciated_icon.png; sourceTree = "<group>"; };
 		5E14976F1A13A1890034F34F /* V2EX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2EX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E1497731A13A1890034F34F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E1497791A13A1890034F34F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,8 +126,7 @@
 		5E4C0CC21B77381400306C16 /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyTopicViewController.swift; sourceTree = "<group>"; };
 		5E4D5D0F1B66743B002A05EE /* ThirdPartyNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartyNetworking.swift; sourceTree = "<group>"; };
-		5E5216611AD932760017187C /* UITableView+UITableView_CustomMJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+UITableView_CustomMJRefresh.h"; sourceTree = "<group>"; };
-		5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+UITableView_CustomMJRefresh.m"; sourceTree = "<group>"; };
+		5E4E68951B81DE3A00A178C4 /* CustomActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActivity.swift; sourceTree = "<group>"; };
 		5E546A441B801EBC00DD2059 /* avatar_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar_placeholder.png; sourceTree = "<group>"; };
 		5E58D2DE1AB71913003058D6 /* TopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
 		5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -337,7 +338,9 @@
 		5E5F23BF1A395DBD00D20FE9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5E7AB0CF1B7C5D1A0008B7AA /* AnimationHelper.swift */,
 				5E8523E51ABD5C2000B7B8C4 /* DateOperators.swift */,
+				5EA316901B7ED15500E57843 /* MemoryCache.swift */,
 				5E8523E81ABD5E6300B7B8C4 /* NSDateComponentsExtension.swift */,
 				5EC87D661ABC545500AB071F /* NSDateExtension.swift */,
 				5EC87D691ABC579800AB071F /* SessionStorage.swift */,
@@ -345,12 +348,8 @@
 				5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */,
 				5E5F23B81A395DBD00D20FE9 /* UIViewControllerExtension.swift */,
 				5E5F23C01A395DBD00D20FE9 /* Utils.swift */,
-				5E8DEFBC1AC29BF20036D852 /* WebViewAction.swift */,
-				5E5216611AD932760017187C /* UITableView+UITableView_CustomMJRefresh.h */,
-				5E5216621AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m */,
 				5EF398A41B7A31C20005D60B /* V2EXError.swift */,
-				5E7AB0CF1B7C5D1A0008B7AA /* AnimationHelper.swift */,
-				5EA316901B7ED15500E57843 /* MemoryCache.swift */,
+				5E8DEFBC1AC29BF20036D852 /* WebViewAction.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -380,6 +379,7 @@
 				5E8523F71ABD831F00B7B8C4 /* UserTopicTableViewCell.swift */,
 				5E4C0CBE1B76F9C500306C16 /* UserInfoTableViewCell.swift */,
 				5E4C0CC01B77047D00306C16 /* UserIntroTableViewCell.swift */,
+				5E4E68951B81DE3A00A178C4 /* CustomActivity.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -427,6 +427,7 @@
 		5E8DEFAA1AC1C2A00036D852 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				5E062AC11B81D269002B6DF8 /* has_been_appreciated_icon.png */,
 				5E546A441B801EBC00DD2059 /* avatar_placeholder.png */,
 				5E8DEFAB1AC1C2A00036D852 /* appreciation_icon.png */,
 				5E8DEFAC1AC1C2A00036D852 /* favorite_icon.png */,
@@ -526,6 +527,7 @@
 			files = (
 				5EA63C681B08700A00431C96 /* node_list_bundle.js in Resources */,
 				5E8DEFB21AC1C2A00036D852 /* node_list.html in Resources */,
+				5E062AC21B81D269002B6DF8 /* has_been_appreciated_icon.png in Resources */,
 				5E14977A1A13A1890034F34F /* Main.storyboard in Resources */,
 				5E924B741B6BC38600182F3F /* UserInfoView.xib in Resources */,
 				5E14977F1A13A1890034F34F /* LaunchScreen.xib in Resources */,
@@ -611,7 +613,6 @@
 				5E9AD42A1ADA027100F40CA4 /* NodeSearchViewController.swift in Sources */,
 				5E8523EF1ABD7B0F00B7B8C4 /* UserReplyListController.swift in Sources */,
 				5EC87D601ABC4DAD00AB071F /* SessionService.swift in Sources */,
-				5E5216631AD932760017187C /* UITableView+UITableView_CustomMJRefresh.m in Sources */,
 				5E4AA86D1A3F0EA000AA2F3D /* TopicListCellViewModel.swift in Sources */,
 				5E8523F51ABD7B2D00B7B8C4 /* UserFavoriteController.swift in Sources */,
 				5E4D5D0E1B6633FF002A05EE /* ReplyTopicViewController.swift in Sources */,
@@ -643,6 +644,7 @@
 				5E8523E61ABD5C2000B7B8C4 /* DateOperators.swift in Sources */,
 				5E5F23D21A395DBD00D20FE9 /* CatPaginatedScrollView.swift in Sources */,
 				5E58D2DF1AB71913003058D6 /* TopicViewModel.swift in Sources */,
+				5E4E68961B81DE3A00A178C4 /* CustomActivity.swift in Sources */,
 				5E38F3DF1AD90D5A00186E18 /* V2EXTableViewController.swift in Sources */,
 				5E924B701B6BC25D00182F3F /* UserInfoView.swift in Sources */,
 				5E5F23CF1A395DBD00D20FE9 /* User.swift in Sources */,
