@@ -4,7 +4,7 @@ email:       wildcat.name@gmail.com
 author:      WildCat
 # description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
 baseurl:     ""
-# url:         "http://v2ex-ios.wildcat.io"
+url:         "http://v2ex-ios.wildcat.io"
 
 # Google analytics
 google_analytics:
