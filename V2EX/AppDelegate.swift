@@ -79,35 +79,104 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+//        notification.u
 //        println("Received location notification: ", notification)
         let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! RootViewController
         if let topVC = rootViewController.containerViewController.viewControllers[0] as? UIViewController {
-            topVC.showNotificationVC()
+            
+            if let userInfo = notification.userInfo as? [String: String], type = userInfo["type"] {
+                println("Userinfo type: \(type)")
+                if type == "notification" {
+                    // TODO: test this:
+                    if let notificationVC = topVC as? UserNotificationViewController {
+                        notificationVC.loadData()
+                    } else {
+                        topVC.showNotificationVC()
+                    }
+                } else if type == "daily_redeem" {
+                    if let userViewController = topVC as? UserViewController {
+                         userViewController.checkDailyTask()
+                    } else {
+                        rootViewController.containerViewController.viewControllers = [rootViewController.containerViewController.userViewController]
+                    }
+                }
+            }
         }
     }
     
+    private func getCachedUnreadNotificationCount() -> Int {
+        return NSUserDefaults.standardUserDefaults().integerForKey("unread_notification_count")
+    }
+    
+    private func getIsDailyTaskNotified() -> Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey("is_daily_task_notified")
+    }
+    
+    private func setCachedUnreadNotificationCount(count: Int) {
+        NSUserDefaults.standardUserDefaults().setInteger(count, forKey: "unread_notification_count")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    private func setIsDailyTaskNotified(status: Bool) {
+        NSUserDefaults.standardUserDefaults().setBool(status, forKey: "is_daily_task_notified")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        SessionService.getNotificationCount { (error, count) -> Void in
-            if count > 0 {
-                let notification = UILocalNotification()
-                let currentTime = NSDate(timeIntervalSinceNow: 2.0)
-                notification.fireDate = currentTime
-                notification.alertBody = "您有 \(count) 条未读提醒"
-                notification.alertAction = "阅读"
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.timeZone = NSTimeZone.defaultTimeZone()
-                notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + count
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        SessionService.getNotificationCount { [weak self] (error, count, hasDailyRedeem) -> Void in
+            
+            var r: UIBackgroundFetchResult!
+            
+            if error == nil {
+                 r = UIBackgroundFetchResult.NoData
+                
+                if count > 0 && count > self?.getCachedUnreadNotificationCount() {
+                    self?.sendUnreadNotificationCountAlert(count)
+                    r = UIBackgroundFetchResult.NewData
+                }
+                if hasDailyRedeem && self?.getIsDailyTaskNotified() == false {
+                    self?.sendDailyRedeemAlert()
+                    self?.setIsDailyTaskNotified(true) // Avoid duplicate notification
+                    r = UIBackgroundFetchResult.NewData
+                }
+            } else {
+                r = UIBackgroundFetchResult.Failed
             }
             
-            let r = UIBackgroundFetchResult.NewData
             completionHandler(r)
         }
+    }
+    
+    private func sendUnreadNotificationCountAlert(count: Int) {
+        let notification = UILocalNotification()
+        let currentTime = NSDate(timeIntervalSinceNow: 2.0)
+        notification.userInfo = ["type": "notification"]
+        notification.fireDate = currentTime
+        notification.alertBody = "您有 \(count) 条未读提醒"
+        notification.alertAction = "阅读"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.timeZone = NSTimeZone.defaultTimeZone()
+        notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + count
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    private func sendDailyRedeemAlert() {
+        let notification = UILocalNotification()
+        let currentTime = NSDate(timeIntervalSinceNow: 1.0)
+        notification.userInfo = ["type": "daily_redeem"]
+        notification.fireDate = currentTime
+        notification.alertBody = "今日登录奖励已可以领取"
+        notification.alertAction = "领取"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.timeZone = NSTimeZone.defaultTimeZone()
+//        notification.applicationIconBadgeNumber
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+//        println("applicationWillResignActive")
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -117,14 +186,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+//        println("applicationWillEnterForeground")
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+//        println("applicationDidBecomeActive")
+        setCachedUnreadNotificationCount(0)
+        setIsDailyTaskNotified(false)
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+//        println("applicationWillTerminate")
     }
 
 

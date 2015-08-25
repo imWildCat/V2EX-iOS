@@ -203,10 +203,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     }
     
     func openWebBrowser(URL: String?) {
-        if let wrappedURL = URL, browserVC = storyboard?.instantiateViewControllerWithIdentifier("browserVC") as? BrowserViewController {
-            browserVC.URL = wrappedURL
-            navigationController?.pushViewController(browserVC, animated: true)
-        }
+        showWebBrowser(URL)
     }
     
     func userDidClick(username: String?) {

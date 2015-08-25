@@ -251,13 +251,22 @@ class SessionService {
         }
     }
     
-    class func getNotificationCount(response: (error: NSError?, count: Int) -> Void) {
+    class func getNotificationCount(response: (error: NSError?, count: Int, hasDailyRedeem: Bool) -> Void) {
         V2EXNetworking.get("").response { (_, _, data, error) in
-            response(error: error, count: self.handleNotificationCount(data))
+            response(error: error, count: self.handleNotificationCount(data), hasDailyRedeem: self.handleDailyRedeem(data))
         }
     }
     
-    class func handleNotificationCount(data: AnyObject?) -> Int {
+    private class func handleDailyRedeem(data: AnyObject?) -> Bool {
+        var hasDailyRedeem = false
+        let doc = TFHpple(HTMLObject: data)
+        if let notificationLink = doc.searchFirst("//div[@id='Rightbar']//a[text()='领取今日的登录奖励']") {
+            hasDailyRedeem = true
+        }
+        return hasDailyRedeem
+    }
+    
+    private class func handleNotificationCount(data: AnyObject?) -> Int {
         let doc = TFHpple(HTMLObject: data)
         var count = 0
         if let notificationLink = doc.searchFirst("//div[@id='Rightbar']//a[@href='/notifications']"), text = notificationLink.text(), countText = text.match("(\\d+) 条未读提醒")?[1], c = countText.toInt() {

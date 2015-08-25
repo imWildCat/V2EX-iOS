@@ -90,11 +90,12 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
         section3 = RETableViewSection()
         
         let aboutItem = RETableViewItem(title: "关于", accessoryType: .DisclosureIndicator) { [unowned self] (selectedItem) -> Void in
-            self.performSegueWithIdentifier("showAboutVC", sender: self)
+            self.showWebBrowser("http://v2ex-ios.wildcat.io/about")
             selectedItem.reloadRowWithAnimation(UITableViewRowAnimation.None)
         }
         
         let feedbackItem = RETableViewItem(title: "反馈", accessoryType: .DisclosureIndicator) { [unowned self]  (selectedItem) -> Void in
+            self.showWebBrowser("http://v2ex-ios.wildcat.io/feedback")
             selectedItem.reloadRowWithAnimation(UITableViewRowAnimation.None)
         }
         section3.addItemsFromArray([aboutItem, feedbackItem])

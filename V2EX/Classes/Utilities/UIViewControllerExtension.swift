@@ -35,6 +35,13 @@ extension UIViewController {
         }
     }
     
+    func showWebBrowser(urlString: String?) {
+        if let wrappedURL = urlString, browserVC = storyboard?.instantiateViewControllerWithIdentifier("browserVC") as? BrowserViewController {
+            browserVC.URL = wrappedURL
+            navigationController?.pushViewController(browserVC, animated: true)
+        }
+    }
+    
     func showPurchaseVC() {
         if let purchaseVC = storyboard?.instantiateViewControllerWithIdentifier("purchaseVC") as? PurchaseViewController {
             navigationController?.pushViewController(purchaseVC, animated: true)

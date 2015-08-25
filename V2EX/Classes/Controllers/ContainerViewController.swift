@@ -24,7 +24,7 @@ class ContainerViewController: UINavigationController {
         sharedDiscoveryViewController = discoveryViewController as? DiscoveryViewController
         
         // Render node list
-        nodeListViewController.nibName
+        nodeListViewController.nibName // FIXME: Do not know this line of code
     }
 
     class func sharedDiscoveryVC() -> DiscoveryViewController? {

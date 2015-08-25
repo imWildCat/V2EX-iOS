@@ -19,7 +19,7 @@ class TopicListCell: UITableViewCell {
     
     func render(viewModel: TopicListCellViewModel) {
         
-        avatarImageView.sd_setImageWithURL(("https:" + viewModel.avatarURI).toURL(), placeholderImage: UIImage(named: "node_icon"))
+        avatarImageView.sd_setImageWithURL(("https:" + viewModel.avatarURI).toURL(), placeholderImage: UIImage(named: "avatar_placeholder"))
         
         titleLabel.text = viewModel.title
         

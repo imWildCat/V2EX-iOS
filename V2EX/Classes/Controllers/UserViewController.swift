@@ -282,7 +282,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    private func checkDailyTask() {
+    func checkDailyTask() {
         SessionService.checkDailyRedeem { [weak self] (error, onceCode) -> Void in
             if let _ = onceCode {
                self?.setUpRowTypes(self?.user, shouldDisplayDailyRedeem: true)
