@@ -202,7 +202,7 @@ class SessionService {
         
         let onceCode = SessionStorage.sharedStorage.onceCode
         
-        V2EXNetworking.get("mission/daily/redeem?once=\(onceCode)").response { (_, _, data, error) in
+        V2EXNetworking.get("mission/daily/redeem?once=\(onceCode)", additionalHeaders: ["Referer": "https://v2ex.com/mission/daily"]).response { (_, _, data, error) in
             
            response(error: error)
         }
