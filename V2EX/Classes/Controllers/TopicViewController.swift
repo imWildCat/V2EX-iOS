@@ -197,6 +197,12 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             if let id = params["id"]?.toInt() {
                 showTopicVC(id)
             }
+        case .OpenNode:
+            if let topicListVC = storyboard?.instantiateViewControllerWithIdentifier("topicListVC") as? TopicListViewController, slug = params["slug"] {
+                topicListVC.nodeSlug = slug
+                topicListVC.mode = .Node
+                navigationController?.pushViewController(topicListVC, animated: true)
+            }
         default:
             break
         }

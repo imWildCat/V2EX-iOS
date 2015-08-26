@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        setUpColors()
+        
         func configureKVNProgress() {
             let configuration = KVNProgressConfiguration()
             
@@ -172,6 +174,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notification.timeZone = NSTimeZone.defaultTimeZone()
 //        notification.applicationIconBadgeNumber
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    private func setUpColors() {
+        UITextView.appearance().tintColor = UIColor.darkGrayColor()
+        UITextField.appearance().tintColor = UIColor.darkGrayColor()
     }
 
     func applicationWillResignActive(application: UIApplication) {

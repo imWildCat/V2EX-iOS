@@ -1888,8 +1888,8 @@
         <image name="user_popover_bg" width="150" height="79"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="A8g-nS-PBa"/>
         <segue reference="z6U-4M-dN1"/>
+        <segue reference="aV0-nR-xvq"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
