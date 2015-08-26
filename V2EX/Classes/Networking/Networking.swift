@@ -19,8 +19,16 @@ class Networking {
         
         cfg.HTTPCookieStorage = cookies
         cfg.HTTPAdditionalHeaders = [
-          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12"
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko) Version/8.0.8 Safari/600.8.9"
         ]
+        
+        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        let c = (storage.cookies as! [NSHTTPCookie]?) ?? [NSHTTPCookie]()
+        
+        for (_, cookie) in enumerate(c)
+        {
+            println(cookie)
+        }
         
         return Alamofire.Manager(configuration: cfg)
     }
@@ -41,10 +49,12 @@ class Networking {
     }
     
     class func request(method: Alamofire.Method, URLString: URLStringConvertible, parameters: [String : AnyObject]? = nil, encoding: Alamofire.ParameterEncoding = .URL, additionalHeaders: [String: String]? = nil) -> Request {
-        if let headers = additionalHeaders {
-            sharedManager().session.configuration.HTTPAdditionalHeaders = headers
-        }
-        return sharedManager().request(method, URLString, parameters: parameters, encoding: encoding)
+//        if let headers = additionalHeaders, oldHeader = sharedManager().session.configuration.HTTPAdditionalHeaders as? [String: String] {
+//            var newHeaders = headers
+//            newHeaders.merge(oldHeader)
+//            sharedManager().session.configuration.HTTPAdditionalHeaders = newHeaders
+//        }
+        return sharedManager().request(method, URLString, parameters: parameters, encoding: encoding, headers: additionalHeaders)
     }
     
     class func get(URLString: URLStringConvertible, parameters: [String : AnyObject]? = nil, encoding: Alamofire.ParameterEncoding = .URL, additionalHeaders: [String: String]? = nil) -> Request {

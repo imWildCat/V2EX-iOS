@@ -61,7 +61,7 @@ class SessionService {
         
         if SessionStorage.sharedStorage.shouldRequestNewOnceCode() {
             self.requestNewSessionFormOnceCode { (error, _) in
-                
+            
                 if error != nil {
                     response?(error: error, isLoggedIn: false)
                     self.loginFailed()
@@ -90,6 +90,13 @@ class SessionService {
                     
                     // save
                     self.save(username: username, password: password)
+//                    NSUserDefaults.standardUserDefaults().synchronize()
+                    let cookies = (NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies as! [NSHTTPCookie]?) ?? [NSHTTPCookie]()
+                    
+                    for (_, cookie) in enumerate(cookies)
+                    {
+                        println(cookie)
+                    }
                     
                     response?(error: error, isLoggedIn: isLoggedIn)
                 } else {
@@ -98,7 +105,16 @@ class SessionService {
                     // delete username and password saved
                     self.clearUsernameAndPassword()
                     
-                    response?(error: error, isLoggedIn: isLoggedIn)
+                    let doc = TFHpple(HTMLObject: data)
+                    if let errorMessage = doc.searchFirst("//div[@class='box']//div[@class='message']")?.text() {
+                        var e = V2EXError.LoginUnknownProblem
+                        if errorMessage == "登录有点问题，请重试一次" {
+                            e = V2EXError.LoginProblem
+                        }
+                        response?(error: e.foundationError, isLoggedIn: isLoggedIn)
+                    } else {
+                        response?(error: error, isLoggedIn: isLoggedIn)
+                    }
                 }
         }
     }
@@ -260,7 +276,9 @@ class SessionService {
     private class func handleDailyRedeem(data: AnyObject?) -> Bool {
         var hasDailyRedeem = false
         let doc = TFHpple(HTMLObject: data)
-        if let notificationLink = doc.searchFirst("//div[@id='Rightbar']//a[text()='领取今日的登录奖励']") {
+//        let text = doc.searchFirst("//div[@id='Rightbar']")
+//        println(text?.raw)
+        if let notificationLink = doc.searchFirst("//div[@id='Rightbar']//a[@href='/mission/daily']") {
             hasDailyRedeem = true
         }
         return hasDailyRedeem

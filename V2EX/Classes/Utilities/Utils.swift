@@ -17,4 +17,8 @@ class Utils {
             ),
             dispatch_get_main_queue(), block)
     }
+    
+//    class func readsSessionCookieFromKeyChain() -> Bool {
+//        
+//    }
 }

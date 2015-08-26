@@ -21,6 +21,7 @@
 		5E3759B91A3C7640003DB82A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3759B81A3C7640003DB82A /* AppDelegate.swift */; };
 		5E38F3D61AD8D37500186E18 /* UserNotificationListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38F3D51AD8D37500186E18 /* UserNotificationListCellViewModel.swift */; };
 		5E38F3DF1AD90D5A00186E18 /* V2EXTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38F3DE1AD90D5A00186E18 /* V2EXTableViewController.swift */; };
+		5E472EA81B8D8C2E001AE2DD /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E472EA71B8D8C2E001AE2DD /* DictionaryExtension.swift */; };
 		5E4AA8681A3F032900AA2F3D /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4AA8671A3F032900AA2F3D /* Node.swift */; };
 		5E4AA86D1A3F0EA000AA2F3D /* TopicListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4AA86C1A3F0EA000AA2F3D /* TopicListCellViewModel.swift */; };
 		5E4C0CBF1B76F9C500306C16 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C0CBE1B76F9C500306C16 /* UserInfoTableViewCell.swift */; };
@@ -119,6 +120,7 @@
 		5E3759B81A3C7640003DB82A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E38F3D51AD8D37500186E18 /* UserNotificationListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationListCellViewModel.swift; sourceTree = "<group>"; };
 		5E38F3DE1AD90D5A00186E18 /* V2EXTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V2EXTableViewController.swift; sourceTree = "<group>"; };
+		5E472EA71B8D8C2E001AE2DD /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		5E4AA8671A3F032900AA2F3D /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		5E4AA86C1A3F0EA000AA2F3D /* TopicListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListCellViewModel.swift; sourceTree = "<group>"; };
 		5E4C0CBE1B76F9C500306C16 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				5E5F23C01A395DBD00D20FE9 /* Utils.swift */,
 				5EF398A41B7A31C20005D60B /* V2EXError.swift */,
 				5E8DEFBC1AC29BF20036D852 /* WebViewAction.swift */,
+				5E472EA71B8D8C2E001AE2DD /* DictionaryExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				5E83EAD81AB544B90008E877 /* TopicViewController.swift in Sources */,
 				5E5F23D11A395DBD00D20FE9 /* Utils.swift in Sources */,
 				5E8523D71ABD525200B7B8C4 /* UserService.swift in Sources */,
+				5E472EA81B8D8C2E001AE2DD /* DictionaryExtension.swift in Sources */,
 				5E84FDBD1AC857DF00F55D15 /* UserNotificationListCell.swift in Sources */,
 				5EA316911B7ED15500E57843 /* MemoryCache.swift in Sources */,
 				5E38F3D61AD8D37500186E18 /* UserNotificationListCellViewModel.swift in Sources */,

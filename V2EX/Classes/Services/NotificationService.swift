@@ -31,6 +31,7 @@ class NotificationService {
                 
                 // create a notification
                 var notificationType: Notification.NotificationType!
+                println("Action: \(action)")
                 switch action {
                 case "在":
                     notificationType = .Reply
@@ -38,7 +39,7 @@ class NotificationService {
                     notificationType = .Favorite
                 case "感谢了你发布的主题":
                     notificationType = .AppreciationForTopic
-                case "感谢了你在主题":
+                case "感谢了你在主题›":
                     notificationType = .AppreciationForReply
                 case "在创建主题":
                     notificationType = .AtInTopic

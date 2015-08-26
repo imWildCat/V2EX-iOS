@@ -11,6 +11,8 @@ import Foundation
 enum V2EXError: Printable {
     
     case AuthRequired
+    case LoginProblem
+    case LoginUnknownProblem
     
     static var domain: String {
         return "io.wildcat.V2EX"
@@ -20,6 +22,10 @@ enum V2EXError: Printable {
         switch self {
         case .AuthRequired:
             return 401
+        case .LoginProblem:
+            return 1002
+        case .LoginUnknownProblem:
+            return 1009
         }
     }
     
@@ -27,6 +33,10 @@ enum V2EXError: Printable {
         switch self {
         case .AuthRequired:
             return "需要登录"
+        case .LoginProblem:
+            return "登录有点问题，请重试一次"
+        case .LoginUnknownProblem:
+            return "未知登录问题，请重试"
         }
     }
     

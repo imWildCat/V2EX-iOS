@@ -128,9 +128,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var r: UIBackgroundFetchResult!
             
             if error == nil {
-                 r = UIBackgroundFetchResult.NoData
-                
-                if count > 0 && count > self?.getCachedUnreadNotificationCount() {
+                r = UIBackgroundFetchResult.NoData
+//                println(count)
+//                println(self?.getCachedUnreadNotificationCount())
+                if count > 0 && count > self?.getCachedUnreadNotificationCount() ?? 0 {
                     self?.sendUnreadNotificationCountAlert(count)
                     r = UIBackgroundFetchResult.NewData
                 }
@@ -149,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func sendUnreadNotificationCountAlert(count: Int) {
         let notification = UILocalNotification()
-        let currentTime = NSDate(timeIntervalSinceNow: 2.0)
+        let currentTime = NSDate(timeIntervalSinceNow: 1.0)
         notification.userInfo = ["type": "notification"]
         notification.fireDate = currentTime
         notification.alertBody = "您有 \(count) 条未读提醒"
@@ -162,7 +163,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func sendDailyRedeemAlert() {
         let notification = UILocalNotification()
-        let currentTime = NSDate(timeIntervalSinceNow: 1.0)
+        let currentTime = NSDate(timeIntervalSinceNow: 5.0)
         notification.userInfo = ["type": "daily_redeem"]
         notification.fireDate = currentTime
         notification.alertBody = "今日登录奖励已可以领取"
@@ -194,6 +195,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        println("applicationDidBecomeActive")
         setCachedUnreadNotificationCount(0)
         setIsDailyTaskNotified(false)
+        
+//        println(getCachedUnreadNotificationCount())
+//        println(getIsDailyTaskNotified())
     }
 
     func applicationWillTerminate(application: UIApplication) {
