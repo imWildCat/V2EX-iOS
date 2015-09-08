@@ -23,6 +23,7 @@ class UserNotificationViewController: V2EXTableViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        tableView.tableFooterView = UIView()
 //        tableView.separatorStyle = .None
         
         loadData()

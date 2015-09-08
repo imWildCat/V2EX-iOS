@@ -109,7 +109,7 @@ extension String {
         
         var action: WebViewAction = .None
         switch actionString {
-        case "show_node":
+        case "open_node":
             action = .OpenNode
         case "open_browser":
             action = .OpenBrowser

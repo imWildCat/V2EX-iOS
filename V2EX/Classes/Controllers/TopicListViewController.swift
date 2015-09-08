@@ -44,6 +44,8 @@ class TopicListViewController: UITableViewController {
             let button = UIBarButtonItem(image: image, style: .Plain, target: self, action: Selector("showCreateTopicVC"))
             self.navigationItem.rightBarButtonItem = button
         }
+        
+        tableView.tableFooterView = UIView()
     }
     
     func addLoadMoreDataFooter() {

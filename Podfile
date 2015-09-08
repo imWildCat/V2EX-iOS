@@ -34,6 +34,7 @@ inhibit_all_warnings!
     pod 'TUSafariActivity', '~> 1.0'
     pod 'RETableViewManager'
     pod 'JTSImageViewController'
+    pod 'SlackTextViewController'
 # end
 
 #target 'V2EXTests', :exclusive => true do

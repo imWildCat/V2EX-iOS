@@ -50,6 +50,8 @@ class NodeListViewController: UIViewController, UIWebViewDelegate {
         
         // TODO: use if let
         let url = request.URL
+        
+        println(url)
 
         if url?.scheme == "webview" {
             if let (action, params) = url?.URLString.parseWebViewAction() {

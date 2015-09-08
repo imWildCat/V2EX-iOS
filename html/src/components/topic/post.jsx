@@ -108,7 +108,7 @@ var Post = React.createClass({
             if (url.startsWith('/go/')) {
                 var nodeSlug = url.match(/\/go\/(\w+)/)[1];
                 if (nodeSlug != null) {
-                    $(this).attr('href', 'webview://show_node?slug=' + nodeSlug);
+                    $(this).attr('href', 'webview://open_node?slug=' + nodeSlug);
                     return;
                 }
             }
