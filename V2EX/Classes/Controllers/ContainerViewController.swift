@@ -13,7 +13,7 @@ private var sharedDiscoveryViewController: DiscoveryViewController?
 class ContainerViewController: UINavigationController {
     
     var discoveryViewController: UIViewController!
-    lazy var nodeListViewController: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("nodeListVC") as! UIViewController
+    lazy var nodeListViewController: NodeListCollectionViewController = self.storyboard!.instantiateViewControllerWithIdentifier("nodeListVC") as! NodeListCollectionViewController
     lazy var userViewController: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("userVC") as! UIViewController
     lazy var preferenceViewController: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("preferenceVC") as! UIViewController
     

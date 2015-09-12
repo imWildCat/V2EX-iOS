@@ -76,6 +76,10 @@
 		5EA63C681B08700A00431C96 /* node_list_bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C661B08700A00431C96 /* node_list_bundle.js */; };
 		5EA63C691B08700A00431C96 /* topic_bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C671B08700A00431C96 /* topic_bundle.js */; };
 		5EA63C6B1B08701500431C96 /* topic.html in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C6A1B08701500431C96 /* topic.html */; };
+		5EA86AF41BA4003000109D94 /* NodeListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA86AF31BA4003000109D94 /* NodeListCollectionViewController.swift */; };
+		5EA86AF61BA4021600109D94 /* NodeNameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA86AF51BA4021600109D94 /* NodeNameCollectionViewCell.swift */; };
+		5EA86AF81BA4022900109D94 /* NodeCategoryNameCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA86AF71BA4022900109D94 /* NodeCategoryNameCollectionReusableView.swift */; };
+		5EA86AFE1BA448BD00109D94 /* UIViewAppearance_Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA86AFD1BA448BD00109D94 /* UIViewAppearance_Swift.m */; };
 		5EC734361B2BE1EE0082D920 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */; };
 		5EC87D511ABC42E200AB071F /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */; };
 		5EC87D601ABC4DAD00AB071F /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */; };
@@ -174,6 +178,11 @@
 		5EA63C661B08700A00431C96 /* node_list_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node_list_bundle.js; sourceTree = "<group>"; };
 		5EA63C671B08700A00431C96 /* topic_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = topic_bundle.js; sourceTree = "<group>"; };
 		5EA63C6A1B08701500431C96 /* topic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic.html; sourceTree = "<group>"; };
+		5EA86AF31BA4003000109D94 /* NodeListCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeListCollectionViewController.swift; sourceTree = "<group>"; };
+		5EA86AF51BA4021600109D94 /* NodeNameCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeNameCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EA86AF71BA4022900109D94 /* NodeCategoryNameCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCategoryNameCollectionReusableView.swift; sourceTree = "<group>"; };
+		5EA86AFC1BA4489700109D94 /* UIViewAppearance_Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAppearance_Swift.h; sourceTree = "<group>"; };
+		5EA86AFD1BA448BD00109D94 /* UIViewAppearance_Swift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAppearance_Swift.m; sourceTree = "<group>"; };
 		5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 		5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
@@ -312,6 +321,7 @@
 				5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */,
 				5E4C0CC21B77381400306C16 /* PreferenceViewController.swift */,
 				5E29CF481B783AAE0071B54D /* PurchaseViewController.swift */,
+				5EA86AF31BA4003000109D94 /* NodeListCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -353,6 +363,8 @@
 				5EF398A41B7A31C20005D60B /* V2EXError.swift */,
 				5E8DEFBC1AC29BF20036D852 /* WebViewAction.swift */,
 				5E472EA71B8D8C2E001AE2DD /* DictionaryExtension.swift */,
+				5EA86AFC1BA4489700109D94 /* UIViewAppearance_Swift.h */,
+				5EA86AFD1BA448BD00109D94 /* UIViewAppearance_Swift.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -383,6 +395,8 @@
 				5E4C0CBE1B76F9C500306C16 /* UserInfoTableViewCell.swift */,
 				5E4C0CC01B77047D00306C16 /* UserIntroTableViewCell.swift */,
 				5E4E68951B81DE3A00A178C4 /* CustomActivity.swift */,
+				5EA86AF51BA4021600109D94 /* NodeNameCollectionViewCell.swift */,
+				5EA86AF71BA4022900109D94 /* NodeCategoryNameCollectionReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -602,6 +616,7 @@
 			files = (
 				5E5F23CA1A395DBD00D20FE9 /* RootViewController.swift in Sources */,
 				5E8523EC1ABD7B0200B7B8C4 /* UserTopicListViewController.swift in Sources */,
+				5EA86AF81BA4022900109D94 /* NodeCategoryNameCollectionReusableView.swift in Sources */,
 				5ED345DD1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */,
 				5E4C0CC31B77381400306C16 /* PreferenceViewController.swift in Sources */,
 				5E5F23CE1A395DBD00D20FE9 /* Topic.swift in Sources */,
@@ -646,12 +661,15 @@
 				5E7A0ED11A3D7BCB00C9251B /* BaseModel.swift in Sources */,
 				5E8523E61ABD5C2000B7B8C4 /* DateOperators.swift in Sources */,
 				5E5F23D21A395DBD00D20FE9 /* CatPaginatedScrollView.swift in Sources */,
+				5EA86AF41BA4003000109D94 /* NodeListCollectionViewController.swift in Sources */,
 				5E58D2DF1AB71913003058D6 /* TopicViewModel.swift in Sources */,
 				5E4E68961B81DE3A00A178C4 /* CustomActivity.swift in Sources */,
 				5E38F3DF1AD90D5A00186E18 /* V2EXTableViewController.swift in Sources */,
 				5E924B701B6BC25D00182F3F /* UserInfoView.swift in Sources */,
 				5E5F23CF1A395DBD00D20FE9 /* User.swift in Sources */,
+				5EA86AFE1BA448BD00109D94 /* UIViewAppearance_Swift.m in Sources */,
 				5E83EAD81AB544B90008E877 /* TopicViewController.swift in Sources */,
+				5EA86AF61BA4021600109D94 /* NodeNameCollectionViewCell.swift in Sources */,
 				5E5F23D11A395DBD00D20FE9 /* Utils.swift in Sources */,
 				5E8523D71ABD525200B7B8C4 /* UserService.swift in Sources */,
 				5E472EA81B8D8C2E001AE2DD /* DictionaryExtension.swift in Sources */,
