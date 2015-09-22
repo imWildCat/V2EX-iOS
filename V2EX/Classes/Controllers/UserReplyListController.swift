@@ -22,7 +22,7 @@ class UserReplyListController: UITableViewController {
         
         tableView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
         
-        loadData(shouldShowProgressView: true)
+        loadData(true)
     }
     
     func loadData(shouldShowProgressView: Bool = false) {
@@ -43,7 +43,7 @@ class UserReplyListController: UITableViewController {
                 self?.refreshControl?.endRefreshing()
                 
             } else {
-                self?.showError(.Networking)
+                self?.showError()
             }
         }
     }
@@ -72,7 +72,7 @@ class UserReplyListController: UITableViewController {
                 }
                 
             } else {
-                self?.showError(.Networking)
+                self?.showError()
             }
         }
     }
@@ -86,7 +86,7 @@ class UserReplyListController: UITableViewController {
             if identifier == "showTopicVC" {
                 let destinationViewController = segue.destinationViewController as! TopicViewController
                 
-                if let index = tableView.indexPathForSelectedRow()?.row {
+                if let index = tableView.indexPathForSelectedRow?.row {
                     let reply = replies[index]
                     destinationViewController.topicID = reply.relatedTopic?.id ?? 0
                 }

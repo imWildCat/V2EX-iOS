@@ -27,9 +27,9 @@ inhibit_all_warnings!
 	# pod 'GRMustache', '~> 7.3.1' # template engine
 	pod 'IQKeyboardManager', '~> 3.2.1'
 	pod 'SimpleKeychain'
-	pod 'Alamofire', '~> 1.3'
+	pod 'Alamofire'
     # pod 'SVPullToRefresh', :git => 'https://github.com/samvermette/SVPullToRefresh.git'
-    pod 'SwiftyJSON'
+    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode7'
     pod 'MJRefresh', '~> 2.4.7'
     pod 'TUSafariActivity', '~> 1.0'
     pod 'RETableViewManager'

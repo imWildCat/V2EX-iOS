@@ -39,7 +39,7 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
         
         NodeService.getAll { [weak self](error, nodes) in
             if error != nil {
-                self?.showError(.Networking)
+                self?.showError()
             } else {
                 self?.nodes = nodes
                 self?.tableView.reloadData()
@@ -74,11 +74,14 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
     // MARK: UISearchResultsUpdating
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        filteredNodes.removeAll(keepCapacity: false)
         
-        filterContentForSearchText(searchController.searchBar.text)
-        
-        self.tableView.reloadData()
+        if let text = searchController.searchBar.text {
+            filteredNodes.removeAll(keepCapacity: false)
+            
+            filterContentForSearchText(text)
+            
+            self.tableView.reloadData()
+        }
     }
     
     
@@ -94,7 +97,7 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
         
         var node: Node
         
@@ -115,7 +118,7 @@ class NodeSearchViewController: UITableViewController, UISearchResultsUpdating {
         if segue.identifier == "showTopicListVC" {
             let destinationViewController = segue.destinationViewController as! TopicListViewController
             
-            if let index = tableView.indexPathForSelectedRow()?.row {
+            if let index = tableView.indexPathForSelectedRow?.row {
             
                 var node: Node
                 if resultSearchController.active {

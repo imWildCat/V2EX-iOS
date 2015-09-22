@@ -11,7 +11,7 @@ import hpple
 
 class UserService {
     
-    class func getUserInfo(username: String, response: ((error: NSError?, user: User, topicsRelated: [Topic], repliesRelated: [Reply]) -> Void)? = nil) {
+    class func getUserInfo(username: String, response: ((error: ErrorType?, user: User, topicsRelated: [Topic], repliesRelated: [Reply]) -> Void)? = nil) {
         V2EXNetworking.get("member/" + username).response { (_, _, data, error) in
             let doc = TFHpple(HTMLObject: data)
             
@@ -49,7 +49,7 @@ class UserService {
 //            if let blockElement = doc.searchFirst("//input[@value='Block']") {
 //                
 //            } else
-            if let unblockElement = doc.searchFirst("//input[@value='Unblock']") {
+            if let _ = doc.searchFirst("//input[@value='Unblock']") {
                 user.isBlocked = true
             }
             

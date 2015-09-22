@@ -16,15 +16,15 @@ import Foundation
 
 // to avoid a type issue in Swift with NSUndefinedDateComponent being Uint
 let InvalidDateComponentInt = Int(NSDateComponentUndefined)
-let SummableCalendarUnits = [ NSCalendarUnit.CalendarUnitYear
-    , NSCalendarUnit.CalendarUnitMonth
-    , NSCalendarUnit.CalendarUnitDay
-    , NSCalendarUnit.CalendarUnitHour
-    , NSCalendarUnit.CalendarUnitMinute
-    , NSCalendarUnit.CalendarUnitSecond
-    , NSCalendarUnit.CalendarUnitNanosecond ]
+let SummableCalendarUnits = [ NSCalendarUnit.Year
+    , NSCalendarUnit.Month
+    , NSCalendarUnit.Day
+    , NSCalendarUnit.Hour
+    , NSCalendarUnit.Minute
+    , NSCalendarUnit.Second
+    , NSCalendarUnit.Nanosecond ]
 // OR all summable calendar units for bitmask usage
-let AllSummableCalendarUnits = SummableCalendarUnits.reduce(NSCalendarUnit.allZeros) { (all, unit) in return all | unit }
+let AllSummableCalendarUnits = SummableCalendarUnits.reduce(NSCalendarUnit()) { (all, unit) in return all.union(unit) }
 
 // MARK: Extension to the Int class to generate NSDateComponents from Int
 
@@ -41,7 +41,7 @@ extension Int {
     * @return a new `NSDateComponents` instance.
     */
     var year: NSDateComponents {
-        return components(.CalendarUnitYear, withValue: self)
+        return components(.Year, withValue: self)
     }
     /** Alias to `year`.
     *
@@ -54,7 +54,7 @@ extension Int {
     * @return a new `NSDateComponents` instance.
     */
     var month: NSDateComponents {
-        return components(.CalendarUnitMonth, withValue: self)
+        return components(.Month, withValue: self)
     }
     /** Alias to `month`.
     *
@@ -67,7 +67,7 @@ extension Int {
     * @return a new `NSDateComponents` instance.
     */
     var day: NSDateComponents {
-        return components(.CalendarUnitDay, withValue: self)
+        return components(.Day, withValue: self)
     }
     /** Alias to `day`.
     *
@@ -80,7 +80,7 @@ extension Int {
     * @return a new `NSDateComponents` instance.
     */
     var hour: NSDateComponents {
-        return components(.CalendarUnitHour, withValue: self)
+        return components(.Hour, withValue: self)
     }
     /** Alias to `hour`.
     *
@@ -93,7 +93,7 @@ extension Int {
     * @return a new `NSDateComponents` instance.
     */
     var minute: NSDateComponents {
-        return components(.CalendarUnitMinute, withValue: self)
+        return components(.Minute, withValue: self)
     }
     /** Alias to `minute`.
     *
@@ -106,7 +106,7 @@ extension Int {
     * @return a new `NSDateComponents` instance.
     */
     var second: NSDateComponents {
-        return components(.CalendarUnitSecond, withValue: self)
+        return components(.Second, withValue: self)
     }
     /** Alias to `second`.
     *
@@ -132,7 +132,7 @@ extension Int {
     * @return a new `NSDateComponents` instance.
     */
     var nanosecond: NSDateComponents {
-        return components(.CalendarUnitNanosecond, withValue: self)
+        return components(.Nanosecond, withValue: self)
     }
     /** Alias to `nanosecond`.
     *
@@ -263,7 +263,7 @@ func >= (letfDate: NSDate, rightDate: NSDate) -> Bool {
 */
 func + (date: NSDate, dateComponents: NSDateComponents) -> NSDate! {
     let calendar = NSCalendar.currentCalendar()
-    return calendar.dateByAddingComponents(dateComponents, toDate: date, options: NSCalendarOptions.allZeros)
+    return calendar.dateByAddingComponents(dateComponents, toDate: date, options: NSCalendarOptions())
 }
 
 /** Subsctracts a `NSDateComponents` from a `NSDate`.
@@ -272,7 +272,7 @@ func + (date: NSDate, dateComponents: NSDateComponents) -> NSDate! {
 */
 func - (date: NSDate, dateComponents: NSDateComponents) -> NSDate! {
     let calendar = NSCalendar.currentCalendar()
-    return calendar.dateByAddingComponents(-dateComponents, toDate: date, options: NSCalendarOptions.allZeros)
+    return calendar.dateByAddingComponents(-dateComponents, toDate: date, options: NSCalendarOptions())
 }
 
 // MARK: "light" comparison for NSDateComponents
@@ -325,7 +325,7 @@ class DateDelta : NSDateComponents {
         }
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fromDate = aDecoder.decodeObjectForKey("fromDate") as! NSDate
         toDate = aDecoder.decodeObjectForKey("toDate") as! NSDate
         
@@ -367,7 +367,7 @@ func - (leftDate: NSDate, rightDate: NSDate) -> DateDelta! {
 private func sumDeltaToComponents(delta: DateDelta, components: NSDateComponents) -> (NSDate, NSDate)? {
     // compute the date by adding components to delta
     let calendar = NSCalendar.currentCalendar()
-    let rightDate = calendar.dateByAddingComponents(components, toDate: delta.fromDate, options: NSCalendarOptions.allZeros)
+    let rightDate = calendar.dateByAddingComponents(components, toDate: delta.fromDate, options: NSCalendarOptions())
     
     if let theRightDate = rightDate {
         let leftDate = delta.toDate
@@ -378,7 +378,7 @@ private func sumDeltaToComponents(delta: DateDelta, components: NSDateComponents
 }
 
 private func applyDeltaToComponents(delta: DateDelta, components: NSDateComponents, op: (NSDate, NSDate) -> Bool) -> Bool {
-    if let sum = sumDeltaToComponents(delta, components) {
+    if let sum = sumDeltaToComponents(delta, components: components) {
         let (left, right) = sum
         return op(left, right)
     } else {
@@ -394,7 +394,7 @@ private func applyDeltaToComponents(delta: DateDelta, components: NSDateComponen
 * @return true if fromDate+components is the same as toDate, false otherwise.
 */
 func ==(delta: DateDelta, components: NSDateComponents) -> Bool {
-    return applyDeltaToComponents(delta, components, ==)
+    return applyDeltaToComponents(delta, components: components, op: ==)
 }
 func ==(components: NSDateComponents, delta: DateDelta) -> Bool {
     return delta == components
@@ -407,7 +407,7 @@ func ==(components: NSDateComponents, delta: DateDelta) -> Bool {
 * @return true if fromDate+components is less or equal to as toDate, false otherwise.
 */
 func <=(delta: DateDelta, components: NSDateComponents) -> Bool {
-    return applyDeltaToComponents(delta, components, <=)
+    return applyDeltaToComponents(delta, components: components, op: <=)
 }
 func <=(components: NSDateComponents, delta: DateDelta) -> Bool {
     return delta >= components
@@ -421,7 +421,7 @@ func <=(components: NSDateComponents, delta: DateDelta) -> Bool {
 * @return true if fromDate+components is greater or equal to as toDate, false otherwise.
 */
 func >=(delta: DateDelta, components: NSDateComponents) -> Bool {
-    return applyDeltaToComponents(delta, components, >=)
+    return applyDeltaToComponents(delta, components: components, op: >=)
 }
 func >=(components: NSDateComponents, delta: DateDelta) -> Bool {
     return delta <= components
@@ -434,7 +434,7 @@ func >=(components: NSDateComponents, delta: DateDelta) -> Bool {
 * @return true if fromDate+components is less to as toDate, false otherwise.
 */
 func <(delta: DateDelta, components: NSDateComponents) -> Bool {
-    return applyDeltaToComponents(delta, components, <)
+    return applyDeltaToComponents(delta, components: components, op: <)
 }
 func <(components: NSDateComponents, delta: DateDelta) -> Bool {
     return delta > components
@@ -447,7 +447,7 @@ func <(components: NSDateComponents, delta: DateDelta) -> Bool {
 * @return true if fromDate+components is greater to as toDate, false otherwise.
 */
 func >(delta: DateDelta, components: NSDateComponents) -> Bool {
-    return applyDeltaToComponents(delta, components, >)
+    return applyDeltaToComponents(delta, components: components, op: >)
 }
 func >(components: NSDateComponents, delta: DateDelta) -> Bool {
     return delta < components
@@ -459,7 +459,7 @@ extension NSDateComponents {
     var ago: NSDate! {
         let calendar = NSCalendar.currentCalendar()
         let now = NSDate()
-        return calendar.dateByAddingComponents(-self, toDate: now, options: NSCalendarOptions.allZeros)
+        return calendar.dateByAddingComponents(-self, toDate: now, options: NSCalendarOptions())
     }
 }
 

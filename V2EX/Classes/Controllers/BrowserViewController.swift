@@ -15,9 +15,9 @@ class BrowserViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView
     var URL = ""
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.webView = WKWebView(frame: CGRectZero)
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     
@@ -26,7 +26,8 @@ class BrowserViewController: UIViewController, WKNavigationDelegate {
         
         // Do any additional setup after loading the view.
         view.addSubview(webView)
-        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
+//        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        webView.translatesAutoresizingMaskIntoConstraints = false
         let widthConstraint = NSLayoutConstraint(item: webView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: 0)
         view.addConstraint(widthConstraint)
         let heightConstraint = NSLayoutConstraint(item: webView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 1, constant: 0)

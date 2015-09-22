@@ -21,7 +21,7 @@ class UserTopicListViewController: UITableViewController {
         
         tableView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
         
-        loadData(shouldShowProgressView: true)
+        loadData(true)
     }
     
     @IBAction func refreshControlValueDidChange(sender: UIRefreshControl) {
@@ -46,7 +46,7 @@ class UserTopicListViewController: UITableViewController {
                     self?.addLoadMoreDataFooter()
                 }
             } else {
-                self?.showError(.Networking)
+                self?.showError()
             }
         }
     }
@@ -71,7 +71,7 @@ class UserTopicListViewController: UITableViewController {
                     self?.tableView.footer.noticeNoMoreData()
                 }
             } else {
-                self?.showError(.Networking)
+                self?.showError()
             }
         }
     }
@@ -104,7 +104,7 @@ class UserTopicListViewController: UITableViewController {
             if identifier == "showTopicVC" {
                 let destinationViewController = segue.destinationViewController as! TopicViewController
                 
-                if let index = tableView.indexPathForSelectedRow()?.row {
+                if let index = tableView.indexPathForSelectedRow?.row {
                     let topic = topics[index]
                     destinationViewController.topicID = topic.id
                 }

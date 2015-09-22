@@ -45,7 +45,7 @@ struct Reply {
         let elements = doc.searchWithXPathQuery("//div[@id='Main']/div[4]/div[@id and @class='cell' or @class='inner']") as! [TFHppleElement]
         
         for element in elements {
-            let replyId = (element["id"] as! String?)?.match("r_(\\d{1,10})")?[1]
+            let replyId = (element["id"] as! String?)?.match("r_(\\d{1,10})")?[1] ?? ""
             let content = element.searchFirst("//div[@class='reply_content']")?.raw
             
             let authorAvatarURI = element.searchFirst("//td[1]/img")?.attr("src")
@@ -54,16 +54,16 @@ struct Reply {
             
             let time = element.searchFirst("//td[@width='auto']/span[@class='fade small']")?.text()
             
-            let floor = element.searchFirst("//td[@width='auto']/div[@class='fr']/span[@class='no']")?.text().toInt()
+            let floor = Int(element.searchFirst("//td[@width='auto']/div[@class='fr']/span[@class='no']")?.text() ?? "")
             
-            let appreciationsCount = element.searchFirst("//td[@width='auto']/span[@class='small fade']")?.text()?.stringByReplacingOccurrencesOfString("♥ ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil).toInt()
+            let appreciationsCount = Int(element.searchFirst("//td[@width='auto']/span[@class='small fade']")?.text()?.stringByReplacingOccurrencesOfString("♥ ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil) ?? "")
             
-            var reply = Reply(id: replyId?.toInt(), author: author, time: time, appreciationsCount: appreciationsCount, floor: floor, content: content)
+            var reply = Reply(id: Int(replyId), author: author, time: time, appreciationsCount: appreciationsCount, floor: floor, content: content)
             
             if let thankElement = element.searchFirst("//div[@class='thank_area']//a[text()='感谢回复者']") {
                 let token = thankElement.attr("onclick")?.match("thankReply\\(\\d+, '(\\w+)'\\)")?[1]
                 reply.appreciatingReplyToken = token
-            } else if let alreadyThankElement = element.searchFirst("//div[@class='thank_area thanked']") {
+            } else if let _ = element.searchFirst("//div[@class='thank_area thanked']") {
                 reply.isAppreciated = true
             }
             

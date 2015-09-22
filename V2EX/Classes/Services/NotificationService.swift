@@ -11,7 +11,7 @@ import hpple
 
 class NotificationService {
     
-    class func get(page: Int = 1, response: ((error: NSError?, notifications: [Notification]) -> Void)? = nil) {
+    class func get(page: Int = 1, response: ((error: ErrorType?, notifications: [Notification]) -> Void)? = nil) {
         V2EXNetworking.get("notifications", parameters: ["p": page]).response {
             (_, _, data, error) in
             let doc = TFHpple(HTMLObject: data)
@@ -31,7 +31,7 @@ class NotificationService {
                 
                 // create a notification
                 var notificationType: Notification.NotificationType!
-                println("Action: \(action)")
+                print("Action: \(action)")
                 switch action {
                 case "在":
                     notificationType = .Reply

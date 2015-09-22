@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum V2EXError: Printable {
+enum V2EXError: CustomStringConvertible {
     
     case AuthRequired
     case LoginProblem

@@ -55,9 +55,9 @@ class UserNotificationViewController: V2EXTableViewController {
             showProgressView()
             addLoadMoreDataFooter()
         }
-        NotificationService.get(page: page) { [weak self] (error, notifications) in
+        NotificationService.get(page) { [weak self] (error, notifications) in
             if error != nil {
-                self?.showError(.Networking)
+                self?.showError()
             } else {
                 self?.notifications += notifications
                 self?.generateCellViewModels()
@@ -73,9 +73,9 @@ class UserNotificationViewController: V2EXTableViewController {
     func loadMoreData() {
         page += 1
 
-        NotificationService.get(page: page) { [weak self] (error, notifications) in
+        NotificationService.get(page) { [weak self] (error, notifications) in
             if error != nil {
-                self?.showError(.Networking)
+                self?.showError()
             } else {
                 self?.notifications += notifications
                 self?.generateCellViewModels()
@@ -124,8 +124,8 @@ class UserNotificationViewController: V2EXTableViewController {
         if segue.identifier == "showTopicVC" {
             let destinationViewController = segue.destinationViewController as! TopicViewController
             
-            if let index = tableView.indexPathForSelectedRow()?.row {
-                println(index)
+            if let index = tableView.indexPathForSelectedRow?.row {
+                print(index)
                 let notification = notifications[index]
                 destinationViewController.topicID = notification.relatedTopic.id
             }

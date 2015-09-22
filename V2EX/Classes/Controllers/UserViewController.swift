@@ -142,7 +142,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         showUserLoginVC()
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if username == nil {
             showError(status: "未知用户")
             return false
@@ -160,7 +160,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let userReplyVC = segue.destinationViewController as! UserReplyListController
                 userReplyVC.username = uname
             default:
-                println("Do nothing prepareForSegue: \(identifier)")
+                print("Do nothing prepareForSegue: \(identifier)", terminator: "")
             }
         }
     }
@@ -171,7 +171,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         let type = typeOfRows[index]
         switch type {
         case .DailyRedeem:
-            let dailyRedeemCell = tableView.dequeueReusableCellWithIdentifier("dailyRedeemCell", forIndexPath: indexPath) as! UITableViewCell
+            let dailyRedeemCell = tableView.dequeueReusableCellWithIdentifier("dailyRedeemCell", forIndexPath: indexPath) 
             return dailyRedeemCell
         case .Info:
             let infoCell = tableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as! UserInfoTableViewCell
@@ -182,16 +182,16 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             removeCellSeparatorAndSelectionStyle(infoCell)
             return infoCell
         case .Notification:
-            let cell = tableView.dequeueReusableCellWithIdentifier("notificationCell", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("notificationCell", forIndexPath: indexPath) 
             return cell
         case .Favorite:
-            let cell = tableView.dequeueReusableCellWithIdentifier("favoriteCell", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("favoriteCell", forIndexPath: indexPath) 
             return cell
         case .Topic:
-            let cell = tableView.dequeueReusableCellWithIdentifier("topicCell", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("topicCell", forIndexPath: indexPath) 
             return cell
         case .Reply:
-            let cell = tableView.dequeueReusableCellWithIdentifier("replyCell", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("replyCell", forIndexPath: indexPath) 
             return cell
         case .Introduction:
             let introCell = tableView.dequeueReusableCellWithIdentifier("introCell", forIndexPath: indexPath) as! UserIntroTableViewCell

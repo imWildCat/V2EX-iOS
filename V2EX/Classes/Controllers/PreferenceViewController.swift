@@ -41,7 +41,7 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
     func setUpSections() {
         section1 = RETableViewSection()
         
-        let imageItem = RERadioItem(title: "图片显示", value: "全部自动加载") { [unowned self, section1](item) -> Void in
+        _ = RERadioItem(title: "图片显示", value: "全部自动加载") { [unowned self, section1](item) -> Void in
             item.deselectRowAnimated(true)
             
             //            let options = ["全部自动加载", "Wi-Fi 下自动加载", "不加载"] as NSArray
@@ -73,7 +73,7 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
             NSUserDefaults.standardUserDefaults().synchronize()
         }
         
-        let purchaseItem = RETableViewItem(title: "购买完整版", accessoryType: .DisclosureIndicator) { [unowned self] (selectedItem) -> Void in
+        _ = RETableViewItem(title: "购买完整版", accessoryType: .DisclosureIndicator) { [unowned self] (selectedItem) -> Void in
             selectedItem.reloadRowWithAnimation(UITableViewRowAnimation.None)
             self.showPurchaseVC()
         }

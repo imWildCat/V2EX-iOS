@@ -9,7 +9,7 @@
 import Foundation
 import hpple
 
-class Topic: Printable {
+class Topic: CustomStringConvertible {
     
     var id: Int
     var title: String
@@ -33,9 +33,9 @@ class Topic: Printable {
     var isNew: Bool = false
     
     init(id: String?, title: String?, node: Node?, author: User?, replyCount: String? = nil, createdAt: String? = nil, content: String? = nil, appreciationCount: Int = 0, favoriteCount: Int = 0) {
-        self.id = id?.toInt() ?? 0
+        self.id = Int(id ?? "") ?? 0
         self.title = title ?? "[未知标题]"
-        self.replyCount = replyCount?.toInt() ?? 0
+        self.replyCount = Int(replyCount ?? "") ?? 0
         self.author = author ?? nil
         self.createdAt = createdAt ?? ""
         self.node = node ?? nil
@@ -173,8 +173,8 @@ class Topic: Printable {
         
         let topicOtherInfo = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='topic_buttons']/div")?.text()
         // TODO: implement it when implement login
-        let appreciationCount = topicOtherInfo?.match("(\\d+) 人感谢")?[1].toInt() ?? 0
-        let favCount = topicOtherInfo?.match("(\\d+) 人收藏")?[1].toInt() ?? 0
+        let appreciationCount = Int(topicOtherInfo?.match("(\\d+) 人感谢")?[1] ?? "") ?? 0
+        let favCount = Int(topicOtherInfo?.match("(\\d+) 人收藏")?[1] ?? "") ?? 0
         
         return Topic(id: topicId, title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), replyCount: replyCount, createdAt: topicCreatedAt, content: topicContent, appreciationCount: appreciationCount, favoriteCount: favCount)
     }

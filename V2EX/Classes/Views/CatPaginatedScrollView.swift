@@ -53,7 +53,7 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
         setUp()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUp()
     }
@@ -63,7 +63,7 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
         
-        round(contentOffset.x / (frame.size.width / 2))
+//        round(contentOffset.x / (frame.size.width / 2))
         
 //        addGestureRecognizer(tapGestureRecognizer)
         
@@ -77,7 +77,7 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
 
     func addPage(viewController: UIViewController) {
         let pageView = viewController.view
-        pageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        pageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(pageView)
         
         let topConstraint = NSLayoutConstraint(item: pageView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)

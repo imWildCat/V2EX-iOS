@@ -24,13 +24,13 @@ class NodeListViewController: UIViewController, UIWebViewDelegate {
         
 //        var data =  NSDictionary(object: cats, forKey: "cats")
 //        var data = ["cats" : cats]
-        var jsonObj = JSON(cats)
+        let jsonObj = JSON(cats)
         
-        println(jsonObj.description)
+        print(jsonObj.description)
         
         let bundle = NSBundle.mainBundle()
         let templatePath = bundle.pathForResource("node_list", ofType: "html")
-        let templateHTML =  String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding, error: nil) ?? ""
+        let templateHTML =  (try? String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding)) ?? ""
 //
 //        let template = Template(string: templateHTML, error: nil)
         
@@ -51,7 +51,7 @@ class NodeListViewController: UIViewController, UIWebViewDelegate {
         // TODO: use if let
         let url = request.URL
         
-        println(url)
+        print(url)
 
         if url?.scheme == "webview" {
             if let (action, params) = url?.URLString.parseWebViewAction() {

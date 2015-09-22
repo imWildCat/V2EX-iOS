@@ -22,7 +22,7 @@ import hpple
 //}
 
 class TopicSerivce {
-    class func getList(#tabSlug: String, response: ((error: NSError?, topics: [Topic]) -> Void)?) {
+    class func getList(tabSlug tabSlug: String, response: ((error: ErrorType?, topics: [Topic]) -> Void)?) {
 
         V2EXNetworking.get("", parameters: ["tab": tabSlug]).response { (_, _, data, error) in
             
@@ -32,7 +32,7 @@ class TopicSerivce {
         }
     }
     
-    class func getList(#nodeSlug: String, page: Int = 1, response: ((error: NSError?, topics: [Topic], nodeName: String?) -> Void)?) {
+    class func getList(nodeSlug nodeSlug: String, page: Int = 1, response: ((error: ErrorType?, topics: [Topic], nodeName: String?) -> Void)?) {
         
         V2EXNetworking.get("go/\(nodeSlug)?p=\(page)").response { (httpRequest, httpResponse, data, error) in
             
@@ -51,7 +51,7 @@ class TopicSerivce {
         }
     }
     
-    class func singleTopic(id: Int, page: Int? = nil, response: ((error: NSError?, topic: Topic, replies: [Reply], currentPage: Int, totalPage: Int?) -> Void)?) {
+    class func singleTopic(id: Int, page: Int? = nil, response: ((error: ErrorType?, topic: Topic, replies: [Reply], currentPage: Int, totalPage: Int?) -> Void)?) {
         
         let url: String = {
             if let p = page {
@@ -74,7 +74,7 @@ class TopicSerivce {
             if let reportJS = doc.searchFirst("//a[text()='报告这个主题']")?.attr("onclick") {
                 let reportLink = reportJS.match("(report/topic/\\d+\\?t=\\d+)")?[1]
                 topic.reportLink = reportLink
-            } else if let hasBeenReported = doc.searchFirst("//span[text()='你已对本主题进行了报告']") {
+            } else if let _ = doc.searchFirst("//span[text()='你已对本主题进行了报告']") {
                 topic.isReported = true
             }
             
@@ -90,7 +90,7 @@ class TopicSerivce {
             if let appreciationString = doc.searchFirst("//div[@class='topic_buttons']//a[text()='感谢']")?.attr("onclick") {
                 let token = appreciationString.match("thankTopic\\(\\d+, '(\\w+)'\\)")?[1]
                 topic.appreciateToken = token
-            } else if let hasBeenAppreciated = doc.searchFirst("//div[@class='topic_buttons']//span[text()='感谢已发送']") {
+            } else if let _ = doc.searchFirst("//div[@class='topic_buttons']//span[text()='感谢已发送']") {
                 topic.isAppreciated = true
             }
             
@@ -98,10 +98,10 @@ class TopicSerivce {
             var totalPage: Int?
             if let currentPageElement = doc.searchFirst("//span[@class='page_current']") {
                 if page == nil {
-                    totalPage = currentPageElement.text().toInt()
+                    totalPage = Int(currentPageElement.text())
                     currentPage = totalPage ?? 1
                 } else {
-                    currentPage = currentPageElement.text().toInt() ?? 1
+                    currentPage = Int(currentPageElement.text()) ?? 1
                 }
                 
             }
@@ -111,7 +111,7 @@ class TopicSerivce {
         
     }
     
-    class func topicListOf(#user: String, page: UInt = 1, reponse: ((error: NSError?, topics: [Topic]) -> Void)?) {
+    class func topicListOf(user user: String, page: UInt = 1, reponse: ((error: ErrorType?, topics: [Topic]) -> Void)?) {
         
         V2EXNetworking.get("member/" + user + "/topics", parameters: ["p": page]).response { (_, _, data, error) in
             let doc = TFHpple(HTMLObject: data)
@@ -138,7 +138,7 @@ class TopicSerivce {
         }
     }
     
-    class func replyListOf(#user: String, page: Int = 1, response: ((error: NSError?, replies: [Reply], hasNextPage: Bool) -> Void)?) {
+    class func replyListOf(user user: String, page: Int = 1, response: ((error: ErrorType?, replies: [Reply], hasNextPage: Bool) -> Void)?) {
         
         V2EXNetworking.get("member/" + user + "/replies", parameters: ["p": page]).response { (_, _, data, error) in
             let doc = TFHpple(HTMLObject: data)
@@ -167,7 +167,7 @@ class TopicSerivce {
             var replies = [Reply]()
 
             
-            for (index, contentElement) in enumerate(contentElements)
+            for (index, contentElement) in contentElements.enumerate()
             {
                 if index < info.count {
                     let i = info[index]
@@ -182,7 +182,7 @@ class TopicSerivce {
             }
             
             var hasNextPage = false
-            if let nextPageButton = doc.searchFirst("//input[@value='下一页 ›']") {
+            if let _ = doc.searchFirst("//input[@value='下一页 ›']") {
                 hasNextPage = true
             }
             
@@ -190,7 +190,7 @@ class TopicSerivce {
         }
     }
     
-    class func favoriteTopics(page: Int = 1, response: ((error: NSError?, topics: [Topic], totalCount: Int) -> Void)?) {
+    class func favoriteTopics(page: Int = 1, response: ((error: ErrorType?, topics: [Topic], totalCount: Int) -> Void)?) {
         V2EXNetworking.get("my/topics").response { (_, _, data, error) in
             var topics = [Topic]()
             var favCount = 0
@@ -198,7 +198,7 @@ class TopicSerivce {
             if error == nil {
                 let doc = TFHpple(HTMLObject: data)
                 
-                favCount = doc.searchFirst("//div[@id='Rightbar']//table[2]//span[@class='bigger'][2]")?.text().toInt() ?? 0
+                favCount = Int(doc.searchFirst("//div[@id='Rightbar']//table[2]//span[@class='bigger'][2]")?.text() ?? "") ?? 0
                 
                 topics = Topic.listFromTab(data)
             }
@@ -207,7 +207,7 @@ class TopicSerivce {
         }
     }
     
-    class func createTopic(#onceCode: String, nodeSlug: String, title: String, content: String, response: ((error: NSError?, topic: Topic?, problemMessage: String?) -> Void)?) {
+    class func createTopic(onceCode onceCode: String, nodeSlug: String, title: String, content: String, response: ((error: ErrorType?, topic: Topic?, problemMessage: String?) -> Void)?) {
         V2EXNetworking.post("new/\(nodeSlug)", parameters: ["once" : onceCode, "title": title, "content": content]).response { (_, httpResponse, data, error) in
             
             var topic: Topic?
@@ -253,7 +253,7 @@ class TopicSerivce {
         }
     }
     
-    class func replyTopic(#onceCode: String, topicID: Int, content: String, response: ((error: NSError?, problemMessage: String?) -> Void)?) {
+    class func replyTopic(onceCode onceCode: String, topicID: Int, content: String, response: ((error: ErrorType?, problemMessage: String?) -> Void)?) {
         V2EXNetworking.post("t/\(topicID)", parameters: [
                 "content": content,
                 "once": onceCode

@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class NodeService {
     
-    static func getAll(response: ((error: NSError?, nodes: [Node]) -> Void)? = nil) {
+    static func getAll(response: ((error: ErrorType?, nodes: [Node]) -> Void)? = nil) {
         V2EXNetworking.get("api/nodes/all.json").response { (_, _, data, error) in
             
             var nodes = [Node]()
@@ -28,8 +28,8 @@ class NodeService {
                 
                 response?(error: error, nodes: nodes)
             } else {
-                let err = NSError()
-                response?(error: error, nodes: nodes)
+                
+                response?(error: nil, nodes: nodes)
             }
             
         }

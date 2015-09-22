@@ -35,8 +35,8 @@ struct User {
         self.github = github
         self.createdAt = createdAt
         
-        self.liveness = liveness?.toInt()
-        self.id = id?.toInt()
+        self.liveness = Int(liveness ?? "")
+        self.id = Int(id ?? "")
         self.company = company
         self.introduction = introduction
     }

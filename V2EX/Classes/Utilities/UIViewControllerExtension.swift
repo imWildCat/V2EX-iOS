@@ -88,7 +88,7 @@ extension UIViewController {
     }
     
     private func checkLogin() -> Bool {
-        println( SessionStorage.sharedStorage.isLoggedIn)
+        print( SessionStorage.sharedStorage.isLoggedIn, terminator: "")
         if SessionStorage.sharedStorage.isLoggedIn == true {
             return true
         } else {
@@ -107,7 +107,7 @@ extension UIViewController {
         KVNProgress.dismiss()
     }
     
-    func showSuccess(#status: String, completion: (() -> Void)? = nil) {
+    func showSuccess(status status: String, completion: (() -> Void)? = nil) {
         KVNProgress.showSuccessWithStatus(status, completion: completion)
     }
     
@@ -115,23 +115,25 @@ extension UIViewController {
         KVNProgress.showSuccess()
     }
     
-    func showError(#status: String, completion: (() -> Void)? = nil) {
+    func showError(status status: String, completion: (() -> Void)? = nil) {
         KVNProgress.showErrorWithStatus(status, completion: completion)
     }
     
-    func showError(error: NSError?) {
-        if let e = error {
-            if e.domain == V2EXError.domain, let userInfo = e.userInfo as? [String: String], description = userInfo[NSLocalizedDescriptionKey] {
-                if e.code == 401 {
-                    showLoginAlert()
-                    return
-                }
-                showError(status: description)
-                return
-            } else {
-                showError(status: "未知错误")
-            }
-            showError(.Networking)
+    func showError(error: ErrorType?) {
+        if let _ = error {
+            showError(status: "未知错误")
+            
+//            if e.domain == V2EXError.domain, let userInfo = e.userInfo as? [String: String], description = userInfo[NSLocalizedDescriptionKey] {
+//                if e.code == 401 {
+//                    showLoginAlert()
+//                    return
+//                }
+//                showError(status: description)
+//                return
+//            } else {
+//                showError(status: "未知错误")
+//            }
+//            showError(.Networking)
         }
     }
     
@@ -145,14 +147,12 @@ extension UIViewController {
         }
     }
     
-    enum ErrorType {
-        case Networking
-    }
+    
     
     func showError(type: ErrorType) {
-        if type == ErrorType.Networking {
+//        if type == ErrorType.Networking {
             showError(status: "网络错误，加载失败")
-        }
+//        }
     }
     
     func showProgress(progress: Float, status: String) {

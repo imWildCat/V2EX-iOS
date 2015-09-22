@@ -47,8 +47,8 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil);
         
         // Upload image button
-        let canceButtonlImage = UIImage(named: "close_icon")
-        let cancelButton = UIBarButtonItem(image: canceButtonlImage, style: .Plain, target: self, action: Selector("close"))
+//        let canceButtonlImage = UIImage(named: "close_icon")
+//        let cancelButton = UIBarButtonItem(image: canceButtonlImage, style: .Plain, target: self, action: Selector("close"))
 //        navigationItem.addRi
         
         // Load cached reply
@@ -82,8 +82,8 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
     
     func keyboardWillShow(notification: NSNotification) {
         var info = notification.userInfo!
-        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        println("will show")
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        print("will show")
         // FIXME: will show called twice
         UIView.animateWithDuration(0.3, animations: { [unowned self] in
             self.contentTextViewBottomConstraint.constant = keyboardFrame.size.height + 10
@@ -150,7 +150,7 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
     
     
     // MARK: UIImagePickerControllerDelegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         picker.dismissViewControllerAnimated(true, completion: nil)
 
@@ -162,12 +162,12 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
                     self?.updateProgress(progress)
                 }, responseClosure: { [weak self] (error, problemMessage, imageURL) in
                     if error != nil {
-                        self?.showError(.Networking)
+                        self?.showError()
                     } else if let pMessage = problemMessage {
                         self?.showError(status: pMessage)
                     } else if let imageLink = imageURL {
                         self?.showSuccess(status: "图片上传成功")
-                        println("imageLink: \(imageLink)")
+                        print("imageLink: \(imageLink)")
                         let orginalText = self?.contentTextView.text ?? ""
                         let newContent = orginalText + "\n\(imageLink)"
                         self?.contentTextView.text = newContent
@@ -195,7 +195,7 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
         TopicSerivce.replyTopic(onceCode: onceCode, topicID: topicID, content: contentTextView.text) { [weak self] (error, problemMessage) -> Void in
             self?.hideProgressView()
             if error != nil {
-                self?.showError(.Networking)
+                self?.showError()
             } else if problemMessage != nil {
                 self?.showError(status: problemMessage!)
             } else {

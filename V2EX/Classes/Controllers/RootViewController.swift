@@ -21,7 +21,7 @@ class RootViewController: UIViewController, RNFrostedSidebarDelegate {
     
     class func displaySideMenu(animated: Bool = true) {
         let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! RootViewController
-        rootViewController.showSideMenu(animated: true)
+        rootViewController.showSideMenu(true)
     }
     
     // TODO: Implement side menu with fixed position for iPad or iPhone landscape

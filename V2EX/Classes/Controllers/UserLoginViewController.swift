@@ -55,7 +55,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         
         showProgressView()
         
-        SessionService.performLogin(usernameTextField.text, password: passwordTextField.text) { [weak self] (error, isLoggedIn) -> Void in
+        SessionService.performLogin(usernameTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] (error, isLoggedIn) -> Void in
             
             if isLoggedIn {
                 self?.showSuccess(status: "登录成功") {

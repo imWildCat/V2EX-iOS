@@ -60,7 +60,7 @@ class NodeListCollectionViewController: UICollectionViewController {
     private func loadNodeData() {
         NodeService.getAll { [weak self] (error, nodes) in
             if error != nil {
-                self?.showError(.Networking)
+                self?.showError()
             } else {
                 self?.allNodes = nodes
                 self?.hideProgressView()
@@ -96,8 +96,8 @@ class NodeListCollectionViewController: UICollectionViewController {
     
 }
 
-
-extension NodeListCollectionViewController: UICollectionViewDataSource {
+// MARK: UICollectionViewDataSource
+extension NodeListCollectionViewController {
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         if searchBarActive {
@@ -122,7 +122,7 @@ extension NodeListCollectionViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseCellIdentifier, forIndexPath: indexPath) as! NodeNameCollectionViewCell
         
         if searchBarActive {
-            println("\(filteredNodes.count) - \(indexPath.row)")
+            print("\(filteredNodes.count) - \(indexPath.row)")
             cell.nodeNameLabel.text = filteredNodes[indexPath.row].name
         } else {
             cell.nodeNameLabel.text = itemNameForIndexPath(indexPath)
@@ -155,7 +155,8 @@ extension NodeListCollectionViewController: UICollectionViewDataSource {
     }
 }
 
-extension NodeListCollectionViewController: UICollectionViewDelegateFlowLayout {
+// MARK: UICollectionViewDelegateFlowLayout
+extension NodeListCollectionViewController {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         var name: NSString!
@@ -166,8 +167,8 @@ extension NodeListCollectionViewController: UICollectionViewDelegateFlowLayout {
         }
         
         let attributes = [
-            NSFontAttributeName as NSString: UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-            ] as [NSObject: AnyObject]
+            NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 16.0)!
+            ] as [String: AnyObject]
         var size = name.sizeWithAttributes(attributes)
         size.width += 12
         size.height += 6
@@ -186,7 +187,8 @@ extension NodeListCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension NodeListCollectionViewController: UICollectionViewDelegate {
+// MARK: UICollectionViewDelegate
+extension NodeListCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var slug: String!
@@ -224,14 +226,14 @@ extension NodeListCollectionViewController: UISearchBarDelegate {
     }
     
     private func addObservers() {
-        collectionView?.addObserver(self, forKeyPath: "contentOffset", options: NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Old, context: nil)
+        collectionView?.addObserver(self, forKeyPath: "contentOffset", options: [NSKeyValueObservingOptions.New, NSKeyValueObservingOptions.Old], context: nil)
     }
     
     private func removeObservers() {
         collectionView?.removeObserver(self, forKeyPath: "contentOffset", context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if let collectionView = object as? UICollectionView where keyPath == "contentOffset" {
             if let sb = searchBar {
                 let x = sb.frame.origin.x

@@ -79,13 +79,13 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
     }
     
     // MARK: UIPageViewControllerDelegate
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if !completed {
             return
         }
         
-        let vc = pageViewController.viewControllers[0] as! TopicListViewController
-        let index = find(topicListViewControllers, vc)!
+        let vc = pageViewController.viewControllers?[0] as! TopicListViewController
+        let index = topicListViewControllers.indexOf(vc)!
         
         currentPage = index
         
@@ -96,7 +96,7 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
     // MARK: UIPageViewControllerDataSource
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        let index = find(topicListViewControllers, viewController)!
+        let index = topicListViewControllers.indexOf(viewController)!
         if index == 0 {
             return nil
         } else {
@@ -105,7 +105,7 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        let index = find(topicListViewControllers, viewController)!
+        let index = topicListViewControllers.indexOf(viewController)!
         if index == topicListViewControllers.count - 1 {
             return nil
         } else {

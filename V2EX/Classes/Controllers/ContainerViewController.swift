@@ -14,13 +14,13 @@ class ContainerViewController: UINavigationController {
     
     var discoveryViewController: UIViewController!
     lazy var nodeListViewController: NodeListCollectionViewController = self.storyboard!.instantiateViewControllerWithIdentifier("nodeListVC") as! NodeListCollectionViewController
-    lazy var userViewController: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("userVC") as! UIViewController
-    lazy var preferenceViewController: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("preferenceVC") as! UIViewController
+    lazy var userViewController: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("userVC") 
+    lazy var preferenceViewController: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("preferenceVC")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        discoveryViewController = viewControllers[0] as! UIViewController
+        discoveryViewController = viewControllers[0] 
         sharedDiscoveryViewController = discoveryViewController as? DiscoveryViewController
         
         // Render node list

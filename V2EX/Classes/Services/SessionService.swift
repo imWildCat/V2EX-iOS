@@ -12,7 +12,7 @@ import SimpleKeychain
 
 class SessionService {
     
-    class func checkLogin(response: ((error: NSError?, isLoggedIn: Bool) -> Void)?) {
+    class func checkLogin(response: ((error: ErrorType?, isLoggedIn: Bool) -> Void)?) {
         
         if SessionStorage.sharedStorage.currentUser == nil {
             response?(error: nil, isLoggedIn: false)
@@ -44,7 +44,7 @@ class SessionService {
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
-    class func requestNewSessionFormOnceCode(response: ((error: NSError?, onceCode: String) -> Void)?) {
+    class func requestNewSessionFormOnceCode(response: ((error: ErrorType?, onceCode: String) -> Void)?) {
         V2EXNetworking.get("signin").response { (_, _, data, error) in
             
             let doc = TFHpple(HTMLObject: data)
@@ -57,7 +57,7 @@ class SessionService {
         }
     }
     
-    class func performLogin(username: String, password: String, response: ((error: NSError?, isLoggedIn: Bool) -> Void)?) {
+    class func performLogin(username: String, password: String, response: ((error: ErrorType?, isLoggedIn: Bool) -> Void)?) {
         
         if SessionStorage.sharedStorage.shouldRequestNewOnceCode() {
             self.requestNewSessionFormOnceCode { (error, _) in
@@ -75,7 +75,7 @@ class SessionService {
         }
     }
     
-    private class func postInfo(username: String, password: String, response: ((error: NSError?, isLoggedIn: Bool) -> Void)?) {
+    private class func postInfo(username: String, password: String, response: ((error: ErrorType?, isLoggedIn: Bool) -> Void)?) {
         V2EXNetworking.post("signin", parameters: [
             "next": "/",
             "once": SessionStorage.sharedStorage.onceCode,
@@ -91,11 +91,11 @@ class SessionService {
                     // save
                     self.save(username: username, password: password)
 //                    NSUserDefaults.standardUserDefaults().synchronize()
-                    let cookies = (NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies as! [NSHTTPCookie]?) ?? [NSHTTPCookie]()
+                    let cookies = (NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies ) ?? [NSHTTPCookie]()
                     
-                    for (_, cookie) in enumerate(cookies)
+                    for (_, cookie) in cookies.enumerate()
                     {
-                        println(cookie)
+                        print(cookie)
                     }
                     
                     response?(error: error, isLoggedIn: isLoggedIn)
@@ -126,7 +126,7 @@ class SessionService {
     
     :returns: Bool of result
     */
-    private class func checkLoginFrom(#htmldata: AnyObject?) -> Bool {
+    private class func checkLoginFrom(htmldata htmldata: AnyObject?) -> Bool {
 
         let doc = TFHpple(HTMLObject: htmldata)
         let newTopicElement = doc.searchFirst("//div[@id='Rightbar']//div[@class='box']//a[@href='/new']")
@@ -142,7 +142,7 @@ class SessionService {
         SessionStorage.sharedStorage.currentUser = nil
     }
     
-    private class func setBasicUserDataFrom(#htmlData: AnyObject?) {
+    private class func setBasicUserDataFrom(htmlData htmlData: AnyObject?) {
         let doc = TFHpple(HTMLObject: htmlData)
         // Get info of current user
         let infoElement = doc.searchFirst("//div[@id='Rightbar']//div[@class='box']//div[@class='cell']")
@@ -152,7 +152,7 @@ class SessionService {
         SessionStorage.sharedStorage.currentUser = User(name: username, avatarURI: avatarURI)
     }
     
-    private class func save(#username: String, password: String) {
+    private class func save(username username: String, password: String) {
         let keychain = A0SimpleKeychain()
         keychain.setString(username, forKey:"v2ex-username")
         keychain.setString(password, forKey: "v2ex-password")
@@ -169,7 +169,7 @@ class SessionService {
         return (keychain.stringForKey("v2ex-username"), keychain.stringForKey("v2ex-password"))
     }
     
-    class func getOnceCode(response: ((error: NSError?, code: String) -> Void)) {
+    class func getOnceCode(response: ((error: ErrorType?, code: String) -> Void)) {
         V2EXNetworking.get("new").response { (_, _, data, error) in
             
             let doc = TFHpple(HTMLObject: data)
@@ -182,7 +182,7 @@ class SessionService {
         }
     }
     
-    class func checkDailyRedeem(response: ((error: NSError?, onceCode: String?) -> Void)?) {
+    class func checkDailyRedeem(response: ((error: ErrorType?, onceCode: String?) -> Void)?) {
         V2EXNetworking.get("mission/daily").response { (_, _, data, error) in
             
             var onceCode: String?
@@ -198,7 +198,7 @@ class SessionService {
         }
     }
     
-    class func getDailyRedeem(response: (error: NSError?) -> Void) {
+    class func getDailyRedeem(response: (error: ErrorType?) -> Void) {
         
         let onceCode = SessionStorage.sharedStorage.onceCode
         
@@ -208,7 +208,7 @@ class SessionService {
         }
     }
     
-    class func ignoreTopic(id: Int, response:(error: NSError?) -> Void) {
+    class func ignoreTopic(id: Int, response:(error: ErrorType?) -> Void) {
         
         let onceCode = SessionStorage.sharedStorage.onceCode
         
@@ -217,31 +217,31 @@ class SessionService {
         }
     }
     
-    class func reportTopic(reportLink: String, response:(error: NSError?) -> Void) {
+    class func reportTopic(reportLink: String, response:(error: ErrorType?) -> Void) {
         V2EXNetworking.get(reportLink).response { (_, _, data, error) in
             response(error: error)
         }
     }
     
-    class func favoriteTopic(favLink: String, response:(error: NSError?) -> Void) {
+    class func favoriteTopic(favLink: String, response:(error: ErrorType?) -> Void) {
         V2EXNetworking.get(favLink).response { (_, _, data, error) in
             response(error: error)
         }
     }
     
-    class func appreciateTopic(id: Int, token: String, response:(error: NSError?) -> Void) {
+    class func appreciateTopic(id: Int, token: String, response:(error: ErrorType?) -> Void) {
         V2EXNetworking.post("thank/topic/\(id)?t=\(token)").response { (_, _, data, error) in
             response(error: error)
         }
     }
     
-    class func appreciateReply(id: Int, token: String, response:(error: NSError?) -> Void) {
+    class func appreciateReply(id: Int, token: String, response:(error: ErrorType?) -> Void) {
         V2EXNetworking.post("thank/reply/\(id)?t=\(token)").response { (_, _, data, error) in
             response(error: error)
         }
     }
     
-    class func toggleFollowUser(id: Int, token: String, isFollowed: Bool, response:(error: NSError?) -> Void) {
+    class func toggleFollowUser(id: Int, token: String, isFollowed: Bool, response:(error: ErrorType?) -> Void) {
         let url: String = {
             if isFollowed {
                 return "unfollow/\(id)?t=\(token)"
@@ -254,7 +254,7 @@ class SessionService {
         }
     }
     
-    class func toggleBlockUser(id: Int, token: String, isBlocked: Bool, response:(error: NSError?) -> Void) {
+    class func toggleBlockUser(id: Int, token: String, isBlocked: Bool, response:(error: ErrorType?) -> Void) {
         let url: String = {
             if isBlocked {
                 return "unblock/\(id)?t=\(token)"
@@ -267,7 +267,7 @@ class SessionService {
         }
     }
     
-    class func getNotificationCount(response: (error: NSError?, count: Int, hasDailyRedeem: Bool) -> Void) {
+    class func getNotificationCount(response: (error: ErrorType?, count: Int, hasDailyRedeem: Bool) -> Void) {
         V2EXNetworking.get("").response { (_, _, data, error) in
             response(error: error, count: self.handleNotificationCount(data), hasDailyRedeem: self.handleDailyRedeem(data))
         }
@@ -278,7 +278,7 @@ class SessionService {
         let doc = TFHpple(HTMLObject: data)
 //        let text = doc.searchFirst("//div[@id='Rightbar']")
 //        println(text?.raw)
-        if let notificationLink = doc.searchFirst("//div[@id='Rightbar']//a[@href='/mission/daily']") {
+        if let _ = doc.searchFirst("//div[@id='Rightbar']//a[@href='/mission/daily']") {
             hasDailyRedeem = true
         }
         return hasDailyRedeem
@@ -287,7 +287,7 @@ class SessionService {
     private class func handleNotificationCount(data: AnyObject?) -> Int {
         let doc = TFHpple(HTMLObject: data)
         var count = 0
-        if let notificationLink = doc.searchFirst("//div[@id='Rightbar']//a[@href='/notifications']"), text = notificationLink.text(), countText = text.match("(\\d+) 条未读提醒")?[1], c = countText.toInt() {
+        if let notificationLink = doc.searchFirst("//div[@id='Rightbar']//a[@href='/notifications']"), text = notificationLink.text(), countText = text.match("(\\d+) 条未读提醒")?[1], c = Int(countText) {
             count = c
         }
         return count

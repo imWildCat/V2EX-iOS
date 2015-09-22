@@ -13,7 +13,7 @@ private let delay = 0.0
 struct AnimationHelper {
     
     static func spring(duration: NSTimeInterval, animations: (() -> Void)!) {
-            UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: nil, animations: {
+            UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .TransitionNone, animations: {
                 
                 animations()
                 

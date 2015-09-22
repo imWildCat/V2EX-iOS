@@ -35,9 +35,9 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
 
     // MARK: Init
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
 //        self.webView = WKWebView(frame: CGRectZero)
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     override func viewDidLoad() {
@@ -62,7 +62,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     @IBAction func rightNavButtonDidTouched(sender: AnyObject) {
         var applicationActivities = [UIActivity]()
         
-        let copyingLinkActivity = CustomActivity(title: "拷贝链接", image: UIImage(named: "copy_icon")!) { [unowned self] () -> Void in
+        _ = CustomActivity(title: "拷贝链接", image: UIImage(named: "copy_icon")!) { [unowned self] () -> Void in
             let urlString = "https://www.v2ex.com/t/\(self.topicID)"
             UIPasteboard.generalPasteboard().string = urlString
             
@@ -82,7 +82,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         }
         let reportingActivity = CustomActivity(title: "报告主题", image: UIImage(named: "report_icon")!) { [unowned self] () -> Void in
             if self.isLoggedIn {
-                println(self.topic)
+
                 if self.topic?.isReported == true {
                     self.showError(status: "您已经报告过这个主题了")
                     return
@@ -147,8 +147,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             }
             
             self?.configureBottomToolbar()
-            
-            println("Current page: \(self?.currentPage) , total page: \(self?.totalPage)")
+   
             
             finished?()
         })
@@ -173,7 +172,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             }
             
             if scheme == "webview" {
-                println(request.URLString)
+                print(request.URLString)
                 actionHanlder(request.URLString)
                 return false
             }
@@ -194,7 +193,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         case .ShowPostActions:
             showPostActions(params["postID"])
         case .ShowTopic:
-            if let id = params["id"]?.toInt() {
+            if let id = Int(params["id"] ?? "") {
                 showTopicVC(id)
             }
         case .OpenNode:
@@ -222,8 +221,8 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         }
     }
     
-    private func getPost(#id: String) -> Reply? {
-        if let intID = id.toInt() {
+    private func getPost(id id: String) -> Reply? {
+        if let intID = Int(id) {
             for post in posts {
                 if intID == post.id {
                     return post
@@ -234,12 +233,12 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     }
     
     func showPostActions(postID: String?) {
-        if let id = postID, post = getPost(id: id), intID = id.toInt() {
+        if let id = postID, post = getPost(id: id), intID = Int(id) {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
             
             let atUserButton = UIAlertAction(title: "@\(post.author.name)", style: .Default) {
                 [unowned self, unowned alert] action in
-                self.showReplyTopicVC(initialContent: "@\(post.author.name)")
+                self.showReplyTopicVC("@\(post.author.name)")
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
             
@@ -264,7 +263,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             }
             
             let cancelAction = UIAlertAction(title: "取消", style: .Cancel) {
-                [unowned self, unowned alert] action in
+                [unowned alert] action in
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
             
@@ -281,7 +280,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             let imageInfo = JTSImageInfo()
             imageInfo.imageURL = url
             let imageVC = JTSImageViewController(imageInfo: imageInfo, mode: JTSImageViewControllerMode.Image, backgroundStyle: JTSImageViewControllerBackgroundOptions.Blurred)
-            imageVC.showFromViewController(self, transition: JTSImageViewControllerTransition._FromOffscreen)
+            imageVC.showFromViewController(self, transition: JTSImageViewControllerTransition.FromOffscreen)
         }
     }
     
@@ -416,12 +415,12 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     }
 
     @IBAction func previousPageButtonDidTouch(sender: UIBarButtonItem) {
-        requestTopic(page: --currentPage)
+        requestTopic(--currentPage)
     }
     
     
     @IBAction func nextPageButtonDidTouch(sender: UIBarButtonItem) {
-        requestTopic(page: ++currentPage)
+        requestTopic(++currentPage)
     }
     
     @IBAction func refreshButtonDidTouch(sender: AnyObject) {

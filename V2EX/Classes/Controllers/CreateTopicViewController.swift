@@ -86,10 +86,9 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         showProgressView()
-        TopicSerivce.createTopic(onceCode: onceCode, nodeSlug: nodeSlug, title: titleText.text, content: contentText.text) { [weak self] (error, topic, problemMessage) -> Void in
+        TopicSerivce.createTopic(onceCode: onceCode, nodeSlug: nodeSlug, title: titleText.text ?? "", content: contentText.text) { [weak self] (error, topic, problemMessage) -> Void in
             self?.hideProgressView()
-            println(topic?.id ?? 0)
-            println(problemMessage ?? "")
+          
             if let pMessage = problemMessage {
                 self?.showError(status: pMessage)
                 return
@@ -108,8 +107,8 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
     
     func keyboardWillShow(notification: NSNotification) {
         var info = notification.userInfo!
-        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        println("will show")
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        print("will show")
         // FIXME: will show called twice
         UIView.animateWithDuration(0.3, animations: { [unowned self] in
             self.contentTextBottomConstraint.constant = keyboardFrame.size.height + 10
@@ -184,7 +183,7 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
     
     
     // MARK: UIImagePickerControllerDelegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         picker.dismissViewControllerAnimated(true, completion: nil)
         
@@ -196,12 +195,12 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
                 self?.updateProgress(progress)
                 }, responseClosure: { [weak self] (error, problemMessage, imageURL) in
                     if error != nil {
-                        self?.showError(.Networking)
+                        self?.showError()
                     } else if let pMessage = problemMessage {
                         self?.showError(status: pMessage)
                     } else if let imageLink = imageURL {
                         self?.showSuccess(status: "图片上传成功")
-                        println("imageLink: \(imageLink)")
+                        print("imageLink: \(imageLink)")
                         let orginalText = self?.contentText.text ?? ""
                         let newContent = orginalText + "\n\(imageLink)"
                         self?.contentText.text = newContent

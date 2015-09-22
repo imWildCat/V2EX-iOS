@@ -23,11 +23,11 @@ class Networking {
         ]
         
         let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        let c = (storage.cookies as! [NSHTTPCookie]?) ?? [NSHTTPCookie]()
+        let c = (storage.cookies ) ?? [NSHTTPCookie]()
         
-        for (_, cookie) in enumerate(c)
+        for (_, cookie) in c.enumerate()
         {
-            println(cookie)
+            print(cookie)
         }
         
         return Alamofire.Manager(configuration: cfg)
@@ -39,9 +39,9 @@ class Networking {
     
     class func clearCookies() {
         let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        let cookies = (storage.cookies as! [NSHTTPCookie]?) ?? [NSHTTPCookie]()
+        let cookies = (storage.cookies) ?? [NSHTTPCookie]()
         
-        for (_, cookie) in enumerate(cookies)
+        for (_, cookie) in cookies.enumerate()
         {
             storage.deleteCookie(cookie)
         }

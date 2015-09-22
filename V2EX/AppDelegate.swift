@@ -73,9 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Notification
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert |
-            UIUserNotificationType.Badge |
-            UIUserNotificationType.Sound, categories: nil))
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
         
         return true
     }
@@ -84,23 +82,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        notification.u
 //        println("Received location notification: ", notification)
         let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! RootViewController
-        if let topVC = rootViewController.containerViewController.viewControllers[0] as? UIViewController {
-            
-            if let userInfo = notification.userInfo as? [String: String], type = userInfo["type"] {
-                println("Userinfo type: \(type)")
-                if type == "notification" {
-                    // TODO: test this:
-                    if let notificationVC = topVC as? UserNotificationViewController {
-                        notificationVC.loadData()
-                    } else {
-                        topVC.showNotificationVC()
-                    }
-                } else if type == "daily_redeem" {
-                    if let userViewController = topVC as? UserViewController {
-                         userViewController.checkDailyTask()
-                    } else {
-                        rootViewController.containerViewController.viewControllers = [rootViewController.containerViewController.userViewController]
-                    }
+        let topVC = rootViewController.containerViewController.viewControllers[0]
+        
+        if let userInfo = notification.userInfo as? [String: String], type = userInfo["type"] {
+            print("Userinfo type: \(type)", terminator: "")
+            if type == "notification" {
+                // TODO: test this:
+                if let notificationVC = topVC as? UserNotificationViewController {
+                    notificationVC.loadData()
+                } else {
+                    topVC.showNotificationVC()
+                }
+            } else if type == "daily_redeem" {
+                if let userViewController = topVC as? UserViewController {
+                    userViewController.checkDailyTask()
+                } else {
+                    rootViewController.containerViewController.viewControllers = [rootViewController.containerViewController.userViewController]
                 }
             }
         }

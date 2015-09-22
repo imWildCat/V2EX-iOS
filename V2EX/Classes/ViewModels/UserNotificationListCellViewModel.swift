@@ -47,8 +47,8 @@ struct UserNotificationListCellViewModel {
             return "\(notification.relatedUser.name) 在回复 \(notification.relatedTopic.title) 时提到了你"
         case .UnDefined:
             return "提醒类型未定义，请联系 App 作者"
-        default:
-            return "提醒类型未知，请联系 App 作者"
+//        default:
+//            return "提醒类型未知，请联系 App 作者"
         }
     }
 }

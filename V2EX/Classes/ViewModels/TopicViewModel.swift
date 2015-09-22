@@ -24,7 +24,7 @@ struct TopicViewModel {
             "content": topic.content
             ])
         
-        for (_, reply) in enumerate(replies)
+        for (_, reply) in replies.enumerate()
         {
             posts.append([
                 "id": reply.id.description,
@@ -39,15 +39,15 @@ struct TopicViewModel {
                 ])
         }
         
-        var data = [
+        let data = [
             "title": topic.title,
             "posts": posts
         ]
         
-        var jsonObj = JSON(data)
+        let jsonObj = JSON(data)
         let bundle = NSBundle.mainBundle()
         let templatePath = bundle.pathForResource("topic", ofType: "html")
-        let templateHTML =  String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding, error: nil) ?? ""
+        let templateHTML =  (try? String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding)) ?? ""
         
         let rendering = templateHTML.replace("{{data}}", withString: jsonObj.description)
         return rendering

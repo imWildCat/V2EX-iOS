@@ -12,19 +12,19 @@ private let cache = NSCache()
 
 struct MemoryCache {
     
-    static func setReply(#topicID: Int, content: String) {
+    static func setReply(topicID topicID: Int, content: String) {
         cache.setObject(content, forKey: keyForReply(topicID: topicID))
     }
     
-    static func getReply(#topicID: Int) -> String? {
+    static func getReply(topicID topicID: Int) -> String? {
         return cache.objectForKey(keyForReply(topicID: topicID)) as? String
     }
     
-    static func removeReply(#topicID: Int) {
+    static func removeReply(topicID topicID: Int) {
         cache.removeObjectForKey(keyForReply(topicID: topicID))
     }
     
-    private static func keyForReply(#topicID: Int) -> String {
+    private static func keyForReply(topicID topicID: Int) -> String {
         return "topic[\(topicID)]_reply"
     }
 }

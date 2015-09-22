@@ -14,18 +14,17 @@ extension String {
         return self.stringByReplacingOccurrencesOfString(target, withString: withString, options: NSStringCompareOptions.LiteralSearch, range: nil)
     }
     
-    func replace(#pattern: String, withString: String) -> String {
-        var stringlength = count(self)
-        var error: NSError?
-        var regex:NSRegularExpression = NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive, error: &error)!
-        return regex.stringByReplacingMatchesInString(self, options: nil, range: NSMakeRange(0, stringlength), withTemplate: withString)
+    func replace(pattern pattern: String, withString: String) -> String {
+        let stringlength = self.characters.count
+        let regex:NSRegularExpression = try! NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive)
+        return regex.stringByReplacingMatchesInString(self, options: [], range: NSMakeRange(0, stringlength), withTemplate: withString)
     }
     
     // Inspired by Ruby
     
-    func scan(pattern: String, options: NSRegularExpressionOptions = nil, error: NSErrorPointer = nil) -> [String] {
-        let re = NSRegularExpression(pattern: pattern, options: nil, error: nil)!
-        let matches = re.matchesInString(self, options: nil, range: NSRange(location: 0, length: count(self.utf16))) as! [NSTextCheckingResult]
+    func scan(pattern: String, error: NSErrorPointer = nil) -> [String] {
+        let re = try! NSRegularExpression(pattern: pattern, options: [])
+        let matches = re.matchesInString(self, options: [], range: NSRange(location: 0, length: self.utf16.count)) 
         var strings = [String]()
         for m in matches {
             if m.numberOfRanges > 0 {
@@ -36,9 +35,10 @@ extension String {
         return strings
     }
     
-    func match(pattern: String, options: NSRegularExpressionOptions = nil, error: NSErrorPointer = nil) -> [String]? {
-        let re = NSRegularExpression(pattern: pattern, options: nil, error: nil)!
-        let matches = re.matchesInString(self, options: nil, range: NSRange(location: 0, length: count(self.utf16))) as! [NSTextCheckingResult]
+    func match(pattern: String) -> [String]? {
+//        let error: NSError! = NSError(domain: "Migrator", code: 0, userInfo: nil)
+        let re = try! NSRegularExpression(pattern: pattern, options: [])
+        let matches = re.matchesInString(self, options: [], range: NSRange(location: 0, length: self.utf16.count)) 
         var firstMatchedResults = [String]()
         for m in matches {
             if m.numberOfRanges > 0 {
@@ -78,7 +78,7 @@ extension String {
         }
         
         html = html.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        return html as? String
+        return html as String
     }
     
     
@@ -86,7 +86,7 @@ extension String {
     Parse URL request string from WebView(must start with "webview://")
     eg. webview://open_node?slug=v2ex
     
-    :returns: (action: WebViewAction, params: [String: String])
+    - returns: (action: WebViewAction, params: [String: String])
     */
     func parseWebViewAction() -> (WebViewAction, [String: String]) {
         var params = [String: String]()
@@ -106,6 +106,7 @@ extension String {
         }
         
         let actionString = self.match("webview://(\\w+)\\?")?[1] ?? ""
+        
         
         var action: WebViewAction = .None
         switch actionString {

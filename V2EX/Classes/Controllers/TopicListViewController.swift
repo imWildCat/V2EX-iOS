@@ -118,7 +118,7 @@ class TopicListViewController: UITableViewController {
         } else {
             // fav topic mode
             navigationItem.title = "我的收藏"
-            TopicSerivce.favoriteTopics(page: 1, response: { [weak self] (error, topics, totalCount) in
+            TopicSerivce.favoriteTopics(1, response: { [weak self] (error, topics, totalCount) in
                 if error == nil {
                     self?.topics = topics
                     self?.tableView.reloadData()
@@ -152,7 +152,7 @@ class TopicListViewController: UITableViewController {
             })
         } else if mode == .Favorite {
             // my favorites
-            TopicSerivce.favoriteTopics(page: page, response: { [weak self] (error, topics, totalCount) in
+            TopicSerivce.favoriteTopics(page, response: { [weak self] (error, topics, totalCount) in
                 if error == nil {
                     self?.topics += topics
                     self?.tableView.reloadData()
@@ -197,7 +197,6 @@ class TopicListViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showTopicVC" {
-            let topic = sender as? Topic
             let destinationViewController = segue.destinationViewController as! TopicViewController
             if let topic = sender as? Topic {
                 if topic.isNew == false {
