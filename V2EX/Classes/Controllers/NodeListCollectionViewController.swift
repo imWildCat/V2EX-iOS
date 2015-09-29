@@ -208,14 +208,16 @@ extension NodeListCollectionViewController: UISearchBarDelegate {
             searchBarBoundsY = navBarHeight + UIApplication.sharedApplication().statusBarFrame.size.height
             searchBar = UISearchBar(frame: CGRect(x: 0, y: searchBarBoundsY, width: UIScreen.mainScreen().bounds.size.width, height: 44))
             searchBar?.searchBarStyle = UISearchBarStyle.Minimal
-            searchBar?.tintColor = UIColor.whiteColor()
+            searchBar?.tintColor = UIColor.darkGrayColor()
             searchBar?.barTintColor = UIColor.whiteColor()
             searchBar?.backgroundColor = UIColor.darkGrayColor()
             searchBar?.delegate = self
             searchBar?.placeholder = "搜索节点..."
             
             // Ref: http://stackoverflow.com/questions/24136874/appearancewhencontainedin-in-swift
-            UITextField.v2_appearanceWhenContainedIn(UISearchBar.self).textColor = UIColor.whiteColor()
+            UITextField.v2_appearanceWhenContainedIn(UISearchBar.self).textColor = UIColor.darkGrayColor()
+            UISearchBar.v2_appearanceWhenContainedIn(NodeListCollectionViewController.self).backgroundColor = UIColor.clearColor()
+//            UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).
             
             addObservers()
         }

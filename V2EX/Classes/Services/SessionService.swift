@@ -9,6 +9,7 @@
 import Foundation
 import hpple
 import SimpleKeychain
+import LNNotificationsUI
 
 class SessionService {
     
@@ -291,6 +292,17 @@ class SessionService {
             count = c
         }
         return count
+    }
+    
+    class func showNotificationWhileCountIsNotZero(data: AnyObject?) {
+        let count = handleNotificationCount(data)
+        if count > 0 {
+            let notification = LNNotification(message: "您有 \(count) 条未读提醒。")
+            notification.defaultAction = LNNotificationAction(title: "阅读提醒", handler: { (action) -> Void in
+                Utils.showOrReloadNotificationVC()
+            })
+            LNNotificationCenter.defaultCenter().presentNotification(notification, forApplicationIdentifier: "v2ex")
+        }
     }
     
 }

@@ -24,7 +24,7 @@ class NodeNameCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         layer.cornerRadius = 12.5
-        layer.masksToBounds = true
+        layer.masksToBounds = false
         
         layer.borderColor = UIColor(red:0.83, green:0.82, blue:0.81, alpha:1).CGColor
         layer.borderWidth = 1.0

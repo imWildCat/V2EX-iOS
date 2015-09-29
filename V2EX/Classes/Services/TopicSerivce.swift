@@ -26,6 +26,8 @@ class TopicSerivce {
 
         V2EXNetworking.get("", parameters: ["tab": tabSlug]).response { (_, _, data, error) in
             
+            SessionService.showNotificationWhileCountIsNotZero(data)
+            
             let topics = Topic.listFromTab(data)
             
             response?(error: error, topics: topics)
@@ -35,6 +37,8 @@ class TopicSerivce {
     class func getList(nodeSlug nodeSlug: String, page: Int = 1, response: ((error: ErrorType?, topics: [Topic], nodeName: String?) -> Void)?) {
         
         V2EXNetworking.get("go/\(nodeSlug)?p=\(page)").response { (httpRequest, httpResponse, data, error) in
+            
+            SessionService.showNotificationWhileCountIsNotZero(data)
             
             let topics = Topic.listFromNode(data)
             
@@ -63,6 +67,9 @@ class TopicSerivce {
         
         V2EXNetworking.get(url, parameters: nil).response {
             (_, _, data, error) in
+            
+            SessionService.showNotificationWhileCountIsNotZero(data)
+            
             let topic = Topic.singleTopic(data)
             let replies = Reply.listFromTopic(data)
             
@@ -114,6 +121,9 @@ class TopicSerivce {
     class func topicListOf(user user: String, page: UInt = 1, reponse: ((error: ErrorType?, topics: [Topic]) -> Void)?) {
         
         V2EXNetworking.get("member/" + user + "/topics", parameters: ["p": page]).response { (_, _, data, error) in
+            
+            SessionService.showNotificationWhileCountIsNotZero(data)
+            
             let doc = TFHpple(HTMLObject: data)
             let elements = doc.searchElements("//div[@id='Main']//div[@class='box']/div[@class='cell item']/table")
             
@@ -141,6 +151,9 @@ class TopicSerivce {
     class func replyListOf(user user: String, page: Int = 1, response: ((error: ErrorType?, replies: [Reply], hasNextPage: Bool) -> Void)?) {
         
         V2EXNetworking.get("member/" + user + "/replies", parameters: ["p": page]).response { (_, _, data, error) in
+            
+            SessionService.showNotificationWhileCountIsNotZero(data)
+            
             let doc = TFHpple(HTMLObject: data)
             let metaElements = doc.searchElements("//descendant-or-self::div[@id = 'Main']/descendant::div[contains(concat(' ', normalize-space(@class), ' '), ' box ')]/descendant::div[contains(concat(' ', normalize-space(@class), ' '), ' dock_area ')]")
             let contentElements = doc.searchElements("//descendant-or-self::div[@id = 'Main']/descendant::div[contains(concat(' ', normalize-space(@class), ' '), ' box ')]/descendant::div[contains(concat(' ', normalize-space(@class), ' '), ' inner ')]")
@@ -192,6 +205,9 @@ class TopicSerivce {
     
     class func favoriteTopics(page: Int = 1, response: ((error: ErrorType?, topics: [Topic], totalCount: Int) -> Void)?) {
         V2EXNetworking.get("my/topics").response { (_, _, data, error) in
+            
+            SessionService.showNotificationWhileCountIsNotZero(data)
+            
             var topics = [Topic]()
             var favCount = 0
             
@@ -209,6 +225,8 @@ class TopicSerivce {
     
     class func createTopic(onceCode onceCode: String, nodeSlug: String, title: String, content: String, response: ((error: ErrorType?, topic: Topic?, problemMessage: String?) -> Void)?) {
         V2EXNetworking.post("new/\(nodeSlug)", parameters: ["once" : onceCode, "title": title, "content": content]).response { (_, httpResponse, data, error) in
+            
+            SessionService.showNotificationWhileCountIsNotZero(data)
             
             var topic: Topic?
             var problemMessage: String?
@@ -258,6 +276,8 @@ class TopicSerivce {
                 "content": content,
                 "once": onceCode
             ]).response { (_, httpResponse, data, error) in
+                
+                SessionService.showNotificationWhileCountIsNotZero(data)
                 
                 let doc = TFHpple(HTMLObject: data)
                 

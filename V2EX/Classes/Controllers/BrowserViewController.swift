@@ -33,9 +33,22 @@ class BrowserViewController: UIViewController, WKNavigationDelegate {
         let heightConstraint = NSLayoutConstraint(item: webView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 1, constant: 0)
         view.addConstraint(heightConstraint)
         
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        
         webView.loadRequest(NSURLRequest(URL: NSURL(string: URL)!))
     }
     
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if let keyPath = keyPath, object = object as? WKWebView where keyPath == "estimatedProgress" && object == webView {
+            NSLog("%f", webView.estimatedProgress);
+        } else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
+    }
+    
+    deinit {
+        webView.removeObserver(self, forKeyPath: "estimatedProgress")
+    }
     
     @IBAction func actionButtonDidTouch(sender: UIBarButtonItem) {
         

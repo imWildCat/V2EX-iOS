@@ -50,6 +50,11 @@ var Post = React.createClass({
             style = {display: 'none'};
         }
 
+        var row1ClassName = 'row-1';
+        if(navigator.userAgent.indexOf('iPhone OS 9_0') > -1) {
+            row1ClassName += ' ios-9';
+        }
+
         return (
             <div className="post" style={style}>
                 <Tappable onPress={() => this.onPostPress(post.id)}>
@@ -58,7 +63,7 @@ var Post = React.createClass({
                             <LazySizes dataSrc={post.avatar_url} src="avatar_placeholder.png"/>
                         </div>
                         <div className="info">
-                            <div className="row-1">
+                            <div className={row1ClassName}>
                                 <span onTouchTap={() => this.onUserClick(post.username)}>{post.username}</span>
                             </div>
                             <div className="row-2">

@@ -34,7 +34,6 @@
 		5E58D2DF1AB71913003058D6 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58D2DE1AB71913003058D6 /* TopicViewModel.swift */; };
 		5E5F23C61A395DBD00D20FE9 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */; };
 		5E5F23C71A395DBD00D20FE9 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B31A395DBD00D20FE9 /* DiscoveryViewController.swift */; };
-		5E5F23C81A395DBD00D20FE9 /* NodeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B41A395DBD00D20FE9 /* NodeListViewController.swift */; };
 		5E5F23CA1A395DBD00D20FE9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B61A395DBD00D20FE9 /* RootViewController.swift */; };
 		5E5F23CB1A395DBD00D20FE9 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B71A395DBD00D20FE9 /* TopicListViewController.swift */; };
 		5E5F23CC1A395DBD00D20FE9 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F23B81A395DBD00D20FE9 /* UIViewControllerExtension.swift */; };
@@ -70,7 +69,6 @@
 		5E924B701B6BC25D00182F3F /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E924B6F1B6BC25D00182F3F /* UserInfoView.swift */; };
 		5E924B741B6BC38600182F3F /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E924B731B6BC38600182F3F /* UserInfoView.xib */; };
 		5E98290A1A3DC1DE001B1E25 /* TFHppleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */; };
-		5E9AD42A1ADA027100F40CA4 /* NodeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9AD4291ADA027100F40CA4 /* NodeSearchViewController.swift */; };
 		5EA316911B7ED15500E57843 /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA316901B7ED15500E57843 /* MemoryCache.swift */; };
 		5EA63C651B08559000431C96 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 793C13B9F465CBC4090C2780 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EA63C681B08700A00431C96 /* node_list_bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C661B08700A00431C96 /* node_list_bundle.js */; };
@@ -137,7 +135,6 @@
 		5E58D2DE1AB71913003058D6 /* TopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
 		5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		5E5F23B31A395DBD00D20FE9 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
-		5E5F23B41A395DBD00D20FE9 /* NodeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeListViewController.swift; sourceTree = "<group>"; };
 		5E5F23B61A395DBD00D20FE9 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5E5F23B71A395DBD00D20FE9 /* TopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		5E5F23B81A395DBD00D20FE9 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -173,7 +170,6 @@
 		5E924B6F1B6BC25D00182F3F /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		5E924B731B6BC38600182F3F /* UserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
 		5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFHppleExtension.swift; sourceTree = "<group>"; };
-		5E9AD4291ADA027100F40CA4 /* NodeSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeSearchViewController.swift; sourceTree = "<group>"; };
 		5EA316901B7ED15500E57843 /* MemoryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
 		5EA63C661B08700A00431C96 /* node_list_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node_list_bundle.js; sourceTree = "<group>"; };
 		5EA63C671B08700A00431C96 /* topic_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = topic_bundle.js; sourceTree = "<group>"; };
@@ -306,8 +302,6 @@
 				5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */,
 				5E6F31741ADA238400C477A5 /* CreateTopicViewController.swift */,
 				5E5F23B31A395DBD00D20FE9 /* DiscoveryViewController.swift */,
-				5E5F23B41A395DBD00D20FE9 /* NodeListViewController.swift */,
-				5E9AD4291ADA027100F40CA4 /* NodeSearchViewController.swift */,
 				5E5F23B61A395DBD00D20FE9 /* RootViewController.swift */,
 				5E5F23B71A395DBD00D20FE9 /* TopicListViewController.swift */,
 				5E83EAD71AB544B90008E877 /* TopicViewController.swift */,
@@ -629,7 +623,6 @@
 				5E3759B91A3C7640003DB82A /* AppDelegate.swift in Sources */,
 				5E29CF491B783AAE0071B54D /* PurchaseViewController.swift in Sources */,
 				5E5F23C61A395DBD00D20FE9 /* ContainerViewController.swift in Sources */,
-				5E9AD42A1ADA027100F40CA4 /* NodeSearchViewController.swift in Sources */,
 				5E8523EF1ABD7B0F00B7B8C4 /* UserReplyListController.swift in Sources */,
 				5EC87D601ABC4DAD00AB071F /* SessionService.swift in Sources */,
 				5E4AA86D1A3F0EA000AA2F3D /* TopicListCellViewModel.swift in Sources */,
@@ -642,7 +635,6 @@
 				5ED345E01ABEB45A00B5E286 /* UserReplyListCellViewModel.swift in Sources */,
 				5EC87D6A1ABC579800AB071F /* SessionStorage.swift in Sources */,
 				5E5F23CB1A395DBD00D20FE9 /* TopicListViewController.swift in Sources */,
-				5E5F23C81A395DBD00D20FE9 /* NodeListViewController.swift in Sources */,
 				5EC957C31A3DBFFF005E5428 /* V2EXNetworking.swift in Sources */,
 				5E8DEFBD1AC29BF20036D852 /* WebViewAction.swift in Sources */,
 				5E4AA8681A3F032900AA2F3D /* Node.swift in Sources */,

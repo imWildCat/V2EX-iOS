@@ -32,6 +32,11 @@
 
         .row-1 {
           padding-top: 5px;
+
+          &.ios-9 {
+            padding-top: 1px;
+          }
+
           a {
             color: #000000;
             text-decoration: none;

@@ -10,6 +10,8 @@ import UIKit
 import StoreKit
 import KVNProgress
 import IQKeyboardManager
+import LNNotificationsUI
+import Appirater
 
 // Launch Image: http://tmblr.co/Zof4En1pJwO-D
 // From: http://fancycrave.com/post/123814383565/download-by-patrick-fore#notes , July 11, 2015
@@ -60,8 +62,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // TODO: Distance only configure for LoginVC
         }
         
+        func setUpInAppNotification() {
+            if let image = UIImage(named: "notification_icon") {
+                LNNotificationCenter.defaultCenter().registerApplicationWithIdentifier("v2ex", name: "V2EX", icon: image, defaultSettings: LNNotificationDefaultAppSettings)
+            } else {
+                NSLog("Cannot found image `notification_icon` to set up LNNotificationCenter")
+            }
+        }
+        
+        func setUpAppirater() {
+            Appirater.setAppId("1028925704")
+            Appirater.setDaysUntilPrompt(3)
+            Appirater.setUsesUntilPrompt(5)
+            Appirater.setSignificantEventsUntilPrompt(-1)
+            Appirater.setTimeBeforeReminding(2)
+            Appirater.setDebug(false)
+            Appirater.appLaunched(true)
+        }
+        
         configureKVNProgress()
         configureIQKeyboardManager()
+        setUpInAppNotification()
+        setUpAppirater()
         NodeService.getAll()
         
         // Background fetch
@@ -88,11 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Userinfo type: \(type)", terminator: "")
             if type == "notification" {
                 // TODO: test this:
-                if let notificationVC = topVC as? UserNotificationViewController {
-                    notificationVC.loadData()
-                } else {
-                    topVC.showNotificationVC()
-                }
+                Utils.showOrReloadNotificationVC()
             } else if type == "daily_redeem" {
                 if let userViewController = topVC as? UserViewController {
                     userViewController.checkDailyTask()

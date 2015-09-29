@@ -18,6 +18,17 @@ class Utils {
             dispatch_get_main_queue(), block)
     }
     
+    class func showOrReloadNotificationVC() {
+        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! RootViewController
+        let topVC = rootViewController.containerViewController.viewControllers[0]
+        
+        if let notificationVC = topVC as? UserNotificationViewController {
+            notificationVC.loadData()
+        } else {
+            topVC.showNotificationVC()
+        }
+    }
+    
 //    class func readsSessionCookieFromKeyChain() -> Bool {
 //        
 //    }
