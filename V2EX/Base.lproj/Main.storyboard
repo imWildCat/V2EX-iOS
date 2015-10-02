@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hv7-e8-QVW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hv7-e8-QVW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -110,6 +110,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="g4F-sD-ugO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Chw-z7-8qg">
                             <size key="itemSize" width="52" height="29"/>
@@ -127,13 +128,16 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Node Name Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzT-Gc-Epu">
                                             <rect key="frame" x="5" y="3" width="42" height="23"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="OzT-Gc-Epu" firstAttribute="leading" secondItem="gbE-9h-57K" secondAttribute="leading" constant="5" id="5Xo-Wi-W9q"/>
@@ -152,11 +156,13 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Node Category Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08Q-KQ-ir3">
                                     <rect key="frame" x="15" y="13" width="570" height="18"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" red="0.90980392156862744" green="0.94117647058823528" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="08Q-KQ-ir3" firstAttribute="leading" secondItem="2yg-Sw-aq9" secondAttribute="leading" constant="15" id="EhB-FP-L2H"/>
@@ -521,12 +527,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UgI-1h-3mV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UgI-1h-3mV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.99215686274509807" green="0.96862745098039216" blue="0.89411764705882357" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdX-5V-atH">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdX-5V-atH">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <animations/>
                                 <items>
@@ -578,9 +584,9 @@
                         <constraints>
                             <constraint firstItem="UgI-1h-3mV" firstAttribute="top" secondItem="RaV-CU-btJ" secondAttribute="top" id="JPu-tU-C5V"/>
                             <constraint firstAttribute="trailing" secondItem="qdX-5V-atH" secondAttribute="trailing" id="MTL-jG-hNI"/>
+                            <constraint firstItem="KfU-Ge-Gg5" firstAttribute="top" secondItem="UgI-1h-3mV" secondAttribute="bottom" id="PZ0-Gl-O2k"/>
                             <constraint firstItem="KfU-Ge-Gg5" firstAttribute="top" secondItem="qdX-5V-atH" secondAttribute="bottom" id="b9I-QC-CxZ"/>
                             <constraint firstItem="UgI-1h-3mV" firstAttribute="leading" secondItem="RaV-CU-btJ" secondAttribute="leading" id="eaV-GA-X38"/>
-                            <constraint firstItem="qdX-5V-atH" firstAttribute="top" secondItem="UgI-1h-3mV" secondAttribute="bottom" id="kRJ-DM-xlb"/>
                             <constraint firstAttribute="trailing" secondItem="UgI-1h-3mV" secondAttribute="trailing" id="mO4-5T-tDX"/>
                             <constraint firstItem="qdX-5V-atH" firstAttribute="leading" secondItem="RaV-CU-btJ" secondAttribute="leading" id="oYo-5c-R1O"/>
                         </constraints>
@@ -594,6 +600,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="appreciationButton" destination="mcw-eB-Ygd" id="B2f-2j-U2n"/>
+                        <outlet property="bottomToolbar" destination="qdX-5V-atH" id="zBB-OK-uDz"/>
                         <outlet property="favoriteButton" destination="Fdb-wK-ddi" id="Nlo-Cj-HQt"/>
                         <outlet property="nextPageButton" destination="ZQm-OP-VeV" id="rwP-wy-nAi"/>
                         <outlet property="pageNumberButton" destination="kjk-te-slR" id="YrQ-JV-Suz"/>

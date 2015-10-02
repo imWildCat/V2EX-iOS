@@ -18,6 +18,8 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         case ReadTopic
         case NewTopic
     }
+    
+    @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var previousPageButton: UIBarButtonItem!
     @IBOutlet weak var pageNumberButton: UIBarButtonItem!
     @IBOutlet weak var nextPageButton: UIBarButtonItem!
@@ -32,6 +34,9 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     var posts = [Reply]()
     var currentPage = 1
     var totalPage = 1
+    
+    // WebView(ScrollView) flag to detect scrolling direction
+    var lastContentOffset: CGFloat = 0
 
     // MARK: Init
     
@@ -46,6 +51,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
 //        webView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
         webView.opaque = false
         webView.delegate = self
+        webView.scrollView.delegate = self
         
 //        view.addSubview(webView)
 //        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -332,6 +338,18 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         configurePageButtons()
     }
     
+    private func hideBottomBar() {
+        UIView.animateWithDuration(0.35, delay: 0, options: .BeginFromCurrentState, animations: {
+            self.bottomToolbar.alpha = 0
+            }, completion: nil)
+    }
+    
+    private func showBottomBar() {
+        UIView.animateWithDuration(0.35, delay: 0, options: .BeginFromCurrentState, animations: {
+            self.bottomToolbar.alpha = 1
+            }, completion: nil)
+    }
+    
     private func configureFavButton() {
         if topic?.isFavorited == true {
             favoriteButton.image = UIImage(named: "been_favorite_button")
@@ -427,6 +445,33 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         requestTopic()
     }
     
+}
+
+extension TopicViewController: UIScrollViewDelegate {
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        defer {
+            lastContentOffset = scrollView.contentOffset.y
+        }
+        
+        let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
+        if bottomEdge > scrollView.contentSize.height {
+            // If scroll view will rebound, return
+            return
+        }
+        
+        if scrollView.contentOffset.y > lastContentOffset {
+            hideBottomBar()
+        } else if scrollView.contentOffset.y < lastContentOffset {
+            showBottomBar()
+        }
+    }
     
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
+        if bottomEdge >= scrollView.contentSize.height {
+            // At the end
+            hideBottomBar()
+        }
+    }
 }
