@@ -37,17 +37,70 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
         // Dispose of any resources that can be recreated.
     }
     
+    class func getTopicContentFontSize() -> String {
+        return NSUserDefaults.standardUserDefaults().stringForKey("topic_content_font_size") ?? "normal"
+    }
+    
+    class func getTopicContentFontSizeName() -> String {
+        let size = getTopicContentFontSize()
+        switch size {
+        case "large":
+            return "大"
+        case "small":
+            return "小"
+        default:
+            return "正常"
+        }
+    }
+    
+    class func setTopicContentFontSize(size: String) {
+        NSUserDefaults.standardUserDefaults().setObject(size, forKey: "topic_content_font_size")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    class func setTopicContentFontSize(byName name: String) {
+        var size: String!
+        switch name {
+        case "大":
+            size = "large"
+        case "小":
+            size = "small"
+        default:
+            size = "normal"
+        }
+        self.setTopicContentFontSize(size)
+    }
+    
     // MARK: RETableViewManager
     func setUpSections() {
         section1 = RETableViewSection()
         
-        _ = RERadioItem(title: "图片显示", value: "全部自动加载") { [unowned self, section1](item) -> Void in
-            item.deselectRowAnimated(true)
+//        _ = RERadioItem(title: "图片显示", value: "全部自动加载") { [unowned self, section1](item) -> Void in
+//            item.deselectRowAnimated(true)
+//            
+//            //            let options = ["全部自动加载", "Wi-Fi 下自动加载", "不加载"] as NSArray
+//            
+//            let optionsController = RETableViewOptionsController(item: item, options: ["全部自动加载", "Wi-Fi 下自动加载", "不加载"], multipleChoice: false) { [weak self, item](selectedItem) -> Void in
+//                self?.navigationController?.popViewControllerAnimated(true)
+//                item?.reloadRowWithAnimation(UITableViewRowAnimation.None)
+//            }
+//            
+//            optionsController.delegate = self
+//            optionsController.style = section1.style
+//            optionsController.tableView.backgroundColor = self.tableView.backgroundColor;
+//            optionsController.tableView.tintColor = self.tableView.tintColor
+//            self.navigationController?.pushViewController(optionsController, animated: true)
+//        }
+        
+        let topicContentFontSizeItem = RERadioItem(title: "内容字体大小", value: self.dynamicType.getTopicContentFontSizeName()) { [unowned self, section1](item) -> Void in
+           
+//            
+            let options = ["小", "正常", "大"]
             
-            //            let options = ["全部自动加载", "Wi-Fi 下自动加载", "不加载"] as NSArray
-            
-            let optionsController = RETableViewOptionsController(item: item, options: ["全部自动加载", "Wi-Fi 下自动加载", "不加载"], multipleChoice: false) { [weak self, item](selectedItem) -> Void in
+            let optionsController = RETableViewOptionsController(item: item, options: options, multipleChoice: false) { [weak self, item](selectedItem) -> Void in
                 self?.navigationController?.popViewControllerAnimated(true)
+                let fontSizeName = options[selectedItem.indexPath().row]
+                self?.dynamicType.setTopicContentFontSize(byName: fontSizeName)
                 item?.reloadRowWithAnimation(UITableViewRowAnimation.None)
             }
             
@@ -78,7 +131,7 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
             self.showPurchaseVC()
         }
         
-        section1.addItemsFromArray([clearCacheItem, backgroundNotificationItem])
+        section1.addItemsFromArray([topicContentFontSizeItem, clearCacheItem, backgroundNotificationItem])
         
         section2 = RETableViewSection()
         let logOutItem = RETableViewItem(title: "注销登录", accessoryType: .None) { [unowned self] (selectedItem) -> Void in

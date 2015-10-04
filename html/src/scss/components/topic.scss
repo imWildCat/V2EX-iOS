@@ -106,9 +106,9 @@
     .content {
       padding: 10px;
       word-wrap: break-word;
-      &, div {
-        font-size: 14px;
-      }
+      // &, div {
+      //   font-size: 15px;
+      // }
 
       a {
         color: #778087;
@@ -118,5 +118,23 @@
         max-width: 100% !important;
       }
     }
+  }
+}
+
+.font-size-normal .content {
+  &, div {
+        font-size: 15px;
+  }
+}
+
+.font-size-large .content, .font-size-large .content div {
+  &, div {
+        font-size: 18px;
+  }
+}
+
+.font-size-small .content, .font-size-small .content div {
+  &, div {
+        font-size: 13px;
   }
 }

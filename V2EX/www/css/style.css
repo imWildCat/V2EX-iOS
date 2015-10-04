@@ -68,12 +68,19 @@ body {
 .topic .post .content {
   padding: 10px;
   word-wrap: break-word; }
-  .topic .post .content, .topic .post .content div {
-    font-size: 14px; }
   .topic .post .content a {
     color: #778087; }
   .topic .post .content img {
     max-width: 100% !important; }
+
+.font-size-normal .content, .font-size-normal .content div {
+  font-size: 15px; }
+
+.font-size-large .content, .font-size-large .content div, .font-size-large .content div, .font-size-large .content div div {
+  font-size: 18px; }
+
+.font-size-small .content, .font-size-small .content div, .font-size-small .content div, .font-size-small .content div div {
+  font-size: 13px; }
 
 .node-list .node-category .category-name {
   clear: both;
