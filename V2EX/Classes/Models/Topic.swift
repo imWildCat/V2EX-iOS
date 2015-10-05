@@ -48,10 +48,10 @@ class Topic: CustomStringConvertible {
 //        self.init(id: id, title: title, repliesCount: repliesCount, author: author, createdAt: createdAt, node: node)
 //    }
 
-    class func listFromTab(HTMLData: AnyObject?) -> [Topic] {
+    class func listFromTab(HTMLString: String?) -> [Topic] {
         var topics = [Topic]()
         
-        let doc = TFHpple(HTMLObject: HTMLData)
+        let doc = TFHpple(HTMLStringOptional: HTMLString)
         
         let elements = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@class='cell item']//table") as! [TFHppleElement]
         
@@ -101,10 +101,10 @@ class Topic: CustomStringConvertible {
         return topics
     }
     
-    class func listFromNode(HTMLData: AnyObject?) -> [Topic] {
+    class func listFromNode(HTMLStringOptional: String?) -> [Topic] {
         var topics = [Topic]()
         
-        let doc = TFHpple(HTMLObject: HTMLData)
+        let doc = TFHpple(HTMLStringOptional: HTMLStringOptional)
         
         let elements = doc.searchWithXPathQuery("//div[@id='TopicsNode']//table") as! [TFHppleElement]
         
@@ -154,8 +154,8 @@ class Topic: CustomStringConvertible {
         return topics
     }
     
-    class func singleTopic(HTMLData: AnyObject?) -> Topic {
-        let doc = TFHpple(HTMLObject: HTMLData)
+    class func singleTopic(HTMLStringOptional: String?) -> Topic {
+        let doc = TFHpple(HTMLStringOptional: HTMLStringOptional)
         
         let topicMetaElement = doc.searchWithXPathQuery("//div[@id='Main']//div[@class='box']/div[@class='header']").first as? TFHppleElement
         let topicTitle = topicMetaElement?.searchFirst("//h1")?.text()

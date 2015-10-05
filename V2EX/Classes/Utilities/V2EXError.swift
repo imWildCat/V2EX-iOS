@@ -8,11 +8,12 @@
 
 import Foundation
 
-enum V2EXError: CustomStringConvertible {
+enum V2EXError<T: NSString>: CustomStringConvertible {
     
     case AuthRequired
     case LoginProblem
     case LoginUnknownProblem
+    case OtherProblem(T)
     
     static var domain: String {
         return "io.wildcat.V2EX"
@@ -26,6 +27,8 @@ enum V2EXError: CustomStringConvertible {
             return 1002
         case .LoginUnknownProblem:
             return 1009
+        case .OtherProblem:
+            return 0
         }
     }
     
@@ -37,6 +40,8 @@ enum V2EXError: CustomStringConvertible {
             return "登录有点问题，请重试一次"
         case .LoginUnknownProblem:
             return "未知登录问题，请重试"
+        case .OtherProblem(let descriptionObject):
+            return String(descriptionObject)
         }
     }
     

@@ -89,56 +89,63 @@ class TopicListViewController: UITableViewController {
         }
         
         if let slug = tabSlug {
-            TopicSerivce.getList(tabSlug: slug, response: { [weak self] (error, topics) in
-                if error == nil {
+            TopicSerivce.getList(tabSlug: slug) { [weak self] (result) in
+                if let topics = result.value {
                     self?.topics = topics
                     self?.tableView.reloadData()
                     self?.refreshControl?.endRefreshing()
+                } else {
+                    self?.showError(result.error)
                 }
                 self?.hideProgressView()
-            })
+            }
         } else if let slug = nodeSlug {
             navigationItem.title = "话题列表"
-            TopicSerivce.getList(nodeSlug: slug, response: { [weak self] (error, topics, nodeName) in
+            TopicSerivce.getList(nodeSlug: slug) { [weak self] (result) in
                 self?.hideProgressView()
                 
-                if error == nil {
-                    if let name = nodeName {
-                        self?.navigationItem.title = name
+                switch result {
+                case .Success(let topics, let nodeName):
+                    if let nodeName = nodeName {
+                        self?.navigationItem.title = nodeName
                     }
                     self?.topics = topics
                     self?.tableView.reloadData()
                     self?.refreshControl?.endRefreshing()
                     self?.addLoadMoreDataFooter()
-                } else {
+                case .Failure(_, let error):
                     self?.navigationItem.title = "请登录"
                     self?.showError(error)
                 }
-            })
+                
+            }
         } else {
             // fav topic mode
             navigationItem.title = "我的收藏"
-            TopicSerivce.favoriteTopics(1, response: { [weak self] (error, topics, totalCount) in
-                if error == nil {
+            TopicSerivce.favoriteTopics(1) { [weak self] (result) in
+                self?.hideProgressView()
+                
+                if let (topics, count) = result.value {
                     self?.topics = topics
                     self?.tableView.reloadData()
                     self?.refreshControl?.endRefreshing()
                     
                     self?.addLoadMoreDataFooter()
-                    if totalCount <= 20 {
+                    if count <= 20 {
                         self?.tableView.footer.noticeNoMoreData()
                     }
+                } else {
+                    self?.showError(result.error)
                 }
-                self?.hideProgressView()
-            })
+            }
         }
     }
     
     func loadMoreData() {
         page++
         if let slug = nodeSlug where mode == .Node {
-            TopicSerivce.getList(nodeSlug: slug, page: page, response: { [weak self] (error, topics, nodeName) in
-                if error == nil {
+            TopicSerivce.getList(nodeSlug: slug, page: page) { [weak self] (result) in
+                if let (topics, nodeName) = result.value {
                     if let name = nodeName {
                         self?.navigationItem.title = name
                     }
@@ -149,11 +156,11 @@ class TopicListViewController: UITableViewController {
                         self?.tableView.footer.noticeNoMoreData()
                     }
                 }
-            })
+            }
         } else if mode == .Favorite {
             // my favorites
-            TopicSerivce.favoriteTopics(page, response: { [weak self] (error, topics, totalCount) in
-                if error == nil {
+            TopicSerivce.favoriteTopics(page) { [weak self] (result) in
+                if let (topics, _) = result.value {
                     self?.topics += topics
                     self?.tableView.reloadData()
                     self?.addLoadMoreDataFooter()
@@ -161,7 +168,7 @@ class TopicListViewController: UITableViewController {
                         self?.tableView.footer.noticeNoMoreData()
                     }
                 }
-            })
+            }
         }
     }
     

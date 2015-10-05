@@ -137,22 +137,41 @@ extension UIViewController {
         KVNProgress.showErrorWithStatus(status, completion: completion)
     }
     
+//    func showError(error: ErrorType?) {
+//        if let _ = error {
+//            showError(status: "未知错误")
+//            
+////            if e.domain == V2EXError.domain, let userInfo = e.userInfo as? [String: String], description = userInfo[NSLocalizedDescriptionKey] {
+////                if e.code == 401 {
+////                    showLoginAlert()
+////                    return
+////                }
+////                showError(status: description)
+////                return
+////            } else {
+////                showError(status: "未知错误")
+////            }
+////            showError(.Networking)
+//        }
+//    }
+    
     func showError(error: ErrorType?) {
-        if let _ = error {
-            showError(status: "未知错误")
-            
-//            if e.domain == V2EXError.domain, let userInfo = e.userInfo as? [String: String], description = userInfo[NSLocalizedDescriptionKey] {
-//                if e.code == 401 {
-//                    showLoginAlert()
-//                    return
-//                }
-//                showError(status: description)
-//                return
-//            } else {
-//                showError(status: "未知错误")
-//            }
-//            showError(.Networking)
+//        if error == nil {
+//            return
+//        }
+        
+        if let e = error as? NSError {
+            if e.domain == V2EXError.domain, let userInfo = e.userInfo as? [String: String], description = userInfo[NSLocalizedDescriptionKey] {
+                if e.code == 401 {
+                    showLoginAlert()
+                    return
+                }
+                showError(status: description)
+                return
+            }
+            showError(status: "网络错误")
         }
+        showError(status: "未知错误")
     }
     
     func showError() {

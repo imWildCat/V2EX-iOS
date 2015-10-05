@@ -86,21 +86,16 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         showProgressView()
-        TopicSerivce.createTopic(onceCode: onceCode, nodeSlug: nodeSlug, title: titleText.text ?? "", content: contentText.text) { [weak self] (error, topic, problemMessage) -> Void in
+        TopicSerivce.createTopic(onceCode: onceCode, nodeSlug: nodeSlug, title: titleText.text ?? "", content: contentText.text) { [weak self] (result) -> Void in
             self?.hideProgressView()
-          
-            if let pMessage = problemMessage {
-                self?.showError(status: pMessage)
-                return
-            } else {
-                if let parentVC = self?.topicListVC, newTopic = topic {
-                    parentVC.showTopic(newTopic)
-                    self?.showSuccess(status: "话题创建成功") { () -> Void in
-                        self?.dismissSelf()
-                    }
-                } else {
-                    self?.showError(status: "未知错误，发贴失败。")
+        
+            if let parentVC = self?.topicListVC, newTopic = result.value, topic = newTopic {
+                parentVC.showTopic(topic)
+                self?.showSuccess(status: "话题创建成功") { () -> Void in
+                    self?.dismissSelf()
                 }
+            } else {
+                self?.showError(status: "未知错误，发贴失败。")
             }
         }
     }

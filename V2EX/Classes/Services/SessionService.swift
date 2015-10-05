@@ -268,15 +268,21 @@ class SessionService {
         }
     }
     
-    class func getNotificationCount(response: (error: ErrorType?, count: Int, hasDailyRedeem: Bool) -> Void) {
-        V2EXNetworking.get("").response { (_, _, data, error) in
-            response(error: error, count: self.handleNotificationCount(data), hasDailyRedeem: self.handleDailyRedeem(data))
+    class func getNotificationCount(response: (result: NetworkingResult<(Int, Bool)>) -> Void) {
+        V2EXNetworking.get("").responseString { (req, res, ret) in
+            if ret.isSuccess {
+                let notificationCount = self.handleNotificationCount(ret.value)
+                let hasDailyRedeem = self.handleDailyRedeem(ret.value)
+                response(result: NetworkingResult<(Int, Bool)>.Success((notificationCount, hasDailyRedeem)))
+            } else {
+                response(result: NetworkingResult.Failure(res, ret.error))
+            }
         }
     }
     
-    private class func handleDailyRedeem(data: AnyObject?) -> Bool {
+    private class func handleDailyRedeem(HTMLStringOptional: String?) -> Bool {
         var hasDailyRedeem = false
-        let doc = TFHpple(HTMLObject: data)
+        let doc = TFHpple(HTMLStringOptional: HTMLStringOptional)
 //        let text = doc.searchFirst("//div[@id='Rightbar']")
 //        println(text?.raw)
         if let _ = doc.searchFirst("//div[@id='Rightbar']//a[@href='/mission/daily']") {
@@ -285,8 +291,8 @@ class SessionService {
         return hasDailyRedeem
     }
     
-    private class func handleNotificationCount(data: AnyObject?) -> Int {
-        let doc = TFHpple(HTMLObject: data)
+    private class func handleNotificationCount(HTMLString: String?) -> Int {
+        let doc = TFHpple(HTMLStringOptional: HTMLString)
         var count = 0
         if let notificationLink = doc.searchFirst("//div[@id='Rightbar']//a[@href='/notifications']"), text = notificationLink.text(), countText = text.match("(\\d+) 条未读提醒")?[1], c = Int(countText) {
             count = c
@@ -294,8 +300,8 @@ class SessionService {
         return count
     }
     
-    class func showNotificationWhileCountIsNotZero(data: AnyObject?) {
-        let count = handleNotificationCount(data)
+    class func showNotificationWhileCountIsNotZero(HTMLString: String?) {
+        let count = handleNotificationCount(HTMLString)
         if count > 0 {
             let notification = LNNotification(message: "您有 \(count) 条未读提醒。")
             notification.defaultAction = LNNotificationAction(title: "阅读提醒", handler: { (action) -> Void in

@@ -68,6 +68,7 @@
 		5E8DEFBD1AC29BF20036D852 /* WebViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DEFBC1AC29BF20036D852 /* WebViewAction.swift */; };
 		5E924B701B6BC25D00182F3F /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E924B6F1B6BC25D00182F3F /* UserInfoView.swift */; };
 		5E924B741B6BC38600182F3F /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E924B731B6BC38600182F3F /* UserInfoView.xib */; };
+		5E97F2341BC2ADAD00574FBE /* TopicPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97F2331BC2ADAD00574FBE /* TopicPage.swift */; settings = {ASSET_TAGS = (); }; };
 		5E98290A1A3DC1DE001B1E25 /* TFHppleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */; };
 		5EA316911B7ED15500E57843 /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA316901B7ED15500E57843 /* MemoryCache.swift */; };
 		5EA63C651B08559000431C96 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 793C13B9F465CBC4090C2780 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -88,6 +89,7 @@
 		5ED345CD1ABE733300B5E286 /* UserTopicListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345CC1ABE733300B5E286 /* UserTopicListCellViewModel.swift */; };
 		5ED345DD1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345DC1ABEB3C100B5E286 /* UserReplyTableViewCell.swift */; };
 		5ED345E01ABEB45A00B5E286 /* UserReplyListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED345DF1ABEB45A00B5E286 /* UserReplyListCellViewModel.swift */; };
+		5ED561471BC220540093A695 /* NetworkingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED561461BC220540093A695 /* NetworkingResult.swift */; settings = {ASSET_TAGS = (); }; };
 		5EF398A51B7A31C20005D60B /* V2EXError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF398A41B7A31C20005D60B /* V2EXError.swift */; };
 /* End PBXBuildFile section */
 
@@ -169,6 +171,7 @@
 		5E8DEFBC1AC29BF20036D852 /* WebViewAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewAction.swift; sourceTree = "<group>"; };
 		5E924B6F1B6BC25D00182F3F /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		5E924B731B6BC38600182F3F /* UserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
+		5E97F2331BC2ADAD00574FBE /* TopicPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicPage.swift; sourceTree = "<group>"; };
 		5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFHppleExtension.swift; sourceTree = "<group>"; };
 		5EA316901B7ED15500E57843 /* MemoryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
 		5EA63C661B08700A00431C96 /* node_list_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node_list_bundle.js; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 		5ED345CC1ABE733300B5E286 /* UserTopicListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTopicListCellViewModel.swift; sourceTree = "<group>"; };
 		5ED345DC1ABEB3C100B5E286 /* UserReplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserReplyTableViewCell.swift; sourceTree = "<group>"; };
 		5ED345DF1ABEB45A00B5E286 /* UserReplyListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserReplyListCellViewModel.swift; sourceTree = "<group>"; };
+		5ED561461BC220540093A695 /* NetworkingResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingResult.swift; sourceTree = "<group>"; };
 		5EF398A41B7A31C20005D60B /* V2EXError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V2EXError.swift; sourceTree = "<group>"; };
 		5EFF89451A13A26D0091C84B /* V2EX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "V2EX-Bridging-Header.h"; sourceTree = "<group>"; };
 		793C13B9F465CBC4090C2780 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +334,7 @@
 				5E4AA8671A3F032900AA2F3D /* Node.swift */,
 				5E2F685D1A43CB9700EEECBD /* Reply.swift */,
 				5E1C98301AD0004600E89A1A /* Notification.swift */,
+				5E97F2331BC2ADAD00574FBE /* TopicPage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				5E83B7291A3D8FD60079AB3E /* Networking.swift */,
 				5EC957C21A3DBFFF005E5428 /* V2EXNetworking.swift */,
 				5E4D5D0F1B66743B002A05EE /* ThirdPartyNetworking.swift */,
+				5ED561461BC220540093A695 /* NetworkingResult.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -615,6 +621,7 @@
 				5ED345DD1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */,
 				5E4C0CC31B77381400306C16 /* PreferenceViewController.swift in Sources */,
 				5E5F23CE1A395DBD00D20FE9 /* Topic.swift in Sources */,
+				5ED561471BC220540093A695 /* NetworkingResult.swift in Sources */,
 				5EC734361B2BE1EE0082D920 /* BrowserViewController.swift in Sources */,
 				5E5F23CD1A395DBD00D20FE9 /* UserViewController.swift in Sources */,
 				5E4C0CBF1B76F9C500306C16 /* UserInfoTableViewCell.swift in Sources */,
@@ -659,6 +666,7 @@
 				5E4E68961B81DE3A00A178C4 /* CustomActivity.swift in Sources */,
 				5E38F3DF1AD90D5A00186E18 /* V2EXTableViewController.swift in Sources */,
 				5E924B701B6BC25D00182F3F /* UserInfoView.swift in Sources */,
+				5E97F2341BC2ADAD00574FBE /* TopicPage.swift in Sources */,
 				5E5F23CF1A395DBD00D20FE9 /* User.swift in Sources */,
 				5EA86AFE1BA448BD00109D94 /* UIViewAppearance_Swift.m in Sources */,
 				5E83EAD81AB544B90008E877 /* TopicViewController.swift in Sources */,

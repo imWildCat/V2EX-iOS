@@ -22,40 +22,45 @@ import hpple
 //}
 
 class TopicSerivce {
-    class func getList(tabSlug tabSlug: String, response: ((error: ErrorType?, topics: [Topic]) -> Void)?) {
-
-        V2EXNetworking.get("", parameters: ["tab": tabSlug]).response { (_, _, data, error) in
-            
-            SessionService.showNotificationWhileCountIsNotZero(data)
-            
-            let topics = Topic.listFromTab(data)
-            
-            response?(error: error, topics: topics)
-        }
-    }
-    
-    class func getList(nodeSlug nodeSlug: String, page: Int = 1, response: ((error: ErrorType?, topics: [Topic], nodeName: String?) -> Void)?) {
+    class func getList(tabSlug tabSlug: String, response: ((result: NetworkingResult<[Topic]>) -> Void)?) {
         
-        V2EXNetworking.get("go/\(nodeSlug)?p=\(page)").response { (httpRequest, httpResponse, data, error) in
-            
-            SessionService.showNotificationWhileCountIsNotZero(data)
-            
-            let topics = Topic.listFromNode(data)
-            
-            let titleHTML = TFHpple(HTMLObject: data).searchFirst("//title")?.raw
-            let nodeName = titleHTML?.match("› ([a-zA-Z0-9 \\u4e00-\\u9fa5]+)</title>")?[1]
-            
-            if nodeName == "登录" {
-                let authRequiredError = V2EXError.AuthRequired.foundationError
-                response?(error: authRequiredError, topics: topics, nodeName: nodeName)
-                return
+        V2EXNetworking.get("", parameters: ["tab": tabSlug]).responseString{ (req, res, ret) -> Void in
+
+            if ret.isSuccess {
+                let topics = Topic.listFromTab(ret.value)
+                response?(result: NetworkingResult<[Topic]>.Success(topics))
+            } else {
+                response?(result: NetworkingResult.Failure(res, ret.error))
             }
-            
-            response?(error: error, topics: topics, nodeName: nodeName)
         }
     }
     
-    class func singleTopic(id: Int, page: Int? = nil, response: ((error: ErrorType?, topic: Topic, replies: [Reply], currentPage: Int, totalPage: Int?) -> Void)?) {
+    class func getList(nodeSlug nodeSlug: String, page: Int = 1, response: ((result: NetworkingResult<([Topic], String?)>) -> Void)?) {
+        
+        V2EXNetworking.get("go/\(nodeSlug)?p=\(page)").responseString { (httpRequest, httpResponse, ret) in
+            
+            if ret.isFailure {
+                response?(result: NetworkingResult.Failure(httpResponse, ret.error))
+            } else {
+                SessionService.showNotificationWhileCountIsNotZero(ret.value)
+                
+                let topics = Topic.listFromNode(ret.value)
+                
+                let titleHTML = TFHpple(HTMLStringOptional: ret.value).searchFirst("//title")?.raw
+                let nodeName = titleHTML?.match("› ([a-zA-Z0-9 \\u4e00-\\u9fa5]+)</title>")?[1]
+                
+                if nodeName == "登录" {
+                    let authRequiredError = V2EXError.AuthRequired.foundationError
+                    response?(result: NetworkingResult.Failure(httpResponse, authRequiredError))
+                    return
+                }
+                
+                response?(result: NetworkingResult<([Topic], String?)>.Success((topics, nodeName)))
+            }
+        }
+    }
+    
+    class func singleTopic(id: Int, page: Int? = nil, response: ((result: NetworkingResult<TopicPage>) -> Void)?) {
         
         let url: String = {
             if let p = page {
@@ -65,15 +70,20 @@ class TopicSerivce {
             }
         }()
         
-        V2EXNetworking.get(url, parameters: nil).response {
-            (_, _, data, error) in
+        V2EXNetworking.get(url, parameters: nil).responseString {
+            (_, res, ret) in
             
-            SessionService.showNotificationWhileCountIsNotZero(data)
+            if ret.isFailure {
+                response?(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
             
-            let topic = Topic.singleTopic(data)
-            let replies = Reply.listFromTopic(data)
+            SessionService.showNotificationWhileCountIsNotZero(ret.value)
             
-            let doc = TFHpple(HTMLObject: data)
+            let topic = Topic.singleTopic(ret.value)
+            let replies = Reply.listFromTopic(ret.value)
+            
+            let doc = TFHpple(HTMLStringOptional: ret.value)
             if let onceCodeString = doc.searchFirst("//input[@name='once']")?.attr("value") {
                 SessionStorage.sharedStorage.onceCode = onceCodeString
             }
@@ -112,19 +122,24 @@ class TopicSerivce {
                 }
                 
             }
-            
-            response?(error: error, topic: topic, replies: replies, currentPage: currentPage, totalPage: totalPage)
+            let topicPage = TopicPage(topic: topic, replies: replies, currentPage: currentPage, totalPage: totalPage ?? 1)
+            response?(result: NetworkingResult<TopicPage>.Success(topicPage))
         }
         
     }
     
-    class func topicListOf(user user: String, page: UInt = 1, reponse: ((error: ErrorType?, topics: [Topic]) -> Void)?) {
+    class func topicListOf(user user: String, page: UInt = 1, response: ((result: NetworkingResult<[Topic]>) -> Void)?) {
         
-        V2EXNetworking.get("member/" + user + "/topics", parameters: ["p": page]).response { (_, _, data, error) in
+        V2EXNetworking.get("member/" + user + "/topics", parameters: ["p": page]).responseString { (_, res, ret) in
             
-            SessionService.showNotificationWhileCountIsNotZero(data)
+            if ret.isFailure {
+                response?(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
             
-            let doc = TFHpple(HTMLObject: data)
+            SessionService.showNotificationWhileCountIsNotZero(ret.value)
+            
+            let doc = TFHpple(HTMLStringOptional: ret.value)
             let elements = doc.searchElements("//div[@id='Main']//div[@class='box']/div[@class='cell item']/table")
             
             var topics = [Topic]()
@@ -144,17 +159,31 @@ class TopicSerivce {
                 topics.append(Topic(id: id, title: title, node: Node(name: nodeName, slug: nodeSlug), author: nil, replyCount: replyCount, createdAt: createdAt, content: nil))
             }
             
-            reponse?(error: error, topics: topics)
+            response?(result: NetworkingResult<[Topic]>.Success(topics))
         }
     }
     
-    class func replyListOf(user user: String, page: Int = 1, response: ((error: ErrorType?, replies: [Reply], hasNextPage: Bool) -> Void)?) {
+    struct ReplyList {
+        var replies: [Reply]
+        var hasNextPage: Bool
         
-        V2EXNetworking.get("member/" + user + "/replies", parameters: ["p": page]).response { (_, _, data, error) in
+        init(replies: [Reply], hasNextPage: Bool) {
+            self.replies = replies
+            self.hasNextPage = hasNextPage
+        }
+    }
+    
+    class func replyListOf(user user: String, page: Int = 1, response: ((result: NetworkingResult<ReplyList>) -> Void)?) {
+        
+        V2EXNetworking.get("member/" + user + "/replies", parameters: ["p": page]).responseString { (httpRequest, httpResponse, ret) in
             
-            SessionService.showNotificationWhileCountIsNotZero(data)
+            if ret.isFailure {
+                response?(result: NetworkingResult.Failure(httpResponse, ret.error))
+            }
             
-            let doc = TFHpple(HTMLObject: data)
+            SessionService.showNotificationWhileCountIsNotZero(ret.value)
+            
+            let doc = TFHpple(HTMLStringOptional: ret.value)
             let metaElements = doc.searchElements("//descendant-or-self::div[@id = 'Main']/descendant::div[contains(concat(' ', normalize-space(@class), ' '), ' box ')]/descendant::div[contains(concat(' ', normalize-space(@class), ' '), ' dock_area ')]")
             let contentElements = doc.searchElements("//descendant-or-self::div[@id = 'Main']/descendant::div[contains(concat(' ', normalize-space(@class), ' '), ' box ')]/descendant::div[contains(concat(' ', normalize-space(@class), ' '), ' inner ')]")
             
@@ -199,100 +228,97 @@ class TopicSerivce {
                 hasNextPage = true
             }
             
-            response?(error: error, replies: replies, hasNextPage: hasNextPage)
+            response?(result: NetworkingResult<ReplyList>.Success(ReplyList(replies: replies, hasNextPage: hasNextPage)))
         }
     }
     
-    class func favoriteTopics(page: Int = 1, response: ((error: ErrorType?, topics: [Topic], totalCount: Int) -> Void)?) {
-        V2EXNetworking.get("my/topics").response { (_, _, data, error) in
+    class func favoriteTopics(page: Int = 1, response: ((result: NetworkingResult<([Topic], Int)>) -> Void)?) {
+        
+        V2EXNetworking.get("my/topics").responseString { (req, res, ret) in
             
-            SessionService.showNotificationWhileCountIsNotZero(data)
+//            SessionService.showNotificationWhileCountIsNotZero(data)
             
-            var topics = [Topic]()
-            var favCount = 0
-            
-            if error == nil {
-                let doc = TFHpple(HTMLObject: data)
+            if ret.isSuccess {
+                let doc = TFHpple(HTMLStringOptional: ret.value)
+                let favCount = Int(doc.searchFirst("//div[@id='Rightbar']//table[2]//span[@class='bigger'][2]")?.text() ?? "") ?? 0
                 
-                favCount = Int(doc.searchFirst("//div[@id='Rightbar']//table[2]//span[@class='bigger'][2]")?.text() ?? "") ?? 0
-                
-                topics = Topic.listFromTab(data)
+                let topics = Topic.listFromTab(ret.value)
+                response?(result: NetworkingResult<([Topic], Int)>.Success(topics, favCount))
+            } else {
+                response?(result: NetworkingResult.Failure(res, ret.error))
             }
-            
-            response?(error: error, topics: topics, totalCount: favCount)
         }
     }
     
-    class func createTopic(onceCode onceCode: String, nodeSlug: String, title: String, content: String, response: ((error: ErrorType?, topic: Topic?, problemMessage: String?) -> Void)?) {
-        V2EXNetworking.post("new/\(nodeSlug)", parameters: ["once" : onceCode, "title": title, "content": content]).response { (_, httpResponse, data, error) in
+    class func createTopic(onceCode onceCode: String, nodeSlug: String, title: String, content: String, response: ((result: NetworkingResult<Topic?>) -> Void)?) {
+        V2EXNetworking.post("new/\(nodeSlug)", parameters: ["once" : onceCode, "title": title, "content": content]).responseString { (_, res, ret) in
             
-            SessionService.showNotificationWhileCountIsNotZero(data)
+            SessionService.showNotificationWhileCountIsNotZero(ret.value)
             
-            var topic: Topic?
-            var problemMessage: String?
-            if (error == nil) {
+            if ret.isSuccess {
+                var topic: Topic?
                 
-//                let res = httpResponse!
-//                let header = res.allHeaderFields
-//                let loca = header["Location"] as? String
-//                let contentType = res.allHeaderFields["Content-Type"] as? String
-//                let date = res.allHeaderFields["Date"] as? String
-//                println(header)
-//                println(date ?? "nil")
-//                println(contentType ?? "nil")
-//                println(loca ?? "nil")
-//                println(1)
-//                let s = NSString(data: data as! NSData, encoding: NSUTF8StringEncoding)
-//                println(s ?? "content is nil")
-//                println(http)
-//                if let locationString = httpResponse?.allHeaderFields["Location"] as? String {
-//                    let topicID = locationString.match("/t/(\\d{1,9})#")?[1].toInt()
-//                }
-                
-//                    let e = doc.searchFirst("//link[@rel='canonical']")
-//                    let href = doc.searchFirst("//link[@rel='canonical']")?.attr("href")
-//                    topicID = doc.searchFirst("//link[@rel='canonical']")?.attr("href")?.match("/t/(\\d{1,9})")?[1].toInt()
-                
-                topic = Topic.singleTopic(data)
+                topic = Topic.singleTopic(ret.value)
                 topic?.isNew = true
                 
                 if topic?.id == 0 {
                     topic = nil
                 }
                 
+                let doc = TFHpple(HTMLStringOptional: ret.value)
                 if topic == nil {
-                    let doc = TFHpple(HTMLObject: data)
 
-                    problemMessage = doc.searchFirst("//div[@class='problem']/ul/li")?.text()
+                } else if let problemMessage = doc.searchFirst("//div[@class='problem']/ul/li")?.text() {
+                    response?(result: NetworkingResult<Topic?>.Failure(res, V2EXError.OtherProblem(problemMessage).foundationError))
                 }
+            } else {
+                response?(result: NetworkingResult.Failure(res, ret.error))
             }
             
-            response?(error: error, topic: topic, problemMessage: problemMessage)
-        }
+            
+            //                let res = httpResponse!
+            //                let header = res.allHeaderFields
+            //                let loca = header["Location"] as? String
+            //                let contentType = res.allHeaderFields["Content-Type"] as? String
+            //                let date = res.allHeaderFields["Date"] as? String
+            //                println(header)
+            //                println(date ?? "nil")
+            //                println(contentType ?? "nil")
+            //                println(loca ?? "nil")
+            //                println(1)
+            //                let s = NSString(data: data as! NSData, encoding: NSUTF8StringEncoding)
+            //                println(s ?? "content is nil")
+            //                println(http)
+            //                if let locationString = httpResponse?.allHeaderFields["Location"] as? String {
+            //                    let topicID = locationString.match("/t/(\\d{1,9})#")?[1].toInt()
+            //                }
+            
+            //                    let e = doc.searchFirst("//link[@rel='canonical']")
+            //                    let href = doc.searchFirst("//link[@rel='canonical']")?.attr("href")
+            //                    topicID = doc.searchFirst("//link[@rel='canonical']")?.attr("href")?.match("/t/(\\d{1,9})")?[1].toInt()
+            }
     }
     
-    class func replyTopic(onceCode onceCode: String, topicID: Int, content: String, response: ((error: ErrorType?, problemMessage: String?) -> Void)?) {
+    class func replyTopic(onceCode onceCode: String, topicID: Int, content: String, response: ((result: NetworkingResult<Bool>) -> Void)?) {
         V2EXNetworking.post("t/\(topicID)", parameters: [
                 "content": content,
                 "once": onceCode
-            ]).response { (_, httpResponse, data, error) in
+            ]).responseString { (req, res, ret) in
                 
-                SessionService.showNotificationWhileCountIsNotZero(data)
+                SessionService.showNotificationWhileCountIsNotZero(ret.value)
                 
-                let doc = TFHpple(HTMLObject: data)
+                let doc = TFHpple(HTMLStringOptional: ret.value)
                 
-                var problemMessage = doc.searchFirst("//div[@class='problem']/ul/li")?.text()
+                let problemMessage = doc.searchFirst("//div[@class='problem']/ul/li")?.text()
                 
-                if httpResponse?.statusCode == 403 {
-                    problemMessage = "请登录"
-                }
-                
-                if error != nil {
-                    response?(error: error, problemMessage: nil)
-                } else if let pMessage = problemMessage {
-                    response?(error: nil, problemMessage: pMessage)
+                if ret.isSuccess {
+                    response?(result: NetworkingResult<Bool>.Success(true))
+                } else if res?.statusCode == 403 {
+                    response?(result: NetworkingResult.Failure(res, V2EXError.AuthRequired.foundationError))
+                } else if let problemMessage = problemMessage {
+                    response?(result: NetworkingResult.Failure(res, V2EXError.OtherProblem(problemMessage).foundationError))
                 } else {
-                    response?(error: nil, problemMessage: nil)
+                    response?(result: NetworkingResult.Failure(res, ret.error))
                 }
         }
     }

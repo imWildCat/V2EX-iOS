@@ -192,12 +192,10 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
         }
         
         showProgressView()
-        TopicSerivce.replyTopic(onceCode: onceCode, topicID: topicID, content: contentTextView.text) { [weak self] (error, problemMessage) -> Void in
+        TopicSerivce.replyTopic(onceCode: onceCode, topicID: topicID, content: contentTextView.text) { [weak self] (result) in
             self?.hideProgressView()
-            if error != nil {
-                self?.showError()
-            } else if problemMessage != nil {
-                self?.showError(status: problemMessage!)
+            if result.isFailure {
+                self?.showError(result.error)
             } else {
                 self?.showSuccess(status: "回复成功") {
                     self?.parentVC?.didReplySucceed()

@@ -140,11 +140,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        SessionService.getNotificationCount { [weak self] (error, count, hasDailyRedeem) -> Void in
+        SessionService.getNotificationCount { [weak self] (result) -> Void in
             
             var r: UIBackgroundFetchResult!
             
-            if error == nil {
+            if let (count, hasDailyRedeem) = result.value {
                 r = UIBackgroundFetchResult.NoData
 //                println(count)
 //                println(self?.getCachedUnreadNotificationCount())

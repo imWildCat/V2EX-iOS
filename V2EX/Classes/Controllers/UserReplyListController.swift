@@ -30,20 +30,19 @@ class UserReplyListController: UITableViewController {
             showProgressView()
         }
         
-        TopicSerivce.replyListOf(user: username, page: page) { [weak self] (error, replies, hasMorePage) in
+        TopicSerivce.replyListOf(user: username, page: page) { [weak self] (result) in
             self?.hideProgressView()
-            if error == nil {
-                self?.replies = replies
+            self?.refreshControl?.endRefreshing()
+            
+            if let replyList = result.value {
+                self?.replies = replyList.replies
                 self?.tableView.reloadData()
                 
-                if hasMorePage {
+                if replyList.hasNextPage {
                      self?.addLoadMoreDataFooter()
                 }
-                
-                self?.refreshControl?.endRefreshing()
-                
             } else {
-                self?.showError()
+                self?.showError(result.error)
             }
         }
     }
@@ -59,15 +58,15 @@ class UserReplyListController: UITableViewController {
     func loadMoreData() {
         page++
         
-        TopicSerivce.replyListOf(user: username, page: page) { [weak self] (error, replies, hasNextPage) in
+        TopicSerivce.replyListOf(user: username, page: page) { [weak self] (result) in
             self?.hideProgressView()
-            if error == nil {
-                self?.replies += replies
+            if let replyList = result.value {
+                self?.replies += replyList.replies
                 self?.tableView.reloadData()
                 
                 self?.addLoadMoreDataFooter()
                 
-                if !hasNextPage {
+                if !replyList.hasNextPage {
                     self?.tableView.footer.noticeNoMoreData()
                 }
                 

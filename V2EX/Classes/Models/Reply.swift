@@ -37,10 +37,10 @@ struct Reply {
         self.content = content ?? ""
     }
     
-    static func listFromTopic(HTMLData: AnyObject?) -> [Reply] {
+    static func listFromTopic(HTMLStringOptional: String?) -> [Reply] {
         var replies = [Reply]()
         
-        let doc = TFHpple(HTMLObject: HTMLData)
+        let doc = TFHpple(HTMLStringOptional: HTMLStringOptional)
         
         let elements = doc.searchWithXPathQuery("//div[@id='Main']/div[4]/div[@id and @class='cell' or @class='inner']") as! [TFHppleElement]
         

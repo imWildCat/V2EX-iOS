@@ -135,25 +135,24 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         }
         
         showProgressView()
-        TopicSerivce.singleTopic(topicID, page: page, response: { [weak self, finished] (error, fetchedTopic, replies, currentPage, totalPage)  in
+        TopicSerivce.singleTopic(topicID, page: page, response: { [weak self, finished] (result)  in
             
-            if error != nil {
-                self?.showError(error)
+            if result.isFailure {
+                self?.showError(result.error)
+                return
             }
             
-            self?.webView.loadHTMLString(TopicViewModel.renderHTML(fetchedTopic, replies: replies), baseURL: baseURL)
-            self?.hideProgressView()
-            self?.topicID = fetchedTopic.id
-            self?.topic = fetchedTopic
-            self?.posts = replies
-            
-            self?.currentPage = currentPage
-            if let tp = totalPage {
-                self?.totalPage = tp
+            if let topicPage = result.value {
+                self?.webView.loadHTMLString(TopicViewModel.renderHTML(topicPage.topic, replies: topicPage.replies), baseURL: baseURL)
+                self?.hideProgressView()
+                self?.topicID = topicPage.topic.id
+                self?.topic = topicPage.topic
+                self?.posts = topicPage.replies
+                
+                self?.currentPage = topicPage.currentPage
+                self?.totalPage = topicPage.totalPage
+                self?.configureBottomToolbar()
             }
-            
-            self?.configureBottomToolbar()
-   
             
             finished?()
         })

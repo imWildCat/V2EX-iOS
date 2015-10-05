@@ -33,12 +33,12 @@ class UserTopicListViewController: UITableViewController {
             showProgressView()
         }
         
-        TopicSerivce.topicListOf(user: username, page: page) { [weak self] (error, topics) in
+        TopicSerivce.topicListOf(user: username, page: page) { [weak self] (result) in
             
             self?.hideProgressView()
             self?.refreshControl?.endRefreshing()
             
-            if error == nil {
+            if let topics = result.value {
                 self?.topics = topics
                 self?.tableView.reloadData()
                 
@@ -61,8 +61,8 @@ class UserTopicListViewController: UITableViewController {
     
     func loadMoreData() {
         page++
-        TopicSerivce.topicListOf(user: username, page: page) { [weak self] (error, topics) in
-            if error == nil {
+        TopicSerivce.topicListOf(user: username, page: page) { [weak self] (result) in
+            if let topics = result.value {
                 self?.topics += topics
                 self?.tableView.reloadData()
                 
