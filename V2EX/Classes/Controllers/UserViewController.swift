@@ -89,12 +89,13 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if let name = username {
                 showProgressView()
-                UserService.getUserInfo(name) { [weak self] (error, user, topicsRelated, repliesRelated) in
-                    if error == nil {
+                UserService.getUserInfo(name) { [weak self] (result) in
+                    switch result {
+                    case .Success(let user):
                         self?.user = user
                         self?.hideProgressView()
                         self?.configureUserActions()
-                    } else {
+                    case .Failure(_, let error):
                         self?.showError(error)
                     }
                 }
@@ -110,7 +111,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         let storage = SessionStorage.sharedStorage
         if storage.currentUser?.id == nil && storage.currentUser?.name != nil {
             let name = storage.currentUser?.name ?? "..."
-            UserService.getUserInfo(name) { [weak self] (error, user, topicsRelated, repliesRelated) in
+            UserService.getUserInfo(name) { [weak self] (result) in
                 self?.user = user
             }
         }

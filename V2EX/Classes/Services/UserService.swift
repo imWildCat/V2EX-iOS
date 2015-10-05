@@ -11,9 +11,15 @@ import hpple
 
 class UserService {
     
-    class func getUserInfo(username: String, response: ((error: ErrorType?, user: User, topicsRelated: [Topic], repliesRelated: [Reply]) -> Void)? = nil) {
-        V2EXNetworking.get("member/" + username).response { (_, _, data, error) in
-            let doc = TFHpple(HTMLObject: data)
+    class func getUserInfo(username: String, response: ((result: NetworkingResult<User>) -> Void)? = nil) {
+        V2EXNetworking.get("member/" + username).responseString { (_, res, ret) in
+            
+            if ret.isFailure {
+                response?(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+            
+            let doc = TFHpple(HTMLStringOptional: ret.value)
             
             let info = doc.searchFirst("//div[@id='Main']//div[@class='box']/div[@class='cell']")
             
@@ -57,7 +63,7 @@ class UserService {
                SessionStorage.sharedStorage.currentUser = user
             }
             
-            response?(error: error, user: user, topicsRelated: [Topic](), repliesRelated: [Reply]())
+            response?(result: NetworkingResult<(User)>.Success(user))
         }
     }
 }

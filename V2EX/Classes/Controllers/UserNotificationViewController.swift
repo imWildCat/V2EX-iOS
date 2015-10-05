@@ -55,10 +55,9 @@ class UserNotificationViewController: V2EXTableViewController {
             showProgressView()
             addLoadMoreDataFooter()
         }
-        NotificationService.get(page) { [weak self] (error, notifications) in
-            if error != nil {
-                self?.showError()
-            } else {
+        NotificationService.get(page) { [weak self] (result) in
+            switch result {
+            case .Success(let notifications):
                 self?.notifications += notifications
                 self?.generateCellViewModels()
                 self?.tableView.reloadData()
@@ -66,6 +65,8 @@ class UserNotificationViewController: V2EXTableViewController {
                 self?.hideProgressView()
                 self?.tableView.footer.hidden = true
                 self?.addLoadMoreDataFooter()
+            case .Failure(_, let error):
+                 self?.showError(error)
             }
         }
     }
@@ -73,10 +74,10 @@ class UserNotificationViewController: V2EXTableViewController {
     func loadMoreData() {
         page += 1
 
-        NotificationService.get(page) { [weak self] (error, notifications) in
-            if error != nil {
-                self?.showError()
-            } else {
+        NotificationService.get(page) { [weak self] (result) in
+            
+            switch result {
+            case .Success(let notifications):
                 self?.notifications += notifications
                 self?.generateCellViewModels()
                 self?.tableView.reloadData()
@@ -84,6 +85,8 @@ class UserNotificationViewController: V2EXTableViewController {
                 if notifications.count < 10 {
                     self?.tableView.footer.noticeNoMoreData()
                 }
+            case .Failure(_, let error):
+                self?.showError(error)
             }
         }
 

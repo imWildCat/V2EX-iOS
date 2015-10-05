@@ -11,10 +11,16 @@ import hpple
 
 class NotificationService {
     
-    class func get(page: Int = 1, response: ((error: ErrorType?, notifications: [Notification]) -> Void)? = nil) {
-        V2EXNetworking.get("notifications", parameters: ["p": page]).response {
-            (_, _, data, error) in
-            let doc = TFHpple(HTMLObject: data)
+    class func get(page: Int = 1, response: ((result: NetworkingResult<[Notification]>) -> Void)? = nil) {
+        V2EXNetworking.get("notifications", parameters: ["p": page]).responseString {
+            (_, res, ret) in
+            
+            if ret.isFailure {
+                response?(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+            
+            let doc = TFHpple(HTMLStringOptional: ret.value)
             
             let rows = doc.searchElements("//div[@id='Main']//div[@class='box']//div[@class='cell']/table[1]//tr")
             
@@ -67,9 +73,7 @@ class NotificationService {
 //                    ])
             }
             
-            response?(error: error, notifications: notifications)
-//            println(rows.count)
-//            println(notifications.count)
+            response?(result: NetworkingResult<[Notification]>.Success(notifications))
         }
     }
 }

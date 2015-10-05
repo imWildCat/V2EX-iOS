@@ -11,13 +11,12 @@ import SwiftyJSON
 
 class NodeService {
     
-    static func getAll(response: ((error: ErrorType?, nodes: [Node]) -> Void)? = nil) {
-        V2EXNetworking.get("api/nodes/all.json").response { (_, _, data, error) in
-            
-            var nodes = [Node]()
+    static func getAll(response: ((result: NetworkingResult<[Node]>) -> Void)? = nil) {
+        V2EXNetworking.get("api/nodes/all.json").response { (_, res, data, error) in
             
             if let jsonData = data {
                 let json = JSON(data: jsonData)
+                var nodes = [Node]()
                 
                 for (_, nodeJSON) in json {
                     if let nodeName = nodeJSON["title"].string, nodeSlug = nodeJSON["name"].string {
@@ -26,10 +25,9 @@ class NodeService {
                     }
                 }
                 
-                response?(error: error, nodes: nodes)
+                response?(result: NetworkingResult<[Node]>.Success(nodes))
             } else {
-                
-                response?(error: nil, nodes: nodes)
+                response?(result: NetworkingResult.Failure(res, error))
             }
             
         }

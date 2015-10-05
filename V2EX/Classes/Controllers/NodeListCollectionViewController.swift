@@ -58,13 +58,13 @@ class NodeListCollectionViewController: UICollectionViewController {
     // MARK: Searching for all nodes
     
     private func loadNodeData() {
-        NodeService.getAll { [weak self] (error, nodes) in
-            if error != nil {
-                self?.showError()
-            } else {
+        NodeService.getAll { [weak self] (result) in
+            switch result {
+            case .Success(let nodes):
                 self?.allNodes = nodes
                 self?.hideProgressView()
-                NSLog("data loaded: \(nodes.count)")
+            case .Failure(_, let error):
+                self?.showError(error)
             }
         }
     }
