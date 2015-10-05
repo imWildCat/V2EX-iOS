@@ -120,7 +120,9 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
         }
         
         
-        let backgroundNotificationItem = REBoolItem(title: "后台提醒", value: false) { (item) -> Void in
+        let shouldDoBackgroundFetch = NSUserDefaults.standardUserDefaults().boolForKey("should_do_background_fetch")
+        
+        let backgroundNotificationItem = REBoolItem(title: "后台提醒", value: shouldDoBackgroundFetch) { (item) -> Void in
             let sholdFetch = item.value
             NSUserDefaults.standardUserDefaults().setBool(sholdFetch, forKey: "should_do_background_fetch")
             NSUserDefaults.standardUserDefaults().synchronize()

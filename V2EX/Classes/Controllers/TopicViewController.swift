@@ -460,7 +460,7 @@ extension TopicViewController: UIScrollViewDelegate {
             return
         }
         
-        if scrollView.contentOffset.y > lastContentOffset {
+        if scrollView.contentOffset.y > lastContentOffset && scrollView.contentOffset.y > -32  {
             hideBottomBar()
         } else if scrollView.contentOffset.y < lastContentOffset {
             showBottomBar()
