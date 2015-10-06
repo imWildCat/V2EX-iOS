@@ -155,7 +155,7 @@ extension UIViewController {
 //        }
 //    }
     
-    func showError(error: ErrorType?) {
+    func showError(error: ErrorType?, completion: (() -> Void)? = nil) {
 //        if error == nil {
 //            return
 //        }
@@ -166,12 +166,12 @@ extension UIViewController {
                     showLoginAlert()
                     return
                 }
-                showError(status: description)
+                showError(status: description, completion: completion)
                 return
             }
-            showError(status: "网络错误")
+            showError(status: "网络错误", completion: completion)
         }
-        showError(status: "未知错误")
+        showError(status: "未知错误", completion: completion)
     }
     
     func showError() {

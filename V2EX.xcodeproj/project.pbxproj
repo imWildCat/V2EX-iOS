@@ -303,9 +303,14 @@
 			isa = PBXGroup;
 			children = (
 				5E38F3DA1AD90D3100186E18 /* BaseClasses */,
+				5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */,
 				5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */,
 				5E6F31741ADA238400C477A5 /* CreateTopicViewController.swift */,
 				5E5F23B31A395DBD00D20FE9 /* DiscoveryViewController.swift */,
+				5EA86AF31BA4003000109D94 /* NodeListCollectionViewController.swift */,
+				5E4C0CC21B77381400306C16 /* PreferenceViewController.swift */,
+				5E29CF481B783AAE0071B54D /* PurchaseViewController.swift */,
+				5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */,
 				5E5F23B61A395DBD00D20FE9 /* RootViewController.swift */,
 				5E5F23B71A395DBD00D20FE9 /* TopicListViewController.swift */,
 				5E83EAD71AB544B90008E877 /* TopicViewController.swift */,
@@ -315,11 +320,6 @@
 				5E8523EE1ABD7B0F00B7B8C4 /* UserReplyListController.swift */,
 				5E8523EB1ABD7B0200B7B8C4 /* UserTopicListViewController.swift */,
 				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
-				5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */,
-				5E4D5D0D1B6633FF002A05EE /* ReplyTopicViewController.swift */,
-				5E4C0CC21B77381400306C16 /* PreferenceViewController.swift */,
-				5E29CF481B783AAE0071B54D /* PurchaseViewController.swift */,
-				5EA86AF31BA4003000109D94 /* NodeListCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

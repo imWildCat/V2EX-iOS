@@ -71,17 +71,21 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             if (NSDate.currentTimestamp() - storage.lastLogin) < UInt(24.hours.toSeconds) {
                 switchToLoginState()
             } else {
-                SessionService.checkLogin { [weak self] (error, isLoggedIn) in
-                    if error != nil {
-                        self?.showError(status: "网络错误，无法检查您的登录状态") {
+                SessionService.checkLogin { [weak self] (result) in
+                    switch result {
+                    case .Success(let isLoggedIn):
+                        if isLoggedIn {
+                            self?.switchToLoginState()
+                        } else {
+                            self?.switchToUnloginState()
+                        }
+                    case .Failure(_, let e):
+                        self?.showError(e) {
                             self?.switchToUnloginState()
                             return
                         }
-                    } else if isLoggedIn {
-                        self?.switchToLoginState()
-                    } else {
-                        self?.switchToUnloginState()
                     }
+                    
                 }
             }
         } else {
@@ -112,7 +116,12 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         if storage.currentUser?.id == nil && storage.currentUser?.name != nil {
             let name = storage.currentUser?.name ?? "..."
             UserService.getUserInfo(name) { [weak self] (result) in
-                self?.user = user
+                switch result {
+                case .Failure(_, let error):
+                    self?.showError(error)
+                case .Success(let user):
+                    self?.user = user
+                }
             }
         }
     }
@@ -215,12 +224,13 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if typeOfRows[indexPath.row] == .DailyRedeem {
-            SessionService.getDailyRedeem({ [weak self] (error) -> Void in
-                if error == nil {
+            SessionService.getDailyRedeem({ [weak self] (result) -> Void in
+                switch result {
+                case .Failure(_, let error):
+                    self?.showError(error)
+                case .Success(_):
                     self?.showSuccess(status: "已领取今日登陆奖励")
                     self?.setUpRowTypes(self?.user, shouldDisplayDailyRedeem: false)
-                } else {
-                    self?.showError(error)
                 }
             })
         }
@@ -284,9 +294,14 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func checkDailyTask() {
-        SessionService.checkDailyRedeem { [weak self] (error, onceCode) -> Void in
-            if let _ = onceCode {
-               self?.setUpRowTypes(self?.user, shouldDisplayDailyRedeem: true)
+        SessionService.checkDailyRedeem { [weak self] (result) -> Void in
+            switch result {
+            case .Failure(_, let error):
+                self?.showError(error)
+            case .Success(let onceCode):
+                if onceCode != nil {
+                    self?.setUpRowTypes(self?.user, shouldDisplayDailyRedeem: true)
+                }
             }
         }
     }
@@ -359,10 +374,11 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let userID = user?.id, token = user?.actionToken, status = user?.isFollowed {
             showProgressView()
-            SessionService.toggleFollowUser(userID, token: token, isFollowed: status) { [weak self] (error) in
-                if error != nil {
+            SessionService.toggleFollowUser(userID, token: token, isFollowed: status) { [weak self] (result) in
+                switch result {
+                case .Failure(_, let error):
                     self?.showError(error)
-                } else {
+                case .Success(_):
                     self?.user?.isFollowed = !(self?.user?.isFollowed)!
                     if self?.user?.isFollowed == true {
                         self?.showSuccess(status: "已关注")
@@ -380,10 +396,11 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let userID = user?.id, token = user?.actionToken, status = user?.isBlocked {
             showProgressView()
-            SessionService.toggleBlockUser(userID, token: token, isBlocked: status) { [weak self] (error) in
-                if error != nil {
+            SessionService.toggleBlockUser(userID, token: token, isBlocked: status) { [weak self] (result) in
+                switch result {
+                case .Failure(_, let error):
                     self?.showError(error)
-                } else {
+                case .Success(_):
                     self?.user?.isBlocked = !(self?.user?.isBlocked)!
                     if self?.user?.isBlocked == true {
                         self?.showSuccess(status: "已 Block")

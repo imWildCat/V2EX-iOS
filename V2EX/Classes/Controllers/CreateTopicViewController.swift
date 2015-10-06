@@ -43,13 +43,14 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
     
     func loadOnceCode() {
         postButton.enabled = false
-        SessionService.getOnceCode { [weak self](error, code) in
-            self?.postButton.enabled = true
-            if error != nil {
-                self?.showError(status: "网络错误。", completion: nil)
-                return
+        SessionService.getOnceCode { [weak self] (result) in
+            switch result {
+            case .Failure(_, let error):
+                self?.showError(error)
+            case .Success(let code):
+                self?.postButton.enabled = true
+                self?.onceCode = code
             }
-            self?.onceCode = code
         }
     }
     

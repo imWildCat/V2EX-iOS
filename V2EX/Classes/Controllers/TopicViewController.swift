@@ -77,10 +77,11 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         let ignoringActivity = CustomActivity(title: "忽略主题", image: UIImage(named: "ignore_icon")!) { [unowned self] () -> Void in
             if self.isLoggedIn {
                 self.showProgressView()
-                SessionService.ignoreTopic(self.topicID) { [weak self] (error) in
-                    if error != nil {
+                SessionService.ignoreTopic(self.topicID) { [weak self] (result) in
+                    switch result {
+                    case .Failure(_, let error):
                         self?.showError(error)
-                    } else {
+                    case .Success(_):
                         self?.showSuccess(status: "忽略成功")
                     }
                 }
@@ -96,10 +97,11 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
                 
                 if let rLink = self.topic?.reportLink {
                     self.showProgressView()
-                    SessionService.reportTopic(rLink) { [weak self] (error) -> Void in
-                        if error != nil {
+                    SessionService.reportTopic(rLink) { [weak self] (result) -> Void in
+                        switch result {
+                        case .Failure(_, let error):
                             self?.showError(error)
-                        } else {
+                        case .Success(_):
                             self?.showSuccess(status: "你已对本主题进行了报告")
                             self?.topic?.isReported = true
                         }
@@ -255,10 +257,11 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             
             let appreciatingButton = UIAlertAction(title: "感谢", style: .Default) {
                 [unowned self, unowned alert] action in
-                SessionService.appreciateReply(intID, token: post.appreciatingReplyToken ?? ""){ [weak self] (error) -> Void in
-                    if error != nil {
+                SessionService.appreciateReply(intID, token: post.appreciatingReplyToken ?? ""){ [weak self] (result) in
+                    switch result {
+                    case .Failure(_, let error):
                         self?.showError(error)
-                    } else {
+                    case .Success(_):
                         self?.showSuccess(status: "已发送感谢")
                         self?.configureAppreciationButton()
                         self?.addAppreciatedPost(id)
@@ -393,10 +396,11 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         
         if let token = topic?.appreciateToken {
             showProgressView()
-            SessionService.appreciateTopic(topicID, token: token) { [weak self] (error) in
-                if error != nil {
+            SessionService.appreciateTopic(topicID, token: token) { [weak self] (result) in
+                switch result {
+                case .Failure(_, let error):
                     self?.showError(error)
-                } else {
+                case .Success(_):
                     self?.showSuccess(status: "已发送感谢")
                     self?.topic?.isAppreciated = true
                     self?.configureAppreciationButton()
@@ -413,18 +417,18 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         
         showProgressView()
         if let favLink = topic?.favoriteLink {
-            SessionService.favoriteTopic(favLink) { [weak self] (error) -> Void in
-                if error != nil {
+            SessionService.favoriteTopic(favLink) { [weak self] (result) -> Void in
+                switch result {
+                case .Failure(_, let error):
                     self?.showError(error)
-                    return
-                }
-                
-                // 为了可以正常取消收藏，所以需要 reload 一下 topic
-                self?.requestTopic() { [weak self] in
-                    if self?.topic?.isFavorited == true {
-                        self?.showSuccess(status: "已收藏")
-                    } else {
-                        self?.showSuccess(status: "已取消收藏")
+                case .Success(_):
+                    // 为了可以正常取消收藏，所以需要 reload 一下 topic
+                    self?.requestTopic() { [weak self] in
+                        if self?.topic?.isFavorited == true {
+                            self?.showSuccess(status: "已收藏")
+                        } else {
+                            self?.showSuccess(status: "已取消收藏")
+                        }
                     }
                 }
             }

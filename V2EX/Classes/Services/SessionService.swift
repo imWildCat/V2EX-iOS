@@ -13,18 +13,18 @@ import LNNotificationsUI
 
 class SessionService {
     
-    class func checkLogin(response: ((error: ErrorType?, isLoggedIn: Bool) -> Void)?) {
+    class func checkLogin(response: ((result: NetworkingResult<Bool>) -> Void)?) {
         
         if SessionStorage.sharedStorage.currentUser == nil {
-            response?(error: nil, isLoggedIn: false)
+            response?(result: NetworkingResult<Bool>.Success(false))
             return
         }
         
-        V2EXNetworking.get("").response { (_, _, data, error) in
-            let isLoggedIn = self.checkLoginFrom(htmldata: data)
-            response?(error: error, isLoggedIn: isLoggedIn)
+        V2EXNetworking.get("").responseString { (_, res, ret) in
+            let isLoggedIn = self.checkLoginFrom(HTMLStringOptional: ret.value)
+            response?(result: NetworkingResult<Bool>.Success(isLoggedIn))
             if isLoggedIn {
-                self.setBasicUserDataFrom(htmlData: data)
+                self.setBasicUserDataFrom(HTMLStringOptional: ret.value)
             }
             return
         }
@@ -45,26 +45,31 @@ class SessionService {
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
-    class func requestNewSessionFormOnceCode(response: ((error: ErrorType?, onceCode: String) -> Void)?) {
-        V2EXNetworking.get("signin").response { (_, _, data, error) in
+    class func requestNewSessionFormOnceCode(response: ((result: NetworkingResult<String>) -> Void)?) {
+        V2EXNetworking.get("signin").responseString { (_, res, ret) in
             
-            let doc = TFHpple(HTMLObject: data)
-            let onceElement = doc.searchFirst("//div[@id='Main']//div[@class='box']//form//input[@name='once']")
-            let code = (onceElement?["value"] as? String) ?? ""
-            
-            SessionStorage.sharedStorage.onceCode = code
-            
-            response?(error: error, onceCode: code)
+            switch ret {
+            case .Failure(_, let error):
+                response?(result: NetworkingResult.Failure(res, error))
+            case .Success(_):
+                let doc = TFHpple(HTMLStringOptional: ret.value)
+                let onceElement = doc.searchFirst("//div[@id='Main']//div[@class='box']//form//input[@name='once']")
+                let code = (onceElement?["value"] as? String) ?? ""
+                
+                SessionStorage.sharedStorage.onceCode = code
+                
+                response?(result: NetworkingResult<String>.Success(code))
+            }
         }
     }
     
-    class func performLogin(username: String, password: String, response: ((error: ErrorType?, isLoggedIn: Bool) -> Void)?) {
+    class func performLogin(username: String, password: String, response: ((result: NetworkingResult<Bool>) -> Void)?) {
         
         if SessionStorage.sharedStorage.shouldRequestNewOnceCode() {
-            self.requestNewSessionFormOnceCode { (error, _) in
+            self.requestNewSessionFormOnceCode { (ret) in
             
-                if error != nil {
-                    response?(error: error, isLoggedIn: false)
+                if ret.isFailure {
+                    response?(result: NetworkingResult.Failure(nil, ret.error))
                     self.loginFailed()
                     return
                 }
@@ -76,18 +81,22 @@ class SessionService {
         }
     }
     
-    private class func postInfo(username: String, password: String, response: ((error: ErrorType?, isLoggedIn: Bool) -> Void)?) {
+    private class func postInfo(username: String, password: String, response: ((result: NetworkingResult<Bool>) -> Void)?) {
         V2EXNetworking.post("signin", parameters: [
             "next": "/",
             "once": SessionStorage.sharedStorage.onceCode,
             "u": username,
             "p": password
-            ], additionalHeaders: ["Referer": "http://www.v2ex.com/signin"]).response { (_, _, data, error) in
+            ], additionalHeaders: ["Referer": "http://www.v2ex.com/signin"]).responseString { (_, res, ret) in
                 
-                let isLoggedIn = self.checkLoginFrom(htmldata: data)
+                if ret.isFailure {
+                    response?(result: NetworkingResult.Failure(res, ret.error))
+                }
+                
+                let isLoggedIn = self.checkLoginFrom(HTMLStringOptional: ret.value)
                 
                 if isLoggedIn {
-                    self.setBasicUserDataFrom(htmlData: data)
+                    self.setBasicUserDataFrom(HTMLStringOptional: ret.value)
                     
                     // save
                     self.save(username: username, password: password)
@@ -99,22 +108,22 @@ class SessionService {
                         print(cookie)
                     }
                     
-                    response?(error: error, isLoggedIn: isLoggedIn)
+                    response?(result: NetworkingResult<Bool>.Success(isLoggedIn))
                 } else {
                     self.loginFailed()
                     
                     // delete username and password saved
                     self.clearUsernameAndPassword()
                     
-                    let doc = TFHpple(HTMLObject: data)
+                    let doc = TFHpple(HTMLStringOptional: ret.value)
                     if let errorMessage = doc.searchFirst("//div[@class='box']//div[@class='message']")?.text() {
                         var e = V2EXError.LoginUnknownProblem
                         if errorMessage == "登录有点问题，请重试一次" {
                             e = V2EXError.LoginProblem
                         }
-                        response?(error: e.foundationError, isLoggedIn: isLoggedIn)
+                        response?(result: NetworkingResult.Failure(res, e.foundationError))
                     } else {
-                        response?(error: error, isLoggedIn: isLoggedIn)
+                        response?(result: NetworkingResult.Failure(res, ret.error))
                     }
                 }
         }
@@ -127,9 +136,9 @@ class SessionService {
     
     :returns: Bool of result
     */
-    private class func checkLoginFrom(htmldata htmldata: AnyObject?) -> Bool {
+    private class func checkLoginFrom(HTMLStringOptional HTMLStringOptional: String?) -> Bool {
 
-        let doc = TFHpple(HTMLObject: htmldata)
+        let doc = TFHpple(HTMLStringOptional: HTMLStringOptional)
         let newTopicElement = doc.searchFirst("//div[@id='Rightbar']//div[@class='box']//a[@href='/new']")
         
         if newTopicElement != nil {
@@ -143,8 +152,8 @@ class SessionService {
         SessionStorage.sharedStorage.currentUser = nil
     }
     
-    private class func setBasicUserDataFrom(htmlData htmlData: AnyObject?) {
-        let doc = TFHpple(HTMLObject: htmlData)
+    private class func setBasicUserDataFrom(HTMLStringOptional HTMLStringOptional: String?) {
+        let doc = TFHpple(HTMLStringOptional: HTMLStringOptional)
         // Get info of current user
         let infoElement = doc.searchFirst("//div[@id='Rightbar']//div[@class='box']//div[@class='cell']")
         let username = infoElement?.searchFirst("//span[@class='bigger']/a")?.text()
@@ -170,79 +179,113 @@ class SessionService {
         return (keychain.stringForKey("v2ex-username"), keychain.stringForKey("v2ex-password"))
     }
     
-    class func getOnceCode(response: ((error: ErrorType?, code: String) -> Void)) {
-        V2EXNetworking.get("new").response { (_, _, data, error) in
+    class func getOnceCode(response: ((result: NetworkingResult<String>) -> Void)) {
+        V2EXNetworking.get("new").responseString { (_, res, ret) in
             
-            let doc = TFHpple(HTMLObject: data)
+            if ret.isFailure {
+                response(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+            
+            let doc = TFHpple(HTMLStringOptional: ret.value)
             let onceElement = doc.searchFirst("//div[@id='Main']//div[@class='box']//form//input[@name='once']")
             let code = (onceElement?["value"] as? String) ?? ""
             
             SessionStorage.sharedStorage.onceCode = code
             
-            response(error: error, code: code)
+            response(result: NetworkingResult<String>.Success(code))
         }
     }
     
-    class func checkDailyRedeem(response: ((error: ErrorType?, onceCode: String?) -> Void)?) {
-        V2EXNetworking.get("mission/daily").response { (_, _, data, error) in
+    class func checkDailyRedeem(response: ((result: NetworkingResult<String?>) -> Void)?) {
+        V2EXNetworking.get("mission/daily").responseString { (_, res, ret) in
             
-            var onceCode: String?
-            let doc = TFHpple(HTMLObject: data)
+            if ret.isFailure {
+                response?(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+            
+            let doc = TFHpple(HTMLStringOptional: ret.value)
             if let buttonElement = doc.searchFirst("//input[@class='super normal button']"),
                 once = buttonElement.attr("onclick")?.match("once=(\\d+)")?[1] {
-                onceCode = once
                     
                 SessionStorage.sharedStorage.onceCode = once
+                // TODO: Cache daily login for one day(do not send second request for signed task)
+                response?(result: NetworkingResult<String?>.Success(once))
+            } else {
+                // TODO: More friendly error
+                response?(result: NetworkingResult<String?>.Success(nil))
             }
-            // TODO: Cache daily login for one day(do not send second request for signed task)
-            response?(error: error, onceCode: onceCode)
         }
     }
     
-    class func getDailyRedeem(response: (error: ErrorType?) -> Void) {
+    class func getDailyRedeem(response: (result: NetworkingResult<Bool>) -> Void) {
         
         let onceCode = SessionStorage.sharedStorage.onceCode
         
-        V2EXNetworking.get("mission/daily/redeem?once=\(onceCode)", additionalHeaders: ["Referer": "https://v2ex.com/mission/daily"]).response { (_, _, data, error) in
-            
-           response(error: error)
+        V2EXNetworking.get("mission/daily/redeem?once=\(onceCode)", additionalHeaders: ["Referer": "https://v2ex.com/mission/daily"]).responseString { (_, res, ret) in
+            if ret.isFailure {
+                response(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+           response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
-    class func ignoreTopic(id: Int, response:(error: ErrorType?) -> Void) {
+    class func ignoreTopic(id: Int, response:(result: NetworkingResult<Bool>) -> Void) {
         
         let onceCode = SessionStorage.sharedStorage.onceCode
         
-        V2EXNetworking.get("ignore/topic/\(id)?once=\(onceCode)").response { (_, _, data, error) in
-            response(error: error)
+        V2EXNetworking.get("ignore/topic/\(id)?once=\(onceCode)").responseString { (_, res, ret) in
+            if ret.isFailure {
+                response(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+           response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
-    class func reportTopic(reportLink: String, response:(error: ErrorType?) -> Void) {
-        V2EXNetworking.get(reportLink).response { (_, _, data, error) in
-            response(error: error)
+    class func reportTopic(reportLink: String, response:(result: NetworkingResult<Bool>) -> Void) {
+        V2EXNetworking.get(reportLink).responseString { (_, res, ret) in
+            if ret.isFailure {
+                response(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+           response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
-    class func favoriteTopic(favLink: String, response:(error: ErrorType?) -> Void) {
-        V2EXNetworking.get(favLink).response { (_, _, data, error) in
-            response(error: error)
+    class func favoriteTopic(favLink: String, response:(result: NetworkingResult<Bool>) -> Void) {
+        V2EXNetworking.get(favLink).responseString { (_, res, ret) in
+            if ret.isFailure {
+                response(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+           response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
-    class func appreciateTopic(id: Int, token: String, response:(error: ErrorType?) -> Void) {
-        V2EXNetworking.post("thank/topic/\(id)?t=\(token)").response { (_, _, data, error) in
-            response(error: error)
+    class func appreciateTopic(id: Int, token: String, response:(result: NetworkingResult<Bool>) -> Void) {
+        V2EXNetworking.post("thank/topic/\(id)?t=\(token)").responseString { (_, res, ret) in
+            if ret.isFailure {
+                response(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+           response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
-    class func appreciateReply(id: Int, token: String, response:(error: ErrorType?) -> Void) {
-        V2EXNetworking.post("thank/reply/\(id)?t=\(token)").response { (_, _, data, error) in
-            response(error: error)
+    class func appreciateReply(id: Int, token: String, response:(result: NetworkingResult<Bool>) -> Void) {
+        V2EXNetworking.post("thank/reply/\(id)?t=\(token)").responseString { (_, res, ret) in
+            if ret.isFailure {
+                response(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+            response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
-    class func toggleFollowUser(id: Int, token: String, isFollowed: Bool, response:(error: ErrorType?) -> Void) {
+    class func toggleFollowUser(id: Int, token: String, isFollowed: Bool, response:(result: NetworkingResult<Bool>) -> Void) {
         let url: String = {
             if isFollowed {
                 return "unfollow/\(id)?t=\(token)"
@@ -250,12 +293,16 @@ class SessionService {
                 return "follow/\(id)?t=\(token)"
             }
         }()
-        V2EXNetworking.get(url).response { (_, _, data, error) in
-            response(error: error)
+        V2EXNetworking.get(url).responseString { (_, res, ret) in
+            if ret.isFailure {
+                response(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+            response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
-    class func toggleBlockUser(id: Int, token: String, isBlocked: Bool, response:(error: ErrorType?) -> Void) {
+    class func toggleBlockUser(id: Int, token: String, isBlocked: Bool, response:(result: NetworkingResult<Bool>) -> Void) {
         let url: String = {
             if isBlocked {
                 return "unblock/\(id)?t=\(token)"
@@ -263,8 +310,12 @@ class SessionService {
                 return "block/\(id)?t=\(token)"
             }
             }()
-        V2EXNetworking.get(url).response { (_, _, data, error) in
-            response(error: error)
+        V2EXNetworking.get(url).responseString { (_, res, ret) in
+            if ret.isFailure {
+                response(result: NetworkingResult.Failure(res, ret.error))
+                return
+            }
+            response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     

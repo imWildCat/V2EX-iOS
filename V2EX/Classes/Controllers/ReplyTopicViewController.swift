@@ -75,8 +75,13 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func loadOnceCode() {
-        SessionService.getOnceCode { [weak self] (error, code) -> Void in
-            self?.onceCode = code
+        SessionService.getOnceCode { [weak self] (result) -> Void in
+            switch result {
+            case .Failure(_, let error):
+                self?.showError(error)
+            case .Success(let code):
+                self?.onceCode = code
+            }
         }
     }
     

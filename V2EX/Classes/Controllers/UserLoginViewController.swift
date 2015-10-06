@@ -35,9 +35,14 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: private methods
     private func loadOnceCode(completion: (() -> Void)? = nil) {
-        SessionService.requestNewSessionFormOnceCode { [weak self](error, onceCode)  in
-            self?.onceCode = onceCode
-            completion?()
+        SessionService.requestNewSessionFormOnceCode { [weak self] (result) in
+            switch result {
+            case .Failure(_, let error):
+                self?.showError(error)
+            case .Success(let code):
+                self?.onceCode = code
+                completion?()
+            }
         }
     }
     
@@ -55,17 +60,20 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         
         showProgressView()
         
-        SessionService.performLogin(usernameTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] (error, isLoggedIn) -> Void in
+        SessionService.performLogin(usernameTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] (result) -> Void in
+            self?.hideProgressView()
             
-            if isLoggedIn {
-                self?.showSuccess(status: "登录成功") {
-                    self?.dismissSelf()
-                    return
+            switch result {
+            case .Success(let isLoggedIn):
+                if isLoggedIn {
+                    self?.showSuccess(status: "登录成功") {
+                        self?.dismissSelf()
+                        return
+                    }
+                } else {
+                    self?.showError(status: "用户名或密码错误")
                 }
-                
-            } else if error != nil {
-                self?.showError(status: "登录失败，网络错误")
-            } else {
+            case .Failure(_, let error):
                 self?.showError(error)
             }
         }
