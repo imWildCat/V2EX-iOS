@@ -72,15 +72,33 @@ body {
     color: #778087; }
   .topic .post .content img {
     max-width: 100% !important; }
+  .topic .post .content .subtle {
+    border-top: 1px solid #e2e2e2;
+    padding-top: 10px;
+    margin-top: 10px; }
+    .topic .post .content .subtle .fade {
+      color: gray;
+      font-size: 12px;
+      margin-bottom: 5px;
+      display: block; }
 
 .font-size-normal .content, .font-size-normal .content div {
   font-size: 15px; }
 
-.font-size-large .content, .font-size-large .content div, .font-size-large .content div, .font-size-large .content div div {
+.font-size-normal .content .subtle .fade {
+  font-size: 12px; }
+
+.font-size-large .content, .font-size-large .content div, .font-size-large .content, .font-size-large .content div {
   font-size: 18px; }
 
-.font-size-small .content, .font-size-small .content div, .font-size-small .content div, .font-size-small .content div div {
+.font-size-large .content .subtle .fade, .font-size-large .content .subtle .fade {
+  font-size: 14px; }
+
+.font-size-small .content, .font-size-small .content div, .font-size-small .content, .font-size-small .content div {
   font-size: 13px; }
+
+.font-size-small .content .subtle .fade, .font-size-small .content .subtle .fade {
+  font-size: 10px; }
 
 .node-list .node-category .category-name {
   clear: both;

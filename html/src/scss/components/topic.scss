@@ -117,24 +117,45 @@
       img {
         max-width: 100% !important;
       }
+
+      .subtle {
+        border-top: 1px solid #e2e2e2;
+        padding-top: 10px;
+        margin-top: 10px;
+        .fade {
+          color: gray;
+          font-size: 12px;
+          margin-bottom: 5px;
+          display: block;
+        }
+      }
     }
   }
 }
 
 .font-size-normal .content {
   &, div {
-        font-size: 15px;
+      font-size: 15px;
+  }
+  .subtle .fade {
+      font-size: 12px;
   }
 }
 
-.font-size-large .content, .font-size-large .content div {
+.font-size-large .content, .font-size-large .content {
   &, div {
         font-size: 18px;
   }
+  .subtle .fade {
+      font-size: 14px;
+  }
 }
 
-.font-size-small .content, .font-size-small .content div {
+.font-size-small .content, .font-size-small .content {
   &, div {
         font-size: 13px;
+  }
+  .subtle .fade {
+      font-size: 10px;
   }
 }

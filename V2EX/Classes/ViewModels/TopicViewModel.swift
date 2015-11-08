@@ -21,7 +21,7 @@ struct TopicViewModel {
             "favorite_count": topic.favoriteCount.description,
             "appreciation_count": topic.appreciationCount.description,
             "is_appreciated": topic.isAppreciated.description,
-            "content": topic.content
+            "content": topic.content + topic.postscript
             ])
         
         for (_, reply) in replies.enumerate()

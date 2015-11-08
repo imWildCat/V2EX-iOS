@@ -21,6 +21,8 @@ class Topic: CustomStringConvertible {
     
     var content: String
     
+    var postscript: String
+    
     var appreciationCount: Int
     var favoriteCount: Int
     
@@ -32,7 +34,7 @@ class Topic: CustomStringConvertible {
     
     var isNew: Bool = false
     
-    init(id: String?, title: String?, node: Node?, author: User?, replyCount: String? = nil, createdAt: String? = nil, content: String? = nil, appreciationCount: Int = 0, favoriteCount: Int = 0) {
+    init(id: String?, title: String?, node: Node?, author: User?, replyCount: String? = nil, createdAt: String? = nil, content: String? = nil, postscript: String? = nil, appreciationCount: Int = 0, favoriteCount: Int = 0) {
         self.id = Int(id ?? "") ?? 0
         self.title = title ?? "[未知标题]"
         self.replyCount = Int(replyCount ?? "") ?? 0
@@ -40,6 +42,7 @@ class Topic: CustomStringConvertible {
         self.createdAt = createdAt ?? ""
         self.node = node ?? nil
         self.content = content ?? ""
+        self.postscript = postscript ?? ""
         self.appreciationCount = appreciationCount
         self.favoriteCount = favoriteCount
     }
@@ -162,6 +165,7 @@ class Topic: CustomStringConvertible {
         let topicId = (topicMetaElement?.searchFirst("//div[@class='votes']")?["id"] as? String)?.match("topic_(\\d+)_votes")?[1]
         let replyCount = doc.searchFirst("//div[@id='Main']//div[@class='box']/div[@class='cell']/span[@class='gray']")?.raw.match("(\\d+) 回复")?[1]
         let topicContent = doc.searchFirst("//div[@id='Main']//div[@class='box']//div[@class='topic_content']")?.raw
+        let postscript = doc.searchFirst("//div[@id='Main']//div[@class='box']//div[@class='subtle']")?.raw
         let topicCreatedAt = topicMetaElement?.searchFirst("//small[@class='gray']")?.text().match(" · ([a-zA-Z0-9 \\u4e00-\\u9fa5]+) ·")?[1]
         
         let nodeElement = topicMetaElement?.searchFirst("//a[3]")
@@ -176,7 +180,7 @@ class Topic: CustomStringConvertible {
         let appreciationCount = Int(topicOtherInfo?.match("(\\d+) 人感谢")?[1] ?? "") ?? 0
         let favCount = Int(topicOtherInfo?.match("(\\d+) 人收藏")?[1] ?? "") ?? 0
         
-        return Topic(id: topicId, title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), replyCount: replyCount, createdAt: topicCreatedAt, content: topicContent, appreciationCount: appreciationCount, favoriteCount: favCount)
+        return Topic(id: topicId, title: topicTitle, node: Node(name: nodeName, slug: nodeSlug), author: User(name: authorName, avatarURI: authorAvatarURI), replyCount: replyCount, createdAt: topicCreatedAt, content: topicContent, postscript: postscript, appreciationCount: appreciationCount, favoriteCount: favCount)
     }
     
     var description: String {

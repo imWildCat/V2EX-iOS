@@ -21,6 +21,12 @@ extension UIViewController {
         RootViewController.displaySideMenu()
     }
     
+    class func topViewContrller() -> UIViewController {
+        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! RootViewController
+        let topVC = rootViewController.containerViewController.viewControllers[0]
+        return topVC
+    }
+    
     // MARK: V2EX
     func showTopicVC(topicID: Int) {
         if let topicVC = storyboard?.instantiateViewControllerWithIdentifier("topicVC") as? TopicViewController {
@@ -34,6 +40,13 @@ extension UIViewController {
             userVC.mode = .OtherUser
             userVC.username = username
             navigationController?.pushViewController(userVC, animated: true)
+        }
+    }
+    
+    func showNodeVC(nodeSlug: String) {
+        if let topicListVC = storyboard?.instantiateViewControllerWithIdentifier("topicListVC") as? TopicListViewController {
+            topicListVC.nodeSlug = nodeSlug
+            navigationController?.pushViewController(topicListVC, animated: true)
         }
     }
     

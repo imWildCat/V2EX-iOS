@@ -112,15 +112,14 @@ class TopicSerivce {
             }
             
             var currentPage = 1
-            var totalPage: Int?
+            var totalPage = 1
             if let currentPageElement = doc.searchFirst("//span[@class='page_current']") {
-                if page == nil {
-                    totalPage = Int(currentPageElement.text())
-                    currentPage = totalPage ?? 1
-                } else {
-                    currentPage = Int(currentPageElement.text()) ?? 1
+                currentPage = Int(currentPageElement.text()) ?? 1
+                let lastPageElement = doc.searchFirst("(//a[@class='page_normal'])[last()]")
+                totalPage = Int(lastPageElement?.text() ?? "") ?? 1
+                if currentPage > totalPage {
+                    totalPage = currentPage
                 }
-                
             }
             let topicPage = TopicPage(topic: topic, replies: replies, currentPage: currentPage, totalPage: totalPage ?? 1)
             response?(result: NetworkingResult<TopicPage>.Success(topicPage))

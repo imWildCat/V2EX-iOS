@@ -51,7 +51,7 @@ var Post = React.createClass({
         }
 
         var row1ClassName = 'row-1';
-        if(navigator.userAgent.indexOf('iPhone OS 9_0') > -1) {
+        if(navigator.userAgent.indexOf('iPhone OS 9_') > -1) {
             row1ClassName += ' ios-9';
         }
 
