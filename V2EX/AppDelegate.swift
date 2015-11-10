@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if SKPaymentQueue.canMakePayments() {
             
         }
-        
+        UIApplication.sharedApplication().statusBarHidden = true
         setUpColors()
         
         func configureKVNProgress() {

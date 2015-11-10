@@ -77,5 +77,9 @@ class RootViewController: UIViewController, RNFrostedSidebarDelegate {
         }
         sidebar.dismiss()
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }
 
