@@ -37,6 +37,7 @@ inhibit_all_warnings!
     pod 'SlackTextViewController'
     pod 'KINWebBrowser'
     pod 'LNNotificationsUI', :git => "https://github.com/LeoNatan/LNNotificationsUI.git"
+    pod 'FDFullscreenPopGesture', '~> 1.1'
 # end
 
 #target 'V2EXTests', :exclusive => true do

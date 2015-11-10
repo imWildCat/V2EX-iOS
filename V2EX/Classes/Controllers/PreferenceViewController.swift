@@ -18,7 +18,7 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundColor = UIColor(red: 255.0/255.0, green: 250.0/255.0, blue: 242.0/255.0, alpha:1.000)
+        tableView.backgroundColor = UIColor(red:0.91, green:0.94, blue:0.95, alpha:1)
         tableView.tableFooterView = UIView()
         
         setUpSections()

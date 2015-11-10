@@ -19,8 +19,6 @@ class UserTopicListViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 103
         
-        tableView.backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
-        
         loadData(true)
     }
     

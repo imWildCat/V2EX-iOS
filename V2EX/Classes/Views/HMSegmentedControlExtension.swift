@@ -24,7 +24,8 @@ extension HMSegmentedControl {
         selectionIndicatorColor = UIColor(red: 0.91, green: 0.3, blue: 0.24, alpha: 1)
         selectionIndicatorHeight = 3.0
         selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
-        backgroundColor = UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
+        backgroundColor = UIColor(red:0.91, green:0.94, blue:0.95, alpha:1)
+            // UIColor(red: 253/255, green: 248/255, blue: 234/255, alpha: 1)
     }
 }
 
