@@ -214,6 +214,5 @@ extension UIViewController {
     }
     
     
-    // MARK: status bar
    
 }

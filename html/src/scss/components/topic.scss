@@ -44,7 +44,7 @@
         }
 
         .row-2 {
-          margin-top: 3px;
+          margin-top: 1px;
           .left {
             float: left;
             width: auto;
@@ -157,5 +157,12 @@
   }
   .subtle .fade {
       font-size: 10px;
+  }
+}
+
+.ios-9 {
+  .fav-count .count-number, .appr-count .count-number {
+      display: block;
+      margin-top: -2;
   }
 }

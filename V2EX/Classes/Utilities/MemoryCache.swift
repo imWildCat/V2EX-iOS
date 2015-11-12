@@ -27,4 +27,13 @@ struct MemoryCache {
     private static func keyForReply(topicID topicID: Int) -> String {
         return "topic[\(topicID)]_reply"
     }
+    
+    // TODO: Remove when release
+    static func setLoginFailureHTML(html: String) {
+        cache.setObject(html, forKey: "login_failure_html")
+    }
+    
+    static func getLoginFailureHTML() -> String? {
+        return cache.objectForKey("login_failure_html") as? String
+    }
 }

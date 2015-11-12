@@ -13,21 +13,20 @@ import LNNotificationsUI
 
 class SessionService {
     
-    class func checkLogin(response: ((result: NetworkingResult<Bool>) -> Void)?) {
-        
-        if SessionStorage.sharedStorage.currentUser == nil {
-            response?(result: NetworkingResult<Bool>.Success(false))
-            return
-        }
-        
-        V2EXNetworking.get("").responseString { (_, res, ret) in
-            let isLoggedIn = self.checkLoginFrom(HTMLStringOptional: ret.value)
-            response?(result: NetworkingResult<Bool>.Success(isLoggedIn))
-            if isLoggedIn {
-                self.setBasicUserDataFrom(HTMLStringOptional: ret.value)
+    class func checkLogin(forceCheck: Bool = false, response: ((result: NetworkingResult<Bool>) -> Void)?) {
+                
+        if SessionStorage.sharedStorage.shouldCheckLoginAsync || forceCheck {
+            V2EXNetworking.get("").responseString { (_, res, ret) in
+                let isLoggedIn = self.checkLoginFrom(HTMLStringOptional: ret.value)
+                if isLoggedIn {
+                    self.setBasicUserDataFrom(HTMLStringOptional: ret.value)
+                }
+                response?(result: NetworkingResult<Bool>.Success(isLoggedIn))
             }
-            return
+        } else {
+            response?(result: NetworkingResult<Bool>.Success(SessionStorage.sharedStorage.currentUser != nil))
         }
+        
     }
     
     class func logout() {
@@ -115,9 +114,11 @@ class SessionService {
                     // delete username and password saved
                     self.clearUsernameAndPassword()
                     
+                    MemoryCache.setLoginFailureHTML(ret.value ?? "No html yet.")
+                    
                     let doc = TFHpple(HTMLStringOptional: ret.value)
                     if let errorMessage = doc.searchFirst("//div[@class='box']//div[@class='message']")?.text() {
-                        var e = V2EXError.LoginUnknownProblem
+                        var e = V2EXError.OtherProblem(errorMessage)
                         if errorMessage == "登录有点问题，请重试一次" {
                             e = V2EXError.LoginProblem
                         }
@@ -335,7 +336,6 @@ class SessionService {
         var hasDailyRedeem = false
         let doc = TFHpple(HTMLStringOptional: HTMLStringOptional)
 //        let text = doc.searchFirst("//div[@id='Rightbar']")
-//        println(text?.raw)
         if let _ = doc.searchFirst("//div[@id='Rightbar']//a[@href='/mission/daily']") {
             hasDailyRedeem = true
         }

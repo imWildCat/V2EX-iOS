@@ -13,7 +13,7 @@ class FavoriteCount extends React.Component {
     return (
       <div className="count fav-count" style={style}>
         <img className="icon" src="favorite_icon.png"/>
-        <span>{this.props.count}</span>
+        <span className="count-number">{this.props.count}</span>
       </div>
     );
   }

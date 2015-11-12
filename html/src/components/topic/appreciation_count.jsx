@@ -21,7 +21,7 @@ class AppreciationCount extends React.Component {
         return (
             <div className="count appr-count" style={style}>
                 <img className="icon" src={icon} />
-                <span>{this.props.count}</span>
+                <span className="count-number">{this.props.count}</span>
             </div>
         );
     }

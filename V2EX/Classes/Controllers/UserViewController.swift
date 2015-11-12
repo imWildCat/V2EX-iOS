@@ -64,13 +64,11 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(animated: Bool) {
-        
         if mode == .CurrentUser {
             let storage = SessionStorage.sharedStorage
             username = storage.currentUser?.name
-            if (NSDate.currentTimestamp() - storage.lastLogin) < UInt(24.hours.toSeconds) {
+            if let _ = username {
                 switchToLoginState()
-            } else {
                 SessionService.checkLogin { [weak self] (result) in
                     switch result {
                     case .Success(let isLoggedIn):
@@ -85,8 +83,9 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
                             return
                         }
                     }
-                    
                 }
+            } else {
+                switchToUnloginState()
             }
         } else {
             navigationItem.title = "用户信息"

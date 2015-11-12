@@ -38,6 +38,7 @@ inhibit_all_warnings!
     pod 'KINWebBrowser'
     pod 'LNNotificationsUI', :git => "https://github.com/LeoNatan/LNNotificationsUI.git"
     pod 'FDFullscreenPopGesture', '~> 1.1'
+    pod 'AVOSCloud'
 # end
 
 #target 'V2EXTests', :exclusive => true do

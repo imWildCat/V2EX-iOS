@@ -51,8 +51,10 @@ var Post = React.createClass({
         }
 
         var row1ClassName = 'row-1';
+        var row2ClassName = 'row-2';
         if(navigator.userAgent.indexOf('iPhone OS 9_') > -1) {
             row1ClassName += ' ios-9';
+            row2ClassName += ' ios-9';
         }
 
         return (
@@ -66,7 +68,7 @@ var Post = React.createClass({
                             <div className={row1ClassName}>
                                 <span onTouchTap={() => this.onUserClick(post.username)}>{post.username}</span>
                             </div>
-                            <div className="row-2">
+                            <div className={row2ClassName}>
                                 <div className="left">
                                     <span className="time">{post.time}</span>
                                 </div>

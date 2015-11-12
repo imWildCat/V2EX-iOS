@@ -29,7 +29,7 @@ body {
         color: #000000;
         text-decoration: none; }
     .topic .post .meta .info .row-2 {
-      margin-top: 3px; }
+      margin-top: 1px; }
       .topic .post .meta .info .row-2 .left {
         float: left;
         width: auto;
@@ -98,6 +98,10 @@ body {
 
 .font-size-small .content .subtle .fade, .font-size-small .content .subtle .fade {
   font-size: 10px; }
+
+.ios-9 .fav-count .count-number, .ios-9 .appr-count .count-number {
+  display: block;
+  margin-top: -2; }
 
 .node-list .node-category .category-name {
   clear: both;

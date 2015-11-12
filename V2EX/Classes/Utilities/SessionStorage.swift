@@ -18,6 +18,7 @@ class SessionStorage {
         didSet(newValue) {
             if newValue != nil {
                 lastLogin = NSDate.currentTimestamp()
+                return
             }
             lastLogin = 0
         }
@@ -35,6 +36,15 @@ class SessionStorage {
     var isLoggedIn: Bool {
         get {
             return currentUser != nil
+        }
+    }
+    
+    var shouldCheckLoginAsync: Bool {
+        get {
+            if NSDate.currentTimestamp() - lastLogin > 43200 {
+                return true
+            }
+            return false
         }
     }
     

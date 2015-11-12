@@ -149,10 +149,11 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
             selectedItem.reloadRowWithAnimation(UITableViewRowAnimation.None)
         }
         
-        let feedbackItem = RETableViewItem(title: "反馈", accessoryType: .DisclosureIndicator) { [unowned self]  (selectedItem) -> Void in
+        let feedbackItem = RETableViewItem(title: "反馈", accessoryType: .DisclosureIndicator) { [unowned self] (selectedItem) -> Void in
             self.showWebBrowser("http://v2ex-ios.wildcat.io/feedback")
             selectedItem.reloadRowWithAnimation(UITableViewRowAnimation.None)
         }
+
         section3.addItemsFromArray([aboutItem, feedbackItem])
     }
     
@@ -170,6 +171,7 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
 //        }
     }
 
+    
     
     private func performLogOut() {
         

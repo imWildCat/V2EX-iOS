@@ -265,10 +265,10 @@ class TopicSerivce {
                 }
                 
                 let doc = TFHpple(HTMLStringOptional: ret.value)
-                if topic == nil {
-
-                } else if let problemMessage = doc.searchFirst("//div[@class='problem']/ul/li")?.text() {
+                if let problemMessage = doc.searchFirst("//div[@class='problem']/ul/li")?.text() {
                     response?(result: NetworkingResult<Topic?>.Failure(res, V2EXError.OtherProblem(problemMessage).foundationError))
+                } else {
+                    response?(result: NetworkingResult<Topic?>.Success(topic))
                 }
             } else {
                 response?(result: NetworkingResult.Failure(res, ret.error))

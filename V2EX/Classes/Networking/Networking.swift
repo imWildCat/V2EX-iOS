@@ -19,7 +19,7 @@ class Networking {
         
         cfg.HTTPCookieStorage = cookies
         cfg.HTTPAdditionalHeaders = [
-          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko) Version/8.0.8 Safari/600.8.9"
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.7 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.7"
         ]
         
         let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()

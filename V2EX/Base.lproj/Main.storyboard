@@ -316,7 +316,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="1" green="0.97254901959999995" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="topicListCell" rowHeight="104" id="rI2-zh-Hjg" customClass="TopicListCell" customModule="V2EX" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="topicListCell" rowHeight="104" id="rI2-zh-Hjg" customClass="TopicListCell" customModule="V2EX" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="600" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rI2-zh-Hjg" id="i4C-lG-pix">
@@ -1197,6 +1197,11 @@
                                 <action selector="sideMenuButtonTouched:" destination="CAI-5s-kBw" id="KzH-Vp-Eec"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Debug Info" id="tqO-rh-OMZ">
+                            <connections>
+                                <segue destination="hEe-X1-dFc" kind="show" id="0Lg-Mq-b8m"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="q11-xN-l8t" kind="show" identifier="showPurchaseController" id="hVT-8E-rsm"/>
@@ -1205,6 +1210,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RbP-Pf-ml2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1932" y="2555"/>
+        </scene>
+        <!--Debug View Controller-->
+        <scene sceneID="bfe-nS-gLf">
+            <objects>
+                <viewController id="hEe-X1-dFc" customClass="DebugViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VcN-r7-BT5"/>
+                        <viewControllerLayoutGuide type="bottom" id="U7p-rO-qbT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ffj-4h-sTj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录失败时返回的 HTML：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkB-hi-2ZX">
+                                <rect key="frame" x="20" y="52" width="204" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hGx-wm-om8">
+                                <rect key="frame" x="20" y="89" width="560" height="461"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="0.017085177823901176" green="0.56712824106216431" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hGx-wm-om8" firstAttribute="leading" secondItem="Ffj-4h-sTj" secondAttribute="leading" constant="20" id="9fE-MX-p1W"/>
+                            <constraint firstItem="RkB-hi-2ZX" firstAttribute="top" secondItem="VcN-r7-BT5" secondAttribute="bottom" constant="8" id="ABv-Dz-ZVn"/>
+                            <constraint firstItem="RkB-hi-2ZX" firstAttribute="leading" secondItem="Ffj-4h-sTj" secondAttribute="leading" constant="20" id="NZj-Rn-6Wl"/>
+                            <constraint firstItem="hGx-wm-om8" firstAttribute="top" secondItem="RkB-hi-2ZX" secondAttribute="bottom" constant="16" id="eQ2-mS-D6w"/>
+                            <constraint firstAttribute="trailing" secondItem="hGx-wm-om8" secondAttribute="trailing" constant="20" id="nnh-Mz-x2R"/>
+                            <constraint firstItem="U7p-rO-qbT" firstAttribute="top" secondItem="hGx-wm-om8" secondAttribute="bottom" constant="50" id="u3d-1f-od3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="htmlTextView" destination="hGx-wm-om8" id="oVY-gS-ULU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zBI-OG-DBF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1932" y="3323"/>
         </scene>
         <!--用户话题-->
         <scene sceneID="76O-Ie-MNx">
@@ -1832,6 +1891,7 @@
                             <constraint firstItem="6Rq-UW-mvT" firstAttribute="top" relation="lessThanOrEqual" secondItem="2Mi-hb-xTz" secondAttribute="bottom" priority="750" constant="9999" id="vVt-ty-F0F"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="passwordTextField" destination="Gbq-To-SdL" id="DcV-aA-Kqb"/>
                         <outlet property="usernameTextField" destination="kfr-LI-fwC" id="ks4-9k-Ysf"/>
