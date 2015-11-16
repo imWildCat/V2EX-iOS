@@ -75,6 +75,7 @@
                             </containerView>
                         </subviews>
                         <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="IL0-IB-1YW" firstAttribute="top" secondItem="OML-pe-KJ2" secondAttribute="bottom" id="EnT-cV-Pba"/>
                             <constraint firstAttribute="trailing" secondItem="OML-pe-KJ2" secondAttribute="trailing" id="XcW-hz-ytS"/>
@@ -208,7 +209,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYL-El-1i8">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <animations/>
-                                <color key="barTintColor" red="0.21176470588235294" green="0.38039215686274508" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.098039215686274508" green="0.5725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
@@ -525,7 +526,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UgI-1h-3mV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </webView>
@@ -573,7 +574,7 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
-                                <color key="barTintColor" red="0.21176470589999999" green="0.3803921569" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.098039215686274508" green="0.5725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                         </subviews>
                         <animations/>
@@ -581,7 +582,7 @@
                         <constraints>
                             <constraint firstItem="UgI-1h-3mV" firstAttribute="top" secondItem="RaV-CU-btJ" secondAttribute="top" id="JPu-tU-C5V"/>
                             <constraint firstAttribute="trailing" secondItem="qdX-5V-atH" secondAttribute="trailing" id="MTL-jG-hNI"/>
-                            <constraint firstItem="KfU-Ge-Gg5" firstAttribute="top" secondItem="UgI-1h-3mV" secondAttribute="bottom" id="PZ0-Gl-O2k"/>
+                            <constraint firstItem="KfU-Ge-Gg5" firstAttribute="top" secondItem="UgI-1h-3mV" secondAttribute="bottom" constant="44" id="PZ0-Gl-O2k"/>
                             <constraint firstItem="KfU-Ge-Gg5" firstAttribute="top" secondItem="qdX-5V-atH" secondAttribute="bottom" id="b9I-QC-CxZ"/>
                             <constraint firstItem="UgI-1h-3mV" firstAttribute="leading" secondItem="RaV-CU-btJ" secondAttribute="leading" id="eaV-GA-X38"/>
                             <constraint firstAttribute="trailing" secondItem="UgI-1h-3mV" secondAttribute="trailing" id="mO4-5T-tDX"/>
@@ -604,6 +605,7 @@
                         <outlet property="pageNumberButton" destination="kjk-te-slR" id="YrQ-JV-Suz"/>
                         <outlet property="previousPageButton" destination="AWE-pY-aAE" id="tBw-TK-hIH"/>
                         <outlet property="webView" destination="UgI-1h-3mV" id="GdI-lO-0Z1"/>
+                        <outlet property="webViewBottomConstraint" destination="PZ0-Gl-O2k" id="dST-me-tsH"/>
                         <segue destination="cYg-du-oa3" kind="show" identifier="showBrowserVC" id="LhX-yN-c1n"/>
                     </connections>
                 </viewController>
@@ -659,7 +661,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p68-Dv-18N">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <animations/>
-                                <color key="barTintColor" red="0.21176470589999999" green="0.3803921569" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.098039215686274508" green="0.5725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
@@ -1957,7 +1959,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="barTintColor" red="0.2156862745" green="0.43921568630000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.098039215686274508" green="0.5725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -1999,7 +2001,7 @@
         <image name="user_popover_bg" width="150" height="79"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aV0-nR-xvq"/>
+        <segue reference="K36-ed-S7h"/>
         <segue reference="LHz-ne-sN5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

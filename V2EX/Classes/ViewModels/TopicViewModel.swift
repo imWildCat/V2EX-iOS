@@ -35,16 +35,20 @@ struct TopicViewModel {
                 "favorite_count": "0",
                 "appreciation_count": reply.appreciationsCount.description,
                 "is_appreciated": reply.isAppreciated.description,
-                "content": reply.content
+                "content": reply.content,
+                "floor": String(reply.floor)
                 ])
         }
         
         let data = [
             "title": topic.title,
-            "posts": posts
+            "posts": posts,
+            "nodeName": (topic.node?.name) ?? ""
         ]
         
         let jsonObj = JSON(data)
+        print(jsonObj)
+        
         let bundle = NSBundle.mainBundle()
         let templatePath = bundle.pathForResource("topic", ofType: "html")
         let templateHTML =  (try? String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding)) ?? ""

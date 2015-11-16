@@ -3,6 +3,14 @@
     font-size: 15px;
     font-weight: bold;
     padding: 10px;
+    overflow: hidden;
+
+    .node {
+      float: right;
+      font-size: 12px;
+      color: #9B9B9B;
+      padding-top: 3px;
+    }
   }
 
   .post {
@@ -40,6 +48,13 @@
           a {
             color: #000000;
             text-decoration: none;
+          }
+
+          .floor {
+            float: right;
+            font-size: 11px;
+            color: #9B9B9B;
+            margin-right: 10px;
           }
         }
 

@@ -15,7 +15,9 @@ class Topic extends React.Component {
       <div className="topic">
         <div className="title">
           {this.props.topic.title}
+          <span className="node">{this.props.topic.nodeName}</span>
         </div>
+
         {posts}
       </div>
     );

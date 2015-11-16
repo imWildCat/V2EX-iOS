@@ -26,6 +26,8 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     @IBOutlet weak var appreciationButton: UIBarButtonItem!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
+    @IBOutlet weak var webViewBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var webView: UIWebView!
 //    var webView: WKWebView
     var mode = Mode.ReadTopic
@@ -240,46 +242,85 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     }
     
     func showPostActions(postID: String?) {
-        if let id = postID, post = getPost(id: id), intID = Int(id) {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        if let id = postID, intID = Int(id) {
             
-            let atUserButton = UIAlertAction(title: "@\(post.author.name)", style: .Default) {
-                [unowned self, unowned alert] action in
-                self.showReplyTopicVC("@\(post.author.name)")
-                alert.dismissViewControllerAnimated(true, completion: nil)
-            }
-            
-            let viewUserButton = UIAlertAction(title: "查看资料", style: .Default) {
-                [unowned self, unowned alert] action in
-                self.showUserVC(post.author.name)
-                alert.dismissViewControllerAnimated(true, completion: nil)
-            }
-            
-            let appreciatingButton = UIAlertAction(title: "感谢", style: .Default) {
-                [unowned self, unowned alert] action in
-                SessionService.appreciateReply(intID, token: post.appreciatingReplyToken ?? ""){ [weak self] (result) in
-                    switch result {
-                    case .Failure(_, let error):
-                        self?.showError(error)
-                    case .Success(_):
-                        self?.showSuccess(status: "已发送感谢")
-                        self?.configureAppreciationButton()
-                        self?.addAppreciatedPost(id)
-                    }
+            if let post = getPost(id: id) {
+                let atUserButton = UIAlertAction(title: "@\(post.author.name)", style: .Default) {
+                    [unowned self, unowned alert] action in
+                    self.showReplyTopicVC("@\(post.author.name)")
+                    alert.dismissViewControllerAnimated(true, completion: nil)
                 }
-                alert.dismissViewControllerAnimated(true, completion: nil)
+                
+                let viewUserButton = UIAlertAction(title: "查看资料", style: .Default) {
+                    [unowned self, unowned alert] action in
+                    self.showUserVC(post.author.name)
+                    alert.dismissViewControllerAnimated(true, completion: nil)
+                }
+                
+                let appreciatingButton = UIAlertAction(title: "感谢", style: .Default) {
+                    [unowned self, unowned alert] action in
+                    SessionService.appreciateReply(intID, token: post.appreciatingReplyToken ?? ""){ [weak self] (result) in
+                        switch result {
+                        case .Failure(_, let error):
+                            self?.showError(error)
+                        case .Success(_):
+                            self?.showSuccess(status: "已发送感谢")
+                            self?.configureAppreciationButton()
+                            self?.addAppreciatedPost(id)
+                        }
+                    }
+                    alert.dismissViewControllerAnimated(true, completion: nil)
+                }
+                alert.addAction(atUserButton)
+                alert.addAction(viewUserButton)
+                alert.addAction(appreciatingButton)
+            } else {
+                let viewUserButton = UIAlertAction(title: "查看资料", style: .Default) {
+                    [unowned self, unowned alert] action in
+                    if let username = self.topic?.author?.name {
+                       self.showUserVC(username)
+                    }
+                    alert.dismissViewControllerAnimated(true, completion: nil)
+                }
+                alert.addAction(viewUserButton)
             }
             
-            let cancelAction = UIAlertAction(title: "取消", style: .Cancel) {
-                [unowned alert] action in
-                alert.dismissViewControllerAnimated(true, completion: nil)
+            let copyButton = UIAlertAction(title: "复制", style: .Default, handler: {
+                [unowned self] action in
+                self.copyPost(intID)
+                self.showSuccess(status: "已复制")
+            })
+           
+            alert.addAction(copyButton)
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .Cancel) {
+            [unowned alert] action in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alert.addAction(cancelAction)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func copyPost(id: Int) {
+        
+        func html2String(html: String?) -> String? {
+            // TODO: better transformation
+            return html?.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+        }
+        
+        let pasteboard = UIPasteboard.generalPasteboard()
+        if id == 0 {
+            pasteboard.string = html2String(topic?.content)
+        } else {
+            for post in posts {
+                if post.id == id {
+                    pasteboard.string = html2String(post.content)
+                    print(html2String(post.content))
+                    break
+                }
             }
-            
-            alert.addAction(atUserButton)
-            alert.addAction(viewUserButton)
-            alert.addAction(appreciatingButton)
-            alert.addAction(cancelAction)
-            presentViewController(alert, animated: true, completion: nil)
         }
     }
     
@@ -341,14 +382,18 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     }
     
     private func hideBottomBar() {
+        webViewBottomConstraint.constant = 0.0
         UIView.animateWithDuration(0.35, delay: 0, options: .BeginFromCurrentState, animations: {
             self.bottomToolbar.alpha = 0
+            self.view.layoutIfNeeded()
             }, completion: nil)
     }
     
     private func showBottomBar() {
+        webViewBottomConstraint.constant = 44.0
         UIView.animateWithDuration(0.35, delay: 0, options: .BeginFromCurrentState, animations: {
             self.bottomToolbar.alpha = 1
+            self.view.layoutIfNeeded()
             }, completion: nil)
     }
     
@@ -474,7 +519,20 @@ extension TopicViewController: UIScrollViewDelegate {
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
         if bottomEdge >= scrollView.contentSize.height {
             // At the end
-            hideBottomBar()
+//            hideBottomBar()
+        } else {
         }
+        if scrollView.contentSize.height - bottomEdge == 44 {
+            let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height)
+            scrollView.setContentOffset(bottomOffset, animated: true)
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.45 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue(), { [unowned self] in
+                self.showBottomBar()
+            })
+            
+        }
+//        CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
+//        [self.scrollView setContentOffset:bottomOffset animated:YES];
+        print("bottomEdge: \(bottomEdge) , scrollView.contentSize.height: \(scrollView.contentSize.height)")
     }
 }

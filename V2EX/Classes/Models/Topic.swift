@@ -168,7 +168,7 @@ class Topic: CustomStringConvertible {
         let postscript = doc.searchFirst("//div[@id='Main']//div[@class='box']//div[@class='subtle']")?.raw
         let topicCreatedAt = topicMetaElement?.searchFirst("//small[@class='gray']")?.text().match(" · ([a-zA-Z0-9 \\u4e00-\\u9fa5]+) ·")?[1]
         
-        let nodeElement = topicMetaElement?.searchFirst("//a[3]")
+        let nodeElement = doc.searchFirst("//*[@id=\"Main\"]/div[@class='box']/div[@class='header']/a[2]")
         let nodeName = nodeElement?.text()
         let nodeSlug = (nodeElement?["href"] as? String)?.match("/go/(\\w{1,31})")?[1]
        
