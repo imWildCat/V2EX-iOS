@@ -22,3 +22,4 @@
 //#import <HMSegmentedControl.h>
 
 #import "UIViewAppearance_Swift.h"
+#import <AVOSCloud/AVOSCloud.h>

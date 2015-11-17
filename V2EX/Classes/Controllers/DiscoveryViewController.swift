@@ -37,6 +37,16 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
         pageViewController.setViewControllers([topicListViewControllers.first!], direction: .Forward, animated: true, completion: nil)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("DiscoveryViewController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("DiscoveryViewController")
+    }
+    
     func setUpListViewControllers() {
         self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC")
         for slug in slugs {

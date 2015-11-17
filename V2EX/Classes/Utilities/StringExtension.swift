@@ -104,6 +104,9 @@ extension String {
                 }
             }
         }
+        // Fix: URL with params
+        let url = self.match("webview://open_browser\\?url=(.+)")?[1] ?? ""
+        params["url"] = url
         
         let actionString = self.match("webview://(\\w+)\\?")?[1] ?? ""
         

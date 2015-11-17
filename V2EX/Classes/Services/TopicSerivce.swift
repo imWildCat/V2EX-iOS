@@ -234,22 +234,24 @@ class TopicSerivce {
     class func favoriteTopics(page: Int = 1, response: ((result: NetworkingResult<([Topic], Int)>) -> Void)?) {
         
         V2EXNetworking.get("my/topics").responseString { (req, res, ret) in
-            
 //            SessionService.showNotificationWhileCountIsNotZero(data)
-            
+            V2EXAnalytics.event("Favorite Topic: Request")
             if ret.isSuccess {
                 let doc = TFHpple(HTMLStringOptional: ret.value)
                 let favCount = Int(doc.searchFirst("//div[@id='Rightbar']//table[2]//span[@class='bigger'][2]")?.text() ?? "") ?? 0
                 
                 let topics = Topic.listFromTab(ret.value)
                 response?(result: NetworkingResult<([Topic], Int)>.Success(topics, favCount))
+                V2EXAnalytics.event("Favorite Topic: Success")
             } else {
                 response?(result: NetworkingResult.Failure(res, ret.error))
+                V2EXAnalytics.event("Favorite Topic: Success", description: ret.error.debugDescription)
             }
         }
     }
     
     class func createTopic(onceCode onceCode: String, nodeSlug: String, title: String, content: String, response: ((result: NetworkingResult<Topic?>) -> Void)?) {
+        V2EXAnalytics.event("Create Topic: Request")
         V2EXNetworking.post("new/\(nodeSlug)", parameters: ["once" : onceCode, "title": title, "content": content]).responseString { (_, res, ret) in
             
             SessionService.showNotificationWhileCountIsNotZero(ret.value)
@@ -267,11 +269,14 @@ class TopicSerivce {
                 let doc = TFHpple(HTMLStringOptional: ret.value)
                 if let problemMessage = doc.searchFirst("//div[@class='problem']/ul/li")?.text() {
                     response?(result: NetworkingResult<Topic?>.Failure(res, V2EXError.OtherProblem(problemMessage).foundationError))
+                    V2EXAnalytics.event("Create Topic: Request", description: problemMessage)
                 } else {
                     response?(result: NetworkingResult<Topic?>.Success(topic))
+                    V2EXAnalytics.event("Create Topic: Success")
                 }
             } else {
                 response?(result: NetworkingResult.Failure(res, ret.error))
+                V2EXAnalytics.event("Create Topic: Failure", description: ret.error.debugDescription)
             }
             
             
@@ -299,6 +304,7 @@ class TopicSerivce {
     }
     
     class func replyTopic(onceCode onceCode: String, topicID: Int, content: String, response: ((result: NetworkingResult<Bool>) -> Void)?) {
+        V2EXAnalytics.event("Reply Topic: Request")
         V2EXNetworking.post("t/\(topicID)", parameters: [
                 "content": content,
                 "once": onceCode
@@ -312,12 +318,16 @@ class TopicSerivce {
                 
                 if ret.isSuccess {
                     response?(result: NetworkingResult<Bool>.Success(true))
+                    V2EXAnalytics.event("Reply Topic: Success")
                 } else if res?.statusCode == 403 {
                     response?(result: NetworkingResult.Failure(res, V2EXError.AuthRequired.foundationError))
+                    V2EXAnalytics.event("Reply Topic: Request", description: V2EXError.AuthRequired.description)
                 } else if let problemMessage = problemMessage {
                     response?(result: NetworkingResult.Failure(res, V2EXError.OtherProblem(problemMessage).foundationError))
+                    V2EXAnalytics.event("Reply Topic: Request", description: problemMessage)
                 } else {
                     response?(result: NetworkingResult.Failure(res, ret.error))
+                    V2EXAnalytics.event("Reply Topic: Request", description: ret.error.debugDescription)
                 }
         }
     }

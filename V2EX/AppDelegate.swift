@@ -12,6 +12,7 @@ import KVNProgress
 import IQKeyboardManager
 import LNNotificationsUI
 import Appirater
+import ARChromeActivity
 
 // Launch Image: http://tmblr.co/Zof4En1pJwO-D
 // From: http://fancycrave.com/post/123814383565/download-by-patrick-fore#notes , July 11, 2015
@@ -25,9 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        
         if SKPaymentQueue.canMakePayments() {
             
         }
+        
+        setUpAVOSCloud()
         
         checkLoginState()
         
@@ -124,6 +128,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    private func setUpAVOSCloud() {
+        let AVOSAppID = "1A7jRplXCQVNigEXkVrBGk2T"
+        let AVOSAppKey = "YBCfqwbSugU3dDHR6RgP8d6n"
+        
+        
+        AVOSCloud.setLastModifyEnabled(true)
+        AVOSCloud.setApplicationId(AVOSAppID, clientKey: AVOSAppKey)
+    }
+    
     private func getCachedUnreadNotificationCount() -> Int {
         return NSUserDefaults.standardUserDefaults().integerForKey("unread_notification_count")
     }
@@ -197,6 +210,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setUpColors() {
         UITextView.appearance().tintColor = UIColor.darkGrayColor()
         UITextField.appearance().tintColor = UIColor.darkGrayColor()
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        AVAnalytics.event("didFailToRegisterForRemoteNotificationsWithError", label: error.description)
     }
 
     func applicationWillResignActive(application: UIApplication) {

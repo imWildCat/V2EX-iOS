@@ -46,6 +46,19 @@ class TopicListViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("TopicListViewController")
+        if topics.count == 0 {
+            loadData()
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("TopicListViewController")
+    }
+    
     func addLoadMoreDataFooter() {
         if mode != .Tab {
             tableView.footer = MJRefreshAutoNormalFooter(refreshingBlock: { [unowned self] in
@@ -68,12 +81,6 @@ class TopicListViewController: UITableViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if topics.count == 0 {
-            loadData()
-        }
-    }
     
     @IBAction func refresh(sender: UIRefreshControl) {
         loadData()

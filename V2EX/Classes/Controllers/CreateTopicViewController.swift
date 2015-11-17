@@ -41,6 +41,16 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
         loadOnceCode()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("CreateTopicViewController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("CreateTopicViewController")
+    }
+    
     func loadOnceCode() {
         postButton.enabled = false
         SessionService.getOnceCode { [weak self] (result) in
@@ -104,7 +114,6 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
     func keyboardWillShow(notification: NSNotification) {
         var info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        print("will show")
         // FIXME: will show called twice
         UIView.animateWithDuration(0.3, animations: { [unowned self] in
             self.contentTextBottomConstraint.constant = keyboardFrame.size.height + 10
@@ -196,7 +205,6 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
                         self?.showError(status: pMessage)
                     } else if let imageLink = imageURL {
                         self?.showSuccess(status: "图片上传成功")
-                        print("imageLink: \(imageLink)")
                         let orginalText = self?.contentText.text ?? ""
                         let newContent = orginalText + "\n\(imageLink)"
                         self?.contentText.text = newContent

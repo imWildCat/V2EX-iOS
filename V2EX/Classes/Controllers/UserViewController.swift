@@ -36,12 +36,15 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var shouldDisplayDailyRedeem = false
     
+    var leanCloudSlug = "UserViewController(Other User)"
+    
     var username: String?
     var user: User? {
         didSet {
             setUpRowTypes(user)
             if mode == .CurrentUser {
                 checkDailyTask()
+                leanCloudSlug = "UserViewController(Self)"
             }
         }
     }
@@ -63,7 +66,14 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         modalPresentationStyle = .Popover
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView(leanCloudSlug)
+    }
+    
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView(leanCloudSlug)
         if mode == .CurrentUser {
             let storage = SessionStorage.sharedStorage
             username = storage.currentUser?.name

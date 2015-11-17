@@ -75,6 +75,8 @@
 		5EA63C681B08700A00431C96 /* node_list_bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C661B08700A00431C96 /* node_list_bundle.js */; };
 		5EA63C691B08700A00431C96 /* topic_bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C671B08700A00431C96 /* topic_bundle.js */; };
 		5EA63C6B1B08701500431C96 /* topic.html in Resources */ = {isa = PBXBuildFile; fileRef = 5EA63C6A1B08701500431C96 /* topic.html */; };
+		5EA66F521BFB39E900C87F71 /* LeanCloudExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66F511BFB39E900C87F71 /* LeanCloudExtension.swift */; };
+		5EA66F541BFB3B3D00C87F71 /* V2EXAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66F531BFB3B3D00C87F71 /* V2EXAnalytics.swift */; };
 		5EA86AF41BA4003000109D94 /* NodeListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA86AF31BA4003000109D94 /* NodeListCollectionViewController.swift */; };
 		5EA86AF61BA4021600109D94 /* NodeNameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA86AF51BA4021600109D94 /* NodeNameCollectionViewCell.swift */; };
 		5EA86AF81BA4022900109D94 /* NodeCategoryNameCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA86AF71BA4022900109D94 /* NodeCategoryNameCollectionReusableView.swift */; };
@@ -180,6 +182,8 @@
 		5EA63C661B08700A00431C96 /* node_list_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node_list_bundle.js; sourceTree = "<group>"; };
 		5EA63C671B08700A00431C96 /* topic_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = topic_bundle.js; sourceTree = "<group>"; };
 		5EA63C6A1B08701500431C96 /* topic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic.html; sourceTree = "<group>"; };
+		5EA66F511BFB39E900C87F71 /* LeanCloudExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeanCloudExtension.swift; sourceTree = "<group>"; };
+		5EA66F531BFB3B3D00C87F71 /* V2EXAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V2EXAnalytics.swift; sourceTree = "<group>"; };
 		5EA86AF31BA4003000109D94 /* NodeListCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeListCollectionViewController.swift; sourceTree = "<group>"; };
 		5EA86AF51BA4021600109D94 /* NodeNameCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeNameCollectionViewCell.swift; sourceTree = "<group>"; };
 		5EA86AF71BA4022900109D94 /* NodeCategoryNameCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCategoryNameCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -372,6 +376,8 @@
 				5E472EA71B8D8C2E001AE2DD /* DictionaryExtension.swift */,
 				5EA86AFC1BA4489700109D94 /* UIViewAppearance_Swift.h */,
 				5EA86AFD1BA448BD00109D94 /* UIViewAppearance_Swift.m */,
+				5EA66F511BFB39E900C87F71 /* LeanCloudExtension.swift */,
+				5EA66F531BFB3B3D00C87F71 /* V2EXAnalytics.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -651,6 +657,7 @@
 				5EC87D601ABC4DAD00AB071F /* SessionService.swift in Sources */,
 				5E4AA86D1A3F0EA000AA2F3D /* TopicListCellViewModel.swift in Sources */,
 				5E8523F51ABD7B2D00B7B8C4 /* UserFavoriteController.swift in Sources */,
+				5EA66F541BFB3B3D00C87F71 /* V2EXAnalytics.swift in Sources */,
 				5E4D5D0E1B6633FF002A05EE /* ReplyTopicViewController.swift in Sources */,
 				5E8523F21ABD7B2000B7B8C4 /* UserNotificationViewController.swift in Sources */,
 				5E6F316E1ADA068A00C477A5 /* NodeService.swift in Sources */,
@@ -666,6 +673,7 @@
 				5E8523F81ABD831F00B7B8C4 /* UserTopicTableViewCell.swift in Sources */,
 				5E2F685E1A43CB9700EEECBD /* Reply.swift in Sources */,
 				5E4C0CC11B77047D00306C16 /* UserIntroTableViewCell.swift in Sources */,
+				5EA66F521BFB39E900C87F71 /* LeanCloudExtension.swift in Sources */,
 				5E6F31751ADA238400C477A5 /* CreateTopicViewController.swift in Sources */,
 				5E5F23D31A395DBD00D20FE9 /* HMSegmentedControlExtension.swift in Sources */,
 				5EC87D511ABC42E200AB071F /* UserLoginViewController.swift in Sources */,
@@ -773,8 +781,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/V2EX",
+				);
 				INFOPLIST_FILE = V2EX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -783,21 +794,15 @@
 					"$(inherited)",
 					"-ObjC",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"Alamofire\"",
 					"-framework",
 					"\"Appirater\"",
-					"-framework",
-					"\"FMDB\"",
 					"-framework",
 					"\"HMSegmentedControl\"",
 					"-framework",
 					"\"IQKeyboardManager\"",
 					"-framework",
 					"\"KVNProgress\"",
-					"-framework",
-					"\"MBProgressHUD\"",
 					"-framework",
 					"\"RNFrostedSidebar\"",
 					"-framework",
@@ -807,11 +812,7 @@
 					"-framework",
 					"\"TTTAttributedLabel\"",
 					"-framework",
-					"\"YTKKeyValueStore\"",
-					"-framework",
 					"\"hpple\"",
-					"-framework",
-					"\"pop\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.wildcat.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -865,8 +866,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/V2EX",
+				);
 				INFOPLIST_FILE = V2EX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -875,21 +879,15 @@
 					"$(inherited)",
 					"-ObjC",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"Alamofire\"",
 					"-framework",
 					"\"Appirater\"",
-					"-framework",
-					"\"FMDB\"",
 					"-framework",
 					"\"HMSegmentedControl\"",
 					"-framework",
 					"\"IQKeyboardManager\"",
 					"-framework",
 					"\"KVNProgress\"",
-					"-framework",
-					"\"MBProgressHUD\"",
 					"-framework",
 					"\"RNFrostedSidebar\"",
 					"-framework",
@@ -899,11 +897,7 @@
 					"-framework",
 					"\"TTTAttributedLabel\"",
 					"-framework",
-					"\"YTKKeyValueStore\"",
-					"-framework",
 					"\"hpple\"",
-					"-framework",
-					"\"pop\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.wildcat.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

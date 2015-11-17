@@ -37,7 +37,14 @@ class NodeListCollectionViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         addSearchBar()
+        AVAnalytics.beginLogPageView("NodeListCollectionViewController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("NodeListCollectionViewController")
     }
     
     private func itemForIndexPath(indexPath: NSIndexPath) -> NSDictionary {
@@ -122,7 +129,6 @@ extension NodeListCollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseCellIdentifier, forIndexPath: indexPath) as! NodeNameCollectionViewCell
         
         if searchBarActive {
-            print("\(filteredNodes.count) - \(indexPath.row)")
             cell.nodeNameLabel.text = filteredNodes[indexPath.row].name
         } else {
             cell.nodeNameLabel.text = itemNameForIndexPath(indexPath)
@@ -278,7 +284,6 @@ extension NodeListCollectionViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchBarActive = false
         searchBar.setShowsCancelButton(false, animated: true)
     }
 }

@@ -25,6 +25,16 @@ class UserReplyListController: UITableViewController {
         loadData(true)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("UserReplyListController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("UserReplyListController")
+    }
+    
     func loadData(shouldShowProgressView: Bool = false) {
         if shouldShowProgressView {
             showProgressView()

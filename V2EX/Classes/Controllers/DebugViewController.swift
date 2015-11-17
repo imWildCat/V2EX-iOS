@@ -18,5 +18,15 @@ class DebugViewController: UIViewController {
         htmlTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
         htmlTextView.layer.cornerRadius = 5.0
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("DebugViewController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("DebugViewController")
+    }
 
 }

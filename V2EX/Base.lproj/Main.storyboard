@@ -318,7 +318,7 @@
                         <color key="sectionIndexBackgroundColor" red="1" green="0.97254901959999995" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="topicListCell" rowHeight="104" id="rI2-zh-Hjg" customClass="TopicListCell" customModule="V2EX" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="22" width="600" height="104"/>
+                                <rect key="frame" x="0.0" y="66" width="600" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rI2-zh-Hjg" id="i4C-lG-pix">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="103"/>
@@ -1199,11 +1199,6 @@
                                 <action selector="sideMenuButtonTouched:" destination="CAI-5s-kBw" id="KzH-Vp-Eec"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Debug Info" id="tqO-rh-OMZ">
-                            <connections>
-                                <segue destination="hEe-X1-dFc" kind="show" id="0Lg-Mq-b8m"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="q11-xN-l8t" kind="show" identifier="showPurchaseController" id="hVT-8E-rsm"/>
@@ -1225,14 +1220,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录失败时返回的 HTML：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkB-hi-2ZX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="登录失败时返回的 HTML：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkB-hi-2ZX">
                                 <rect key="frame" x="20" y="52" width="204" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hGx-wm-om8">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hGx-wm-om8">
                                 <rect key="frame" x="20" y="89" width="560" height="461"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2002,7 +1997,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="K36-ed-S7h"/>
-        <segue reference="LHz-ne-sN5"/>
+        <segue reference="z6U-4M-dN1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

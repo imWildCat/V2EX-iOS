@@ -11,6 +11,7 @@ import Foundation
 enum V2EXError<T: NSString>: CustomStringConvertible {
     
     case AuthRequired
+    case WrongUsernameOrPassword
     case LoginProblem
     case LoginUnknownProblem
     case OtherProblem(T)
@@ -23,6 +24,8 @@ enum V2EXError<T: NSString>: CustomStringConvertible {
         switch self {
         case .AuthRequired:
             return 401
+        case .WrongUsernameOrPassword:
+            return 1001
         case .LoginProblem:
             return 1002
         case .LoginUnknownProblem:
@@ -40,6 +43,8 @@ enum V2EXError<T: NSString>: CustomStringConvertible {
             return "登录有点问题，请重试一次"
         case .LoginUnknownProblem:
             return "未知登录问题，请重试"
+        case .WrongUsernameOrPassword:
+            return "用户名或密码错误"
         case .OtherProblem(let descriptionObject):
             return String(descriptionObject)
         }

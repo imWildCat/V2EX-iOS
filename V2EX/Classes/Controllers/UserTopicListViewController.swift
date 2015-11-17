@@ -22,6 +22,16 @@ class UserTopicListViewController: UITableViewController {
         loadData(true)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("UserTopicListViewController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("UserTopicListViewController")
+    }
+    
     @IBAction func refreshControlValueDidChange(sender: UIRefreshControl) {
         loadData()
     }

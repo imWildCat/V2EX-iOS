@@ -89,6 +89,7 @@ class SessionService {
             ], additionalHeaders: ["Referer": "http://www.v2ex.com/signin"]).responseString { (_, res, ret) in
                 
                 if ret.isFailure {
+                    V2EXAnalytics.event("Login Failure", description: ret.error.debugDescription)
                     response?(result: NetworkingResult.Failure(res, ret.error))
                 }
                 
@@ -100,13 +101,14 @@ class SessionService {
                     // save
                     self.save(username: username, password: password)
 //                    NSUserDefaults.standardUserDefaults().synchronize()
-                    let cookies = (NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies ) ?? [NSHTTPCookie]()
+//                    let cookies = (NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies ) ?? [NSHTTPCookie]()
                     
-                    for (_, cookie) in cookies.enumerate()
-                    {
-                        print(cookie)
-                    }
+//                    for (_, cookie) in cookies.enumerate()
+//                    {
+//                        print(cookie)
+//                    }
                     
+                    V2EXAnalytics.event("Login Success")
                     response?(result: NetworkingResult<Bool>.Success(isLoggedIn))
                 } else {
                     self.loginFailed()
@@ -117,13 +119,19 @@ class SessionService {
                     MemoryCache.setLoginFailureHTML(ret.value ?? "No html yet.")
                     
                     let doc = TFHpple(HTMLStringOptional: ret.value)
-                    if let errorMessage = doc.searchFirst("//div[@class='box']//div[@class='message']")?.text() {
+                    if let _ = doc.searchFirst("//div[@class='box']//div[@class='problem']")?.text() {
+                        let e = V2EXError.WrongUsernameOrPassword
+                        V2EXAnalytics.event("Login Failure: Wrong username or password", description: e.description)
+                        response?(result: NetworkingResult.Failure(res, e.foundationError))
+                    } else if let errorMessage = doc.searchFirst("//div[@class='box']//div[@class='message']")?.text() {
                         var e = V2EXError.OtherProblem(errorMessage)
                         if errorMessage == "登录有点问题，请重试一次" {
                             e = V2EXError.LoginProblem
                         }
+                        V2EXAnalytics.event("Login Failure", description: e.description)
                         response?(result: NetworkingResult.Failure(res, e.foundationError))
                     } else {
+                        V2EXAnalytics.event("Login Failure", description: ret.error.debugDescription)
                         response?(result: NetworkingResult.Failure(res, ret.error))
                     }
                 }
@@ -222,71 +230,90 @@ class SessionService {
     
     class func getDailyRedeem(response: (result: NetworkingResult<Bool>) -> Void) {
         
+        V2EXAnalytics.event("Get Daily Redeem: Request")
+        
         let onceCode = SessionStorage.sharedStorage.onceCode
         
         V2EXNetworking.get("mission/daily/redeem?once=\(onceCode)", additionalHeaders: ["Referer": "https://v2ex.com/mission/daily"]).responseString { (_, res, ret) in
             if ret.isFailure {
                 response(result: NetworkingResult.Failure(res, ret.error))
-                return
+                V2EXAnalytics.event("Get Daily Redeem: Failure", description: ret.error.debugDescription)
+            } else {
+                response(result: NetworkingResult<Bool>.Success(true))
+                V2EXAnalytics.event("Get Daily Redeem: Success")
             }
-           response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
     class func ignoreTopic(id: Int, response:(result: NetworkingResult<Bool>) -> Void) {
-        
+        V2EXAnalytics.event("Ignore Topic: Request")
         let onceCode = SessionStorage.sharedStorage.onceCode
         
         V2EXNetworking.get("ignore/topic/\(id)?once=\(onceCode)").responseString { (_, res, ret) in
             if ret.isFailure {
                 response(result: NetworkingResult.Failure(res, ret.error))
-                return
+                V2EXAnalytics.event("Ignore Topic: Failure", description: ret.error.debugDescription)
+            } else {
+                response(result: NetworkingResult<Bool>.Success(true))
+                V2EXAnalytics.event("Ignore Topic: Success")
             }
-           response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
     class func reportTopic(reportLink: String, response:(result: NetworkingResult<Bool>) -> Void) {
+        V2EXAnalytics.event("Report Topic: Request")
         V2EXNetworking.get(reportLink).responseString { (_, res, ret) in
             if ret.isFailure {
                 response(result: NetworkingResult.Failure(res, ret.error))
-                return
+                V2EXAnalytics.event("Report Topic: Failure", description: ret.error.debugDescription)
+            } else {
+                response(result: NetworkingResult<Bool>.Success(true))
+                V2EXAnalytics.event("Report Topic: Success")
             }
-           response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
     class func favoriteTopic(favLink: String, response:(result: NetworkingResult<Bool>) -> Void) {
+        V2EXAnalytics.event("Favorite Topic: Request")
         V2EXNetworking.get(favLink).responseString { (_, res, ret) in
             if ret.isFailure {
                 response(result: NetworkingResult.Failure(res, ret.error))
-                return
+                V2EXAnalytics.event("Favorite Topic: Failure", description: ret.error.debugDescription)
+            } else {
+                response(result: NetworkingResult<Bool>.Success(true))
+                V2EXAnalytics.event("Favorite Topic: Success")
             }
-           response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
     class func appreciateTopic(id: Int, token: String, response:(result: NetworkingResult<Bool>) -> Void) {
+        V2EXAnalytics.event("Appreciate Topic: Request")
         V2EXNetworking.post("thank/topic/\(id)?t=\(token)").responseString { (_, res, ret) in
             if ret.isFailure {
                 response(result: NetworkingResult.Failure(res, ret.error))
-                return
+                V2EXAnalytics.event("Appreciate Topic: Failure", description: ret.error.debugDescription)
+            } else {
+                response(result: NetworkingResult<Bool>.Success(true))
+                V2EXAnalytics.event("Appreciate Topic: Success")
             }
-           response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
     class func appreciateReply(id: Int, token: String, response:(result: NetworkingResult<Bool>) -> Void) {
+        V2EXAnalytics.event("Appreciate Reply: Request")
         V2EXNetworking.post("thank/reply/\(id)?t=\(token)").responseString { (_, res, ret) in
             if ret.isFailure {
                 response(result: NetworkingResult.Failure(res, ret.error))
-                return
+                V2EXAnalytics.event("Appreciate Reply: Failure", description: ret.error.debugDescription)
+            } else {
+                response(result: NetworkingResult<Bool>.Success(true))
+                V2EXAnalytics.event("Appreciate Reply: Success")
             }
-            response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
     class func toggleFollowUser(id: Int, token: String, isFollowed: Bool, response:(result: NetworkingResult<Bool>) -> Void) {
+        V2EXAnalytics.event("Toggle Follow User: Request")
         let url: String = {
             if isFollowed {
                 return "unfollow/\(id)?t=\(token)"
@@ -297,13 +324,16 @@ class SessionService {
         V2EXNetworking.get(url).responseString { (_, res, ret) in
             if ret.isFailure {
                 response(result: NetworkingResult.Failure(res, ret.error))
-                return
+                V2EXAnalytics.event("Toggle Follow User: Failure", description: ret.error.debugDescription)
+            } else {
+                response(result: NetworkingResult<Bool>.Success(true))
+                V2EXAnalytics.event("Toggle Follow User: Success")
             }
-            response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
     class func toggleBlockUser(id: Int, token: String, isBlocked: Bool, response:(result: NetworkingResult<Bool>) -> Void) {
+        V2EXAnalytics.event("Toggle Block User: Request")
         let url: String = {
             if isBlocked {
                 return "unblock/\(id)?t=\(token)"
@@ -314,20 +344,25 @@ class SessionService {
         V2EXNetworking.get(url).responseString { (_, res, ret) in
             if ret.isFailure {
                 response(result: NetworkingResult.Failure(res, ret.error))
-                return
+                V2EXAnalytics.event("Toggle Block User: Failure", description: ret.error.debugDescription)
+            } else {
+                response(result: NetworkingResult<Bool>.Success(true))
+                V2EXAnalytics.event("Toggle Block User: Success")
             }
-            response(result: NetworkingResult<Bool>.Success(true))
         }
     }
     
     class func getNotificationCount(response: (result: NetworkingResult<(Int, Bool)>) -> Void) {
+        V2EXAnalytics.event("Get Notification Count: Request")
         V2EXNetworking.get("").responseString { (req, res, ret) in
             if ret.isSuccess {
                 let notificationCount = self.handleNotificationCount(ret.value)
                 let hasDailyRedeem = self.handleDailyRedeem(ret.value)
                 response(result: NetworkingResult<(Int, Bool)>.Success((notificationCount, hasDailyRedeem)))
+                V2EXAnalytics.event("Get Notification Count: Success")
             } else {
                 response(result: NetworkingResult.Failure(res, ret.error))
+                V2EXAnalytics.event("Get Notification Count: Failure", description: ret.error.debugDescription)
             }
         }
     }

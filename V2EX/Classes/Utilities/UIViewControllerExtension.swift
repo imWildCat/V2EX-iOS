@@ -50,26 +50,19 @@ extension UIViewController {
         }
     }
     
-    func showWebBrowser(urlString: String?) {
-//        if let wrappedURL = urlString, browserVC = storyboard?.instantiateViewControllerWithIdentifier("browserVC") as? BrowserViewController {
-//            browserVC.URL = wrappedURL
-//            navigationController?.pushViewController(browserVC, animated: true)
-//        }
-        if let urlString = urlString {
-           
-            if #available(iOS 9, *) {
-                if let url = NSURL(string: urlString) {
-                    let svc = SFSafariViewController(URL: url)
-                    presentViewController(svc, animated: true, completion: nil)
-//                    navigationController?.pushViewController(svc, animated: true)
-                }
-            } else {
-                let webBrowser = KINWebBrowserViewController.webBrowser()
-                webBrowser.tintColor = UIColor.whiteColor()
-                webBrowser.barTintColor = UIColor(red:0.2, green:0.42, blue:0.97, alpha:1)
-                navigationController?.pushViewController(webBrowser, animated: true)
-                webBrowser.loadURLString(urlString)
+    func showWebBrowser(urlString: String) {
+        if #available(iOS 9, *) {
+            if let url = NSURL(string: urlString) {
+                let svc = SFSafariViewController(URL: url)
+                presentViewController(svc, animated: true, completion: nil)
+                //                    navigationController?.pushViewController(svc, animated: true)
             }
+        } else {
+            let webBrowser = KINWebBrowserViewController.webBrowser()
+            webBrowser.tintColor = UIColor.whiteColor()
+            webBrowser.barTintColor = UIColor(red:0.2, green:0.42, blue:0.97, alpha:1)
+            navigationController?.pushViewController(webBrowser, animated: true)
+            webBrowser.loadURLString(urlString)
         }
     }
     

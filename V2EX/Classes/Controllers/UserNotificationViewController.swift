@@ -33,6 +33,16 @@ class UserNotificationViewController: V2EXTableViewController {
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("UserNotificationViewController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("UserNotificationViewController")
+    }
+    
     func addLoadMoreDataFooter() {
 //        tableView.addLegendFooterWithRefreshingBlock { [weak self] () -> Void in
 //            self?.loadMoreData()
@@ -128,7 +138,6 @@ class UserNotificationViewController: V2EXTableViewController {
             let destinationViewController = segue.destinationViewController as! TopicViewController
             
             if let index = tableView.indexPathForSelectedRow?.row {
-                print(index)
                 let notification = notifications[index]
                 destinationViewController.topicID = notification.relatedTopic.id
             }

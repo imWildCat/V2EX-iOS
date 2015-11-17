@@ -33,6 +33,16 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         loadOnceCode()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("UserLoginViewController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("UserLoginViewController")
+    }
+    
     // MARK: private methods
     private func loadOnceCode(completion: (() -> Void)? = nil) {
         SessionService.requestNewSessionFormOnceCode { [weak self] (result) in
@@ -68,9 +78,9 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
                 if isLoggedIn {
                     self?.showSuccess(status: "登录成功") {
                         self?.dismissSelf()
-                        return
                     }
                 } else {
+                    // TODO: Remove the following line
                     self?.showError(status: "用户名或密码错误")
                 }
             case .Failure(_, let error):

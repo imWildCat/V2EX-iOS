@@ -65,6 +65,16 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         requestTopic()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("TopicViewController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("TopicViewController")
+    }
+    
     // MARK: Popover Menu
     
     @IBAction func rightNavButtonDidTouched(sender: AnyObject) {
@@ -181,7 +191,6 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             }
             
             if scheme == "webview" {
-                print(request.URLString)
                 actionHanlder(request.URLString)
                 return false
             }
@@ -217,7 +226,9 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     }
     
     func openWebBrowser(URL: String?) {
-        showWebBrowser(URL)
+        if let u = URL {
+            showWebBrowser(u)
+        }
     }
     
     func userDidClick(username: String?) {
@@ -317,7 +328,6 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             for post in posts {
                 if post.id == id {
                     pasteboard.string = html2String(post.content)
-                    print(html2String(post.content))
                     break
                 }
             }
@@ -533,6 +543,5 @@ extension TopicViewController: UIScrollViewDelegate {
         }
 //        CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
 //        [self.scrollView setContentOffset:bottomOffset animated:YES];
-        print("bottomEdge: \(bottomEdge) , scrollView.contentSize.height: \(scrollView.contentSize.height)")
     }
 }

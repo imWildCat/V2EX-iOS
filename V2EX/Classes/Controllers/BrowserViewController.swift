@@ -38,6 +38,16 @@ class BrowserViewController: UIViewController, WKNavigationDelegate {
         webView.loadRequest(NSURLRequest(URL: NSURL(string: URL)!))
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("BrowserViewController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("BrowserViewController")
+    }
+    
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if let keyPath = keyPath, object = object as? WKWebView where keyPath == "estimatedProgress" && object == webView {
             NSLog("%f", webView.estimatedProgress);

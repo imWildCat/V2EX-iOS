@@ -9,5 +9,15 @@
 import UIKit
 
 class UserFavoriteController: UITableViewController {
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("UserFavoriteController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("UserFavoriteController")
+    }
 
 }

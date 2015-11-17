@@ -69,9 +69,14 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
         loadOnceCode()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("ReplyTopicViewController")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("ReplyTopicViewController")
     }
     
     func loadOnceCode() {
@@ -88,7 +93,6 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
     func keyboardWillShow(notification: NSNotification) {
         var info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        print("will show")
         // FIXME: will show called twice
         UIView.animateWithDuration(0.3, animations: { [unowned self] in
             self.contentTextViewBottomConstraint.constant = keyboardFrame.size.height + 10
@@ -172,7 +176,6 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
                         self?.showError(status: pMessage)
                     } else if let imageLink = imageURL {
                         self?.showSuccess(status: "图片上传成功")
-                        print("imageLink: \(imageLink)")
                         let orginalText = self?.contentTextView.text ?? ""
                         let newContent = orginalText + "\n\(imageLink)"
                         self?.contentTextView.text = newContent

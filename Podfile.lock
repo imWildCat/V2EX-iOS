@@ -1,34 +1,9 @@
 PODS:
-  - AFNetworking (2.6.0):
-    - AFNetworking/NSURLConnection (= 2.6.0)
-    - AFNetworking/NSURLSession (= 2.6.0)
-    - AFNetworking/Reachability (= 2.6.0)
-    - AFNetworking/Security (= 2.6.0)
-    - AFNetworking/Serialization (= 2.6.0)
-    - AFNetworking/UIKit (= 2.6.0)
-  - AFNetworking/NSURLConnection (2.6.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.0)
-  - AFNetworking/Security (2.6.0)
-  - AFNetworking/Serialization (2.6.0)
-  - AFNetworking/UIKit (2.6.0):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
   - Alamofire (2.0.2)
   - Appirater (2.0.5)
   - ARChromeActivity (1.0.4)
+  - AVOSCloud (3.1.6.3)
   - FDFullscreenPopGesture (1.1)
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
   - HMSegmentedControl (1.5.2)
   - hpple (0.2.0)
   - IQKeyboardManager (3.2.4)
@@ -38,9 +13,7 @@ PODS:
     - TUSafariActivity (= 1.0.4)
   - KVNProgress (2.2.1)
   - LNNotificationsUI (0.0.1)
-  - MBProgressHUD (0.9.1)
   - MJRefresh (2.4.10)
-  - pop (1.0.8)
   - REFormattedNumberField (1.1.5)
   - RETableViewManager (1.6):
     - REFormattedNumberField (~> 1.1.5)
@@ -51,17 +24,14 @@ PODS:
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SimpleKeychain (0.5.0)
-  - SlackTextViewController (1.7)
   - SwiftyJSON (2.2.1)
   - TTTAttributedLabel (1.13.4)
   - TUSafariActivity (1.0.4)
-  - YTKKeyValueStore (0.1.2):
-    - FMDB (~> 2.0)
 
 DEPENDENCIES:
-  - AFNetworking
   - Alamofire
   - Appirater
+  - AVOSCloud
   - FDFullscreenPopGesture (~> 1.1)
   - HMSegmentedControl (~> 1.4)
   - hpple (from `https://github.com/topfunky/hpple.git`, commit `26554fa388`)
@@ -70,18 +40,14 @@ DEPENDENCIES:
   - KINWebBrowser
   - KVNProgress (~> 2.1)
   - LNNotificationsUI (from `https://github.com/LeoNatan/LNNotificationsUI.git`)
-  - MBProgressHUD (~> 0.9)
   - MJRefresh (~> 2.4.7)
-  - pop (~> 1.0.7)
   - RETableViewManager
   - RNFrostedSidebar (~> 0.2)
   - SDWebImage
   - SimpleKeychain
-  - SlackTextViewController
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
   - TTTAttributedLabel
   - TUSafariActivity (~> 1.0)
-  - YTKKeyValueStore (~> 0.1.2)
 
 EXTERNAL SOURCES:
   hpple:
@@ -105,12 +71,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   ARChromeActivity: 9064d94803338d3377f3e1013a8e8f4821d7daf1
+  AVOSCloud: c71c27f9463e361d5224a762db9db46d8fc62c3e
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
-  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   hpple: abe31b2c56e8cc2f9a7af0eaa7f1bc08a275fcfe
   IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
@@ -118,19 +83,15 @@ SPEC CHECKSUMS:
   KINWebBrowser: 20ea8d11fe425a0f0ffb8e5d14d03e8aff370703
   KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
   LNNotificationsUI: cbf9f8a592a14cee671729d16e01d7e6032bc020
-  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJRefresh: e52328552ed9cbfce3501e3820b18bf7643c65cc
-  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   REFormattedNumberField: be3d55dd709f65541fb26b7e1709da07903147f8
   RETableViewManager: 9667ecb29c005c32df40a1dd1828224840a351a2
   REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
   RNFrostedSidebar: 9491d8627e5e99b92334d36def432c0faf7ebae4
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SimpleKeychain: ae04c7ca6a960a146081010b412cf0ba2ecb10fe
-  SlackTextViewController: 57e28248dd38b9753277733544449519842f1ea5
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
-  YTKKeyValueStore: 4d002941540dd5108fa23009b71e0f2f937f7a0f
 
 COCOAPODS: 0.38.2
