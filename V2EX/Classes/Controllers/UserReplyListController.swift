@@ -77,7 +77,7 @@ class UserReplyListController: UITableViewController {
                 self?.addLoadMoreDataFooter()
                 
                 if !replyList.hasNextPage {
-                    self?.tableView.footer.noticeNoMoreData()
+                    self?.tableView.footer.endRefreshingWithNoMoreData()
                 }
                 
             } else {

@@ -48,13 +48,13 @@ class ThirdPartyNetworking {
                 let percentage = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
                 progressClosure?(percentage: percentage)
             }
-            .responseJSON { (request, response, result) in
+            .responseJSON { (response) in
 //                println("REQUEST \(request)")
 //                println("RESPONSE \(response)")
 //                println("JSON \(JSON)")
 //                println("ERROR \(error)")
                 
-                switch result {
+                switch response.result {
                 case let .Success(json):
                     if let responseJSON = json as? [String: String] {
                         
@@ -66,7 +66,7 @@ class ThirdPartyNetworking {
                             return
                         }
                     }
-                case let .Failure(_, error):
+                case let .Failure(error):
                     responseClosure?(error: error, problemMessage: "图片上传失败，未知错误", imageURL: nil)
                 }
                 

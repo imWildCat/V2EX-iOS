@@ -76,7 +76,7 @@ class UserTopicListViewController: UITableViewController {
                 
                 self?.addLoadMoreDataFooter()
                 if topics.count < 20 {
-                    self?.tableView.footer.noticeNoMoreData()
+                    self?.tableView.footer.endRefreshingWithNoMoreData()
                 }
             } else {
                 self?.showError()

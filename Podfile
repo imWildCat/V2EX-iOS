@@ -21,7 +21,7 @@ inhibit_all_warnings!
 	pod 'IQKeyboardManager', '~> 3.2.1'
 	pod 'SimpleKeychain'
 	pod 'Alamofire'
-    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode7'
+    pod 'SwiftyJSON'
     pod 'MJRefresh', '~> 2.4.7'
     pod 'TUSafariActivity', '~> 1.0'
     pod 'RETableViewManager'
@@ -31,7 +31,7 @@ inhibit_all_warnings!
     pod 'LNNotificationsUI', :git => "https://github.com/LeoNatan/LNNotificationsUI.git"
     pod 'FDFullscreenPopGesture', '~> 1.1'
     pod 'AVOSCloud'
-#    pod 'LeanCloudFeedback', :git => 'https://github.com/leancloud/leancloud-feedback-ios.git'
+#    pod 'LeanCloudFeedbackDynamic'
 # end
 
 #target 'V2EXTests', :exclusive => true do

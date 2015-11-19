@@ -93,7 +93,7 @@ class UserNotificationViewController: V2EXTableViewController {
                 self?.tableView.reloadData()
                 self?.addLoadMoreDataFooter()
                 if notifications.count < 10 {
-                    self?.tableView.footer.noticeNoMoreData()
+                    self?.tableView.footer.endRefreshingWithNoMoreData()
                 }
             case .Failure(_, let error):
                 self?.showError(error)

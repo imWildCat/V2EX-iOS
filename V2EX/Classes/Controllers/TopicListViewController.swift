@@ -137,7 +137,7 @@ class TopicListViewController: UITableViewController {
                     
                     self?.addLoadMoreDataFooter()
                     if count <= 20 {
-                        self?.tableView.footer.noticeNoMoreData()
+                        self?.tableView.footer.endRefreshingWithNoMoreData()
                     }
                 } else {
                     self?.showError(result.error)
@@ -158,7 +158,7 @@ class TopicListViewController: UITableViewController {
                     self?.tableView.reloadData()
                     self?.addLoadMoreDataFooter()
                     if topics.count < 20 {
-                        self?.tableView.footer.noticeNoMoreData()
+                        self?.tableView.footer.endRefreshingWithNoMoreData()
                     }
                 }
             }
@@ -170,7 +170,7 @@ class TopicListViewController: UITableViewController {
                     self?.tableView.reloadData()
                     self?.addLoadMoreDataFooter()
                     if topics.count < 20 {
-                        self?.tableView.footer.noticeNoMoreData()
+                        self?.tableView.footer.endRefreshingWithNoMoreData()
                     }
                 }
             }
