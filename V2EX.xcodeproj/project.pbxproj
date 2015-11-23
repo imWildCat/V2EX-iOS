@@ -10,6 +10,23 @@
 		579384DF5AC4DBF4664F5D03 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE43764C14709A4F1E31C4AB /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5E062AC21B81D269002B6DF8 /* has_been_appreciated_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E062AC11B81D269002B6DF8 /* has_been_appreciated_icon.png */; };
 		5E0F83591C033E09008A2CB3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F83581C033E09008A2CB3 /* MainTabBarController.swift */; };
+		5E0F84091C034B47008A2CB3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0F83EC1C034B47008A2CB3 /* Info.plist */; };
+		5E0F840A1C034B47008A2CB3 /* LCHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F83EE1C034B47008A2CB3 /* LCHttpClient.m */; };
+		5E0F840B1C034B47008A2CB3 /* LCUserFeedbackAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F83F01C034B47008A2CB3 /* LCUserFeedbackAgent.m */; };
+		5E0F840C1C034B47008A2CB3 /* LCUserFeedbackImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F83F21C034B47008A2CB3 /* LCUserFeedbackImageViewController.m */; };
+		5E0F840D1C034B47008A2CB3 /* LCUserFeedbackReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F83F41C034B47008A2CB3 /* LCUserFeedbackReply.m */; };
+		5E0F840E1C034B47008A2CB3 /* LCUserFeedbackReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F83F71C034B47008A2CB3 /* LCUserFeedbackReplyCell.m */; };
+		5E0F840F1C034B47008A2CB3 /* LCUserFeedbackThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F83F91C034B47008A2CB3 /* LCUserFeedbackThread.m */; };
+		5E0F84101C034B47008A2CB3 /* LCUserFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F83FC1C034B47008A2CB3 /* LCUserFeedbackViewController.m */; };
+		5E0F84111C034B47008A2CB3 /* LCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F83FE1C034B47008A2CB3 /* LCUtils.m */; };
+		5E0F84121C034B47008A2CB3 /* feedback_add_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0F84011C034B47008A2CB3 /* feedback_add_image@2x.png */; };
+		5E0F84131C034B47008A2CB3 /* feedback_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0F84021C034B47008A2CB3 /* feedback_back@2x.png */; };
+		5E0F84141C034B47008A2CB3 /* feedback_bg_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0F84031C034B47008A2CB3 /* feedback_bg_1@2x.png */; };
+		5E0F84151C034B47008A2CB3 /* feedback_bg_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0F84041C034B47008A2CB3 /* feedback_bg_2@2x.png */; };
+		5E0F84161C034B47008A2CB3 /* feedback_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0F84051C034B47008A2CB3 /* feedback_btn@2x.png */; };
+		5E0F84171C034B47008A2CB3 /* feedback_btn_new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0F84061C034B47008A2CB3 /* feedback_btn_new@2x.png */; };
+		5E0F84181C034B47008A2CB3 /* feedback_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0F84071C034B47008A2CB3 /* feedback_warning@2x.png */; };
+		5E0F84191C034B47008A2CB3 /* LeanCloudFeedback.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E0F84081C034B47008A2CB3 /* LeanCloudFeedback.strings */; };
 		5E14977A1A13A1890034F34F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E1497781A13A1890034F34F /* Main.storyboard */; };
 		5E14977C1A13A1890034F34F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E14977B1A13A1890034F34F /* Images.xcassets */; };
 		5E14977F1A13A1890034F34F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E14977D1A13A1890034F34F /* LaunchScreen.xib */; };
@@ -114,6 +131,34 @@
 /* Begin PBXFileReference section */
 		5E062AC11B81D269002B6DF8 /* has_been_appreciated_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = has_been_appreciated_icon.png; sourceTree = "<group>"; };
 		5E0F83581C033E09008A2CB3 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		5E0F83EC1C034B47008A2CB3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E0F83ED1C034B47008A2CB3 /* LCHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHttpClient.h; sourceTree = "<group>"; };
+		5E0F83EE1C034B47008A2CB3 /* LCHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHttpClient.m; sourceTree = "<group>"; };
+		5E0F83EF1C034B47008A2CB3 /* LCUserFeedbackAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUserFeedbackAgent.h; sourceTree = "<group>"; };
+		5E0F83F01C034B47008A2CB3 /* LCUserFeedbackAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUserFeedbackAgent.m; sourceTree = "<group>"; };
+		5E0F83F11C034B47008A2CB3 /* LCUserFeedbackImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUserFeedbackImageViewController.h; sourceTree = "<group>"; };
+		5E0F83F21C034B47008A2CB3 /* LCUserFeedbackImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUserFeedbackImageViewController.m; sourceTree = "<group>"; };
+		5E0F83F31C034B47008A2CB3 /* LCUserFeedbackReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUserFeedbackReply.h; sourceTree = "<group>"; };
+		5E0F83F41C034B47008A2CB3 /* LCUserFeedbackReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUserFeedbackReply.m; sourceTree = "<group>"; };
+		5E0F83F51C034B47008A2CB3 /* LCUserFeedbackReply_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUserFeedbackReply_Internal.h; sourceTree = "<group>"; };
+		5E0F83F61C034B47008A2CB3 /* LCUserFeedbackReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUserFeedbackReplyCell.h; sourceTree = "<group>"; };
+		5E0F83F71C034B47008A2CB3 /* LCUserFeedbackReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUserFeedbackReplyCell.m; sourceTree = "<group>"; };
+		5E0F83F81C034B47008A2CB3 /* LCUserFeedbackThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUserFeedbackThread.h; sourceTree = "<group>"; };
+		5E0F83F91C034B47008A2CB3 /* LCUserFeedbackThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUserFeedbackThread.m; sourceTree = "<group>"; };
+		5E0F83FA1C034B47008A2CB3 /* LCUserFeedbackThread_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUserFeedbackThread_Internal.h; sourceTree = "<group>"; };
+		5E0F83FB1C034B47008A2CB3 /* LCUserFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUserFeedbackViewController.h; sourceTree = "<group>"; };
+		5E0F83FC1C034B47008A2CB3 /* LCUserFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUserFeedbackViewController.m; sourceTree = "<group>"; };
+		5E0F83FD1C034B47008A2CB3 /* LCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUtils.h; sourceTree = "<group>"; };
+		5E0F83FE1C034B47008A2CB3 /* LCUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUtils.m; sourceTree = "<group>"; };
+		5E0F83FF1C034B47008A2CB3 /* LeanCloudFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeanCloudFeedback.h; sourceTree = "<group>"; };
+		5E0F84011C034B47008A2CB3 /* feedback_add_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_add_image@2x.png"; sourceTree = "<group>"; };
+		5E0F84021C034B47008A2CB3 /* feedback_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_back@2x.png"; sourceTree = "<group>"; };
+		5E0F84031C034B47008A2CB3 /* feedback_bg_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_bg_1@2x.png"; sourceTree = "<group>"; };
+		5E0F84041C034B47008A2CB3 /* feedback_bg_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_bg_2@2x.png"; sourceTree = "<group>"; };
+		5E0F84051C034B47008A2CB3 /* feedback_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_btn@2x.png"; sourceTree = "<group>"; };
+		5E0F84061C034B47008A2CB3 /* feedback_btn_new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_btn_new@2x.png"; sourceTree = "<group>"; };
+		5E0F84071C034B47008A2CB3 /* feedback_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_warning@2x.png"; sourceTree = "<group>"; };
+		5E0F84081C034B47008A2CB3 /* LeanCloudFeedback.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = LeanCloudFeedback.strings; sourceTree = "<group>"; };
 		5E14976F1A13A1890034F34F /* V2EX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2EX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E1497731A13A1890034F34F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E1497791A13A1890034F34F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -231,6 +276,57 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5E0F83EA1C034B47008A2CB3 /* ThirdParties */ = {
+			isa = PBXGroup;
+			children = (
+				5E0F83EB1C034B47008A2CB3 /* LeanCloudFeedback */,
+			);
+			path = ThirdParties;
+			sourceTree = "<group>";
+		};
+		5E0F83EB1C034B47008A2CB3 /* LeanCloudFeedback */ = {
+			isa = PBXGroup;
+			children = (
+				5E0F83EC1C034B47008A2CB3 /* Info.plist */,
+				5E0F83ED1C034B47008A2CB3 /* LCHttpClient.h */,
+				5E0F83EE1C034B47008A2CB3 /* LCHttpClient.m */,
+				5E0F83EF1C034B47008A2CB3 /* LCUserFeedbackAgent.h */,
+				5E0F83F01C034B47008A2CB3 /* LCUserFeedbackAgent.m */,
+				5E0F83F11C034B47008A2CB3 /* LCUserFeedbackImageViewController.h */,
+				5E0F83F21C034B47008A2CB3 /* LCUserFeedbackImageViewController.m */,
+				5E0F83F31C034B47008A2CB3 /* LCUserFeedbackReply.h */,
+				5E0F83F41C034B47008A2CB3 /* LCUserFeedbackReply.m */,
+				5E0F83F51C034B47008A2CB3 /* LCUserFeedbackReply_Internal.h */,
+				5E0F83F61C034B47008A2CB3 /* LCUserFeedbackReplyCell.h */,
+				5E0F83F71C034B47008A2CB3 /* LCUserFeedbackReplyCell.m */,
+				5E0F83F81C034B47008A2CB3 /* LCUserFeedbackThread.h */,
+				5E0F83F91C034B47008A2CB3 /* LCUserFeedbackThread.m */,
+				5E0F83FA1C034B47008A2CB3 /* LCUserFeedbackThread_Internal.h */,
+				5E0F83FB1C034B47008A2CB3 /* LCUserFeedbackViewController.h */,
+				5E0F83FC1C034B47008A2CB3 /* LCUserFeedbackViewController.m */,
+				5E0F83FD1C034B47008A2CB3 /* LCUtils.h */,
+				5E0F83FE1C034B47008A2CB3 /* LCUtils.m */,
+				5E0F83FF1C034B47008A2CB3 /* LeanCloudFeedback.h */,
+				5E0F84001C034B47008A2CB3 /* resources */,
+			);
+			path = LeanCloudFeedback;
+			sourceTree = "<group>";
+		};
+		5E0F84001C034B47008A2CB3 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				5E0F84011C034B47008A2CB3 /* feedback_add_image@2x.png */,
+				5E0F84021C034B47008A2CB3 /* feedback_back@2x.png */,
+				5E0F84031C034B47008A2CB3 /* feedback_bg_1@2x.png */,
+				5E0F84041C034B47008A2CB3 /* feedback_bg_2@2x.png */,
+				5E0F84051C034B47008A2CB3 /* feedback_btn@2x.png */,
+				5E0F84061C034B47008A2CB3 /* feedback_btn_new@2x.png */,
+				5E0F84071C034B47008A2CB3 /* feedback_warning@2x.png */,
+				5E0F84081C034B47008A2CB3 /* LeanCloudFeedback.strings */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		5E1497661A13A1890034F34F = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +348,7 @@
 		5E1497711A13A1890034F34F /* V2EX */ = {
 			isa = PBXGroup;
 			children = (
+				5E0F83EA1C034B47008A2CB3 /* ThirdParties */,
 				5E8DEFA51AC1C2A00036D852 /* www */,
 				5E3759B81A3C7640003DB82A /* AppDelegate.swift */,
 				5E5F23B01A395CD200D20FE9 /* Classes */,
@@ -304,7 +401,9 @@
 				5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */,
 				5E5F23B21A395DBD00D20FE9 /* ContainerViewController.swift */,
 				5E6F31741ADA238400C477A5 /* CreateTopicViewController.swift */,
+				5ECA31161BF38762008F6E69 /* DebugViewController.swift */,
 				5E5F23B31A395DBD00D20FE9 /* DiscoveryViewController.swift */,
+				5E0F83581C033E09008A2CB3 /* MainTabBarController.swift */,
 				5EA86AF31BA4003000109D94 /* NodeListCollectionViewController.swift */,
 				5E4C0CC21B77381400306C16 /* PreferenceViewController.swift */,
 				5E29CF481B783AAE0071B54D /* PurchaseViewController.swift */,
@@ -318,8 +417,6 @@
 				5E8523EE1ABD7B0F00B7B8C4 /* UserReplyListController.swift */,
 				5E8523EB1ABD7B0200B7B8C4 /* UserTopicListViewController.swift */,
 				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
-				5ECA31161BF38762008F6E69 /* DebugViewController.swift */,
-				5E0F83581C033E09008A2CB3 /* MainTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -563,16 +660,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E0F84191C034B47008A2CB3 /* LeanCloudFeedback.strings in Resources */,
 				5EA63C681B08700A00431C96 /* node_list_bundle.js in Resources */,
+				5E0F84171C034B47008A2CB3 /* feedback_btn_new@2x.png in Resources */,
 				5E8DEFB21AC1C2A00036D852 /* node_list.html in Resources */,
 				5E062AC21B81D269002B6DF8 /* has_been_appreciated_icon.png in Resources */,
 				5E14977A1A13A1890034F34F /* Main.storyboard in Resources */,
+				5E0F84161C034B47008A2CB3 /* feedback_btn@2x.png in Resources */,
 				5E924B741B6BC38600182F3F /* UserInfoView.xib in Resources */,
+				5E0F84121C034B47008A2CB3 /* feedback_add_image@2x.png in Resources */,
+				5E0F84141C034B47008A2CB3 /* feedback_bg_1@2x.png in Resources */,
 				5E14977F1A13A1890034F34F /* LaunchScreen.xib in Resources */,
 				5EA63C6B1B08701500431C96 /* topic.html in Resources */,
 				5E8DEFB01AC1C2A00036D852 /* style.css in Resources */,
+				5E0F84181C034B47008A2CB3 /* feedback_warning@2x.png in Resources */,
+				5E0F84091C034B47008A2CB3 /* Info.plist in Resources */,
 				5E546A451B801EBC00DD2059 /* avatar_placeholder.png in Resources */,
+				5E0F84151C034B47008A2CB3 /* feedback_bg_2@2x.png in Resources */,
 				5E8DEFB61AC1C2A00036D852 /* favorite_icon.png in Resources */,
+				5E0F84131C034B47008A2CB3 /* feedback_back@2x.png in Resources */,
 				5E8DEFB41AC1C2A00036D852 /* appreciation_icon.png in Resources */,
 				5E14977C1A13A1890034F34F /* Images.xcassets in Resources */,
 				5EA63C691B08700A00431C96 /* topic_bundle.js in Resources */,
@@ -638,6 +744,7 @@
 				5E5F23CA1A395DBD00D20FE9 /* RootViewController.swift in Sources */,
 				5E8523EC1ABD7B0200B7B8C4 /* UserTopicListViewController.swift in Sources */,
 				5EA86AF81BA4022900109D94 /* NodeCategoryNameCollectionReusableView.swift in Sources */,
+				5E0F840C1C034B47008A2CB3 /* LCUserFeedbackImageViewController.m in Sources */,
 				5ED345DD1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */,
 				5E4C0CC31B77381400306C16 /* PreferenceViewController.swift in Sources */,
 				5E5F23CE1A395DBD00D20FE9 /* Topic.swift in Sources */,
@@ -648,13 +755,16 @@
 				5E4C0CBF1B76F9C500306C16 /* UserInfoTableViewCell.swift in Sources */,
 				5E7AB0D01B7C5D1A0008B7AA /* AnimationHelper.swift in Sources */,
 				5E83B72A1A3D8FD60079AB3E /* Networking.swift in Sources */,
+				5E0F840B1C034B47008A2CB3 /* LCUserFeedbackAgent.m in Sources */,
 				5E3759B91A3C7640003DB82A /* AppDelegate.swift in Sources */,
 				5E29CF491B783AAE0071B54D /* PurchaseViewController.swift in Sources */,
 				5E5F23C61A395DBD00D20FE9 /* ContainerViewController.swift in Sources */,
 				5E8523EF1ABD7B0F00B7B8C4 /* UserReplyListController.swift in Sources */,
+				5E0F840E1C034B47008A2CB3 /* LCUserFeedbackReplyCell.m in Sources */,
 				5EC87D601ABC4DAD00AB071F /* SessionService.swift in Sources */,
 				5E4AA86D1A3F0EA000AA2F3D /* TopicListCellViewModel.swift in Sources */,
 				5E8523F51ABD7B2D00B7B8C4 /* UserFavoriteController.swift in Sources */,
+				5E0F840D1C034B47008A2CB3 /* LCUserFeedbackReply.m in Sources */,
 				5EA66F541BFB3B3D00C87F71 /* V2EXAnalytics.swift in Sources */,
 				5E4D5D0E1B6633FF002A05EE /* ReplyTopicViewController.swift in Sources */,
 				5E8523F21ABD7B2000B7B8C4 /* UserNotificationViewController.swift in Sources */,
@@ -666,6 +776,7 @@
 				5E5F23CB1A395DBD00D20FE9 /* TopicListViewController.swift in Sources */,
 				5EC957C31A3DBFFF005E5428 /* V2EXNetworking.swift in Sources */,
 				5E8DEFBD1AC29BF20036D852 /* WebViewAction.swift in Sources */,
+				5E0F840A1C034B47008A2CB3 /* LCHttpClient.m in Sources */,
 				5ED9F98A1BEEFA790034CCD2 /* PasteboardWatcher.swift in Sources */,
 				5E4AA8681A3F032900AA2F3D /* Node.swift in Sources */,
 				5E8523F81ABD831F00B7B8C4 /* UserTopicTableViewCell.swift in Sources */,
@@ -682,6 +793,7 @@
 				5E5F23C71A395DBD00D20FE9 /* DiscoveryViewController.swift in Sources */,
 				5ED345CD1ABE733300B5E286 /* UserTopicListCellViewModel.swift in Sources */,
 				5E5F23CC1A395DBD00D20FE9 /* UIViewControllerExtension.swift in Sources */,
+				5E0F84111C034B47008A2CB3 /* LCUtils.m in Sources */,
 				5E7A0ED11A3D7BCB00C9251B /* BaseModel.swift in Sources */,
 				5E8523E61ABD5C2000B7B8C4 /* DateOperators.swift in Sources */,
 				5E5F23D21A395DBD00D20FE9 /* CatPaginatedScrollView.swift in Sources */,
@@ -689,6 +801,7 @@
 				5E58D2DF1AB71913003058D6 /* TopicViewModel.swift in Sources */,
 				5E4E68961B81DE3A00A178C4 /* CustomActivity.swift in Sources */,
 				5E38F3DF1AD90D5A00186E18 /* V2EXTableViewController.swift in Sources */,
+				5E0F84101C034B47008A2CB3 /* LCUserFeedbackViewController.m in Sources */,
 				5E924B701B6BC25D00182F3F /* UserInfoView.swift in Sources */,
 				5E97F2341BC2ADAD00574FBE /* TopicPage.swift in Sources */,
 				5E5F23CF1A395DBD00D20FE9 /* User.swift in Sources */,
@@ -708,6 +821,7 @@
 				5ECA31151BF366B8008F6E69 /* UserStatusManager.swift in Sources */,
 				5E4D5D101B66743B002A05EE /* ThirdPartyNetworking.swift in Sources */,
 				5E7A0ECF1A3D79F600C9251B /* StorableProtocol.swift in Sources */,
+				5E0F840F1C034B47008A2CB3 /* LCUserFeedbackThread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

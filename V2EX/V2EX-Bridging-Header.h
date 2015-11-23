@@ -23,3 +23,4 @@
 
 #import "UIViewAppearance_Swift.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "LeanCloudFeedback.h"

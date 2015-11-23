@@ -31,7 +31,6 @@ inhibit_all_warnings!
     pod 'LNNotificationsUI', :git => "https://github.com/LeoNatan/LNNotificationsUI.git"
     pod 'FDFullscreenPopGesture', '~> 1.1'
     pod 'AVOSCloud'
-#    pod 'LeanCloudFeedbackDynamic'
 # end
 
 #target 'V2EXTests', :exclusive => true do

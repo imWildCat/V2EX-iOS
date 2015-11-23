@@ -1197,7 +1197,7 @@
         <!--Debug View Controller-->
         <scene sceneID="bfe-nS-gLf">
             <objects>
-                <viewController id="hEe-X1-dFc" customClass="DebugViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="debugVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hEe-X1-dFc" customClass="DebugViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VcN-r7-BT5"/>
                         <viewControllerLayoutGuide type="bottom" id="U7p-rO-qbT"/>
