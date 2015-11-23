@@ -26,12 +26,12 @@ class PasteboardWatcher {
         if let _ = content.lowercaseString.rangeOfString("v2ex.com/") {
             if let topicIDString = content.match("v2ex.com/t/(\\d+)")?[1], topicID = Int(topicIDString) {
                 showAlertForPasteboardLink(content, type: .Topic) {
-                    UIViewController.topViewContrller().showTopicVC(topicID)
+                    Utils.topVC().showTopicVC(topicID)
                     lastURLJumped = content
                 }
             } else if let nodeSlugString = content.match("v2ex.com/go/(\\w+)")?[1] {
                 showAlertForPasteboardLink(content, type: .Node) {
-                    UIViewController.topViewContrller().showNodeVC(nodeSlugString)
+                    Utils.topVC().showNodeVC(nodeSlugString)
                     lastURLJumped = content
                 }
             }
@@ -57,6 +57,6 @@ class PasteboardWatcher {
         }
         alert.addAction(cancelAction)
         alert.addAction(okAction)
-        UIViewController.topViewContrller().presentViewController(alert, animated: true, completion: nil)
+        Utils.topVC().presentViewController(alert, animated: true, completion: nil)
     }
 }

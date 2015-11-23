@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		579384DF5AC4DBF4664F5D03 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE43764C14709A4F1E31C4AB /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5E062AC21B81D269002B6DF8 /* has_been_appreciated_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E062AC11B81D269002B6DF8 /* has_been_appreciated_icon.png */; };
+		5E0F83591C033E09008A2CB3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F83581C033E09008A2CB3 /* MainTabBarController.swift */; };
 		5E14977A1A13A1890034F34F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E1497781A13A1890034F34F /* Main.storyboard */; };
 		5E14977C1A13A1890034F34F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E14977B1A13A1890034F34F /* Images.xcassets */; };
 		5E14977F1A13A1890034F34F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E14977D1A13A1890034F34F /* LaunchScreen.xib */; };
@@ -112,6 +113,7 @@
 
 /* Begin PBXFileReference section */
 		5E062AC11B81D269002B6DF8 /* has_been_appreciated_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = has_been_appreciated_icon.png; sourceTree = "<group>"; };
+		5E0F83581C033E09008A2CB3 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		5E14976F1A13A1890034F34F /* V2EX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2EX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E1497731A13A1890034F34F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E1497791A13A1890034F34F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				5E8523EB1ABD7B0200B7B8C4 /* UserTopicListViewController.swift */,
 				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
 				5ECA31161BF38762008F6E69 /* DebugViewController.swift */,
+				5E0F83581C033E09008A2CB3 /* MainTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				5ED345DD1ABEB3C100B5E286 /* UserReplyTableViewCell.swift in Sources */,
 				5E4C0CC31B77381400306C16 /* PreferenceViewController.swift in Sources */,
 				5E5F23CE1A395DBD00D20FE9 /* Topic.swift in Sources */,
+				5E0F83591C033E09008A2CB3 /* MainTabBarController.swift in Sources */,
 				5ED561471BC220540093A695 /* NetworkingResult.swift in Sources */,
 				5EC734361B2BE1EE0082D920 /* BrowserViewController.swift in Sources */,
 				5E5F23CD1A395DBD00D20FE9 /* UserViewController.swift in Sources */,

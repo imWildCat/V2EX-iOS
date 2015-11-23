@@ -108,10 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-//        notification.u
-//        println("Received location notification: ", notification)
-        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! RootViewController
-        let topVC = rootViewController.containerViewController.viewControllers[0]
+        let topVC = Utils.topVC()
         
         if let userInfo = notification.userInfo as? [String: String], type = userInfo["type"] {
             print("Userinfo type: \(type)", terminator: "")
@@ -122,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let userViewController = topVC as? UserViewController {
                     userViewController.checkDailyTask()
                 } else {
-                    rootViewController.containerViewController.viewControllers = [rootViewController.containerViewController.userViewController]
+                    // TODO: do something.
                 }
             }
         }

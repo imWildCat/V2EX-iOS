@@ -194,12 +194,18 @@ class TopicListViewController: UITableViewController {
 
     // MARK: UITableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if tabSlug != nil {
-            let parentVC = ContainerViewController.sharedDiscoveryVC()!
-            parentVC.performSegueWithIdentifier("showTopicVC", sender: topics[indexPath.row])
-        } else /* if nodeSlug != nil */ {
-//            performSegueWithIdentifier("showTopicVC", sender: topics[indexPath.row])
-            showTopic(topics[indexPath.row])
+        showTopic2(topics[indexPath.row])
+    }
+    
+    func showTopic2(topic: Topic) {
+        if let topicVC = storyboard?.instantiateViewControllerWithIdentifier("topicVC") as? TopicViewController {
+            if topic.isNew == false {
+                topicVC.topicID = topic.id
+            } else {
+                topicVC.mode = .NewTopic
+                topicVC.topic = topic
+            }
+            navigationController?.pushViewController(topicVC, animated: true)
         }
     }
     

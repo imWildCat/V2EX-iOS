@@ -19,14 +19,22 @@ class Utils {
     }
     
     class func showOrReloadNotificationVC() {
-        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! RootViewController
-        let topVC = rootViewController.containerViewController.viewControllers[0]
+        let rootViewController = containerVC()
+        let topVC = rootViewController.viewControllers[0]
         
         if let notificationVC = topVC as? UserNotificationViewController {
             notificationVC.loadData()
         } else {
             topVC.showNotificationVC()
         }
+    }
+    
+    class func containerVC() -> ContainerViewController {
+        return UIApplication.sharedApplication().keyWindow!.rootViewController as! ContainerViewController
+    }
+    
+    class func topVC() -> UIViewController {
+        return containerVC().viewControllers[0]
     }
     
 //    class func readsSessionCookieFromKeyChain() -> Bool {

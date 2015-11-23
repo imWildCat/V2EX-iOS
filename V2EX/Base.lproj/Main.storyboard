@@ -1,44 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hv7-e8-QVW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rpj-0g-S3X">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
-        <scene sceneID="gV1-7V-sMp">
-            <objects>
-                <viewController storyboardIdentifier="rootVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hv7-e8-QVW" customClass="RootViewController" customModule="V2EX" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="F3H-JU-9oZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="qJa-Iu-hUQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="orw-oK-Ku8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jxP-Rz-WD6">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <connections>
-                                    <segue destination="rpj-0g-S3X" kind="embed" identifier="embedContainer" id="tBP-SG-tmt"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <animations/>
-                        <constraints>
-                            <constraint firstItem="jxP-Rz-WD6" firstAttribute="top" secondItem="orw-oK-Ku8" secondAttribute="top" id="R6W-5h-F1S"/>
-                            <constraint firstAttribute="trailing" secondItem="jxP-Rz-WD6" secondAttribute="trailing" id="n19-DD-1HX"/>
-                            <constraint firstItem="qJa-Iu-hUQ" firstAttribute="top" secondItem="jxP-Rz-WD6" secondAttribute="bottom" id="oPe-qc-PN7"/>
-                            <constraint firstItem="jxP-Rz-WD6" firstAttribute="leading" secondItem="orw-oK-Ku8" secondAttribute="leading" id="zhn-05-ZtC"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ILn-8t-UvP" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="529" y="468"/>
-        </scene>
         <!--Page View Controller-->
         <scene sceneID="171-ZB-OaA">
             <objects>
@@ -47,10 +14,31 @@
             </objects>
             <point key="canvasLocation" x="1956" y="-193"/>
         </scene>
-        <!--V2EX-->
+        <!--Main Tab Bar Controller-->
+        <scene sceneID="eEC-w2-L50">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1id-Pg-aDf" customClass="MainTabBarController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Wll-Lk-Hss"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="gCS-6l-epf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="8Bk-J4-X5m" kind="relationship" relationship="viewControllers" id="FbB-kU-zh2"/>
+                        <segue destination="ilY-EB-uo2" kind="relationship" relationship="viewControllers" id="l2Z-NM-tcQ"/>
+                        <segue destination="iEs-mN-lI8" kind="relationship" relationship="viewControllers" id="bQL-J4-Ch0"/>
+                        <segue destination="CAI-5s-kBw" kind="relationship" relationship="viewControllers" id="CVv-r3-xaR"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JQK-qr-4Nj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="914" y="499"/>
+        </scene>
+        <!--发现-->
         <scene sceneID="gXL-NM-bW9">
             <objects>
-                <viewController storyboardIdentifier="discoveryVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Bk-J4-X5m" customClass="DiscoveryViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="discoveryVC" title="发现" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Bk-J4-X5m" customClass="DiscoveryViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9XO-fl-VcD"/>
                         <viewControllerLayoutGuide type="bottom" id="VPe-7Q-ICT"/>
@@ -60,14 +48,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OML-pe-KJ2" customClass="IB_HMSegmentedControl" customModule="V2EX" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="600" height="40"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="40"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="OIQ-8f-OYp"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IL0-IB-1YW">
-                                <rect key="frame" x="0.0" y="84" width="600" height="516"/>
+                                <rect key="frame" x="0.0" y="104" width="600" height="447"/>
                                 <animations/>
                                 <connections>
                                     <segue destination="hhK-nI-uZL" kind="embed" identifier="loadPageVC" id="fwi-LV-4Kd"/>
@@ -86,13 +74,8 @@
                             <constraint firstItem="OML-pe-KJ2" firstAttribute="top" secondItem="9XO-fl-VcD" secondAttribute="bottom" id="vca-oy-Cvc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="V2EX" id="G7e-oJ-qbD">
-                        <barButtonItem key="leftBarButtonItem" image="side_menu_icon" id="UXS-Wn-KJp">
-                            <connections>
-                                <action selector="sideMenuButtonTouched:" destination="8Bk-J4-X5m" id="Uvt-ya-XdH"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="发现" image="globe_icon" selectedImage="globe_icon" id="EcF-qe-9k9"/>
+                    <navigationItem key="navigationItem" title="V2EX" id="G7e-oJ-qbD"/>
                     <connections>
                         <outlet property="tabSegmentedControl" destination="OML-pe-KJ2" id="Txj-3G-xqx"/>
                         <segue destination="id9-zn-iOs" kind="show" identifier="showTopicVC" id="K36-ed-S7h"/>
@@ -119,7 +102,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NodeNameCell" id="gbE-9h-57K" customClass="NodeNameCollectionViewCell" customModule="V2EX" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="52" height="29"/>
+                                <rect key="frame" x="0.0" y="108" width="52" height="29"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="52" height="29"/>
@@ -150,7 +133,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NodeCategoryNameView" id="2yg-Sw-aq9" customClass="NodeCategoryNameCollectionReusableView" customModule="V2EX" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="44" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Node Category Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08Q-KQ-ir3">
@@ -177,6 +160,7 @@
                             <outlet property="delegate" destination="ilY-EB-uo2" id="qfz-Yg-7XT"/>
                         </connections>
                     </collectionView>
+                    <tabBarItem key="tabBarItem" title="节点" image="nodes_icon" id="rTg-Lm-cIx"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="节点导航" id="Hwn-1a-byg">
                         <barButtonItem key="leftBarButtonItem" image="side_menu_icon" id="XXE-vW-eq2">
@@ -318,7 +302,7 @@
                         <color key="sectionIndexBackgroundColor" red="1" green="0.97254901959999995" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="topicListCell" rowHeight="80" id="rI2-zh-Hjg" customClass="TopicListCell" customModule="V2EX" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="66" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rI2-zh-Hjg" id="i4C-lG-pix">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
@@ -612,7 +596,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5V-fP-Otq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3417" y="468"/>
+            <point key="canvasLocation" x="3453" y="463"/>
         </scene>
         <!--Browser View Controller-->
         <scene sceneID="6ji-dt-Moz">
@@ -757,7 +741,7 @@
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="infoCell" rowHeight="100" id="hG9-LA-BDc" customClass="UserInfoTableViewCell" customModule="V2EX" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="66" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="86" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hG9-LA-BDc" id="QjS-ZQ-3WT">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
@@ -786,7 +770,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dailyRedeemCell" id="B49-Vy-grQ">
-                                        <rect key="frame" x="0.0" y="166" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="186" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B49-Vy-grQ" id="oxT-eF-RgY">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -830,7 +814,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="notificationCell" id="XNJ-JL-Zme">
-                                        <rect key="frame" x="0.0" y="210" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="230" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XNJ-JL-Zme" id="KEZ-jE-MTA">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -877,7 +861,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteCell" id="awz-14-HwC">
-                                        <rect key="frame" x="0.0" y="254" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="274" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="awz-14-HwC" id="3dT-rv-L1G">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -923,7 +907,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="topicCell" id="jDH-eE-Sby">
-                                        <rect key="frame" x="0.0" y="298" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="318" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jDH-eE-Sby" id="dfa-bg-N8U">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -970,7 +954,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="replyCell" id="a9S-ck-ACf">
-                                        <rect key="frame" x="0.0" y="342" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="362" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a9S-ck-ACf" id="rhm-cL-Nhg">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1016,7 +1000,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="introCell" id="nCb-X7-Cum" customClass="UserIntroTableViewCell" customModule="V2EX" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="386" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="406" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nCb-X7-Cum" id="5Sb-Bl-Ctf">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1056,7 +1040,7 @@
                                 </connections>
                             </tableView>
                             <button hidden="YES" opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iq0-Lg-nA1">
-                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="尚未登录，点击登录">
@@ -1068,7 +1052,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HtY-6y-E6g" userLabel="Mask">
-                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <state key="normal">
@@ -1079,7 +1063,7 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HfR-q0-voP">
-                                <rect key="frame" x="440" y="49" width="150" height="79"/>
+                                <rect key="frame" x="440" y="69" width="150" height="79"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_popover_bg" translatesAutoresizingMaskIntoConstraints="NO" id="K5t-ID-f4G">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="79"/>
@@ -1123,7 +1107,6 @@
                                     </button>
                                 </subviews>
                                 <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="79" id="6NR-gs-s9F"/>
                                     <constraint firstAttribute="centerX" secondItem="KqN-N8-d9B" secondAttribute="centerX" id="8ju-wM-zOP"/>
@@ -1153,6 +1136,7 @@
                             <constraint firstAttribute="centerY" secondItem="Ogu-fO-87B" secondAttribute="centerY" id="yLq-6R-ZbC"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="个人" image="individual_icon" id="tpT-97-sSq"/>
                     <navigationItem key="navigationItem" title="个人中心" id="jBR-jp-EOb"/>
                     <connections>
                         <outlet property="blockButton" destination="GUh-Kd-bKb" id="eVk-Sz-59U"/>
@@ -1179,7 +1163,7 @@
                         <color key="tintColor" red="0.21176470589999999" green="0.3803921569" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="null" id="grd-KT-Lpd">
-                                <rect key="frame" x="0.0" y="94" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="grd-KT-Lpd" id="CrD-h9-QBw">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1194,6 +1178,7 @@
                             <outlet property="delegate" destination="CAI-5s-kBw" id="L8P-ej-mye"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="设置" image="settings_icon" id="BGJ-GW-PzZ"/>
                     <navigationItem key="navigationItem" title="用户设置" id="DyJ-TO-6Hw">
                         <barButtonItem key="leftBarButtonItem" image="side_menu_icon" id="MV3-DS-U1V">
                             <connections>
@@ -1274,7 +1259,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="aG9-jF-NjT" customClass="UserTopicTableViewCell" customModule="V2EX" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="66" width="600" height="92"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="92"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aG9-jF-NjT" id="fYE-ou-NkT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="91"/>
@@ -1458,7 +1443,7 @@
                         <color key="sectionIndexBackgroundColor" red="1" green="0.96470588239999999" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="FWr-rS-0NW" customClass="UserReplyListTableViewCell" customModule="V2EX" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="66" width="600" height="103"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FWr-rS-0NW" id="cbF-eS-seU">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="102"/>
@@ -1643,7 +1628,7 @@
                         <inset key="separatorInset" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="102" id="3lc-vX-8ST" customClass="UserNotificationListCell" customModule="V2EX" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="66" width="600" height="102"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="102"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3lc-vX-8ST" id="SMd-4P-lf8">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="101"/>
@@ -1961,15 +1946,12 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="8Bk-J4-X5m" kind="relationship" relationship="rootViewController" id="3nK-cJ-IN0"/>
-                        <segue destination="iEs-mN-lI8" kind="show" identifier="showUserVC" id="2u5-2C-plN"/>
-                        <segue destination="CAI-5s-kBw" kind="show" identifier="showPreferenceVC" id="hLg-vO-RJ4"/>
-                        <segue destination="ilY-EB-uo2" kind="show" identifier="showNodeListVC" id="8Oc-1o-qX4"/>
+                        <segue destination="1id-Pg-aDf" kind="relationship" relationship="rootViewController" id="jiu-AT-0o3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lIm-Fo-P6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="468"/>
+            <point key="canvasLocation" x="217" y="490"/>
         </scene>
     </scenes>
     <resources>
@@ -1981,15 +1963,19 @@
         <image name="daily_redeem_icon" width="60" height="60"/>
         <image name="favorite_button" width="20" height="20"/>
         <image name="favorite_icon" width="61" height="61"/>
+        <image name="globe_icon" width="25" height="25"/>
+        <image name="individual_icon" width="25" height="25"/>
         <image name="login_bg" width="2048" height="1535"/>
         <image name="next_page_button" width="12" height="20"/>
         <image name="node_icon" width="25" height="25"/>
+        <image name="nodes_icon" width="25" height="22"/>
         <image name="notification_icon" width="60" height="60"/>
         <image name="post_button" width="20" height="20"/>
         <image name="previous_page_button" width="12" height="20"/>
         <image name="refresh_button" width="20" height="20"/>
         <image name="reply_button" width="20" height="20"/>
         <image name="reply_icon" width="60" height="60"/>
+        <image name="settings_icon" width="25" height="25"/>
         <image name="side_menu_icon" width="21" height="21"/>
         <image name="time_icon" width="25" height="25"/>
         <image name="topic_icon" width="60" height="60"/>
@@ -1997,8 +1983,8 @@
         <image name="user_popover_bg" width="150" height="79"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="z6U-4M-dN1"/>
-        <segue reference="aV0-nR-xvq"/>
+        <segue reference="A8g-nS-PBa"/>
+        <segue reference="AOD-UH-mfW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

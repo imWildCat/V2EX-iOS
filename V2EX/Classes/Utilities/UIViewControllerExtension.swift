@@ -12,20 +12,6 @@ import KINWebBrowser
 import SafariServices
 
 extension UIViewController {
-        
-    @IBAction func sideMenuButtonTouched(sender: UIBarButtonItem) {
-        showSideMenu()
-    }
-    
-    func showSideMenu() {
-        RootViewController.displaySideMenu()
-    }
-    
-    class func topViewContrller() -> UIViewController {
-        let rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! RootViewController
-        let topVC = rootViewController.containerViewController.viewControllers[0]
-        return topVC
-    }
     
     // MARK: V2EX
     func showTopicVC(topicID: Int) {

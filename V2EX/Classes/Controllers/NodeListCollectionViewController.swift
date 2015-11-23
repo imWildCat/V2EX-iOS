@@ -34,6 +34,10 @@ class NodeListCollectionViewController: UICollectionViewController {
         // Register cell classes
 //        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         loadNodeData()
+        
+        
+        // Fix for height of tabbar
+        collectionView?.contentInset.bottom = 49 // = 44 + 5
     }
     
     override func viewWillAppear(animated: Bool) {
