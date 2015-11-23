@@ -35,7 +35,7 @@ gulp.task('react', function () {
         .pipe(source('topic_bundle.js'))
         .pipe(buffer())
         .pipe(gulp.dest('./build'))
-        .pipe(browserSync.reload({stream: true, once: true}));
+        .pipe(browserSync.reload({ stream: true, once: true }));
     ;
 
     browserify({
