@@ -47,7 +47,6 @@ struct TopicViewModel {
         ]
         
         let jsonObj = JSON(data)
-        print(jsonObj)
         
         let bundle = NSBundle.mainBundle()
         let templatePath = bundle.pathForResource("topic", ofType: "html")

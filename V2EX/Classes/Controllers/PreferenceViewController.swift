@@ -9,6 +9,7 @@
 import UIKit
 import RETableViewManager
 import SDWebImage
+import TSMessages
 
 class PreferenceViewController: UITableViewController, RETableViewManagerDelegate {
     
@@ -181,13 +182,15 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
     private func performLogOut() {
         
         if !SessionStorage.sharedStorage.isLoggedIn {
-            showError(status: "您尚未登录")
+//            showError(status: "您尚未登录")
+            TSMessage.showNotificationWithTitle("您尚未登录", type: .Warning)
             return
         }
         
         SessionService.logout() // TODO: move it to SessionService
         configureRETableViewManager()
-        showSuccess(status: "已注销")
+//        showSuccess(status: "已注销")
+        TSMessage.showNotificationWithTitle("已注销", type: .Message)
     }
 //    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 //        

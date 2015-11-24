@@ -35,6 +35,16 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
         pageViewController.delegate = self
         pageViewController.dataSource = self
         pageViewController.setViewControllers([topicListViewControllers.first!], direction: .Forward, animated: true, completion: nil)
+        
+        // Fix for contents under navigation bar for iOS 8
+        fixForiOS8()
+    }
+    
+    func fixForiOS8() {
+        guard #available(iOS 9, *) else {
+            navigationController?.navigationBar.translucent = false
+            return
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

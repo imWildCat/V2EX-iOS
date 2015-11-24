@@ -10,6 +10,7 @@ import UIKit
 import KVNProgress
 import KINWebBrowser
 import SafariServices
+import TSMessages
 
 extension UIViewController {
     
@@ -121,12 +122,20 @@ extension UIViewController {
         KVNProgress.showSuccessWithStatus(status, completion: completion)
     }
     
+    func showSuccessMessage(message: String) {
+        TSMessage.showNotificationWithTitle(message, type: .Success)
+    }
+    
     func showSuccess() {
         KVNProgress.showSuccess()
     }
     
     func showError(status status: String, completion: (() -> Void)? = nil) {
         KVNProgress.showErrorWithStatus(status, completion: completion)
+    }
+    
+    func showErrorMessage(message: String) {
+        TSMessage.showNotificationWithTitle(message, type: .Error)
     }
     
 //    func showError(error: ErrorType?) {
@@ -158,6 +167,7 @@ extension UIViewController {
                     showLoginAlert()
                     return
                 }
+//                TSMessage.showNotificationWithTitle(description, type: .Error)
                 showError(status: description, completion: completion)
                 return
             }

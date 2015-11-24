@@ -25,10 +25,16 @@ class ContainerViewController: UINavigationController {
         
         // Render node list
         nodeListViewController.nibName // FIXME: Do not know this line of code
+        
+        
     }
 
     class func sharedDiscoveryVC() -> DiscoveryViewController? {
         return sharedDiscoveryViewController
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
 }

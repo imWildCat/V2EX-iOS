@@ -76,6 +76,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="发现" image="globe_icon" selectedImage="globe_icon" id="EcF-qe-9k9"/>
                     <navigationItem key="navigationItem" title="V2EX" id="G7e-oJ-qbD"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="tabSegmentedControl" destination="OML-pe-KJ2" id="Txj-3G-xqx"/>
                         <segue destination="id9-zn-iOs" kind="show" identifier="showTopicVC" id="K36-ed-S7h"/>
@@ -510,12 +511,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UgI-1h-3mV">
+                            <webView contentMode="scaleToFill" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UgI-1h-3mV">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </webView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdX-5V-atH">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdX-5V-atH">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <animations/>
                                 <items>
@@ -1936,6 +1937,7 @@
         <scene sceneID="DZF-Xy-1qg">
             <objects>
                 <navigationController id="rpj-0g-S3X" customClass="ContainerViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q6J-qr-Wxv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1983,7 +1985,7 @@
         <image name="user_popover_bg" width="150" height="79"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="A8g-nS-PBa"/>
+        <segue reference="K36-ed-S7h"/>
         <segue reference="AOD-UH-mfW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

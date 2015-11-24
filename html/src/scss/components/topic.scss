@@ -121,6 +121,11 @@
     .content {
       padding: 10px;
       word-wrap: break-word;
+      overflow: hidden;
+      
+      iframe {
+        width: 100%;
+      }
       // &, div {
       //   font-size: 15px;
       // }

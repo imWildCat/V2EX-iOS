@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TSMessages
 
 class UserLoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -73,15 +74,15 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         SessionService.performLogin(usernameTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] (result) -> Void in
             self?.hideProgressView()
             
+            
             switch result {
             case .Success(let isLoggedIn):
                 if isLoggedIn {
-                    self?.showSuccess(status: "登录成功") {
-                        self?.dismissSelf()
-                    }
+                    self?.dismissSelf()
+                    TSMessage.showNotificationWithTitle("登录成功", type: .Success)
                 } else {
                     // TODO: Remove the following line
-                    self?.showError(status: "用户名或密码错误")
+                    TSMessage.showNotificationWithTitle("用户名或密码错误", type: .Error)
                 }
             case .Failure(_, let error):
                 self?.showError(error)

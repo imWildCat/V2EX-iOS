@@ -31,8 +31,9 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
         if let topicIDToReply = parentVC?.getTopicID() where topicIDToReply != 0 {
             topicID = topicIDToReply
         } else {
-            showError(status: "未知错误，无法回复") { [unowned self] in
-                self.dismissSelf()
+            self.dismissSelf()
+            Utils.delay(0.15) {
+                self.showErrorMessage("未知错误，无法回复")
             }
         }
         
@@ -175,7 +176,7 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
                     } else if let pMessage = problemMessage {
                         self?.showError(status: pMessage)
                     } else if let imageLink = imageURL {
-                        self?.showSuccess(status: "图片上传成功")
+                        self?.showSuccessMessage("图片上传成功")
                         let orginalText = self?.contentTextView.text ?? ""
                         let newContent = orginalText + "\n\(imageLink)"
                         self?.contentTextView.text = newContent
@@ -189,13 +190,13 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
         contentTextView.resignFirstResponder()
         
         if onceCode.isEmpty {
-            showError(status: "暂时无法发布，请稍候")
+            showErrorMessage("暂时无法发布，请稍候")
             loadOnceCode()
             return
         }
         
         if contentTextView.text.isEmpty {
-            showError(status: "回复内容不能为空")
+            showErrorMessage("回复内容不能为空")
             return
         }
         
@@ -205,9 +206,10 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
             if result.isFailure {
                 self?.showError(result.error)
             } else {
-                self?.showSuccess(status: "回复成功") {
-                    self?.parentVC?.didReplySucceed()
-                    self?.dismissSelf()
+                self?.parentVC?.didReplySucceed()
+                self?.dismissSelf()
+                Utils.delay(0.15) {
+                    self?.showSuccessMessage("回复成功")
                 }
             }
         }

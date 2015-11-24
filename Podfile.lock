@@ -4,6 +4,7 @@ PODS:
   - ARChromeActivity (1.0.5)
   - AVOSCloud (3.1.6.3)
   - FDFullscreenPopGesture (1.1)
+  - HexColors (2.3.0)
   - HMSegmentedControl (1.5.2)
   - hpple (0.2.0)
   - IQKeyboardManager (3.2.4)
@@ -25,6 +26,8 @@ PODS:
   - SDWebImage/Core (3.7.3)
   - SimpleKeychain (0.6.1)
   - SwiftyJSON (2.3.1)
+  - TSMessages (0.9.13):
+    - HexColors (~> 2.3.0)
   - TTTAttributedLabel (1.13.4)
   - TUSafariActivity (1.0.4)
 
@@ -46,6 +49,7 @@ DEPENDENCIES:
   - SDWebImage
   - SimpleKeychain
   - SwiftyJSON
+  - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - TTTAttributedLabel
   - TUSafariActivity (~> 1.0)
 
@@ -55,6 +59,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/topfunky/hpple.git
   LNNotificationsUI:
     :git: https://github.com/LeoNatan/LNNotificationsUI.git
+  TSMessages:
+    :git: https://github.com/KrauseFx/TSMessages.git
 
 CHECKOUT OPTIONS:
   hpple:
@@ -63,6 +69,9 @@ CHECKOUT OPTIONS:
   LNNotificationsUI:
     :commit: c05b050865bc51d81b16d065fa9e6f309a649cc9
     :git: https://github.com/LeoNatan/LNNotificationsUI.git
+  TSMessages:
+    :commit: 3e5b2f6f9f9ac5a3ce7b2822cad606e56c223b5f
+    :git: https://github.com/KrauseFx/TSMessages.git
 
 SPEC CHECKSUMS:
   Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
@@ -70,6 +79,7 @@ SPEC CHECKSUMS:
   ARChromeActivity: 821c7849b566f49583987468733a896fee35aa4d
   AVOSCloud: c71c27f9463e361d5224a762db9db46d8fc62c3e
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   hpple: abe31b2c56e8cc2f9a7af0eaa7f1bc08a275fcfe
   IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
@@ -85,7 +95,8 @@ SPEC CHECKSUMS:
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SimpleKeychain: 150d76f3b9200de58f033228f6e976c6241a221c
   SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
+  TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

@@ -64,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         func configureIQKeyboardManager() {
             IQKeyboardManager.sharedManager().disableInViewControllerClass(CreateTopicViewController)
+            IQKeyboardManager.sharedManager().disableInViewControllerClass(LCUserFeedbackViewController)
             IQKeyboardManager.sharedManager().disableInViewControllerClass(ReplyTopicViewController)
             IQKeyboardManager.sharedManager().keyboardDistanceFromTextField = 200.0
             // TODO: Distance only configure for LoginVC
