@@ -156,7 +156,7 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
         
         let feedbackItem = RETableViewItem(title: "反馈", accessoryType: .DisclosureIndicator) { [unowned self] (selectedItem) -> Void in
             let agent = LCUserFeedbackAgent.sharedInstance()
-            agent.showConversations(self, title: nil, contact: "请输入你的 Email")
+            agent.showConversations(self, title: nil, contact: "")
             selectedItem.reloadRowWithAnimation(UITableViewRowAnimation.None)
         }
 

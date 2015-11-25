@@ -8,11 +8,14 @@
 
 import UIKit
 import TSMessages
+import OnePasswordExtension
 
 class UserLoginViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var titleContainer: UIView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var onePasswordButton: UIButton!
     
     var onceCode: String = "" {
         didSet {
@@ -32,6 +35,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         loadOnceCode()
+        check1PasswordAvailability()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,7 +48,19 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         AVAnalytics.endLogPageView("UserLoginViewController")
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     // MARK: private methods
+    private func check1PasswordAvailability() {
+        if OnePasswordExtension.sharedExtension().isAppExtensionAvailable() == false {
+            onePasswordButton.hidden = true
+        } else {
+            onePasswordButton.hidden = false
+        }
+    }
+    
     private func loadOnceCode(completion: (() -> Void)? = nil) {
         SessionService.requestNewSessionFormOnceCode { [weak self] (result) in
             switch result {
@@ -62,6 +78,21 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     // MARK: IBActions
+    
+    @IBAction func onePasswordButtonDidClick(sender: UIButton) {
+        // Ref: https://github.com/AgileBits/onepassword-app-extension/blob/master/Demos
+        OnePasswordExtension.sharedExtension().findLoginForURLString("v2ex.com", forViewController: self, sender: sender) { (loginDictionary, error)in
+            if loginDictionary == nil {
+                if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
+                    print("Error invoking 1Password App Extension for find login: \(error)")
+                }
+                return
+            }
+            
+            self.usernameTextField.text = loginDictionary?[AppExtensionUsernameKey] as? String
+            self.passwordTextField.text = loginDictionary?[AppExtensionPasswordKey] as? String
+        }
+    }
     
     @IBAction func closeButtonDidClick(sender: UIButton) {
         dismissSelf()
@@ -91,6 +122,19 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // MARK: Show or hide title container
+    func showTitleContainer() {
+        UIView.animateWithDuration(0.15, delay: 0, options: .BeginFromCurrentState, animations: { () -> Void in
+            self.titleContainer.alpha = 1
+            }, completion: nil)
+    }
+    
+    func hideTitleContainer() {
+        UIView.animateWithDuration(0.15, delay: 0, options: .BeginFromCurrentState, animations: { () -> Void in
+            self.titleContainer.alpha = 0
+            }, completion: nil)
+    }
+    
     // MARK: UITextFieldDelegate
   
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -98,6 +142,14 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        hideTitleContainer()
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        showTitleContainer()
+    }
     
 
 }

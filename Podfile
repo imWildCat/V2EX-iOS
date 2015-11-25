@@ -32,6 +32,7 @@ inhibit_all_warnings!
     pod 'FDFullscreenPopGesture', '~> 1.1'
     pod 'AVOSCloud'
     pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
+    pod '1PasswordExtension', '~> 1.6.4'
 # end
 
 #target 'V2EXTests', :exclusive => true do

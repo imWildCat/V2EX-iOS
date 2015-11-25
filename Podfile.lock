@@ -1,4 +1,5 @@
 PODS:
+  - 1PasswordExtension (1.6.4)
   - Alamofire (3.1.2)
   - Appirater (2.0.5)
   - ARChromeActivity (1.0.5)
@@ -32,6 +33,7 @@ PODS:
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
+  - 1PasswordExtension (~> 1.6.4)
   - Alamofire
   - Appirater
   - AVOSCloud
@@ -74,6 +76,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/KrauseFx/TSMessages.git
 
 SPEC CHECKSUMS:
+  1PasswordExtension: 9f471645d378283cb88c6d4bf502e4381a42c0ad
   Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   ARChromeActivity: 821c7849b566f49583987468733a896fee35aa4d
