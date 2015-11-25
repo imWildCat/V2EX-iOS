@@ -121,7 +121,7 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
             let imageCahce = SDImageCache.sharedImageCache()
             imageCahce.clearMemory()
             imageCahce.clearDisk()
-            self.showSuccess(status: "已清除")
+            self.showSuccessMessage("已清除")
         }
         
         
@@ -189,7 +189,6 @@ class PreferenceViewController: UITableViewController, RETableViewManagerDelegat
         
         SessionService.logout() // TODO: move it to SessionService
         configureRETableViewManager()
-//        showSuccess(status: "已注销")
         TSMessage.showNotificationWithTitle("已注销", type: .Message)
     }
 //    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {

@@ -103,6 +103,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let name = username {
                 showProgressView()
                 UserService.getUserInfo(name) { [weak self] (result) in
+                    self?.hideProgressView()
                     switch result {
                     case .Success(let user):
                         self?.user = user
@@ -238,7 +239,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
                 case .Failure(_, let error):
                     self?.showError(error)
                 case .Success(_):
-                    self?.showSuccess(status: "已领取今日登陆奖励")
+                    self?.showSuccessMessage("已领取今日登陆奖励")
                     self?.setUpRowTypes(self?.user, shouldDisplayDailyRedeem: false)
                 }
             })
@@ -384,15 +385,16 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let userID = user?.id, token = user?.actionToken, status = user?.isFollowed {
             showProgressView()
             SessionService.toggleFollowUser(userID, token: token, isFollowed: status) { [weak self] (result) in
+                self?.hideProgressView()
                 switch result {
                 case .Failure(_, let error):
                     self?.showError(error)
                 case .Success(_):
                     self?.user?.isFollowed = !(self?.user?.isFollowed)!
                     if self?.user?.isFollowed == true {
-                        self?.showSuccess(status: "已关注")
+                        self?.showSuccessMessage("已关注")
                     } else {
-                        self?.showSuccess(status: "已取消关注")
+                        self?.showSuccessMessage("已取消关注")
                     }
                     self?.configureUserActions()
                 }
@@ -406,15 +408,16 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let userID = user?.id, token = user?.actionToken, status = user?.isBlocked {
             showProgressView()
             SessionService.toggleBlockUser(userID, token: token, isBlocked: status) { [weak self] (result) in
+                self?.hideProgressView()
                 switch result {
                 case .Failure(_, let error):
                     self?.showError(error)
                 case .Success(_):
                     self?.user?.isBlocked = !(self?.user?.isBlocked)!
                     if self?.user?.isBlocked == true {
-                        self?.showSuccess(status: "已 Block")
+                        self?.showSuccessMessage("已 Block")
                     } else {
-                        self?.showSuccess(status: "已取消 Block")
+                        self?.showSuccessMessage("已取消 Block")
                     }
                     self?.configureUserActions()
                 }

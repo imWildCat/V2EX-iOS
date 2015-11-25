@@ -84,17 +84,18 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             let urlString = "https://www.v2ex.com/t/\(self.topicID)"
             UIPasteboard.generalPasteboard().string = urlString
             
-            self.showSuccess(status: "链接已复制")
+            self.showSuccessMessage("链接已复制")
         }
         let ignoringActivity = CustomActivity(title: "忽略主题", image: UIImage(named: "ignore_icon")!) { [unowned self] () -> Void in
             if self.isLoggedIn {
                 self.showProgressView()
                 SessionService.ignoreTopic(self.topicID) { [weak self] (result) in
+                    self?.hideProgressView()
                     switch result {
                     case .Failure(_, let error):
                         self?.showError(error)
                     case .Success(_):
-                        self?.showSuccess(status: "忽略成功")
+                        self?.showSuccessMessage("忽略成功")
                     }
                 }
             }
@@ -110,11 +111,12 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
                 if let rLink = self.topic?.reportLink {
                     self.showProgressView()
                     SessionService.reportTopic(rLink) { [weak self] (result) -> Void in
+                        self?.hideProgressView()
                         switch result {
                         case .Failure(_, let error):
                             self?.showError(error)
                         case .Success(_):
-                            self?.showSuccess(status: "你已对本主题进行了报告")
+                            self?.showSuccessMessage("你已对本主题进行了报告")
                             self?.topic?.isReported = true
                         }
                     }
@@ -150,7 +152,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         
         showProgressView()
         TopicSerivce.singleTopic(topicID, page: page, response: { [weak self, finished] (result)  in
-            
+            self?.hideProgressView()
             if result.isFailure {
                 self?.showError(result.error)
                 return
@@ -276,7 +278,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
                         case .Failure(_, let error):
                             self?.showError(error)
                         case .Success(_):
-                            self?.showSuccess(status: "已发送感谢")
+                            self?.showSuccessMessage("已发送感谢")
                             self?.configureAppreciationButton()
                             self?.addAppreciatedPost(id)
                         }
@@ -300,7 +302,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             let copyButton = UIAlertAction(title: "复制", style: .Default, handler: {
                 [unowned self] action in
                 self.copyPost(intID)
-                self.showSuccess(status: "已复制")
+                self.showSuccessMessage("已复制")
             })
            
             alert.addAction(copyButton)
@@ -456,7 +458,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
                 case .Failure(_, let error):
                     self?.showError(error)
                 case .Success(_):
-                    self?.showSuccess(status: "已发送感谢")
+                    self?.showSuccessMessage("已发送感谢")
                     self?.topic?.isAppreciated = true
                     self?.configureAppreciationButton()
                 }
@@ -473,6 +475,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         showProgressView()
         if let favLink = topic?.favoriteLink {
             SessionService.favoriteTopic(favLink) { [weak self] (result) -> Void in
+                self?.hideProgressView()
                 switch result {
                 case .Failure(_, let error):
                     self?.showError(error)
@@ -480,9 +483,9 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
                     // 为了可以正常取消收藏，所以需要 reload 一下 topic
                     self?.requestTopic() { [weak self] in
                         if self?.topic?.isFavorited == true {
-                            self?.showSuccess(status: "已收藏")
+                            self?.showSuccessMessage("已收藏")
                         } else {
-                            self?.showSuccess(status: "已取消收藏")
+                            self?.showSuccessMessage("已取消收藏")
                         }
                     }
                 }

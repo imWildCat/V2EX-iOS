@@ -35,11 +35,11 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         loadOnceCode()
-        check1PasswordAvailability()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        check1PasswordAvailability()
         AVAnalytics.beginLogPageView("UserLoginViewController")
     }
     
@@ -104,7 +104,6 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         
         SessionService.performLogin(usernameTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] (result) -> Void in
             self?.hideProgressView()
-            
             
             switch result {
             case .Success(let isLoggedIn):

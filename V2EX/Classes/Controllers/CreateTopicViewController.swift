@@ -102,11 +102,12 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
         
             if let parentVC = self?.topicListVC, newTopic = result.value, topic = newTopic {
                 parentVC.showTopic(topic)
-                self?.showSuccess(status: "话题创建成功") { () -> Void in
-                    self?.dismissSelf()
+                self?.dismissSelf()
+                Utils.delay(0.15) {
+                    self?.showSuccessMessage("话题创建成功")
                 }
             } else {
-                self?.showError(status: "未知错误，发贴失败。")
+                self?.showErrorMessage("未知错误，发贴失败。")
             }
         }
     }
@@ -204,7 +205,7 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
                     } else if let pMessage = problemMessage {
                         self?.showError(status: pMessage)
                     } else if let imageLink = imageURL {
-                        self?.showSuccess(status: "图片上传成功")
+                        self?.showSuccessMessage("图片上传成功")
                         let orginalText = self?.contentText.text ?? ""
                         let newContent = orginalText + "\n\(imageLink)"
                         self?.contentText.text = newContent

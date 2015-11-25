@@ -64,6 +64,7 @@ class UserNotificationViewController: V2EXTableViewController {
             addLoadMoreDataFooter()
         }
         NotificationService.get(page) { [weak self] (result) in
+            self?.hideProgressView()
             switch result {
             case .Success(let notifications):
                 self?.notifications += notifications

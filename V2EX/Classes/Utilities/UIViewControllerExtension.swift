@@ -131,7 +131,11 @@ extension UIViewController {
     }
     
     func showError(status status: String, completion: (() -> Void)? = nil) {
-        KVNProgress.showErrorWithStatus(status, completion: completion)
+//        KVNProgress.showErrorWithStatus(status, completion: completion)
+        Utils.delay(0.15) {
+            self.showErrorMessage(status)
+            completion?()
+        }
     }
     
     func showErrorMessage(message: String) {

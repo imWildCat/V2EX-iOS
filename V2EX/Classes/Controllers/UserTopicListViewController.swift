@@ -42,7 +42,6 @@ class UserTopicListViewController: UITableViewController {
         }
         
         TopicSerivce.topicListOf(user: username, page: page) { [weak self] (result) in
-            
             self?.hideProgressView()
             self?.refreshControl?.endRefreshing()
             
