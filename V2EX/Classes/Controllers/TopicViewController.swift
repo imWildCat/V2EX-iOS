@@ -13,7 +13,6 @@ import TUSafariActivity
 class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewControllerDelegate {
     
     // MARK: Vars
-    
     enum Mode {
         case ReadTopic
         case NewTopic
@@ -139,7 +138,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     
     // MARK: Networking
     
-    func requestTopic(page: Int? = nil, finished: (() -> Void)? = nil) {
+    func requestTopic(shouldReloadWebview: Bool = true, page: Int? = nil, finished: (() -> Void)? = nil) {
         let path = NSBundle.mainBundle().bundlePath
         let baseURL = NSURL.fileURLWithPath(path)
         
@@ -159,8 +158,9 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
             }
             
             if let topicPage = result.value {
-                self?.webView.loadHTMLString(TopicViewModel.renderHTML(topicPage.topic, replies: topicPage.replies), baseURL: baseURL)
-                self?.hideProgressView()
+                if shouldReloadWebview {
+                    self?.webView.loadHTMLString(TopicViewModel.renderHTML(topicPage.topic, replies: topicPage.replies), baseURL: baseURL)
+                }
                 self?.topicID = topicPage.topic.id
                 self?.topic = topicPage.topic
                 self?.posts = topicPage.replies
@@ -481,7 +481,7 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
                     self?.showError(error)
                 case .Success(_):
                     // 为了可以正常取消收藏，所以需要 reload 一下 topic
-                    self?.requestTopic() { [weak self] in
+                    self?.requestTopic(false) { [weak self] in
                         if self?.topic?.isFavorited == true {
                             self?.showSuccessMessage("已收藏")
                         } else {
@@ -494,12 +494,14 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     }
 
     @IBAction func previousPageButtonDidTouch(sender: UIBarButtonItem) {
-        requestTopic(--currentPage)
+        currentPage -= 1
+        requestTopic(page: currentPage)
     }
     
     
     @IBAction func nextPageButtonDidTouch(sender: UIBarButtonItem) {
-        requestTopic(++currentPage)
+        currentPage += 1
+        requestTopic(page: currentPage)
     }
     
     @IBAction func refreshButtonDidTouch(sender: AnyObject) {

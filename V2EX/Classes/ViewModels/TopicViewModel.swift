@@ -52,7 +52,7 @@ struct TopicViewModel {
         let templatePath = bundle.pathForResource("topic", ofType: "html")
         let templateHTML =  (try? String(contentsOfFile: templatePath ?? "", encoding: NSUTF8StringEncoding)) ?? ""
         
-        let rendering = templateHTML.replace("{{fontSize}}", withString: PreferenceViewController.getTopicContentFontSize()).replace("{{data}}", withString: jsonObj.description)
+        let rendering = templateHTML.replace("{{fontSize}}", withString: UIViewController.topicFontSizeSetting.cssClassName).replace("{{data}}", withString: jsonObj.description)
         return rendering
     }
 }

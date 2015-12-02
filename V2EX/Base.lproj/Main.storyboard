@@ -28,7 +28,7 @@
                         <segue destination="8Bk-J4-X5m" kind="relationship" relationship="viewControllers" id="FbB-kU-zh2"/>
                         <segue destination="ilY-EB-uo2" kind="relationship" relationship="viewControllers" id="l2Z-NM-tcQ"/>
                         <segue destination="iEs-mN-lI8" kind="relationship" relationship="viewControllers" id="bQL-J4-Ch0"/>
-                        <segue destination="CAI-5s-kBw" kind="relationship" relationship="viewControllers" id="CVv-r3-xaR"/>
+                        <segue destination="tnt-eD-2Ch" kind="relationship" relationship="viewControllers" id="E8E-rA-dwW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQK-qr-4Nj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1149,49 +1149,6 @@
             </objects>
             <point key="canvasLocation" x="1932" y="1863"/>
         </scene>
-        <!--用户设置-->
-        <scene sceneID="Ekx-RY-GDh">
-            <objects>
-                <tableViewController storyboardIdentifier="preferenceVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CAI-5s-kBw" customClass="PreferenceViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="zqi-CH-Xcb">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.21176470589999999" green="0.3803921569" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="null" id="grd-KT-Lpd">
-                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="grd-KT-Lpd" id="CrD-h9-QBw">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
-                                </tableViewCellContentView>
-                                <animations/>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="CAI-5s-kBw" id="ojg-gX-c6J"/>
-                            <outlet property="delegate" destination="CAI-5s-kBw" id="L8P-ej-mye"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="设置" image="settings_icon" id="BGJ-GW-PzZ"/>
-                    <navigationItem key="navigationItem" title="用户设置" id="DyJ-TO-6Hw">
-                        <barButtonItem key="leftBarButtonItem" image="side_menu_icon" id="MV3-DS-U1V">
-                            <connections>
-                                <action selector="sideMenuButtonTouched:" destination="CAI-5s-kBw" id="KzH-Vp-Eec"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="q11-xN-l8t" kind="show" identifier="showPurchaseController" id="hVT-8E-rsm"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RbP-Pf-ml2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1932" y="2555"/>
-        </scene>
         <!--Debug View Controller-->
         <scene sceneID="bfe-nS-gLf">
             <objects>
@@ -1726,6 +1683,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMh-9r-E4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4155" y="1859"/>
+        </scene>
+        <!--设置-->
+        <scene sceneID="e8z-oU-gYT">
+            <objects>
+                <viewController storyboardIdentifier="SettingController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tnt-eD-2Ch" customClass="SettingController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ijD-3q-cd7"/>
+                        <viewControllerLayoutGuide type="bottom" id="4ZK-Az-EE7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cgE-Oh-BRb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="设置" image="settings_icon" id="1bM-ov-uJV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LNw-dq-J2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1932" y="2555"/>
         </scene>
         <!--用户登录-->
         <scene sceneID="4gU-h5-9pJ">

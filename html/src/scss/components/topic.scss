@@ -153,30 +153,54 @@
   }
 }
 
-.font-size-normal .content {
-  &, div {
-      font-size: 15px;
-  }
-  .subtle .fade {
+.font-size-normal {
+  .title {
+    font-size: 16px;
+    .node {
       font-size: 12px;
+    }
   }
+  .content {
+    &, div {
+      font-size: 15px;
+    }
+    .subtle .fade {
+      font-size: 12px;
+    }
+  } 
 }
 
-.font-size-large .content, .font-size-large .content {
-  &, div {
-        font-size: 18px;
+.font-size-large {
+  .title {
+    font-size: 20px;
+    .node {
+      font-size: 16px;
+    }
   }
-  .subtle .fade {
+  .content {
+    &, div {
+      font-size: 18px;
+    }
+    .subtle .fade {
       font-size: 14px;
+    }
   }
 }
 
-.font-size-small .content, .font-size-small .content {
-  &, div {
-        font-size: 13px;
-  }
-  .subtle .fade {
+.font-size-small {
+  .title {
+    font-size: 14px;
+    .node {
       font-size: 10px;
+    }
+  }
+  .content {
+    &, div {
+        font-size: 13px;
+    }
+    .subtle .fade {
+      font-size: 10px;
+    }
   }
 }
 

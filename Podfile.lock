@@ -4,6 +4,7 @@ PODS:
   - Appirater (2.0.5)
   - ARChromeActivity (1.0.5)
   - AVOSCloud (3.1.6.3)
+  - Eureka (1.2.0)
   - FDFullscreenPopGesture (1.1)
   - HexColors (2.3.0)
   - HMSegmentedControl (1.5.2)
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - Alamofire
   - Appirater
   - AVOSCloud
+  - Eureka (~> 1.2)
   - FDFullscreenPopGesture (~> 1.1)
   - HMSegmentedControl (~> 1.4)
   - hpple (from `https://github.com/topfunky/hpple.git`, commit `26554fa388`)
@@ -81,6 +83,7 @@ SPEC CHECKSUMS:
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   ARChromeActivity: 821c7849b566f49583987468733a896fee35aa4d
   AVOSCloud: c71c27f9463e361d5224a762db9db46d8fc62c3e
+  Eureka: aa7059d2a30e1b206a581f0aabfcf903ece6beae
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d

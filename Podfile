@@ -33,6 +33,7 @@ inhibit_all_warnings!
     pod 'AVOSCloud'
     pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
     pod '1PasswordExtension', '~> 1.6.4'
+    pod 'Eureka', '~> 1.2'
 # end
 
 #target 'V2EXTests', :exclusive => true do
