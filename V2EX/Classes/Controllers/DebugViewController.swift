@@ -13,6 +13,7 @@ class DebugViewController: UIViewController {
     @IBOutlet weak var htmlTextView: UITextView!
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         htmlTextView.text = MemoryCache.getLoginFailureHTML() ?? "尚无登录失败的情况。"
         htmlTextView.layer.borderWidth = 1.0
         htmlTextView.layer.borderColor = UIColor.lightGrayColor().CGColor

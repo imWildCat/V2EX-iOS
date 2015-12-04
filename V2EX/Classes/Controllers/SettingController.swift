@@ -27,6 +27,25 @@ class SettingController: FormViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setUpSectionsAndRows()
+        setUpForms()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let imageCahce = SDImageCache.sharedImageCache()
+        let mb = Double(imageCahce.getSize()) / 1048576.0
+        let mbString = String(format: "%.2f", mb)
+        
+        clearCacheRow.cell.detailTextLabel?.text = "\(mbString) MB"
+        
+        logoutEnable = SessionStorage.sharedStorage.isLoggedIn
+    }
+    
     private func setUpSectionsAndRows() {
         clearCacheRow = LabelRow() {
             $0.title = "清除缓存"
@@ -44,27 +63,21 @@ class SettingController: FormViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setUpSectionsAndRows()
-        
-//        URLRow.defaultCellUpdate = { cell, row in cell.textField.textColor = .blueColor() }
+    private func setUpForms() {
+        //        URLRow.defaultCellUpdate = { cell, row in cell.textField.textColor = .blueColor() }
         LabelRow.defaultCellUpdate = { cell, row in
-//            cell.detailTextLabel?.textColor = .orangeColor()
+            //            cell.detailTextLabel?.textColor = .orangeColor()
             cell.tintColor = .grayColor()
         }
-//        CheckRow.defaultCellSetup = { cell, row in cell.tintColor = .orangeColor() }
-//        DateRow.defaultRowInitializer = { row in row.minimumDate = NSDate() }
+        //        CheckRow.defaultCellSetup = { cell, row in cell.tintColor = .orangeColor() }
+        //        DateRow.defaultRowInitializer = { row in row.minimumDate = NSDate() }
         
-        form = Section() { section in
-            section.header = HeaderFooterView<UIView>(.Class)
-            section.header?.height = { 65 + 16 }
-            }
+        form = Section()
             <<< PushRow<TopicFontSize>() { [unowned self] in
                 $0.title = "贴子字体大小"
                 $0.value = self.dynamicType.topicFontSizeSetting
                 $0.options = [.Normal, .Small, .Large]
+                $0.selectorTitle = "选择字体大小"
                 }.onChange{ [unowned self] row in
                     if let newValue = row.value {
                         self.dynamicType.topicFontSizeSetting = newValue
@@ -95,16 +108,6 @@ class SettingController: FormViewController {
                     let agent = LCUserFeedbackAgent.sharedInstance()
                     agent.showConversations(self, title: nil, contact: "")
             }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        let imageCahce = SDImageCache.sharedImageCache()
-        let mb = Double(imageCahce.getSize()) / 1048576.0
-        let mbString = String(format: "%.2f", mb)
-
-        clearCacheRow.cell.detailTextLabel?.text = "\(mbString) MB"
-        
-        logoutEnable = SessionStorage.sharedStorage.isLoggedIn
     }
     
     private func performLogOut() {

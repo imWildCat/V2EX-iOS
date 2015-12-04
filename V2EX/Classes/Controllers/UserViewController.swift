@@ -60,6 +60,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var blockButton: UIButton!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
 //        tableView.separatorStyle = .None

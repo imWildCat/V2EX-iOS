@@ -28,7 +28,7 @@
                         <segue destination="8Bk-J4-X5m" kind="relationship" relationship="viewControllers" id="FbB-kU-zh2"/>
                         <segue destination="ilY-EB-uo2" kind="relationship" relationship="viewControllers" id="l2Z-NM-tcQ"/>
                         <segue destination="iEs-mN-lI8" kind="relationship" relationship="viewControllers" id="bQL-J4-Ch0"/>
-                        <segue destination="tnt-eD-2Ch" kind="relationship" relationship="viewControllers" id="E8E-rA-dwW"/>
+                        <segue destination="tnt-eD-2Ch" kind="relationship" relationship="viewControllers" id="XBt-pf-2ca"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQK-qr-4Nj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -169,6 +169,7 @@
                                 <action selector="sideMenuButtonTouched:" destination="ilY-EB-uo2" id="mJh-VI-9Wt"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="FEm-AQ-e0J"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -1695,10 +1696,26 @@
                     <view key="view" contentMode="scaleToFill" id="cgE-Oh-BRb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="XXA-rj-dxc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4ZK-Az-EE7" firstAttribute="top" secondItem="XXA-rj-dxc" secondAttribute="bottom" id="Boy-KZ-vlZ"/>
+                            <constraint firstAttribute="trailing" secondItem="XXA-rj-dxc" secondAttribute="trailing" id="DnU-Re-7E6"/>
+                            <constraint firstItem="XXA-rj-dxc" firstAttribute="top" secondItem="cgE-Oh-BRb" secondAttribute="top" id="N6F-ha-Cy2"/>
+                            <constraint firstItem="XXA-rj-dxc" firstAttribute="leading" secondItem="cgE-Oh-BRb" secondAttribute="leading" id="qcy-WL-wFt"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="设置" image="settings_icon" id="1bM-ov-uJV"/>
+                    <connections>
+                        <outlet property="tableView" destination="XXA-rj-dxc" id="nFk-s3-IFX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LNw-dq-J2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1985,7 +2002,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="K36-ed-S7h"/>
-        <segue reference="z6U-4M-dN1"/>
+        <segue reference="AOD-UH-mfW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

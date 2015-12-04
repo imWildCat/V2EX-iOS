@@ -1,5 +1,5 @@
 //
-//  UIViewControllerExtension.swift
+//  UIViewController+UIRealted.swift
 //  V2EX
 //
 //  Created by WildCat on 13/11/2014.
@@ -178,6 +178,14 @@ extension UIViewController {
             showError(status: "网络错误", completion: completion)
         }
         showError(status: "未知错误", completion: completion)
+    }
+    
+    func showHUDError(e: ErrorType?) {
+        if let e = e as? NSError, userInfo = e.userInfo as? [String: String], description = userInfo[NSLocalizedDescriptionKey] where e.domain == V2EXError.domain {
+            KVNProgress.showErrorWithStatus(description)
+        } else {
+            KVNProgress.showErrorWithStatus(e.debugDescription)
+        }
     }
     
     func showError() {

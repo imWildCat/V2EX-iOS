@@ -215,12 +215,12 @@ class ReplyTopicViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
     func dismissSelf() {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 
     /*

@@ -16,6 +16,7 @@ class UserTopicListViewController: UITableViewController {
     var page: UInt = 1
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 103
         

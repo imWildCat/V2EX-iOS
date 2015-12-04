@@ -28,12 +28,14 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     // image author: Jonathan Bean
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         let (username, password) = SessionService.getUsernameAndPassword()
         usernameTextField.text = username
         passwordTextField.text = password
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         loadOnceCode()
     }
     
@@ -115,7 +117,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
                     TSMessage.showNotificationWithTitle("用户名或密码错误", type: .Error)
                 }
             case .Failure(_, let error):
-                self?.showError(error)
+                self?.showHUDError(error)
             }
         }
         

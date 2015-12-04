@@ -13,6 +13,7 @@ import IQKeyboardManager
 import LNNotificationsUI
 import Appirater
 import ARChromeActivity
+import CoreData
 
 // Launch Image: http://tmblr.co/Zof4En1pJwO-D
 // From: http://fancycrave.com/post/123814383565/download-by-patrick-fore#notes , July 11, 2015
@@ -21,11 +22,12 @@ import ARChromeActivity
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    lazy var coreDataStack = CoreDataStack()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        setUpInitialData()
         
         if SKPaymentQueue.canMakePayments() {
             
@@ -190,6 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notification.timeZone = NSTimeZone.defaultTimeZone()
         notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + count
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        setCachedUnreadNotificationCount(count)
     }
     
     private func sendDailyRedeemAlert() {
@@ -250,6 +253,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func checkLoginState() {
         SessionService.checkLogin { (result) in
         }
+    }
+    
+    private func setUpInitialData() {
+//        Tab.seed()
     }
 
 

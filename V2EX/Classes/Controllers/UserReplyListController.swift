@@ -16,6 +16,7 @@ class UserReplyListController: UITableViewController {
     var page = 1
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.separatorStyle = .None

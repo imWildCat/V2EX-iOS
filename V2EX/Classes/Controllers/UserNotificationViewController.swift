@@ -28,6 +28,7 @@ class UserNotificationViewController: V2EXTableViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
     
