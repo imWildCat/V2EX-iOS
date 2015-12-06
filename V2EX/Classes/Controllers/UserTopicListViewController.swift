@@ -13,7 +13,7 @@ class UserTopicListViewController: UITableViewController {
     
     var username: String!
     var topics = [Topic]()
-    var page: UInt = 1
+    var currentPage = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +42,15 @@ class UserTopicListViewController: UITableViewController {
             showProgressView()
         }
         
-        TopicSerivce.topicListOf(user: username, page: page) { [weak self] (result) in
+        TopicSerivce.topicListOfUser(username, page: currentPage) { [weak self] (result) in
             self?.hideProgressView()
             self?.refreshControl?.endRefreshing()
             
-            if let topics = result.value {
-                self?.topics = topics
+            if let topicListPage = result.value {
+                self?.topics = topicListPage.topics
                 self?.tableView.reloadData()
                 
-                if topics.count == 20 {
+                if topicListPage.currentPage < topicListPage.totalPage {
                     self?.addLoadMoreDataFooter()
                 }
             } else {
@@ -68,14 +68,14 @@ class UserTopicListViewController: UITableViewController {
     }
     
     func loadMoreData() {
-        page++
-        TopicSerivce.topicListOf(user: username, page: page) { [weak self] (result) in
-            if let topics = result.value {
-                self?.topics += topics
+        currentPage += 1
+        TopicSerivce.topicListOfUser(username, page: currentPage) { [weak self] (result) in
+            if let topicListPage = result.value {
+                self?.topics += topicListPage.topics
                 self?.tableView.reloadData()
                 
                 self?.addLoadMoreDataFooter()
-                if topics.count < 20 {
+                if topicListPage.currentPage == topicListPage.totalPage {
                     self?.tableView.footer.endRefreshingWithNoMoreData()
                 }
             } else {

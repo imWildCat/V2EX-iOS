@@ -36,7 +36,7 @@ class TopicSerivce {
         }
     }
     
-    class func getList(nodeSlug nodeSlug: String, page: Int = 1, response: ((result: NetworkingResult<([Topic], String?)>) -> Void)?) {
+    class func getList(nodeSlug nodeSlug: String, page: Int = 1, response: ((result: NetworkingResult<NodePage>) -> Void)?) {
         
         V2EXNetworking.get("go/\(nodeSlug)?p=\(page)").responseString { res in
             
@@ -51,11 +51,14 @@ class TopicSerivce {
                 let titleHTML = TFHpple(HTMLStringOptional: value).searchFirst("//title")?.raw
                 let nodeName = titleHTML?.match("› ([a-zA-Z0-9 \\u4e00-\\u9fa5]+)</title>")?[1]
                 
-                if nodeName == "登录" {
+                if nodeName == "登录" || topics.count == 0 {
                     let authRequiredError = V2EXError.AuthRequired.foundationError
                     response?(result: NetworkingResult.Failure(res.response, authRequiredError))
                 } else {
-                    response?(result: NetworkingResult<([Topic], String?)>.Success((topics, nodeName)))
+                    let doc = TFHpple(HTMLString: value)
+                    let (currentPage, totalPage) = self.handlePageNumberFromDocument(doc)
+                    let nodePage = NodePage(nodeName: nodeName, topics: topics, currentPage: currentPage, totalPage: totalPage)
+                    response?(result: NetworkingResult<NodePage>.Success(nodePage))
                 }
             }
         }
@@ -127,7 +130,7 @@ class TopicSerivce {
         
     }
     
-    class func topicListOf(user user: String, page: UInt = 1, response: ((result: NetworkingResult<[Topic]>) -> Void)?) {
+    class func topicListOfUser(user: String, page: Int = 1, response: ((result: NetworkingResult<TopicListPage>) -> Void)?) {
         
         V2EXNetworking.get("member/" + user + "/topics", parameters: ["p": page]).responseString { res in
             
@@ -157,9 +160,27 @@ class TopicSerivce {
                     topics.append(Topic(id: id, title: title, node: Node(name: nodeName, slug: nodeSlug), author: nil, replyCount: replyCount, createdAt: createdAt, content: nil))
                 }
                 
-                response?(result: NetworkingResult<[Topic]>.Success(topics))
+                let (currentPage, totalPage) = self.handlePageNumberFromDocument(doc)
+            
+                let topicListPage = TopicListPage(topics: topics, currentPage: currentPage, totalPage: totalPage)
+                
+                response?(result: NetworkingResult<TopicListPage>.Success(topicListPage))
             }
         }
+    }
+    
+    static func handlePageNumberFromDocument(doc: TFHpple) -> (Int, Int) {
+        var currentPage = 1
+        var totalPage = 1
+        // Check if there are more pages
+        let paginationElement = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='inner']/table//strong[@class='fade']")
+        if let paginationString = paginationElement?.text(),
+            currentPageString = paginationString.match("(\\d+)/\\d+")?[1],
+            totalPageString = paginationString.match("\\d+/(\\d+)")?[1] {
+                currentPage = Int(currentPageString) ?? 1
+                totalPage = Int(totalPageString) ?? 1
+        }
+        return (currentPage, totalPage)
     }
     
     struct ReplyList {
@@ -232,21 +253,18 @@ class TopicSerivce {
         }
     }
     
-    class func favoriteTopics(page: Int = 1, response: ((result: NetworkingResult<([Topic], Int)>) -> Void)?) {
-        
+    class func favoriteTopics(page: Int = 1, response: ((result: NetworkingResult<TopicListPage>) -> Void)?) {
         V2EXNetworking.get("my/topics").responseString { res in
-            V2EXAnalytics.event("Favorite Topic: Request")
             switch res.result {
             case .Failure(let error):
                 response?(result: NetworkingResult.Failure(res.response, error))
                 V2EXAnalytics.event("Favorite Topic: Success", description: error.description)
             case .Success(let value):
                 let doc = TFHpple(HTMLStringOptional: value)
-                let favCount = Int(doc.searchFirst("//div[@id='Rightbar']//table[2]//span[@class='bigger'][2]")?.text() ?? "") ?? 0
-                
                 let topics = Topic.listFromTab(value)
-                response?(result: NetworkingResult<([Topic], Int)>.Success(topics, favCount))
-                V2EXAnalytics.event("Favorite Topic: Success")
+                let (currentPage, totalPage) = self.handlePageNumberFromDocument(doc)
+                let topicListPage = TopicListPage(topics: topics, currentPage: currentPage, totalPage: totalPage)
+                response?(result: NetworkingResult<TopicListPage>.Success(topicListPage))
             }
         }
     }

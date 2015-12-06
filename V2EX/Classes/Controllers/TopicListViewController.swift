@@ -86,7 +86,7 @@ class TopicListViewController: UITableViewController {
         loadData()
     }
     
-    func loadData() {
+    func loadData(completion: (() -> ())? = nil) {
         page = 1
         
         if refreshControl?.refreshing == false {
@@ -95,6 +95,10 @@ class TopicListViewController: UITableViewController {
         
         if let slug = tabSlug {
             TopicSerivce.getList(tabSlug: slug) { [weak self] (result) in
+                defer {
+                    self?.hideProgressView()
+                    completion?()
+                }
                 if let topics = result.value {
                     self?.topics = topics
                     self?.tableView.reloadData()
@@ -102,19 +106,20 @@ class TopicListViewController: UITableViewController {
                 } else {
                     self?.showError(result.error)
                 }
-                self?.hideProgressView()
             }
         } else if let slug = nodeSlug {
             navigationItem.title = "话题列表"
             TopicSerivce.getList(nodeSlug: slug) { [weak self] (result) in
-                self?.hideProgressView()
-                
+                defer {
+                    self?.hideProgressView()
+                    completion?()
+                }
                 switch result {
-                case .Success(let topics, let nodeName):
-                    if let nodeName = nodeName {
+                case .Success(let nodePage):
+                    if let nodeName = nodePage.nodeName {
                         self?.navigationItem.title = nodeName
                     }
-                    self?.topics = topics
+                    self?.topics = nodePage.topics
                     self?.tableView.reloadData()
                     self?.refreshControl?.endRefreshing()
                     self?.addLoadMoreDataFooter()
@@ -128,48 +133,58 @@ class TopicListViewController: UITableViewController {
             // fav topic mode
             navigationItem.title = "我的收藏"
             TopicSerivce.favoriteTopics(1) { [weak self] (result) in
-                self?.hideProgressView()
+                defer {
+                    self?.hideProgressView()
+                    completion?()
+                }
                 
-                if let (topics, count) = result.value {
-                    self?.topics = topics
+                switch result {
+                case .Failure(_, let error):
+                    self?.showError(error)
+                case .Success(let topicListPage):
+                    self?.topics = topicListPage.topics
                     self?.tableView.reloadData()
                     self?.refreshControl?.endRefreshing()
-                    
                     self?.addLoadMoreDataFooter()
-                    if count <= 20 {
+                    if topicListPage.isLastPage {
                         self?.tableView.footer.endRefreshingWithNoMoreData()
                     }
-                } else {
-                    self?.showError(result.error)
                 }
             }
+    
         }
     }
     
     func loadMoreData() {
-        page++
+        page += 1
         if let slug = nodeSlug where mode == .Node {
             TopicSerivce.getList(nodeSlug: slug, page: page) { [weak self] (result) in
-                if let (topics, nodeName) = result.value {
-                    if let name = nodeName {
+                switch result {
+                case .Failure(_, let error):
+                    self?.showError(error)
+                case .Success(let nodePage):
+                    if let name = nodePage.nodeName {
                         self?.navigationItem.title = name
                     }
-                    self?.topics += topics
+                    self?.topics += nodePage.topics
                     self?.tableView.reloadData()
                     self?.addLoadMoreDataFooter()
-                    if topics.count < 20 {
+                    if nodePage.currentPage == nodePage.totalPage {
                         self?.tableView.footer.endRefreshingWithNoMoreData()
                     }
                 }
             }
         } else if mode == .Favorite {
-            // my favorites
+            // My favorites
             TopicSerivce.favoriteTopics(page) { [weak self] (result) in
-                if let (topics, _) = result.value {
-                    self?.topics += topics
+                switch result {
+                case .Failure(_, _):
+                    return
+                case .Success(let topicListPage):
+                    self?.topics += topicListPage.topics
                     self?.tableView.reloadData()
                     self?.addLoadMoreDataFooter()
-                    if topics.count < 20 {
+                    if topicListPage.isLastPage {
                         self?.tableView.footer.endRefreshingWithNoMoreData()
                     }
                 }
@@ -213,6 +228,16 @@ class TopicListViewController: UITableViewController {
         performSegueWithIdentifier("showTopicVC", sender: topic)
     }
     
+    // MARK: Scroll to top
+    func scrollToTopAndRefresh() {
+        tableView.setContentOffset(CGPoint(x: 0, y: -refreshControl!.frame.size.height), animated: true)
+        refreshControl?.beginRefreshing()
+        loadData { [weak self] in
+            self?.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        }
+    }
+    
+    // MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showTopicVC" {
             let destinationViewController = segue.destinationViewController as! TopicViewController
@@ -226,5 +251,4 @@ class TopicListViewController: UITableViewController {
             }
         }
     }
-
 }

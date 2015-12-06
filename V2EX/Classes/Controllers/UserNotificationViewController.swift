@@ -43,16 +43,8 @@ class UserNotificationViewController: V2EXTableViewController {
     }
     
     func addLoadMoreDataFooter() {
-//        tableView.addLegendFooterWithRefreshingBlock { [weak self] () -> Void in
-//            self?.loadMoreData()
-//        }
         tableView.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
-//        if notifications.count < 10 {
-//            tableView.footer.noticeNoMoreData()
-//        }
     }
-    
-    
     
     @IBAction func refreshControlDidChanged(sender: UIRefreshControl) {
         loadData()
@@ -67,14 +59,18 @@ class UserNotificationViewController: V2EXTableViewController {
         NotificationService.get(page) { [weak self] (result) in
             self?.hideProgressView()
             switch result {
-            case .Success(let notifications):
-                self?.notifications += notifications
+            case .Success(let notificationPage):
+                self?.notifications += notificationPage.notifications
                 self?.generateCellViewModels()
                 self?.tableView.reloadData()
                 self?.refreshControl?.endRefreshing()
                 self?.hideProgressView()
                 self?.tableView.footer.hidden = true
-                self?.addLoadMoreDataFooter()
+                if notificationPage.isLastPage {
+                    self?.tableView.footer.hidden = true
+                } else {
+                    self?.addLoadMoreDataFooter()
+                }
             case .Failure(_, let error):
                  self?.showError(error)
             }
@@ -87,12 +83,12 @@ class UserNotificationViewController: V2EXTableViewController {
         NotificationService.get(page) { [weak self] (result) in
             
             switch result {
-            case .Success(let notifications):
-                self?.notifications += notifications
+            case .Success(let notificationPage):
+                self?.notifications += notificationPage.notifications
                 self?.generateCellViewModels()
                 self?.tableView.reloadData()
                 self?.addLoadMoreDataFooter()
-                if notifications.count < 10 {
+                if notificationPage.isLastPage {
                     self?.tableView.footer.endRefreshingWithNoMoreData()
                 }
             case .Failure(_, let error):

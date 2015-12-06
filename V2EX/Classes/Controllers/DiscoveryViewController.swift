@@ -38,6 +38,20 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
         
         // Fix for contents under navigation bar for iOS 8
         fixForiOS8()
+        
+        setUpDoubleTapRecognizerForNavigationBar()
+    }
+    
+    func setUpDoubleTapRecognizerForNavigationBar() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "navigationBarDoubleTap:")
+        tapRecognizer.numberOfTapsRequired = 2
+        navigationController?.navigationBar.addGestureRecognizer(tapRecognizer)
+    }
+    
+    func navigationBarDoubleTap(recognizer: UIGestureRecognizer) {
+        if let currentTabVC = topicListViewControllers[currentPage] as? TopicListViewController {
+            currentTabVC.scrollToTopAndRefresh()
+        }
     }
     
     func fixForiOS8() {

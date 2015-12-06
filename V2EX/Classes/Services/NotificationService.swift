@@ -11,7 +11,7 @@ import hpple
 
 class NotificationService {
     
-    class func get(page: Int = 1, response: ((result: NetworkingResult<[Notification]>) -> Void)? = nil) {
+    class func get(page: Int = 1, response: ((result: NetworkingResult<NotificationPage>) -> Void)? = nil) {
         V2EXNetworking.get("notifications", parameters: ["p": page]).responseString {
             res in
             
@@ -62,7 +62,10 @@ class NotificationService {
                     notifications.append(notification)
                 }
                 
-                response?(result: NetworkingResult<[Notification]>.Success(notifications))
+                let (currentPage, totalPage) = TopicSerivce.handlePageNumberFromDocument(doc)
+                let notificationPage = NotificationPage(notifications: notifications, currentPage: currentPage, totalPage: totalPage)
+                
+                response?(result: NetworkingResult<NotificationPage>.Success(notificationPage))
             }
         }
     }

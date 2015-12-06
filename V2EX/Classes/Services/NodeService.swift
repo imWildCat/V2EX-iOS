@@ -24,7 +24,6 @@ class NodeService {
                         nodes.append(newNode)
                     }
                 }
-                
                 response?(result: NetworkingResult<[Node]>.Success(nodes))
             } else {
                 response?(result: NetworkingResult.Failure(res, error))

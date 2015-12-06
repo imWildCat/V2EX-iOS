@@ -180,8 +180,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             case "showUserReplyVC":
                 let userReplyVC = segue.destinationViewController as! UserReplyListController
                 userReplyVC.username = uname
-            default:
-                print("Do nothing prepareForSegue: \(identifier)", terminator: "")
+            default: break
             }
         }
     }
