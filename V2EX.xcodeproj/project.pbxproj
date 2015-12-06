@@ -110,6 +110,7 @@
 		5EB0B8EB1C14574500097051 /* NodePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0B8EA1C14574500097051 /* NodePage.swift */; };
 		5EB0B8ED1C145E8100097051 /* NotificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0B8EC1C145E8100097051 /* NotificationPage.swift */; };
 		5EB0B8EF1C14600F00097051 /* Pageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0B8EE1C14600F00097051 /* Pageable.swift */; };
+		5EB0B8F11C14784500097051 /* TabSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0B8F01C14784500097051 /* TabSettingViewController.swift */; };
 		5EC734361B2BE1EE0082D920 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */; };
 		5EC87D511ABC42E200AB071F /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */; };
 		5EC87D601ABC4DAD00AB071F /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */; };
@@ -257,6 +258,7 @@
 		5EB0B8EA1C14574500097051 /* NodePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodePage.swift; sourceTree = "<group>"; };
 		5EB0B8EC1C145E8100097051 /* NotificationPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPage.swift; sourceTree = "<group>"; };
 		5EB0B8EE1C14600F00097051 /* Pageable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pageable.swift; sourceTree = "<group>"; };
+		5EB0B8F01C14784500097051 /* TabSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSettingViewController.swift; sourceTree = "<group>"; };
 		5EC734351B2BE1EE0082D920 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 		5EC87D501ABC42E200AB071F /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		5EC87D5F1ABC4DAD00AB071F /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 				5E8523EB1ABD7B0200B7B8C4 /* UserTopicListViewController.swift */,
 				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
 				5E3A83121C0DB57B00BD4DC7 /* SettingController.swift */,
+				5EB0B8F01C14784500097051 /* TabSettingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 				5EA86AF41BA4003000109D94 /* NodeListCollectionViewController.swift in Sources */,
 				5E9AC1BA1C100203004E4D8B /* V2EX.xcdatamodeld in Sources */,
 				5E58D2DF1AB71913003058D6 /* TopicViewModel.swift in Sources */,
+				5EB0B8F11C14784500097051 /* TabSettingViewController.swift in Sources */,
 				5E4E68961B81DE3A00A178C4 /* CustomActivity.swift in Sources */,
 				5E38F3DF1AD90D5A00186E18 /* V2EXTableViewController.swift in Sources */,
 				5E0F84101C034B47008A2CB3 /* LCUserFeedbackViewController.m in Sources */,

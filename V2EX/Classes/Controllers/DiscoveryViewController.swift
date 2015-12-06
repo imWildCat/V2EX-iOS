@@ -13,7 +13,8 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
 
     @IBOutlet weak var tabSegmentedControl: HMSegmentedControl!
     
-    let slugs = ["all", "hot", "r2", "qna", "tech", "creative", "play", "apple", "jobs", "deals", "city"]
+    var tabSlugs = [String]()
+    var tabSettingChanged = false
     
     var pageViewController: UIPageViewController!
     
@@ -25,11 +26,13 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tabSegmentedControl.setUp()
         tabSegmentedControl.indexChangeBlock = { [unowned self] (index) in
             self.setPage(index)
         }
-        setUpListViewControllers()
+        fetchTabData()
+        setListViewControllers()
         
         // Set up pageViewController
         pageViewController.delegate = self
@@ -40,6 +43,65 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
         fixForiOS8()
         
         setUpDoubleTapRecognizerForNavigationBar()
+        
+        setUpObservers()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        AVAnalytics.beginLogPageView("DiscoveryViewController")
+        checkIfTabSetingChanged()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        AVAnalytics.endLogPageView("DiscoveryViewController")
+    }
+    
+    deinit {
+        removeObservers()
+    }
+    
+    private func fetchTabData() {
+        do {
+            let tabs = try Tab.fetchSortedList()
+            
+            var tabNames = [String]()
+            tabSlugs = []
+            for tab in tabs {
+                tabSlugs.append(tab.slug)
+                tabNames.append(tab.name)
+            }
+            tabSegmentedControl.sectionTitles = tabNames
+            tabSettingChanged = false
+        } catch _ as NSError {
+            showError(status: "加载标签页设置时出错。")
+        }
+    }
+    
+    private func setUpObservers() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "tabSettingDidChange", name: TAB_SETTINGS_CHANGED_NOTIFICATION_KEY, object: nil)
+    }
+    
+    private func removeObservers() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: TAB_SETTINGS_CHANGED_NOTIFICATION_KEY, object: nil)
+    }
+    
+    private func checkIfTabSetingChanged() {
+        if tabSettingChanged {
+            fetchTabData()
+            
+            setPage(0)
+            tabSegmentedControl.setSelectedSegmentIndex(0, animated: true)
+            
+            setListViewControllers()
+            
+            pageViewController.setViewControllers([topicListViewControllers[0]], direction: .Forward, animated: false, completion: nil)
+        }
+    }
+    
+    @objc private func tabSettingDidChange() {
+        tabSettingChanged = true
     }
     
     func setUpDoubleTapRecognizerForNavigationBar() {
@@ -61,30 +123,13 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        AVAnalytics.beginLogPageView("DiscoveryViewController")
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        AVAnalytics.endLogPageView("DiscoveryViewController")
-    }
-    
-    func setUpListViewControllers() {
-        self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC")
-        for slug in slugs {
+    func setListViewControllers() {
+        topicListViewControllers = []
+        for slug in tabSlugs {
             let vc = self.storyboard!.instantiateViewControllerWithIdentifier("topicListVC") as! TopicListViewController
             vc.tabSlug = slug
             topicListViewControllers.append(vc)
-//            paginatedView.addPage(vc)
         }
-        
-
-//        println(topicListViewControllers)
-//        for tab in tabs {
-//            let slug = tab["slug"]
-//        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -32,7 +32,7 @@ class CoreDataStack: NSObject {
                 configuration: nil,
                 URL: persistentStoreURL,
                 options: [NSMigratePersistentStoresAutomaticallyOption: true,
-                    NSInferMappingModelAutomaticallyOption: false])
+                    NSInferMappingModelAutomaticallyOption: true]) // Enable auto-migration
         } catch {
             fatalError("Persistent store error! \(error)")
         }
@@ -52,9 +52,9 @@ class CoreDataStack: NSObject {
         return managedObjectContext
     }()
     
-    func saveMainContext() {
+    func saveMainContext() -> Bool {
         guard context.hasChanges || saveManagedObjectContext.hasChanges else {
-            return
+            return false
         }
         
         context.performBlockAndWait() {
@@ -72,6 +72,8 @@ class CoreDataStack: NSObject {
                 fatalError("Error saving private managed object context! \(error)")
             }
         }
+        
+        return true
     }
     
     // MARK: Entities

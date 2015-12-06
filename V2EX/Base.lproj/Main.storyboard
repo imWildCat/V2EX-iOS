@@ -1715,11 +1715,53 @@
                     <tabBarItem key="tabBarItem" title="设置" image="settings_icon" id="1bM-ov-uJV"/>
                     <connections>
                         <outlet property="tableView" destination="XXA-rj-dxc" id="nFk-s3-IFX"/>
+                        <segue destination="YZA-h2-UtR" kind="show" identifier="TabSettingViewControllerSegue" id="UtL-zR-phr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LNw-dq-J2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1932" y="2555"/>
+        </scene>
+        <!--标签页顺序-->
+        <scene sceneID="MS9-7c-e62">
+            <objects>
+                <tableViewController title="标签页顺序" id="YZA-h2-UtR" customClass="TabSettingViewController" customModule="V2EX" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="oyq-aS-MxU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="acV-Lb-yqe" style="IBUITableViewCellStyleDefault" id="d0J-S2-kMJ">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d0J-S2-kMJ" id="Dph-gL-K9t">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="acV-Lb-yqe">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YZA-h2-UtR" id="NoQ-zI-1qQ"/>
+                            <outlet property="delegate" destination="YZA-h2-UtR" id="MaR-aU-dWG"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ai-SA-rga" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2680" y="2555"/>
         </scene>
         <!--用户登录-->
         <scene sceneID="4gU-h5-9pJ">
@@ -2001,7 +2043,7 @@
         <image name="user_popover_bg" width="150" height="79"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="K36-ed-S7h"/>
+        <segue reference="KWa-Mh-4az"/>
         <segue reference="AOD-UH-mfW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

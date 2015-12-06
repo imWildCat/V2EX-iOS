@@ -27,13 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        setUpInitialData()
         
         if SKPaymentQueue.canMakePayments() {
             
         }
         
         setUpAVOSCloud()
+        
+        setUpInitialData()
         
         checkLoginState()
         
@@ -131,7 +132,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setUpAVOSCloud() {
         let AVOSAppID = "1A7jRplXCQVNigEXkVrBGk2T"
         let AVOSAppKey = "YBCfqwbSugU3dDHR6RgP8d6n"
-        
         
         AVOSCloud.setLastModifyEnabled(true)
         AVOSCloud.setApplicationId(AVOSAppID, clientKey: AVOSAppKey)
@@ -256,7 +256,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setUpInitialData() {
-//        Tab.seed()
+        Tab.seed()
     }
 
 

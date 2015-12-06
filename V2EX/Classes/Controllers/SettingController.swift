@@ -92,6 +92,10 @@ class SettingController: FormViewController {
                         self.dynamicType.shouldPeformBackgroundFetch = should
                     }
             }
+            <<< ButtonRow("TabSetting") {
+                $0.title = "标签页顺序"
+                $0.presentationMode = .SegueName(segueName: "TabSettingViewControllerSegue", completionCallback: nil)
+            }
             +++ Section()
             <<< logOutRow
             +++ Section()
