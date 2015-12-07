@@ -188,6 +188,14 @@ extension UIViewController {
         }
     }
     
+    func showHUDErrorMessage(message: String) {
+        KVNProgress.showErrorWithStatus(message)
+    }
+    
+    func showHUDSuccessMessage(message: String) {
+        KVNProgress.showSuccessWithStatus(message)
+    }
+    
     func showError() {
         KVNProgress.showError()
     }

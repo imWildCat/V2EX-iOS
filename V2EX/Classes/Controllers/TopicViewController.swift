@@ -337,11 +337,11 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     }
     
     func showImage(urlString: String?) {
-        if let urlS = urlString, url = NSURL(string: urlS) {
+        if let urlString = urlString, url = NSURL(string: urlString) {
             let imageInfo = JTSImageInfo()
             imageInfo.imageURL = url
-            let imageVC = JTSImageViewController(imageInfo: imageInfo, mode: JTSImageViewControllerMode.Image, backgroundStyle: JTSImageViewControllerBackgroundOptions.Blurred)
-            imageVC.showFromViewController(self, transition: JTSImageViewControllerTransition.FromOffscreen)
+            let imageVC = TopicImageViewController(imageInfo: imageInfo, mode: .Image, backgroundStyle: .Blurred)
+            imageVC.showFromViewController(self, transition: .FromOffscreen)
         }
     }
     

@@ -89,6 +89,7 @@
 		5E8DEFBD1AC29BF20036D852 /* WebViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DEFBC1AC29BF20036D852 /* WebViewAction.swift */; };
 		5E924B701B6BC25D00182F3F /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E924B6F1B6BC25D00182F3F /* UserInfoView.swift */; };
 		5E924B741B6BC38600182F3F /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E924B731B6BC38600182F3F /* UserInfoView.xib */; };
+		5E957FB51C15C21E00762D40 /* TopicImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E957FB41C15C21E00762D40 /* TopicImageViewController.swift */; };
 		5E97F2341BC2ADAD00574FBE /* TopicPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97F2331BC2ADAD00574FBE /* TopicPage.swift */; };
 		5E98290A1A3DC1DE001B1E25 /* TFHppleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */; };
 		5E9AC1B71C100169004E4D8B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9AC1B61C100169004E4D8B /* CoreDataStack.swift */; };
@@ -236,6 +237,7 @@
 		5E8DEFBC1AC29BF20036D852 /* WebViewAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewAction.swift; sourceTree = "<group>"; };
 		5E924B6F1B6BC25D00182F3F /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		5E924B731B6BC38600182F3F /* UserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
+		5E957FB41C15C21E00762D40 /* TopicImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicImageViewController.swift; sourceTree = "<group>"; };
 		5E97F2331BC2ADAD00574FBE /* TopicPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicPage.swift; sourceTree = "<group>"; };
 		5E9829091A3DC1DE001B1E25 /* TFHppleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFHppleExtension.swift; sourceTree = "<group>"; };
 		5E9AC1B61C100169004E4D8B /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				5E5F23B91A395DBD00D20FE9 /* UserViewController.swift */,
 				5E3A83121C0DB57B00BD4DC7 /* SettingController.swift */,
 				5EB0B8F01C14784500097051 /* TabSettingViewController.swift */,
+				5E957FB41C15C21E00762D40 /* TopicImageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				5E5F23D21A395DBD00D20FE9 /* CatPaginatedScrollView.swift in Sources */,
 				5EA86AF41BA4003000109D94 /* NodeListCollectionViewController.swift in Sources */,
 				5E9AC1BA1C100203004E4D8B /* V2EX.xcdatamodeld in Sources */,
+				5E957FB51C15C21E00762D40 /* TopicImageViewController.swift in Sources */,
 				5E58D2DF1AB71913003058D6 /* TopicViewModel.swift in Sources */,
 				5EB0B8F11C14784500097051 /* TabSettingViewController.swift in Sources */,
 				5E4E68961B81DE3A00A178C4 /* CustomActivity.swift in Sources */,
