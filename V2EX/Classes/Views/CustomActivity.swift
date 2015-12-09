@@ -46,13 +46,4 @@ class CustomActivity: UIActivity {
         perform()
         activityDidFinish(true)
     }
-    
-//    override func activityViewController() -> UIViewController? {
-//        println("activityViewController")
-//        return nil
-//    }
-    
-//    override func activityDidFinish(completed: Bool) {
-//        println("activitydidfinish")
-//    }
 }

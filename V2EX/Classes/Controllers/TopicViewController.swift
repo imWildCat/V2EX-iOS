@@ -131,6 +131,9 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
         
         if let url = NSURL(string: "https://www.v2ex.com/t/\(topicID)") {
             let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: applicationActivities)
+//            activityVC.completionWithItemsHandler = { string, b, a, e in
+//            }
+            activityVC.excludedActivityTypes = [UIActivityTypeMail, UIActivityTypeMessage]
             presentViewController(activityVC, animated: true, completion: nil)
         }
 

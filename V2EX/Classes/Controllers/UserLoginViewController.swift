@@ -86,7 +86,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         OnePasswordExtension.sharedExtension().findLoginForURLString("v2ex.com", forViewController: self, sender: sender) { (loginDictionary, error)in
             if loginDictionary == nil {
                 if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
-                    print("Error invoking 1Password App Extension for find login: \(error)")
+//                    print("Error invoking 1Password App Extension for find login: \(error)")
                 }
                 return
             }

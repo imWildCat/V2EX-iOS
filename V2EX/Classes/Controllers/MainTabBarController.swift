@@ -14,6 +14,7 @@ class MainTabBarController: UITabBarController {
         title = "V2EX"
         
         UITabBar.appearance().tintColor = UIColor(red:0.11, green:0.61, blue:0.96, alpha:1)
+        
     }
     
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
@@ -25,7 +26,5 @@ class MainTabBarController: UITabBarController {
                 title = itemTitle
             }
         }
-        
     }
-
 }

@@ -99,7 +99,6 @@ extension UIViewController {
     }
     
     private func checkLogin() -> Bool {
-        print( SessionStorage.sharedStorage.isLoggedIn, terminator: "")
         if SessionStorage.sharedStorage.isLoggedIn == true {
             return true
         } else {

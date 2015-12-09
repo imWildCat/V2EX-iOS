@@ -60,15 +60,7 @@ extension Tab {
                 
                 CoreDataStack.sharedStack.saveMainContext() // FIX: Block main thread
             } else {
-                do {
-                    let fetchRequest = NSFetchRequest(entityName: "Tab")
-                    let tabs = try CoreDataStack.sharedStack.context.executeFetchRequest(fetchRequest) as! [Tab]
-                    print(tabs)
-                } catch let error as NSError {
-                    print("error: \(error.localizedDescription)")
-                }
-                
-                
+                print("Tab data has been seed.")
             }
         } else {
             print(error)
