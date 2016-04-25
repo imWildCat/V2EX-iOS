@@ -16,7 +16,7 @@ class Tab: NSManagedObject {
     }
 }
 
-extension Tab: CustomDebugStringConvertible {
+extension Tab {
     override var debugDescription: String {
         return "<V2EX.Tab> (name: \(name), slug:\(slug), priority: \(priority), enabled: \(enabled))"
     }

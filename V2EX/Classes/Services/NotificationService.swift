@@ -21,7 +21,7 @@ class NotificationService {
             case .Success(let value):
                 let doc = TFHpple(HTMLStringOptional: value)
                 
-                let rows = doc.searchElements("//div[@id='Main']//div[@class='box']//div[@class='cell']/table[1]//tr")
+                let rows = doc.searchElements("//div[@id='Main']//div[@class='box']//div[@class='cell' and @id]/table[1]//tr")
                 
                 var notifications = [Notification]()
                 

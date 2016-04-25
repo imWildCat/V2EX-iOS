@@ -49,13 +49,11 @@ class DiscoveryViewController: UIViewController, UIPageViewControllerDelegate, U
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        AVAnalytics.beginLogPageView("DiscoveryViewController")
         checkIfTabSetingChanged()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        AVAnalytics.endLogPageView("DiscoveryViewController")
     }
     
     deinit {

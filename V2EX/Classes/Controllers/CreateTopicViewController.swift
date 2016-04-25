@@ -43,12 +43,10 @@ class CreateTopicViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        AVAnalytics.beginLogPageView("CreateTopicViewController")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        AVAnalytics.endLogPageView("CreateTopicViewController")
     }
     
     func loadOnceCode() {

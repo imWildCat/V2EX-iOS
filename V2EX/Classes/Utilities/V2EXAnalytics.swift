@@ -11,11 +11,6 @@ import Foundation
 class V2EXAnalytics {
     
     class func event(id: String, description: String? = nil) {
-        if description == nil {
-            AVAnalytics.event(id)
-        } else {
-            AVAnalytics.event(id, attributes: ["description": description ?? "No description"])
-        }
     }
     
 }

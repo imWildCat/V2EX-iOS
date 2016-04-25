@@ -18,12 +18,10 @@ class PurchaseViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        AVAnalytics.beginLogPageView("PurchaseViewController")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        AVAnalytics.endLogPageView("PurchaseViewController")
     }
     
     

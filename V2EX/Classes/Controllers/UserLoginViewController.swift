@@ -42,12 +42,10 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         check1PasswordAvailability()
-        AVAnalytics.beginLogPageView("UserLoginViewController")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        AVAnalytics.endLogPageView("UserLoginViewController")
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -69,7 +67,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
             case .Failure(_, let error):
                 self?.showError(error)
             case .Success(let code):
-                self?.onceCode = code
+                self?.onceCode = code.0
                 completion?()
             }
         }

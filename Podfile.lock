@@ -1,11 +1,9 @@
 PODS:
   - 1PasswordExtension (1.6.4)
-  - Alamofire (3.1.2)
+  - Alamofire (3.3.1)
   - Appirater (2.0.5)
   - ARChromeActivity (1.0.5)
-  - AVOSCloud (3.1.6.3)
-  - Eureka (1.2.0)
-  - FDFullscreenPopGesture (1.1)
+  - Eureka (1.5.0)
   - HexColors (2.3.0)
   - HMSegmentedControl (1.5.2)
   - hpple (0.2.0)
@@ -14,20 +12,21 @@ PODS:
   - KINWebBrowser (1.3.2):
     - ARChromeActivity (= 1.0.5)
     - TUSafariActivity (= 1.0.4)
-  - KVNProgress (2.2.1)
+  - KMNavigationBarTransition (0.0.7)
+  - KVNProgress (2.2.4)
   - LNNotificationsUI (0.0.1)
   - MJRefresh (2.4.12)
-  - REFormattedNumberField (1.1.5)
+  - REFormattedNumberField (1.1.6)
   - RETableViewManager (1.6):
     - REFormattedNumberField (~> 1.1.5)
     - REValidation (~> 0.1.4)
   - REValidation (0.1.4)
   - RNFrostedSidebar (0.2.0)
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
-  - SimpleKeychain (0.6.1)
-  - SwiftyJSON (2.3.1)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SimpleKeychain (0.7.0)
+  - SwiftyJSON (2.3.2)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
   - TTTAttributedLabel (1.13.4)
@@ -37,16 +36,16 @@ DEPENDENCIES:
   - 1PasswordExtension (~> 1.6.4)
   - Alamofire
   - Appirater
-  - AVOSCloud
-  - Eureka (~> 1.2)
-  - FDFullscreenPopGesture (~> 1.1)
+  - Eureka
   - HMSegmentedControl (~> 1.4)
   - hpple (from `https://github.com/topfunky/hpple.git`, commit `26554fa388`)
   - IQKeyboardManager (~> 3.2.1)
   - JTSImageViewController
   - KINWebBrowser
+  - KMNavigationBarTransition
   - KVNProgress (~> 2.1)
-  - LNNotificationsUI (from `https://github.com/LeoNatan/LNNotificationsUI.git`)
+  - LNNotificationsUI (from `https://github.com/LeoNatan/LNNotificationsUI.git`, commit
+    `6d95e0b528afb78287841e9c4c1f6db7f27bef03`)
   - MJRefresh (~> 2.4.7)
   - RETableViewManager
   - RNFrostedSidebar (~> 0.2)
@@ -62,6 +61,7 @@ EXTERNAL SOURCES:
     :commit: 26554fa388
     :git: https://github.com/topfunky/hpple.git
   LNNotificationsUI:
+    :commit: 6d95e0b528afb78287841e9c4c1f6db7f27bef03
     :git: https://github.com/LeoNatan/LNNotificationsUI.git
   TSMessages:
     :git: https://github.com/KrauseFx/TSMessages.git
@@ -71,36 +71,35 @@ CHECKOUT OPTIONS:
     :commit: 26554fa388
     :git: https://github.com/topfunky/hpple.git
   LNNotificationsUI:
-    :commit: c05b050865bc51d81b16d065fa9e6f309a649cc9
+    :commit: 6d95e0b528afb78287841e9c4c1f6db7f27bef03
     :git: https://github.com/LeoNatan/LNNotificationsUI.git
   TSMessages:
-    :commit: 3e5b2f6f9f9ac5a3ce7b2822cad606e56c223b5f
+    :commit: e63f23304f781dcadbac31e6d338f3105fb3cd78
     :git: https://github.com/KrauseFx/TSMessages.git
 
 SPEC CHECKSUMS:
   1PasswordExtension: 9f471645d378283cb88c6d4bf502e4381a42c0ad
-  Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   ARChromeActivity: 821c7849b566f49583987468733a896fee35aa4d
-  AVOSCloud: c71c27f9463e361d5224a762db9db46d8fc62c3e
-  Eureka: aa7059d2a30e1b206a581f0aabfcf903ece6beae
-  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  Eureka: 2fb37bb50569c62ee3284689d5b7aca694b040e0
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   hpple: abe31b2c56e8cc2f9a7af0eaa7f1bc08a275fcfe
   IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
   KINWebBrowser: 27aa857a2aa39063ed102cca781d130b679d205f
-  KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
-  LNNotificationsUI: cbf9f8a592a14cee671729d16e01d7e6032bc020
+  KMNavigationBarTransition: 9b1fb5e0423b64b002687462c4e5df29c76fe194
+  KVNProgress: 541edcea5a1fef592aceac8d791a410d38cb499d
+  LNNotificationsUI: 6a091898a701a5d6dbe2edda6657c9d28c100647
   MJRefresh: ca8e9589895977df32d379d46e6b8a5450b3ff44
-  REFormattedNumberField: be3d55dd709f65541fb26b7e1709da07903147f8
+  REFormattedNumberField: 70fc5fb1218ebd5ee9983820defd12806d5c6ec6
   RETableViewManager: 9667ecb29c005c32df40a1dd1828224840a351a2
   REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
   RNFrostedSidebar: 9491d8627e5e99b92334d36def432c0faf7ebae4
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
-  SimpleKeychain: 150d76f3b9200de58f033228f6e976c6241a221c
-  SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546

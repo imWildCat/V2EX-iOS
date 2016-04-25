@@ -69,12 +69,10 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        AVAnalytics.endLogPageView(leanCloudSlug)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        AVAnalytics.beginLogPageView(leanCloudSlug)
         if mode == .CurrentUser {
             let storage = SessionStorage.sharedStorage
             username = storage.currentUser?.name

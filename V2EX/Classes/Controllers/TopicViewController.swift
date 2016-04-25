@@ -66,12 +66,10 @@ class TopicViewController: UIViewController, UIWebViewDelegate, ReplyTopicViewCo
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        AVAnalytics.beginLogPageView("TopicViewController")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        AVAnalytics.endLogPageView("TopicViewController")
     }
     
     // MARK: Popover Menu

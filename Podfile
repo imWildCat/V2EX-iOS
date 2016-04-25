@@ -19,6 +19,7 @@ inhibit_all_warnings!
 	pod 'SDWebImage'
 	pod 'TTTAttributedLabel'
 	pod 'IQKeyboardManager', '~> 3.2.1'
+    pod 'KMNavigationBarTransition'
 	pod 'SimpleKeychain'
 	pod 'Alamofire'
     pod 'SwiftyJSON'
@@ -28,12 +29,10 @@ inhibit_all_warnings!
     pod 'JTSImageViewController'
 #    pod 'SlackTextViewController'
     pod 'KINWebBrowser'
-    pod 'LNNotificationsUI', :git => "https://github.com/LeoNatan/LNNotificationsUI.git"
-    pod 'FDFullscreenPopGesture', '~> 1.1'
-    pod 'AVOSCloud'
+    pod 'LNNotificationsUI', :git => "https://github.com/LeoNatan/LNNotificationsUI.git", :commit => '6d95e0b528afb78287841e9c4c1f6db7f27bef03'
     pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
     pod '1PasswordExtension', '~> 1.6.4'
-    pod 'Eureka', '~> 1.2'
+    pod 'Eureka'
 # end
 
 #target 'V2EXTests', :exclusive => true do

@@ -43,12 +43,21 @@ class TopicListViewController: UITableViewController {
             self.navigationItem.rightBarButtonItem = button
         }
         
-        tableView.tableFooterView = UIView()
+        if mode == .Tab {
+            let screenSize = UIScreen.mainScreen().bounds
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 35))
+            label.textAlignment = .Center
+            label.font = .systemFontOfSize(12.0)
+            label.textColor = .grayColor()
+            label.text = "没有更多页了"
+            tableView.tableFooterView = label
+        } else {
+            tableView.tableFooterView = UIView()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        AVAnalytics.beginLogPageView("TopicListViewController")
         if topics.count == 0 {
             loadData()
         }
@@ -56,7 +65,6 @@ class TopicListViewController: UITableViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        AVAnalytics.endLogPageView("TopicListViewController")
     }
     
     func addLoadMoreDataFooter() {

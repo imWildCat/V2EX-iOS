@@ -119,10 +119,10 @@ class CatPaginatedScrollView: UIScrollView, UIScrollViewDelegate {
             
             UIView.animateWithDuration(0.35, animations: { [unowned self] () -> Void in
                 self.contentOffset = CGPoint(x: self.frame.size.width * CGFloat(page) + bounce, y: self.contentOffset.y)
-            }, completion: { [unowned self] (Bool finished) -> Void in
+            }, completion: { [unowned self] (finished) -> Void in
                 UIView.animateWithDuration(1, animations: { () -> Void in
                     self.contentOffset = CGPoint(x: self.contentOffset.x - bounce, y: self.contentOffset.y)
-                }, completion: { [unowned self] (Bool finished) -> Void in
+                }, completion: { [unowned self] (finished) -> Void in
                     self.jumping = false
                     self.pagingEnabled = true
                     if (completion != nil) {

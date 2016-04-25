@@ -67,7 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         func configureIQKeyboardManager() {
             IQKeyboardManager.sharedManager().disableInViewControllerClass(CreateTopicViewController)
-            IQKeyboardManager.sharedManager().disableInViewControllerClass(LCUserFeedbackViewController)
             IQKeyboardManager.sharedManager().disableInViewControllerClass(ReplyTopicViewController)
             IQKeyboardManager.sharedManager().keyboardDistanceFromTextField = 200.0
             // TODO: Distance only configure for LoginVC
@@ -75,7 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         func setUpInAppNotification() {
             if let image = UIImage(named: "notification_icon") {
-                LNNotificationCenter.defaultCenter().registerApplicationWithIdentifier("v2ex", name: "V2EX", icon: image, defaultSettings: LNNotificationDefaultAppSettings)
             } else {
                 NSLog("Cannot found image `notification_icon` to set up LNNotificationCenter")
             }
@@ -132,9 +130,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setUpAVOSCloud() {
         let AVOSAppID = "1A7jRplXCQVNigEXkVrBGk2T"
         let AVOSAppKey = "YBCfqwbSugU3dDHR6RgP8d6n"
-        
-        AVOSCloud.setLastModifyEnabled(true)
-        AVOSCloud.setApplicationId(AVOSAppID, clientKey: AVOSAppKey)
     }
     
     private func getCachedUnreadNotificationCount() -> Int {
@@ -214,7 +209,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        AVAnalytics.event("didFailToRegisterForRemoteNotificationsWithError", label: error.description)
     }
 
     func applicationWillResignActive(application: UIApplication) {

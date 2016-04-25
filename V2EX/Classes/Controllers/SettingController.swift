@@ -109,8 +109,14 @@ class SettingController: FormViewController {
                 $0.title = "反馈"
                 $0.cell.accessoryType = .DisclosureIndicator
                 }.onCellSelection { [unowned self] _ in
-                    let agent = LCUserFeedbackAgent.sharedInstance()
-                    agent.showConversations(self, title: nil, contact: "")
+//                    let agent = LCUserFeedbackAgent.sharedInstance()
+//                    agent.showConversations(self, title: nil, contact: "")
+                    let alert = UIAlertController(title: "新版本赶工中...", message: "原有反馈功能已经取消，请点击\n“关于” -> “建议与反馈”\n查看反馈方式。感谢您的支持！", preferredStyle: .Alert)
+                    let okAction = UIAlertAction(title: "好", style: .Cancel, handler: { (action) in
+                        
+                    })
+                    alert.addAction(okAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
             }
     }
     

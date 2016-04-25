@@ -42,12 +42,10 @@ class NodeListCollectionViewController: UICollectionViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         addSearchBar()
-        AVAnalytics.beginLogPageView("NodeListCollectionViewController")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        AVAnalytics.endLogPageView("NodeListCollectionViewController")
     }
     
     private func itemForIndexPath(indexPath: NSIndexPath) -> NSDictionary {

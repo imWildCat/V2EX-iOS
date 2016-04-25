@@ -170,16 +170,11 @@ class TopicSerivce {
     }
     
     static func handlePageNumberFromDocument(doc: TFHpple) -> (Int, Int) {
-        var currentPage = 1
-        var totalPage = 1
         // Check if there are more pages
-        let paginationElement = doc.searchFirst("//div[@id='Main']/div[@class='box']/div[@class='inner']/table//strong[@class='fade']")
-        if let paginationString = paginationElement?.text(),
-            currentPageString = paginationString.match("(\\d+)/\\d+")?[1],
-            totalPageString = paginationString.match("\\d+/(\\d+)")?[1] {
-                currentPage = Int(currentPageString) ?? 1
-                totalPage = Int(totalPageString) ?? 1
-        }
+        let pageCurrentElement = doc.searchFirst("//div[@id='Main']//a[@class='page_current']")
+        let currentPage = Int(pageCurrentElement?.text() ?? "1") ?? 1
+        let totalPage = Int(doc.searchElements("//div[@id='Main']//a[@class='page_normal']").last?.text() ??  "1") ?? 1
+                
         return (currentPage, totalPage)
     }
     

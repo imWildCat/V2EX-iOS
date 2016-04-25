@@ -34,12 +34,10 @@ class UserNotificationViewController: V2EXTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        AVAnalytics.beginLogPageView("UserNotificationViewController")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        AVAnalytics.endLogPageView("UserNotificationViewController")
     }
     
     func addLoadMoreDataFooter() {
